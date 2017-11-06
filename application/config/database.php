@@ -77,7 +77,7 @@ $db['default'] = array(
 	'dsn'	=> 'mysql:host=localhost;dbname=lms',
 	'hostname' => '',
 	'username' => 'root',
-	'password' => '',
+	'password' => 'radiohead',
 	'database' => '',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
