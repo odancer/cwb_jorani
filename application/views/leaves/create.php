@@ -52,6 +52,16 @@ echo form_open('leaves/create', $attributes) ?>
     <input type="text" name="duration" id="duration" value="<?php echo set_value('duration'); ?>" />
     <?php } ?>
 
+    <label for="agent">
+        <?php echo lang('leaves_agent');?>
+        &nbsp;<span class="muted" id="lblCredit"><?php if (!is_null($credit)) { ?>(<?php echo $credit; ?>)<?php } ?></span>
+    </label>
+    <select class="input-xx]large" name="type" id="type">
+    <?php foreach ($types as $typeId => $TypeName): ?>
+        <option value="<?php echo $typeId; ?>" <?php if ($typeId == $defaultType) echo "selected"; ?>><?php echo $TypeName; ?></option>
+    <?php endforeach ?>
+    </select>
+
     <span style="margin-left: 2px;position: relative;top: -5px;" id="spnDayType"></span>
 
     <div class="alert hide alert-error" id="lblCreditAlert" onclick="$('#lblCreditAlert').hide();">

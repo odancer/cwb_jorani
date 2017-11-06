@@ -133,3 +133,6 @@ $lang['leaves_comment_new_comment'] = 'New comment';
 $lang['leaves_comment_send_comment'] = 'Send comment';
 $lang['leaves_comment_author_saying'] = ' says';
 $lang['leaves_comment_status_changed'] = 'The status of the leave have been changed to ';
+
+#2017-11-06 by david
+$lang['leaves_agent'] = '職務代理人';
