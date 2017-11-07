@@ -81,7 +81,7 @@
       }
     }?>
     <tr>
-        <td data-order="<?php echo $leave['id']; ?>">
+            <td data-order="<?php echo $leave['id']; ?>">
             <a href="<?php echo base_url();?>leaves/leaves/<?php echo $leave['id']; ?>" title="<?php echo lang('leaves_index_thead_tip_view');?>"><?php echo $leave['id']; ?></a>
             &nbsp;
             <div class="pull-right">
@@ -92,6 +92,7 @@
                 $showEdit = FALSE;
                 $showReminder = FALSE;
                 //Edit rules
+            
                 if (($leave['status'] == LMS_PLANNED)) {
                     $showEdit = TRUE;
                 }
@@ -140,12 +141,12 @@
                 <?php if ($showReminder == TRUE) { ?>
                     <a href="<?php echo base_url();?>leaves/reminder/<?php echo $leave['id']; ?>" title="<?php echo lang('leaves_button_send_reminder');?>"><i class="fa fa-envelope" style="color:black;"></i></a>
                     &nbsp;
-                <?php } ?>
+                <?php } ?> 
                 <a href="<?php echo base_url();?>leaves/leaves/<?php echo $leave['id']; ?>" title="<?php echo lang('leaves_index_thead_tip_view');?>"><i class="icon-eye-open"></i></a>
                 <?php if ($this->config->item('enable_history') === TRUE) { ?>
                 &nbsp;
                 <a href="#" class="show-history" data-id="<?php echo $leave['id'];?>" title="<?php echo lang('leaves_index_thead_tip_history');?>"><i class="icon-time"></i></a>
-                <?php } ?>
+                <?php } ?> 
             </div>
         </td>
         <td data-order="<?php echo $tmpStartDate; ?>"><?php echo $startdate . ' (' . lang($leave['startdatetype']). ')'; ?></td>

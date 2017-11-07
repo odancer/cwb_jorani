@@ -490,8 +490,7 @@ class Leaves_model extends CI_Model {
         $agent=$this->input->post('agent');
         $userInfo= explode('_',$agent);
         $userID = (int)$userInfo[0];
-
-        error_log( print_r($userID, TRUE) );
+        //error_log( print_r($userID, TRUE) );
         $data = array(
             'startdate' => $this->input->post('startdate'),
             'startdatetype' => $this->input->post('startdatetype'),

@@ -61,7 +61,6 @@ switch ($leave['status']) {
       <a href="<?php echo base_url();?>leaves/reminder/<?php echo $leave['id']; ?>" title="<?php echo lang('leaves_button_send_reminder');?>" class="btn btn-primary"><i class="fa fa-envelope"></i>&nbsp;<?php echo lang('leaves_button_send_reminder');?></a>
       <br/><br/>
     <?php } ?>
-
     <?php if (($leave['status'] == LMS_PLANNED) || ($is_hr)) { ?>
     <a href="<?php echo base_url();?>leaves/edit/<?php echo $leave['id'] ?>" class="btn btn-primary"><i class="icon-pencil icon-white"></i>&nbsp;<?php echo lang('leaves_view_button_edit');?></a>
     &nbsp;
