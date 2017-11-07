@@ -487,6 +487,11 @@ class Leaves_model extends CI_Model {
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
     public function setLeaves($id) {
+        $agent=$this->input->post('agent');
+        $userInfo= explode('_',$agent);
+        $userID = (int)$userInfo[0];
+
+        error_log( print_r($userID, TRUE) );
         $data = array(
             'startdate' => $this->input->post('startdate'),
             'startdatetype' => $this->input->post('startdatetype'),
@@ -496,7 +501,8 @@ class Leaves_model extends CI_Model {
             'type' => $this->input->post('type'),
             'cause' => $this->input->post('cause'),
             'status' => $this->input->post('status'),
-            'employee' => $id
+            'employee' => $id,
+            'agent' => $userID
         );
         $this->db->insert('leaves', $data);
         $newId = $this->db->insert_id();

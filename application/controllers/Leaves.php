@@ -227,8 +227,7 @@ class Leaves extends CI_Controller {
             $userListDetails = $this->users_model->getUsers(0);
             foreach($userListDetails as $key => $value) {
               #error_log( print_r($value['lastname'], TRUE) );
-              $userName[] = $value['lastname'].$value['firstname'];
-
+              $userName[] = $value['id']."_".$value['lastname'].$value['firstname'];
             } 
             $data['defaultType'] = $leaveTypesDetails->defaultType;
             $data['credit'] = $leaveTypesDetails->credit;
@@ -790,6 +789,7 @@ class Leaves extends CI_Controller {
         $startdatetype = $this->input->post('startdatetype', TRUE);     //Mandatory field checked by frontend
         $enddatetype = $this->input->post('enddatetype', TRUE);       //Mandatory field checked by frontend
         $leave_id = $this->input->post('leave_id', TRUE);
+        $agent = $this->input->post('agent', TRUE);
         $leaveValidator = new stdClass;
         $deductDayOff = FALSE;
         if (isset($id) && isset($type)) {

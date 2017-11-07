@@ -94,7 +94,7 @@ $this->lang->load('menu', $language);?>
                       &nbsp;<b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a href="<?php echo base_url();?>requests/delegations"><?php echo lang('menu_validation_delegations');?></a></li>
+                    <li><a href="<?php echo base_url();?>requests/delegations"><?php echo lang('menu_validation_delegations');?></a></li> 
                     <li><a href="<?php echo base_url();?>requests/collaborators"><?php echo lang('menu_validation_collaborators');?></a></li>
                     <li><a href="<?php echo base_url();?>requests/balance"><?php echo lang('menu_hr_report_leave_balance');?></a></li>
                     <li class="divider"></li>
@@ -102,7 +102,7 @@ $this->lang->load('menu', $language);?>
                     <li><a href="<?php echo base_url();?>requests">
                       <?php if ($requested_leaves_count > 0) { ?>
                       <span class="badge badge-info"><?php echo $requested_leaves_count;?></span>
-                      <?php } ?>
+                      <?php } ?> 
                         <?php echo lang('menu_validation_leaves');?></a></li>
                     <?php if ($this->config->item('disable_overtime') === FALSE) { ?>
                     <li><a href="<?php echo base_url();?>overtime">

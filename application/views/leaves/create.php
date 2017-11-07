@@ -57,7 +57,7 @@ echo form_open('leaves/create', $attributes) ?>
     </label>
     <select class="input-large" name="agent" id="agent">
     <?php foreach ($userName as $agentId => $AgentName): ?>
-        <option value="<?php echo $typeId; ?>" <?php if ($agentId == $defaultType) echo "selected"; ?>><?php echo $AgentName; ?></option>
+        <option value="<?php echo $AgentName; ?>"><?php echo $AgentName; ?></option>
     <?php endforeach ?>
     </select>
 

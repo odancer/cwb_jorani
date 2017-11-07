@@ -248,6 +248,7 @@ CREATE TABLE IF NOT EXISTS `leaves` (
   `status` int(11) DEFAULT NULL,
   `employee` int(11) DEFAULT NULL,
   `cause` text CHARACTER SET utf8,
+  `agent` int(11) DEFAULT NULL,
   `startdatetype` varchar(12) CHARACTER SET utf8 DEFAULT NULL,
   `enddatetype` varchar(12) CHARACTER SET utf8 DEFAULT NULL,
   `duration` decimal(10,3) DEFAULT NULL,
@@ -475,6 +476,7 @@ CREATE TABLE IF NOT EXISTS `leaves_history` (
   `status` int(11) DEFAULT NULL,
   `employee` int(11) DEFAULT NULL,
   `cause` text,
+  `agent` int(11) DEFAULT NULL,
   `startdatetype` varchar(12) DEFAULT NULL,
   `enddatetype` varchar(12) DEFAULT NULL,
   `duration` decimal(10,2) DEFAULT NULL,
@@ -549,6 +551,7 @@ CREATE TABLE IF NOT EXISTS `parameters` (
 `value` TEXT NOT NULL COMMENT 'PHP/serialize value',
 INDEX `param_name` (`name`, `scope`)
 ) COMMENT = 'Application parameters';
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
