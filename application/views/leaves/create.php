@@ -54,11 +54,10 @@ echo form_open('leaves/create', $attributes) ?>
 
     <label for="agent">
         <?php echo lang('leaves_agent');?>
-        &nbsp;<span class="muted" id="lblCredit"><?php if (!is_null($credit)) { ?>(<?php echo $credit; ?>)<?php } ?></span>
     </label>
-    <select class="input-xx]large" name="type" id="type">
-    <?php foreach ($types as $typeId => $TypeName): ?>
-        <option value="<?php echo $typeId; ?>" <?php if ($typeId == $defaultType) echo "selected"; ?>><?php echo $TypeName; ?></option>
+    <select class="input-large" name="agent" id="agent">
+    <?php foreach ($userName as $agentId => $AgentName): ?>
+        <option value="<?php echo $typeId; ?>" <?php if ($agentId == $defaultType) echo "selected"; ?>><?php echo $AgentName; ?></option>
     <?php endforeach ?>
     </select>
 

@@ -28,7 +28,7 @@ class Leaves extends CI_Controller {
         setUserContext($this);
         $this->load->model('leaves_model');
         $this->load->model('types_model');
-       # $this->load->model('users_model');
+        $this->load->model('users_model');
         $this->lang->load('leaves', $this->language);
         $this->lang->load('global', $this->language);
     }
@@ -224,16 +224,17 @@ class Leaves extends CI_Controller {
         if ($this->form_validation->run() === FALSE) {
             $this->load->model('contracts_model');
             $leaveTypesDetails = $this->contracts_model->getLeaveTypesDetailsOTypesForUser($this->session->userdata('id'));
-            $userInfoDetails = $this->user_model->getUsers(0);
-            foreach($userInfoDetails as $key=>$value) {
-              $userName[] = $userInfoDetails['lastname'].$userInfoDetails['firstname'];
-            }
+            $userListDetails = $this->users_model->getUsers(0);
+            foreach($userListDetails as $key => $value) {
+              #error_log( print_r($value['lastname'], TRUE) );
+              $userName[] = $value['lastname'].$value['firstname'];
 
+            } 
             $data['defaultType'] = $leaveTypesDetails->defaultType;
             $data['credit'] = $leaveTypesDetails->credit;
             $data['types'] = $leaveTypesDetails->types;
-            $data['userName'] = $userInfoDetails;
-            err_log($data['userName']);
+            $data['userName'] = $userName;
+            //err_log($data['userName']);
             $this->load->view('templates/header', $data);
             $this->load->view('menu/index', $data);
             $this->load->view('leaves/create');
