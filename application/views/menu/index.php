@@ -43,8 +43,8 @@ $this->lang->load('menu', $language);?>
             <div class="nav-responsive">
                 <ul class="nav">
                     <li><a href="<?php echo base_url();?>leaves" title="<?php echo lang('menu_leaves_list_requests');?>"><i class="icon-list icon-white"></i></a></li>
-
-              <?php if (($is_hr == TRUE) || ($is_admin == TRUE)) { ?>
+              
+              <?php if ($is_hr == TRUE) { ?>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('menu_admin_title');?> <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -127,6 +127,35 @@ $this->lang->load('menu', $language);?>
                     <li class="nav-header"><?php echo lang('menu_requests_overtime');?></li>
                     <li><a href="<?php echo base_url();?>extra"><?php echo lang('menu_requests_list_extras');?></a></li>
                     <li><a href="<?php echo base_url();?>extra/create"><?php echo lang('menu_requests_request_extra');?></a></li>
+                    <?php } ?>
+                  </ul>
+                </li>
+
+                 <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <?php echo lang('menu_validation_title');?>&nbsp;
+                      <?php if ($requests_count > 0) { ?>
+                      <span class="badge badge-warning"><?php echo $requests_count;?></span>
+                      <?php } ?>
+                      &nbsp;<b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="<?php echo base_url();?>requests/delegations"><?php echo lang('menu_validation_delegations');?></a></li> 
+                    <li><a href="<?php echo base_url();?>requests/collaborators"><?php echo lang('menu_validation_collaborators');?></a></li>
+                    <li><a href="<?php echo base_url();?>requests/balance"><?php echo lang('menu_hr_report_leave_balance');?></a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><?php echo lang('menu_validation_title');?></li>
+                    <li><a href="<?php echo base_url();?>requests">
+                      <?php if ($requested_leaves_count > 0) { ?>
+                      <span class="badge badge-info"><?php echo $requested_leaves_count;?></span>
+                      <?php } ?> 
+                        <?php echo lang('menu_validation_leaves');?></a></li>
+                    <?php if ($this->config->item('disable_overtime') === FALSE) { ?>
+                    <li><a href="<?php echo base_url();?>overtime">
+                      <?php if ($requested_extra_count > 0) { ?>
+                      <span class="badge badge-info"><?php echo $requested_extra_count;?></span>
+                      <?php } ?>
+                        <?php echo lang('menu_validation_overtime');?></a></li>
                     <?php } ?>
                   </ul>
                 </li>

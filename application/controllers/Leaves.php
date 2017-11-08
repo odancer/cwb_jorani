@@ -43,6 +43,7 @@ class Leaves extends CI_Controller {
         $this->lang->load('datatable', $this->language);
         if ($this->config->item('enable_history') == TRUE){
           $data['leaves'] = $this->leaves_model->getLeavesOfEmployeeWithHistory($this->session->userdata('id'));
+          error_log( print_r($data['leaves'], TRUE) );
         }else{
           $data['leaves'] = $this->leaves_model->getLeavesOfEmployee($this->session->userdata('id'));
         }

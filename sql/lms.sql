@@ -355,6 +355,7 @@ INSERT INTO `status` (`id`, `name`) VALUES
 (4, 'Rejected'),
 (5, 'Cancellation'),
 (6, 'Canceled');
+(7, 'Requested_Agent');
 
 --
 -- Structure of table `tasks`

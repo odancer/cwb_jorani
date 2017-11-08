@@ -29,6 +29,7 @@
     <span class="label"><input type="checkbox" checked id="chkPlanned" class="filterStatus"> &nbsp;<?php echo lang('Planned');?></span> &nbsp;
     <span class="label label-success"><input type="checkbox" checked id="chkAccepted" class="filterStatus"> &nbsp;<?php echo lang('Accepted');?></span> &nbsp;
     <span class="label label-warning"><input type="checkbox" checked id="chkRequested" class="filterStatus"> &nbsp;<?php echo lang('Requested');?></span> &nbsp;
+   <span class="label label-warning"><input type="checkbox" checked id="chkRequested_Agent" class="filterStatus"> &nbsp;<?php echo lang('Requested_Agent');?></span> &nbsp;
     <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" checked id="chkRejected" class="filterStatus"> &nbsp;<?php echo lang('Rejected');?></span> &nbsp;
     <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" checked id="chkCancellation" class="filterStatus"> &nbsp;<?php echo lang('Cancellation');?></span> &nbsp;
     <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" checked id="chkCanceled" class="filterStatus"> &nbsp;<?php echo lang('Canceled');?></span>
@@ -114,11 +115,11 @@
                 }
                 //Reminder rules
                 if (($leave['status'] == LMS_REQUESTED) || 
-                        ($leave['status'] == LMS_CANCELLATION)) {
+                        ($leave['status'] == LMS_CANCELLATION) || ($leave['status'] == LMS_REQUESTED_AGENT)) {
                     $showReminder = TRUE;
                 }
                 //Direct cancelation by the employee
-                if (($leave['status'] == LMS_REQUESTED)) {
+                if (($leave['status'] == LMS_REQUESTED) || ($leave['status'] == LMS_REQUESTED_AGENT)) {
                     $showCancelByUser = TRUE;
                 }
                 ?>
@@ -154,11 +155,12 @@
         <td><?php echo $leave['cause']; ?></td>
         <td><?php echo $leave['duration']; ?></td>
         <td><?php echo $leave['type_name']; ?></td>
-        <?php
+       <?php
         switch ($leave['status']) {
             case 1: echo "<td><span class='label'>" . lang($leave['status_name']) . "</span></td>"; break;
             case 2: echo "<td><span class='label label-warning'>" . lang($leave['status_name']) . "</span></td>"; break;
             case 3: echo "<td><span class='label label-success'>" . lang($leave['status_name']) . "</span></td>"; break;
+            case 7: echo "<td><span class='label label-warning'>" . lang($leave['status_name']) . "</span></td>"; break;
             default: echo "<td><span class='label label-important' style='background-color: #ff0000;'>" . lang($leave['status_name']) . "</span></td>"; break;
         }?>
         <?php
@@ -254,6 +256,7 @@ function filterStatusColumn() {
     if ($('#chkRejected').prop('checked')) filter += "<?php echo lang('Rejected');?>|";
     if ($('#chkCancellation').prop('checked')) filter += "<?php echo lang('Cancellation');?>|";
     if ($('#chkCanceled').prop('checked')) filter += "<?php echo lang('Canceled');?>|";
+    if ($('#chkRequested_Agent').prop('checked')) filter += "<?php echo lang('Requested_Agent');?>|";
     filter = filter.slice(0,-1) + ")$";
     if (filter.indexOf('(') == -1) filter = 'nothing is selected';
     leaveTable.columns( 6 ).search( filter, true, false ).draw();
@@ -367,6 +370,7 @@ $(document).ready(function() {
                 case '4': $("#chkRejected").prop("checked", true); break;
                 case '5': $("#chkCancellation").prop("checked", true); break;
                 case '6': $("#chkCanceled").prop("checked", true); break;
+                case '7': $("#chkRequested_Agent").prop("checked", true); break;
             }
         });
         //$("#cboLeaveType option[value='" + getURLParameter('type') + "']").prop("selected", true);

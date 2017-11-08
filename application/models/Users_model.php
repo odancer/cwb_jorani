@@ -447,7 +447,7 @@ class Users_model extends CI_Model {
           00001000 16 HR Manager
           = 00001101 25 Can access to HR functions
          */
-        if (((int) $row->role & 25)) {
+        if (((int) $row->role & 25) && ((int) $row->role != 1)) {
             $is_hr = TRUE;
         } else {
             $is_hr = FALSE;

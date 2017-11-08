@@ -24,7 +24,8 @@ $lang['global_false'] = '錯誤';
 $lang['footer_link_go_top'] = '至頂端';
 $lang['footer_copyright_notice'] = '&copy; 2014 Jorani Authors';
 
-$lang['Requested'] = '要求';
+$lang['Requested'] = '主管審核';
+$lang['Requested_Agent'] = '代理人審核';
 $lang['Planned'] = '計畫';
 $lang['Accepted'] = '接受';
 $lang['Rejected'] = '拒絕';

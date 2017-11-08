@@ -47,6 +47,7 @@ class Leaves_model extends CI_Model {
      * @return array list of records
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
+    
     public function getLeavesOfEmployee($employee) {
         $this->db->select('leaves.*');
         $this->db->select('status.id as status, status.name as status_name');
@@ -561,7 +562,7 @@ class Leaves_model extends CI_Model {
             $affectedRows = $this->db->insert_batch('leaves', $data);
         }
         return $affectedRows;
-    }
+    } 
 
     /**
      * Create a leave request (suitable for API use)
