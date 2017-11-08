@@ -36,6 +36,7 @@ if ($showAll == FALSE) {
     <span class="label"><input type="checkbox" <?php echo $checked;?> id="chkPlanned" class="filterStatus" <?php echo $disable;?>> &nbsp;<?php echo lang('Planned');?></span> &nbsp;
     <span class="label label-success"><input type="checkbox" <?php echo $checked;?> id="chkAccepted" class="filterStatus" <?php echo $disable;?>> &nbsp;<?php echo lang('Accepted');?></span> &nbsp;
     <span class="label label-warning"><input type="checkbox" checked id="chkRequested" class="filterStatus"> &nbsp;<?php echo lang('Requested');?></span> &nbsp;
+    <span class="label label-warning"><input type="checkbox" checked id="chkRequested_Agent" class="filterStatus"> &nbsp;<?php echo lang('Requested_Agent');?></span> &nbsp;
     <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" <?php echo $checked;?> id="chkRejected" class="filterStatus" <?php echo $disable;?>> &nbsp;<?php echo lang('Rejected');?></span> &nbsp;
     <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" checked id="chkCancellation" class="filterStatus"> &nbsp;<?php echo lang('Cancellation');?></span> &nbsp;
     <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" <?php echo $checked;?> id="chkCanceled" class="filterStatus" <?php echo $disable;?>> &nbsp;<?php echo lang('Canceled');?></span>

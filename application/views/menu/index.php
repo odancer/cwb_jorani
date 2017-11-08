@@ -131,7 +131,8 @@ $this->lang->load('menu', $language);?>
                   </ul>
                 </li>
 
-                 <li class="dropdown">
+             <?php if ($is_manager == FALSE && $is_hr == FALSE) { ?>
+                <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                       <?php echo lang('menu_validation_title');?>&nbsp;
                       <?php if ($requests_count > 0) { ?>
@@ -159,6 +160,7 @@ $this->lang->load('menu', $language);?>
                     <?php } ?>
                   </ul>
                 </li>
+              <?php } ?>
 
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('menu_calendar_title');?> <b class="caret"></b></a>
