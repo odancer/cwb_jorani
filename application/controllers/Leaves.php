@@ -43,7 +43,6 @@ class Leaves extends CI_Controller {
         $this->lang->load('datatable', $this->language);
         if ($this->config->item('enable_history') == TRUE){
           $data['leaves'] = $this->leaves_model->getLeavesOfEmployeeWithHistory($this->session->userdata('id'));
-          error_log( print_r($data['leaves'], TRUE) );
         }else{
           $data['leaves'] = $this->leaves_model->getLeavesOfEmployee($this->session->userdata('id'));
         }
@@ -227,7 +226,6 @@ class Leaves extends CI_Controller {
             $leaveTypesDetails = $this->contracts_model->getLeaveTypesDetailsOTypesForUser($this->session->userdata('id'));
             $userListDetails = $this->users_model->getUsers(0);
             foreach($userListDetails as $key => $value) {
-              #error_log( print_r($value['lastname'], TRUE) );
               $userName[] = $value['id']."_".$value['lastname'].$value['firstname'];
             } 
             $data['defaultType'] = $leaveTypesDetails->defaultType;

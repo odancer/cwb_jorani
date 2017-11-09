@@ -46,7 +46,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 */
 define('LMS_PLANNED', 1);
 define('LMS_REQUESTED_AGENT',7);
-define('LMS_REQUESTED_Manager',8);
+define('LMS_REQUESTED_MANAGER',8);
 define('LMS_REQUESTED', 2);
 define('LMS_ACCEPTED', 3);
 define('LMS_REJECTED', 4);

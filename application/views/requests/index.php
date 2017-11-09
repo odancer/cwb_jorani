@@ -88,7 +88,7 @@ if ($showAll == FALSE) {
     ?>
     <tr>
         <td data-order="<?php echo $request['leave_id']; ?>">
-            <a href="<?php echo base_url();?>leaves/requests/<?php echo $request['leave_id']; ?>" title="<?php echo lang('requests_index_thead_tip_view');?>"><?php echo $request['leave_id']; ?></a>
+            <a href="<?php echo base_url();?>leaves/requests/<?php echo $request['leave_id']; ?>" title="<?php echo lang('requests_index_thead_tip_view');?>"><?php echo $request['leave_id']; ?></a> 
             &nbsp;
             <div class="pull-right">
                 <?php if ($request['status'] == LMS_CANCELLATION) { ?>
@@ -113,7 +113,7 @@ if ($showAll == FALSE) {
                 <?php if ($this->config->item('enable_history') === TRUE) { ?>
                 &nbsp;
                 <a href="#" class="show-history" data-id="<?php echo $request['leave_id'];?>" title="<?php echo lang('requests_index_thead_tip_history');?>"><i class="fa fa-clock-o" style="color:black;"></i></a>
-                <?php } ?>
+                <?php } ?> 
             </div>
         </td>
         <td><?php echo $request['firstname'] . ' ' . $request['lastname']; ?></td>
@@ -125,6 +125,7 @@ if ($showAll == FALSE) {
         switch ($request['status']) {
             case 1: echo "<td><span class='label'>" . lang($request['status_name']) . "</span></td>"; break;
             case 2: echo "<td><span class='label label-warning'>" . lang($request['status_name']) . "</span></td>"; break;
+            case 7: echo "<td><span class='label label-warning'>" . lang($request['status_name']) . "</span></td>"; break;
             case 3: echo "<td><span class='label label-success'>" . lang($request['status_name']) . "</span></td>"; break;
             default: echo "<td><span class='label label-important' style='background-color: #ff0000;'>" . lang($request['status_name']) . "</span></td>"; break;
         }?>
@@ -137,7 +138,7 @@ if ($showAll == FALSE) {
     </tr>
 <?php endforeach ?>
 	</tbody>
-</table>
+</table> 
 
 <div class="row-fluid"><div class="span12">&nbsp;</div></div>
 
@@ -216,6 +217,7 @@ function filterStatusColumn() {
     if ($('#chkRejected').prop('checked')) filter += "<?php echo lang('Rejected');?>|";
     if ($('#chkCancellation').prop('checked')) filter += "<?php echo lang('Cancellation');?>|";
     if ($('#chkCanceled').prop('checked')) filter += "<?php echo lang('Canceled');?>|";
+    if ($('#chkRequested_Agent').prop('checked')) filter += "<?php echo lang('Requested_Agent');?>|";
     filter = filter.slice(0,-1) + ")$";
     if (filter.indexOf('(') == -1) filter = 'nothing is selected';
     leaveTable.columns( 6 ).search( filter, true, false ).draw();
@@ -367,6 +369,7 @@ $(document).ready(function() {
                 case '4': $("#chkRejected").prop("checked", true); break;
                 case '5': $("#chkCancellation").prop("checked", true); break;
                 case '6': $("#chkCanceled").prop("checked", true); break;
+                case '7': $("#chkRequested_Agent").prop("checked", true); break;
             }
         });
         //$("#cboLeaveType option[value='" + getURLParameter('type') + "']").prop("selected", true);
@@ -422,6 +425,7 @@ $(document).ready(function() {
                 case '4': $("#chkRejected").prop("checked", true); break;
                 case '5': $("#chkCancellation").prop("checked", true); break;
                 case '6': $("#chkCanceled").prop("checked", true); break;
+                case '7': $("#chkRequested_Agent").prop("checked", true); break;
             }
         });
         //$("#cboLeaveType option[value='" + getURLParameter('type') + "']").prop("selected", true);

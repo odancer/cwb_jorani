@@ -77,8 +77,19 @@ class Requests extends CI_Controller {
         }
         $employee = $this->users_model->getUsers($leave['employee']);
         $is_delegate = $this->delegations_model->isDelegateOfManager($this->user_id, $employee['manager']);
-        if (($this->user_id == $employee['manager']) || ($this->is_hr)  || ($is_delegate)) {
-            $this->leaves_model->switchStatus($id, LMS_ACCEPTED);
+        $agent_info = $this->leaves_model->getLevesAgentInfo($id);
+        $agent_id = (int)$agent_info[0]->agent;
+        $status_id = (int)$agent_info[0]->status;
+        if (($this->user_id == $employee['manager']) || ($this->is_hr)  || ($is_delegate) || ($this->user_id == $agent_id)) {
+            switch ($status_id) {
+            case LMS_REQUESTED_AGENT;
+                $this->leaves_model->switchStatus($id, LMS_REQUESTED);
+                break;
+            case LMS_REQUESTED;
+                $this->leaves_model->switchStatus($id, LMS_ACCEPTED); 
+                break;
+            }
+            #$this->leaves_model->switchStatus($id, LMS_ACCEPTED);
             $this->sendMail($id, LMS_REQUESTED_ACCEPTED);
             $this->session->set_flashdata('msg', lang('requests_accept_flash_msg_success'));
             if (isset($_GET['source'])) {

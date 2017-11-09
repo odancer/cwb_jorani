@@ -491,7 +491,6 @@ class Leaves_model extends CI_Model {
         $agent=$this->input->post('agent');
         $userInfo= explode('_',$agent);
         $userID = (int)$userInfo[0];
-        //error_log( print_r($userID, TRUE) );
         $data = array(
             'startdate' => $this->input->post('startdate'),
             'startdatetype' => $this->input->post('startdatetype'),
@@ -684,6 +683,12 @@ class Leaves_model extends CI_Model {
         }
     }
 
+    public function getLevesAgentInfo($id) {
+        $this->db->select ('agent,status',FALSE);
+        $this->db->from('leaves');
+        $this->db->where('id',$id);
+        return $result=$this->db->get()->result();
+    }
     /**
      * Switch the status of a leave request and a comment. You may use one of the constants
      * listed into config/constants.php
@@ -1222,6 +1227,7 @@ class Leaves_model extends CI_Model {
         }
         if ($all == FALSE) {
             $this->db->where('leaves.status', LMS_REQUESTED);
+            $this->db->where('leaves.status', LMS_REQUESTED_AGENT);
             $this->db->where('leaves.status', LMS_CANCELLATION);
         }
         $this->db->order_by('leaves.startdate', 'desc');
@@ -1251,20 +1257,20 @@ class Leaves_model extends CI_Model {
         left outer join (
           SELECT id, MIN(change_date) as date
           FROM leaves_history
-          WHERE leaves_history.status = 2
+          WHERE leaves_history.status = 2 or 7
           GROUP BY id
         ) requested ON leaves.id = requested.id";
       //Case of manager having delegations
       $ids = $this->delegations_model->listManagersGivingDelegation($manager);
       if (count($ids) > 0) {
-        array_push($ids, $manager);
         $query .= " WHERE users.manager IN (" . implode(",", $ids) . ")";
       } else {
-        $query .= " WHERE users.manager = $manager";
+        $query .= " WHERE (users.manager = $manager and leaves.status='2') or (leaves.agent = $manager and leaves.status='7')";
+        //$query .= " WHERE (leaves.agent = $manager and leaves.status=7) or (users.manager = $manager and leaves.status=2)";
       }
       if ($all == FALSE) {
         $query .= " AND (leaves.status = " . LMS_REQUESTED .
-                " OR leaves.status = " . LMS_CANCELLATION . ")";
+                " OR leaves.status = " . LMS_CANCELLATION . " OR leaves.status = " . LMS_REQUESTED_AGENT . ")";
       }
       $query=$query . " order by leaves.startdate DESC;";
       return $this->db->query($query)->result_array();
@@ -1281,7 +1287,7 @@ class Leaves_model extends CI_Model {
         $ids = $this->delegations_model->listManagersGivingDelegation($manager);
         $this->db->select('count(*) as number', FALSE);
         $this->db->join('users', 'users.id = leaves.employee');
-        $this->db->where_in('leaves.status', array(LMS_REQUESTED, LMS_CANCELLATION));
+        $this->db->where_in('leaves.status', array(LMS_REQUESTED, LMS_CANCELLATION,LMS_REQUESTED_AGENT));
 
         if (count($ids) > 0) {
             array_push($ids, $manager);

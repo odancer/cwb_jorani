@@ -23,7 +23,8 @@ $lang['global_false'] = 'FALSE';
 $lang['footer_link_go_top'] = 'Go top';
 $lang['footer_copyright_notice'] = '&copy; 2014 Jorani Authors';
 
-$lang['Requested'] = 'Requested';
+$lang['Requested'] = 'Manager Requested';
+$lang['Requested_Agent'] = 'Agent Requested';
 $lang['Planned'] = 'Planned';
 $lang['Accepted'] = 'Accepted';
 $lang['Rejected'] = 'Rejected';

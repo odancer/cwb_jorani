@@ -36,7 +36,6 @@ class Users extends CI_Controller {
         $this->load->helper('form');
         $this->lang->load('datatable', $this->language);
         $data['users'] = $this->users_model->getUsersAndRoles();
-        error_log( print_r($data['users'], TRUE) );
         $data['title'] = lang('users_index_title');
         $data['help'] = $this->help->create_help_link('global_link_doc_page_list_users');
         $data['flash_partial_view'] = $this->load->view('templates/flash', $data, TRUE);
