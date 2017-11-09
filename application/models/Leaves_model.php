@@ -1294,6 +1294,7 @@ class Leaves_model extends CI_Model {
             $this->db->where_in('users.manager', $ids);
         } else {
             $this->db->where('users.manager', $manager);
+            $this->db->or_where('leaves.agent', $manager);
         }
         $result = $this->db->get('leaves');
         return $result->row()->number;
