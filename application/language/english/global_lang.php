@@ -25,6 +25,7 @@ $lang['footer_copyright_notice'] = '&copy; 2014 Jorani Authors';
 
 $lang['Requested'] = 'Manager Requested';
 $lang['Requested_Agent'] = 'Agent Requested';
+$lang['Requested_Boss'] = 'Boss Requested';
 $lang['Planned'] = 'Planned';
 $lang['Accepted'] = 'Accepted';
 $lang['Rejected'] = 'Rejected';

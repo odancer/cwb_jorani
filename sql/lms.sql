@@ -323,6 +323,7 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 (1, 'admin'),
 (2, 'user'),
 (8, 'HR admin');
+(88,'boss');
 
 --
 -- Structure of table `settings`
@@ -356,6 +357,7 @@ INSERT INTO `status` (`id`, `name`) VALUES
 (5, 'Cancellation'),
 (6, 'Canceled');
 (7, 'Requested_Agent');
+(8, 'Requested_Boss')
 
 --
 -- Structure of table `tasks`
