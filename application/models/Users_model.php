@@ -435,10 +435,16 @@ class Users_model extends CI_Model {
      * @param array $row database record of a user
      */
     private function loadProfile($row) {
-        if (((int) $row->role & 1)) {
+        if ((int) $row->role & 1) {
             $is_admin = TRUE;
         } else {
             $is_admin = FALSE;
+        }
+
+         if ((int) $row->role == 32) {
+            $is_boss = TRUE;
+        } else {
+            $is_boss = FALSE;
         }
 
         /*
@@ -452,6 +458,7 @@ class Users_model extends CI_Model {
         } else {
             $is_hr = FALSE;
         }
+
 
         //Determine if the connected user is a manager or if he has any delegation
         $isManager = FALSE;
@@ -472,7 +479,8 @@ class Users_model extends CI_Model {
             'is_admin' => $is_admin,
             'is_hr' => $is_hr,
             'manager' => $row->manager,
-            'logged_in' => TRUE
+            'logged_in' => TRUE,
+            'is_boss' => $is_boss
         );
         $this->session->set_userdata($newdata);
     }

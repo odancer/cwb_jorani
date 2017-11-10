@@ -323,7 +323,7 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 (1, 'admin'),
 (2, 'user'),
 (8, 'HR admin');
-(88,'boss');
+(9,'boss');
 
 --
 -- Structure of table `settings`
