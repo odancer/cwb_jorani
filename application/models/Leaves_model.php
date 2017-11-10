@@ -801,6 +801,8 @@ class Leaves_model extends CI_Model {
             {
                 case 1: $color = '#999'; break;     // Planned
                 case 2: $color = '#f89406'; break;  // Requested
+                case 7: $color = '#f89406'; break;  // Requested_Agent
+                case 8: $color = '#f89406'; break;  // Requested_Boss
                 case 3: $color = '#468847'; break;  // Accepted
                 case 4: $color = '#ff0000'; break;  // Rejected
             }
@@ -869,6 +871,8 @@ class Leaves_model extends CI_Model {
             {
                 case 1: $color = '#999'; break;     // Planned
                 case 2: $color = '#f89406'; break;  // Requested
+                case 7: $color = '#f89406'; break;  // Requested_Agent
+                case 8: $color = '#f89406'; break;  // Requested_Boss
                 case 3: $color = '#468847'; break;  // Accepted
                 case 4: $color = '#ff0000'; break;  // Rejected
             }
@@ -936,6 +940,8 @@ class Leaves_model extends CI_Model {
             {
                 case 1: $color = '#999'; break;     // Planned
                 case 2: $color = '#f89406'; break;  // Requested
+                case 7: $color = '#f89406'; break;  // Requested_Agent
+                case 8: $color = '#f89406'; break;  // Requested_Boss
                 case 3: $color = '#468847'; break;  // Accepted
                 case 4: $color = '#ff0000'; break;  // Rejected
             }
@@ -1028,6 +1034,8 @@ class Leaves_model extends CI_Model {
             {
                 case 1: $color = '#999'; break;     // Planned
                 case 2: $color = '#f89406'; break;  // Requested
+                case 7: $color = '#f89406'; break;  // Requested_Agent
+                case 8: $color = '#f89406'; break;  // Requested_Boss
                 case 3: $color = '#468847'; break;  // Accepted
                 case 4: $color = '#ff0000'; break;  // Rejected
                 default: $color = '#ff0000'; break;  // Cancellation and Canceled
@@ -1132,6 +1140,8 @@ class Leaves_model extends CI_Model {
           {
               case 1: $color = '#999'; break;     // Planned
               case 2: $color = '#f89406'; break;  // Requested
+              case 7: $color = '#f89406'; break;  // Requested_Agent
+              case 8: $color = '#f89406'; break;  // Requested_Boss
               case 3: $color = '#468847'; break;  // Accepted
               case 4: $color = '#ff0000'; break;  // Rejected
               default: $color = '#ff0000'; break;  // Cancellation and Canceled
@@ -1228,6 +1238,7 @@ class Leaves_model extends CI_Model {
         if ($all == FALSE) {
             $this->db->where('leaves.status', LMS_REQUESTED);
             $this->db->where('leaves.status', LMS_REQUESTED_AGENT);
+            $this->db->where('leaves.status', LMS_REQUESTED_BOSS);
             $this->db->where('leaves.status', LMS_CANCELLATION);
         }
         $this->db->order_by('leaves.startdate', 'desc');
@@ -1257,7 +1268,7 @@ class Leaves_model extends CI_Model {
         left outer join (
           SELECT id, MIN(change_date) as date
           FROM leaves_history
-          WHERE leaves_history.status = 2 or 7
+          WHERE leaves_history.status = 2 or 7 or 8
           GROUP BY id
         ) requested ON leaves.id = requested.id";
       //Case of manager having delegations
@@ -1265,12 +1276,12 @@ class Leaves_model extends CI_Model {
       if (count($ids) > 0) {
         $query .= " WHERE users.manager IN (" . implode(",", $ids) . ")";
       } else {
-        $query .= " WHERE (users.manager = $manager and leaves.status='2') or (leaves.agent = $manager and leaves.status='7')";
+        $query .= " WHERE (users.manager = $manager and leaves.status='2') or (leaves.agent = $manager and leaves.status='7') or (users.role='32' and leaves.status='8')";
         //$query .= " WHERE (leaves.agent = $manager and leaves.status=7) or (users.manager = $manager and leaves.status=2)";
       }
       if ($all == FALSE) {
         $query .= " AND (leaves.status = " . LMS_REQUESTED .
-                " OR leaves.status = " . LMS_CANCELLATION . " OR leaves.status = " . LMS_REQUESTED_AGENT . ")";
+                " OR leaves.status = " . LMS_CANCELLATION . " OR leaves.status = " . LMS_REQUESTED_AGENT . " OR leaves.status = " . LMS_REQUESTED_BOSS .")";
       }
       $query=$query . " order by leaves.startdate DESC;";
       return $this->db->query($query)->result_array();
@@ -1287,7 +1298,7 @@ class Leaves_model extends CI_Model {
         $ids = $this->delegations_model->listManagersGivingDelegation($manager);
         $this->db->select('count(*) as number', FALSE);
         $this->db->join('users', 'users.id = leaves.employee');
-        $this->db->where_in('leaves.status', array(LMS_REQUESTED, LMS_CANCELLATION,LMS_REQUESTED_AGENT));
+        $this->db->where_in('leaves.status', array(LMS_REQUESTED, LMS_CANCELLATION,LMS_REQUESTED_AGENT,LMS_REQUESTED_BOSS));
 
         if (count($ids) > 0) {
             array_push($ids, $manager);

@@ -80,13 +80,16 @@ class Requests extends CI_Controller {
         $agent_info = $this->leaves_model->getLevesAgentInfo($id);
         $agent_id = (int)$agent_info[0]->agent;
         $status_id = (int)$agent_info[0]->status;
-        if (($this->user_id == $employee['manager']) || ($this->is_hr)  || ($is_delegate) || ($this->user_id == $agent_id)) {
+        if (($this->user_id == $employee['manager']) || ($this->is_hr)  || ($is_delegate) || ($this->user_id == $agent_id) || ($this->is_boss)) {
             switch ($status_id) {
             case LMS_REQUESTED_AGENT;
                 $this->leaves_model->switchStatus($id, LMS_REQUESTED);
                 break;
             case LMS_REQUESTED;
-                $this->leaves_model->switchStatus($id, LMS_ACCEPTED); 
+                $this->leaves_model->switchStatus($id, LMS_REQUESTED_BOSS); 
+                break;
+            case LMS_REQUESTED_BOSS;
+                $this->leaves_model->switchStatus($id, LMS_REQUESTED_ACCEPTED); 
                 break;
             }
             #$this->leaves_model->switchStatus($id, LMS_ACCEPTED);
