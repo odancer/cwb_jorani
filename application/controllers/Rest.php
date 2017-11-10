@@ -176,6 +176,7 @@ class Rest extends CI_Controller {
         $data->isManager = $this->session->userdata('is_manager');
         $data->isAdmin = $this->session->userdata('is_admin');
         $data->isHR = $this->session->userdata('is_hr');
+        $data->isBoss = $this->session->userdata('is_boss');
         $data->manager = $this->session->userdata('manager');
         $this->output
             ->set_content_type('application/json')

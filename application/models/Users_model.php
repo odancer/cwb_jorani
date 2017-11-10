@@ -441,6 +441,12 @@ class Users_model extends CI_Model {
             $is_admin = FALSE;
         }
 
+        if ((int) $row->role == 32) {
+            $is_boss = TRUE;
+        } else {
+            $is_boss = FALSE;
+        }
+
         /*
           00000001 1  Admin
           00000100 8  HR Officier / Local HR Manager
@@ -472,7 +478,8 @@ class Users_model extends CI_Model {
             'is_admin' => $is_admin,
             'is_hr' => $is_hr,
             'manager' => $row->manager,
-            'logged_in' => TRUE
+            'logged_in' => TRUE,
+            'is_boss' => $is_boss
         );
         $this->session->set_userdata($newdata);
     }

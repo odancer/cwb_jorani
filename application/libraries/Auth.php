@@ -30,7 +30,7 @@ class Auth {
      * @var bool Is Admin role  
      */
     private $isAdmin;
-
+    private $isBoss;
     /**
      * Default constructor
      */
@@ -40,6 +40,7 @@ class Auth {
         
         $this->isHR = ($this->CI->session->userdata('is_hr') === TRUE);
         $this->isAdmin = ($this->CI->session->userdata('is_admin') === TRUE);
+        $this->isBoss = ($this->CI->session->userdata('is_boss') === TRUE);
     }
 
     /**
