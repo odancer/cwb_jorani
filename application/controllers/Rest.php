@@ -172,12 +172,11 @@ class Rest extends CI_Controller {
         $data = new \stdClass();
         $data->userID = $this->userId;
         $data->fullname = $this->session->userdata('firstname') . ' ' .
-        $this->session->userdata('lastname');
+                $this->session->userdata('lastname');
         $data->isManager = $this->session->userdata('is_manager');
         $data->isAdmin = $this->session->userdata('is_admin');
         $data->isHR = $this->session->userdata('is_hr');
         $data->manager = $this->session->userdata('manager');
-        $data->isBoss = $this->session->userdata('is_boss');
         $this->output
             ->set_content_type('application/json')
             ->set_output(json_encode($data));

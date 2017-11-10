@@ -34,16 +34,12 @@ class Auth {
     /**
      * Default constructor
      */
-    
-    private $isBoss;
-    
     public function __construct() {
         $this->CI = & get_instance();
         $this->CI->load->library('session');
         
         $this->isHR = ($this->CI->session->userdata('is_hr') === TRUE);
         $this->isAdmin = ($this->CI->session->userdata('is_admin') === TRUE);
-        $this->isBoss = ($this->CI->session->userdata('is_boss') === TRUE);
     }
 
     /**
