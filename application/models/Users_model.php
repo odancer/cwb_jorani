@@ -91,6 +91,13 @@ class Users_model extends CI_Model {
             return $record['firstname'] . ' ' . $record['lastname'];
         }
     }
+
+    public function getRole($id) {
+        $record = $this->getUsers($id);
+        if (count($record) > 0) {
+            return $record['role'] ;
+        }
+    }
     
     /**
      * Get the list of employees that are the collaborators of the given user

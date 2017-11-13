@@ -1268,16 +1268,20 @@ class Leaves_model extends CI_Model {
         left outer join (
           SELECT id, MIN(change_date) as date
           FROM leaves_history
-          WHERE leaves_history.status = 2 or 7 or 8
+          WHERE leaves_history.status = 2 or 7 or 8 or 5
           GROUP BY id
         ) requested ON leaves.id = requested.id";
       //Case of manager having delegations
       $ids = $this->delegations_model->listManagersGivingDelegation($manager);
+      $this->load->model('users_model');
+      $role_info =$this->users_model->getRole($manager);
+      error_log( print_r($role_info, TRUE) );
       if (count($ids) > 0) {
         $query .= " WHERE users.manager IN (" . implode(",", $ids) . ")";
       } else {
-        $query .= " WHERE (users.manager = $manager and leaves.status='2') or (leaves.agent = $manager and leaves.status='7') or (users.role='32' and leaves.status='8')";
-        //$query .= " WHERE (leaves.agent = $manager and leaves.status=7) or (users.manager = $manager and leaves.status=2)";
+       // $query .= " WHERE (users.manager = $manager and (leaves.status='2' or leaves.status='4' or leaves.status='5')) or (leaves.agent = $manager and (leaves.status='7' or leaves.status='4' or leaves.status='5' )) or (".$role_info."='32' and leaves.status='8')";
+       $query .= " WHERE (users.manager = $manager and leaves.status='2') or (leaves.agent = $manager and (leaves.status='7' or leaves.status='5')) or (".$role_info."='32' and leaves.status='8')";
+
       }
       if ($all == FALSE) {
         $query .= " AND (leaves.status = " . LMS_REQUESTED .
@@ -1296,16 +1300,18 @@ class Leaves_model extends CI_Model {
     public function countLeavesRequestedToManager($manager) {
         $this->load->model('delegations_model');
         $ids = $this->delegations_model->listManagersGivingDelegation($manager);
+        $this->load->model('users_model');
+        $role_info =$this->users_model->getRole($manager);
         $this->db->select('count(*) as number', FALSE);
         $this->db->join('users', 'users.id = leaves.employee');
         $this->db->where_in('leaves.status', array(LMS_REQUESTED, LMS_CANCELLATION,LMS_REQUESTED_AGENT,LMS_REQUESTED_BOSS));
-
         if (count($ids) > 0) {
             array_push($ids, $manager);
             $this->db->where_in('users.manager', $ids);
         } else {
-            $this->db->where('users.manager', $manager);
-            $this->db->or_where('leaves.agent', $manager);
+            //$this->db->where('users.manager', $manager);
+            //$this->db->where('leaves.agent', $manager);
+            $this->db->where("(users.manager =" .$manager." and leaves.status=".LMS_REQUESTED .")"." or (leaves.agent =" .$manager." and leaves.status =".LMS_REQUESTED_AGENT.")"." or (".$role_info."='32' and leaves.status=".LMS_REQUESTED_BOSS.")");
         }
         $result = $this->db->get('leaves');
         return $result->row()->number;

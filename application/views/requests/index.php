@@ -37,6 +37,7 @@ if ($showAll == FALSE) {
     <span class="label label-success"><input type="checkbox" <?php echo $checked;?> id="chkAccepted" class="filterStatus" <?php echo $disable;?>> &nbsp;<?php echo lang('Accepted');?></span> &nbsp;
     <span class="label label-warning"><input type="checkbox" checked id="chkRequested" class="filterStatus"> &nbsp;<?php echo lang('Requested');?></span> &nbsp;
     <span class="label label-warning"><input type="checkbox" checked id="chkRequested_Agent" class="filterStatus"> &nbsp;<?php echo lang('Requested_Agent');?></span> &nbsp;
+    <span class="label label-warning"><input type="checkbox" checked id="chkRequested_Boss" class="filterStatus"> &nbsp;<?php echo lang('Requested_Boss');?></span> &nbsp;
     <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" <?php echo $checked;?> id="chkRejected" class="filterStatus" <?php echo $disable;?>> &nbsp;<?php echo lang('Rejected');?></span> &nbsp;
     <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" checked id="chkCancellation" class="filterStatus"> &nbsp;<?php echo lang('Cancellation');?></span> &nbsp;
     <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" <?php echo $checked;?> id="chkCanceled" class="filterStatus" <?php echo $disable;?>> &nbsp;<?php echo lang('Canceled');?></span>
@@ -126,6 +127,7 @@ if ($showAll == FALSE) {
             case 1: echo "<td><span class='label'>" . lang($request['status_name']) . "</span></td>"; break;
             case 2: echo "<td><span class='label label-warning'>" . lang($request['status_name']) . "</span></td>"; break;
             case 7: echo "<td><span class='label label-warning'>" . lang($request['status_name']) . "</span></td>"; break;
+            case 8: echo "<td><span class='label label-warning'>" . lang($request['status_name']) . "</span></td>"; break;
             case 3: echo "<td><span class='label label-success'>" . lang($request['status_name']) . "</span></td>"; break;
             default: echo "<td><span class='label label-important' style='background-color: #ff0000;'>" . lang($request['status_name']) . "</span></td>"; break;
         }?>
@@ -218,6 +220,7 @@ function filterStatusColumn() {
     if ($('#chkCancellation').prop('checked')) filter += "<?php echo lang('Cancellation');?>|";
     if ($('#chkCanceled').prop('checked')) filter += "<?php echo lang('Canceled');?>|";
     if ($('#chkRequested_Agent').prop('checked')) filter += "<?php echo lang('Requested_Agent');?>|";
+    if ($('#chkRequested_Boss').prop('checked')) filter += "<?php echo lang('Requested_Boss');?>|";
     filter = filter.slice(0,-1) + ")$";
     if (filter.indexOf('(') == -1) filter = 'nothing is selected';
     leaveTable.columns( 6 ).search( filter, true, false ).draw();
@@ -370,6 +373,7 @@ $(document).ready(function() {
                 case '5': $("#chkCancellation").prop("checked", true); break;
                 case '6': $("#chkCanceled").prop("checked", true); break;
                 case '7': $("#chkRequested_Agent").prop("checked", true); break;
+                case '8': $("#chkRequested_Boss").prop("checked", true); break;
             }
         });
         //$("#cboLeaveType option[value='" + getURLParameter('type') + "']").prop("selected", true);
@@ -426,6 +430,7 @@ $(document).ready(function() {
                 case '5': $("#chkCancellation").prop("checked", true); break;
                 case '6': $("#chkCanceled").prop("checked", true); break;
                 case '7': $("#chkRequested_Agent").prop("checked", true); break;
+                case '8': $("#chkRequested_Boss").prop("checked", true); break;
             }
         });
         //$("#cboLeaveType option[value='" + getURLParameter('type') + "']").prop("selected", true);

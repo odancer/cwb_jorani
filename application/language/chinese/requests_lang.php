@@ -20,7 +20,7 @@ $lang['requests_index_thead_startdate'] = '開始日期';
 $lang['requests_index_thead_enddate'] = '結束日期';
 $lang['requests_index_thead_duration'] = '時段';
 $lang['requests_index_thead_type'] = '編輯';
-$lang['requests_index_thead_status'] = '職位';
+$lang['requests_index_thead_status'] = '狀態';
 $lang['requests_index_thead_requested_date'] = 'Requested';
 $lang['requests_index_thead_last_change'] = 'Last change';
 

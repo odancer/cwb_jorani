@@ -84,7 +84,7 @@ $this->lang->load('menu', $language);?>
                 </li>
               <?php } ?>
 
-             <?php if ($is_manager == TRUE) { ?>
+             <?php if ($is_manager == TRUE || $is_boss == TRUE) { ?>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                       <?php echo lang('menu_validation_title');?>&nbsp;
@@ -115,6 +115,7 @@ $this->lang->load('menu', $language);?>
                 </li>
               <?php } ?>
 
+             <?php if ($is_manager == FALSE && $is_hr == FALSE && $is_boss == FALSE) { ?>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('menu_requests_title');?> <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -131,7 +132,6 @@ $this->lang->load('menu', $language);?>
                   </ul>
                 </li>
 
-             <?php if ($is_manager == FALSE && $is_hr == FALSE) { ?>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                       <?php echo lang('menu_validation_title');?>&nbsp;
@@ -180,14 +180,15 @@ $this->lang->load('menu', $language);?>
                       <?php } ?>
                   </ul>
                 </li>
-                
+              <?php if ($is_manager == FALSE && $is_hr == FALSE && $is_boss == FALSE) { ?>  
                 <li>
                     <form class="navbar-form pull-left">
                         <a class="btn btn-warning" href="<?php echo base_url();?>leaves/create"><b><?php echo lang('menu_leaves_request_button');?></b></a>
                     </form>
                 </li>
               </ul>
-
+            <?php } ?>
+          </ul>
             <ul class="nav pull-right">
                 <a href="<?php echo base_url();?>users/myprofile" class="brand"><?php echo $fullname;?></a>
                 <li><a href="<?php echo base_url();?>users/myprofile" title="<?php echo lang('menu_banner_tip_myprofile');?>"><i class="icon-user icon-white"></i></a></li>
