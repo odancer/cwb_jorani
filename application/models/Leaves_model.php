@@ -1275,18 +1275,29 @@ class Leaves_model extends CI_Model {
       $ids = $this->delegations_model->listManagersGivingDelegation($manager);
       $this->load->model('users_model');
       $role_info =$this->users_model->getRole($manager);
-      error_log( print_r($role_info, TRUE) );
       if (count($ids) > 0) {
-        $query .= " WHERE users.manager IN (" . implode(",", $ids) . ")";
+        $delegation_id = $ids[0];
+        $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") OR (leaves.status = " . LMS_REQUESTED . " OR (leaves.status = " . LMS_REQUESTED_BOSS ." AND ".$role_info."='32')"." OR leaves.status = " . LMS_CANCELLATION . " OR (leaves.status = " . LMS_REQUESTED_AGENT ." AND (leaves.agent=".$delegation_id." OR leaves.agent=$manager))";
       } else {
        // $query .= " WHERE (users.manager = $manager and (leaves.status='2' or leaves.status='4' or leaves.status='5')) or (leaves.agent = $manager and (leaves.status='7' or leaves.status='4' or leaves.status='5' )) or (".$role_info."='32' and leaves.status='8')";
-       $query .= " WHERE (users.manager = $manager and leaves.status='2') or (leaves.agent = $manager and (leaves.status='7' or leaves.status='5')) or (".$role_info."='32' and leaves.status='8')";
+       $query .= " WHERE (users.manager = $manager AND leaves.status='2') OR (leaves.agent = $manager AND (leaves.status='7' OR leaves.status='5')) OR (".$role_info."='32' AND leaves.status='8')";
 
       }
+
+/**
       if ($all == FALSE) {
-        $query .= " AND (leaves.status = " . LMS_REQUESTED .
+            if(count($ids) > 0) {
+                $delegation_id = $ids[0];
+                $query .= " AND (leaves.status = " . LMS_REQUESTED . " OR (leaves.status = " . LMS_REQUESTED_BOSS ." AND ".$role_info."='32')"." OR leaves.status = " . LMS_CANCELLATION . " OR (leaves.status = " . LMS_REQUESTED_AGENT ." AND (leaves.agent=".$delegation_id." OR leaves.agent=$manager)))";
+            }else { 
+                $query .= " AND (leaves.status = " . LMS_REQUESTED .
                 " OR leaves.status = " . LMS_CANCELLATION . " OR leaves.status = " . LMS_REQUESTED_AGENT . " OR leaves.status = " . LMS_REQUESTED_BOSS .")";
-      }
+            }
+      }    */  
+       if ($all == FALSE) {
+                $query .= " AND (leaves.status = " . LMS_REQUESTED .
+                " OR leaves.status = " . LMS_CANCELLATION . " OR leaves.status = " . LMS_REQUESTED_AGENT . " OR leaves.status = " . LMS_REQUESTED_BOSS .")";
+      } 
       $query=$query . " order by leaves.startdate DESC;";
       return $this->db->query($query)->result_array();
     }
@@ -1306,12 +1317,15 @@ class Leaves_model extends CI_Model {
         $this->db->join('users', 'users.id = leaves.employee');
         $this->db->where_in('leaves.status', array(LMS_REQUESTED, LMS_CANCELLATION,LMS_REQUESTED_AGENT,LMS_REQUESTED_BOSS));
         if (count($ids) > 0) {
-            array_push($ids, $manager);
-            $this->db->where_in('users.manager', $ids);
+            //array_push($ids, $manager);
+            $delegation_id = $ids[0];
+            //$this->db->where_in('users.manager', $ids);
+            $this->db->where_in('leaves.agent',array($manager,$delegation_id));
+            $this->db->where_in('leaves.status',array(LMS_REQUESTED,LMS_CANCELLATION,LMS_REQUESTED_AGENT));
         } else {
             //$this->db->where('users.manager', $manager);
             //$this->db->where('leaves.agent', $manager);
-            $this->db->where("(users.manager =" .$manager." and leaves.status=".LMS_REQUESTED .")"." or (leaves.agent =" .$manager." and leaves.status =".LMS_REQUESTED_AGENT.")"." or (".$role_info."='32' and leaves.status=".LMS_REQUESTED_BOSS.")");
+            $this->db->where("(users.manager =" .$manager." AND leaves.status=".LMS_REQUESTED .")"." OR (leaves.agent =" .$manager." AND leaves.status =".LMS_REQUESTED_AGENT.")"." OR (".$role_info."='32' and leaves.status=".LMS_REQUESTED_BOSS.")");
         }
         $result = $this->db->get('leaves');
         return $result->row()->number;
