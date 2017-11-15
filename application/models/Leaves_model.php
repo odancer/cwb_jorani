@@ -1268,7 +1268,7 @@ class Leaves_model extends CI_Model {
         left outer join (
           SELECT id, MIN(change_date) as date
           FROM leaves_history
-          WHERE leaves_history.status = 2 or 7 or 8 or 5
+          WHERE leaves_history.status = 2 OR 7 OR 8 OR 5
           GROUP BY id
         ) requested ON leaves.id = requested.id";
       //Case of manager having delegations
@@ -1276,11 +1276,37 @@ class Leaves_model extends CI_Model {
       $this->load->model('users_model');
       $role_info =$this->users_model->getRole($manager);
       if (count($ids) > 0) {
-        $delegation_id = $ids[0];
-        $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") OR (leaves.status = " . LMS_REQUESTED . " OR (leaves.status = " . LMS_REQUESTED_BOSS ." AND ".$role_info."='32')"." OR leaves.status = " . LMS_CANCELLATION . " OR (leaves.status = " . LMS_REQUESTED_AGENT ." AND (leaves.agent=".$delegation_id." OR leaves.agent=$manager))";
+        $delegation_id = $ids[0];     
+        switch($role_info) {
+            case 1;
+                $query .= " WHERE users.manager IN (" . implode(",", $ids) . ")" ;
+                $query .= " OR (leaves.status=7 AND (leaves.agent IN(". implode(",", $ids) .") OR users.manager=$manager OR leaves.agent=$manager))";
+                $query .= " OR (leaves.status=2 AND users.manager=$manager)";
+            break;
+            case 32;
+                if ($delegation_id != 16) {
+                       $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3)";}
+                else {
+                       $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status !=3) OR (leaves.status=8)";
+                    }
+                $query .= " OR (leaves.status=7 AND (leaves.agent IN(". implode(",", $ids) .") OR users.manager=$manager OR leaves.agent=$manager))";
+                $query .= " OR (leaves.status=2 AND users.manager=$manager)";
+            break;
+
+            default;
+                $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3)";
+                $query .= " OR (leaves.status=7 AND leaves.agent IN(". implode(",", $ids) ."))";
+                $query .= " OR (leaves.status=7 AND leaves.agent=$manager)";
+            break;
+
+
+        } 
+
+        //$query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") OR (leaves.status = " . LMS_REQUESTED . " OR (leaves.status = " . LMS_REQUESTED_BOSS ." AND ".$role_info."='32')"." OR leaves.status = " . LMS_CANCELLATION . " OR (leaves.status = " . LMS_REQUESTED_AGENT ." AND (leaves.agent=".$delegation_id." OR leaves.agent=$manager))";
+        
       } else {
        // $query .= " WHERE (users.manager = $manager and (leaves.status='2' or leaves.status='4' or leaves.status='5')) or (leaves.agent = $manager and (leaves.status='7' or leaves.status='4' or leaves.status='5' )) or (".$role_info."='32' and leaves.status='8')";
-       $query .= " WHERE (users.manager = $manager AND leaves.status='2') OR (leaves.agent = $manager AND (leaves.status='7' OR leaves.status='5')) OR (".$role_info."='32' AND leaves.status='8')";
+       $query .= " WHERE (users.manager = $manager AND leaves.status='2') OR (leaves.agent = $manager AND (leaves.status='7' OR leaves.status='5')) OR (".$role_info."='32' AND leaves.status='8' AND $manager=16)";
 
       }
 
