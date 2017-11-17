@@ -272,7 +272,7 @@ class Leaves_model extends CI_Model {
      * @param string $refDate tmp of the Date of reference (or current date if NULL)
      * @return array computed aggregated taken/entitled leaves
      * @author Benjamin BALET <benjamin.balet@gmail.com>
-     */
+     */ 
     public function getLeaveBalanceForEmployee($id, $sum_extra = FALSE, $refDate = NULL) {
         //Determine if we use current date or another date
         if ($refDate == NULL) {
@@ -408,7 +408,6 @@ class Leaves_model extends CI_Model {
             return NULL;
         }
     }
-
     /**
      * Get the number of days a user can take for a given leave type
      * @param int $id employee identifier

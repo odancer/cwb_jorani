@@ -151,7 +151,6 @@ class Contracts_model extends CI_Model {
             return FALSE;
         }
     }
-    
     /**
      * Detect not used contracts (maybe duplicated)
      * @return array list of unused contracts
@@ -238,7 +237,6 @@ class Contracts_model extends CI_Model {
         }
         return $usageArray;
     }
-
     /**
      * Get an object representing - for an employee:
      *  - The Default leave type (config or contract)
