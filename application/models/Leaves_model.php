@@ -337,7 +337,6 @@ class Leaves_model extends CI_Model {
             $this->db->where("leaves.startdate >= DATE_SUB(STR_TO_DATE('" . $refDate . "', '%Y-%m-%d'),INTERVAL 1 YEAR)");
             $this->db->group_by("leaves.type");
             $taken_days = $this->db->get()->result_array();
-            $summary[$compensate_name][3] = 0;
             if (count($taken_days) > 0) {
                 $summary[$compensate_name][0] = (float) $taken_days[0]['taken']; //taken
             } else {
@@ -345,8 +344,9 @@ class Leaves_model extends CI_Model {
             }
             //Add the sum of validated catch up for the employee
             if (array_key_exists($compensate_name, $summary)) {
-                $summary[$compensate_name][1] = (float) $summary[$compensate_name][1] + $sum; //entitled
-            }
+                //$summary[$compensate_name][1] = (float) $summary[$compensate_name][1] + $sum; //entitled
+                $entitlements[0]['entitled']=(float) $summary[$compensate_name][1] + $sum;
+            } 
 
             //List all planned leaves in a third column
             //planned leave requests are not deducted from credit
@@ -369,7 +369,6 @@ class Leaves_model extends CI_Model {
                     $summary[$planned['type']][2] = 'x'; //Planned
                 }
                 //Report the number of available days
-                $summary[$entitlement['type_name']][1] = (float) $entitlement['entitled'];
             }
 
             //List all requested leaves in a fourth column
@@ -395,7 +394,6 @@ class Leaves_model extends CI_Model {
                 //Report the number of available days
                 $summary[$entitlement['type_name']][1] = (float) $entitlement['entitled'];
             }
-
             //Remove all lines having taken and entitled set to set to 0
             foreach ($summary as $key => $value) {
                 //if ($value[0]==0 && $value[1]==0) {

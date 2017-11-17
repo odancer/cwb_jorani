@@ -89,7 +89,6 @@ class Leaves extends CI_Controller {
         }
         $data['refDate'] = $refDate;
         $data['summary'] = $this->leaves_model->getLeaveBalanceForEmployee($this->user_id, FALSE, $refDate);
-
         if (!is_null($data['summary'])) {
             $data['title'] = lang('leaves_summary_title');
             $data['help'] = $this->help->create_help_link('global_link_doc_page_my_summary');
