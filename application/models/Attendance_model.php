@@ -3,7 +3,7 @@ class Attendance_model extends CI_Model{
   public function __construct(){
   }
 
-      public function getExtrasOfEmployee($employee) {
+      public function getAttendanceRecord($employee) {
         $this->db2->select('overtime.*');
         $this->db2->from('overtime');
         $this->db2->join('status', 'overtime.status = status.id');

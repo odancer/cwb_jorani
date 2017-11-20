@@ -89,9 +89,9 @@ class Calendar extends CI_Controller {
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
       public function attendance() {
-        setUserContext($this);
         $this->load->model('attendance_model');
         $this->lang->load('calendar', $this->language);
+        $data = getUserContext($this);
         //$this->auth->checkIfOperationIsAllowed('individual_calendar');
         $data = getUserContext($this);
         $this->load->view('templates/header', $data);
