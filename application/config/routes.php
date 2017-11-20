@@ -161,6 +161,7 @@ $route['calendar/collaborators'] = 'calendar/collaborators';
 $route['calendar/organization'] = 'calendar/organization';
 $route['calendar/department'] = 'calendar/department';
 $route['calendar/tabular'] = 'calendar/tabular';
+$route['calendar/attendance'] = 'calendar/attendance';
 $route['calendar/tabular/(:num)/(:num)/(:num)/(:any)/(:any)'] = 'calendar/tabular/$1/$2/$3/$4/$5';
 $route['calendar/tabular/partial/(:num)/(:num)/(:num)/(:any)/(:any)'] = 'calendar/tabularPartial/$1/$2/$3/$4/$5';
 $route['calendar/tabular/export/(:num)/(:num)/(:num)/(:any)/(:any)'] = 'calendar/exportTabular/$1/$2/$3/$4/$5';
@@ -171,6 +172,7 @@ $route['calendar/year/(:num)'] = 'calendar/year/$1';
 $route['calendar/year'] = 'calendar/year';
 $route['calendar/year/export/(:num)/(:num)'] = 'calendar/exportYear/$1/$2';
 $route['calendar'] = 'calendar/individual';
+
 
 //_______________________________________________
 //private Fullcalendar feeds
@@ -341,3 +343,4 @@ $route['api/authorization/userinfo'] = 'authorization/userinfo';
 $route['default_controller'] = 'leaves';
 $route['notfound'] = 'pages/notfound';
 $route['(:any)'] = 'pages/view/$1';
+

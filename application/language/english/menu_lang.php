@@ -53,7 +53,7 @@ $lang['menu_leaves_counters'] = 'Counters';
 $lang['menu_leaves_list_requests'] = 'List of leave requests';
 $lang['menu_leaves_create_request'] = 'Request a leave';
 
-$lang['menu_calendar_title'] = 'Calendars';
+$lang['menu_calendar_title'] = 'Calendars/Attendance Record';
 $lang['menu_calendar_year'] = 'Yearly calendar';
 $lang['menu_calendar_individual'] = 'My calendar';
 $lang['menu_calendar_workmates'] = 'My workmates';
@@ -61,3 +61,4 @@ $lang['menu_calendar_collaborators'] = 'My subordinates';
 $lang['menu_calendar_department'] = 'Department';
 $lang['menu_calendar_organization'] = 'Global';
 $lang['menu_calendar_tabular'] = 'Tabular';
+$lang['menu_calendar_attendance'] = 'Attendance Record';

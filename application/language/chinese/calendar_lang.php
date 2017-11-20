@@ -89,3 +89,15 @@ $lang['September'] = '九月';
 $lang['October'] = '十月';
 $lang['November'] = '十一月';
 $lang['December'] = '十二月';
+
+
+$lang['attendance_title'] = '我的刷卡紀錄';
+$lang['attendance_index_user_id'] = '人員編號';
+$lang['attendance_index_user_lastname'] = '名';
+$lang['attendance_index_user_firstname'] = '姓';
+$lang['attendance_index_date'] = '日期';
+$lang['attendance_index_day'] = '星期';
+$lang['attendance_index_in'] = '上班';
+$lang['attendance_index_out'] = '下班';
+
+

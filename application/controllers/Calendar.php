@@ -88,6 +88,19 @@ class Calendar extends CI_Controller {
      * Data (calendar events) is retrieved by AJAX from leaves' controller
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
+      public function attendance() {
+        setUserContext($this);
+        $this->load->model('attendance_model');
+        $this->lang->load('calendar', $this->language);
+        //$this->auth->checkIfOperationIsAllowed('individual_calendar');
+        $data = getUserContext($this);
+        $this->load->view('templates/header', $data);
+        $this->load->view('menu/index', $data);
+        $this->load->view('calendar/attendance', $data);
+        $this->load->view('templates/footer');
+    }
+
+
     public function individual() {
         setUserContext($this);
         $this->lang->load('calendar', $this->language);

@@ -94,3 +94,28 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+$db2['default'] = array(
+	'dsn'	=> 'mssql:host=192.83.178.59;dbname=pstest',
+	'hostname' => '',
+	'username' => 'pltctst',
+	'password' => 'pltctst+123',
+	'database' => '',
+	'dbdriver' => 'mssql',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+
+
