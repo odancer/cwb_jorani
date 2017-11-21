@@ -39,6 +39,7 @@ function setUserContext(CI_Controller $controller) {
     $controller->manager = $controller->session->userdata('manager');
     $controller->language = $controller->session->userdata('language');
     $controller->language_code = $controller->session->userdata('language_code');
+    $controller->login = $controller->session->userdata('login');
 }
 
 /**
@@ -57,6 +58,7 @@ function getUserContext(CI_Controller $controller)
     $data['user_id'] =  $controller->user_id;
     $data['language'] = $controller->session->userdata('language');
     $data['language_code'] =  $controller->session->userdata('language_code');
+    $data['login'] = $controller->login;
     if ($controller->is_manager === TRUE) {
         $controller->load->model('leaves_model');
         $data['requested_leaves_count'] = $controller->leaves_model->countLeavesRequestedToManager($controller->user_id);

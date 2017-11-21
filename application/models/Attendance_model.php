@@ -3,13 +3,16 @@ class Attendance_model extends CI_Model{
   public function __construct(){
   }
 
-      public function getAttendanceRecord($employee) {
-        $this->db2->select('overtime.*');
-        $this->db2->from('overtime');
-        $this->db2->join('status', 'overtime.status = status.id');
-        $this->db2->where('overtime.employee', $employee);
-        $this->dbw->order_by('overtime.id', 'desc');
-        return $this->db->get()->result_array();
+      public function getAttendanceRecord($login_id) {
+
+          $pstest_db = $this->load->database('external', TRUE);
+          /**
+        $this->db2->select('records.*');
+        $this->db2->from('records');
+        $this->db2->where('records.userid', $login_id);
+        $this->dbw->order_by('records.tc_date', 'desc');
+        return $this->db->get()->result_array(); */
+        return;
     }
 }
 ?>

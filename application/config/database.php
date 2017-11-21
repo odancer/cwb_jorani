@@ -95,27 +95,20 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
-$db2['default'] = array(
-	'dsn'	=> 'mssql:host=192.83.178.59;dbname=pstest',
-	'hostname' => '',
-	'username' => 'pltctst',
-	'password' => 'pltctst+123',
-	'database' => '',
-	'dbdriver' => 'mssql',
-	'dbprefix' => '',
-	'pconnect' => FALSE,
-	'db_debug' => (ENVIRONMENT !== 'production'),
-	'cache_on' => FALSE,
-	'cachedir' => '',
-	'char_set' => 'utf8',
-	'dbcollat' => 'utf8_general_ci',
-	'swap_pre' => '',
-	'encrypt' => FALSE,
-	'compress' => FALSE,
-	'stricton' => FALSE,
-	'failover' => array(),
-	'save_queries' => TRUE
-);
-
-
+$db['external']['dsn'] = 'dblib:host=192.83.178.59;dbname=pstest';
+$db['external']['hostname'] = '';
+$db['external']['username'] = 'pltctst';
+$db['external']['password'] = 'pltctst+123';
+$db['external']['database'] = '';
+$db['external']['dbdriver'] = 'pdo';
+$db['external']['dbprefix'] = '';
+$db['external']['pconnect'] = FALSE;
+$db['external']['db_debug'] = TRUE;
+$db['external']['cache_on'] = FALSE;
+$db['external']['cachedir'] = '';
+$db['external']['char_set'] = 'utf8';
+$db['external']['dbcollat'] = 'utf8_general_ci';
+$db['external']['swap_pre'] = '';
+$db['external']['autoinit'] = TRUE;
+$db['external']['stricton'] = FALSE;
 
