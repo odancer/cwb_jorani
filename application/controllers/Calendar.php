@@ -95,7 +95,6 @@ class Calendar extends CI_Controller {
         $data = getUserContext($this);
         $login_id = $this->login;
         $data['record'] = $this->attendance_model->getAttendanceRecord($login_id);
-        //error_log( print_r($data['record'], TRUE) );
         $this->load->view('templates/header', $data);
         $this->load->view('menu/index', $data);
         $this->load->view('calendar/attendance', $data);

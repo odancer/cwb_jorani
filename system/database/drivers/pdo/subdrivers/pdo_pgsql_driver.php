@@ -120,7 +120,6 @@ class CI_DB_pdo_pgsql_driver extends CI_DB_pdo_driver {
 		{
 			$this->simple_query('SET search_path TO '.$this->schema.',public');
 		}
-
 		return $this->conn_id;
 	}
 

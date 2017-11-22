@@ -81,7 +81,6 @@ function &DB($params = '', $query_builder_override = NULL)
 				}
 			}
 		}
-
 		if ( ! isset($db) OR count($db) === 0)
 		{
 			show_error('No database connection settings were found in the database config file.');
@@ -100,7 +99,6 @@ function &DB($params = '', $query_builder_override = NULL)
 		{
 			show_error('You have specified an invalid database connection group ('.$active_group.') in your config/database.php file.');
 		}
-
 		$params = $db[$active_group];
 	}
 	elseif (is_string($params))
@@ -148,7 +146,6 @@ function &DB($params = '', $query_builder_override = NULL)
 	{
 		show_error('You have not selected a database type to connect to.');
 	}
-
 	// Load the DB classes. Note: Since the query builder class is optional
 	// we need to dynamically create a class that extends proper parent class
 	// based on whether we're using the query builder class or not.
@@ -189,10 +186,8 @@ function &DB($params = '', $query_builder_override = NULL)
 		 */
 		class CI_DB extends CI_DB_driver { }
 	}
-
 	// Load the DB driver
 	$driver_file = BASEPATH.'database/drivers/'.$params['dbdriver'].'/'.$params['dbdriver'].'_driver.php';
-
 	file_exists($driver_file) OR show_error('Invalid DB driver');
 	require_once($driver_file);
 
@@ -212,7 +207,6 @@ function &DB($params = '', $query_builder_override = NULL)
 			$DB = new $driver($params);
 		}
 	}
-
 	$DB->initialize();
 	return $DB;
 }

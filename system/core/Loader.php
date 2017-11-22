@@ -370,7 +370,6 @@ class CI_Loader {
 	public function database($params = '', $return = FALSE, $query_builder = NULL)
 	{
 		// Grab the super object
-		error_log( print_r($params, TRUE) );
 		$CI =& get_instance();
 
 		// Do we even need to load the database class?

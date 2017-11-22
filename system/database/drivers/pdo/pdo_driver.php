@@ -85,7 +85,6 @@ class CI_DB_pdo_driver extends CI_DB {
 			// If there is a minimum valid dsn string pattern found, we're done
 			// This is for general PDO users, who tend to have a full DSN string.
 			$this->subdriver = $match[1];
-			error_log( print_r($this->subdriver, TRUE) );
 			return;
 		}
 		// Legacy support for DSN specified in the hostname field
@@ -134,6 +133,7 @@ class CI_DB_pdo_driver extends CI_DB {
 
 		try
 		{
+			error_log( print_r($this->dsn, TRUE) );
 			return new PDO($this->dsn, $this->username, $this->password, $this->options);
 		}
 		catch (PDOException $e)
