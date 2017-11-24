@@ -1276,23 +1276,23 @@ class Leaves_model extends CI_Model {
         switch($role_info) {
             case 1;
                 $query .= " WHERE users.manager IN (" . implode(",", $ids) . ")" ;
-                $query .= " OR ((leaves.status=7 OR leaves.status=9) AND (leaves.agent IN(". implode(",", $ids) .") OR users.manager=$manager OR leaves.agent=$manager))";
-                $query .= " OR (leaves.status=2 AND users.manager=$manager)";
+                $query .= " OR ((leaves.status=7 OR 9) AND (leaves.agent IN(". implode(",", $ids) .") OR users.manager=$manager OR leaves.agent=$manager))";
+                $query .= " OR ((leaves.status=2 OR 10) AND users.manager=$manager)";
             break;
             case 32;
                 if ($delegation_id != 16) {
-                       $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3)";}
+                       $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11)";}
                 else {
-                       $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status !=3) OR (leaves.status=8)";
+                       $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status !=3) OR (leaves.status=8 OR 11 )";
                     }
-                $query .= " OR (leaves.status=7 AND (leaves.agent IN(". implode(",", $ids) .") OR users.manager=$manager OR leaves.agent=$manager))";
-                $query .= " OR (leaves.status=2 AND users.manager=$manager)";
+                $query .= " OR ((leaves.status=7 OR 9) AND (leaves.agent IN(". implode(",", $ids) .") OR users.manager=$manager OR leaves.agent=$manager))";
+                $query .= " OR ((leaves.status=2 OR 10) AND users.manager=$manager)";
             break;
 
             default;
-                $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3)";
-                $query .= " OR (leaves.status=7 AND leaves.agent IN(". implode(",", $ids) ."))";
-                $query .= " OR (leaves.status=7 AND leaves.agent=$manager)";
+                $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11)";
+                $query .= " OR ((leaves.status=7 OR 9) AND leaves.agent IN(". implode(",", $ids) ."))";
+                $query .= " OR ((leaves.status=7 OR 9) AND leaves.agent=$manager)";
             break;
 
 
@@ -1368,7 +1368,7 @@ class Leaves_model extends CI_Model {
         } else {
             //$this->db->where('users.manager', $manager);
             //$this->db->where('leaves.agent', $manager);
-            $this->db->where("(users.manager =" .$manager." AND leaves.status=".LMS_REQUESTED .")"." OR (leaves.agent =" .$manager." AND leaves.status =".LMS_REQUESTED_AGENT.")"." OR (".$role_info."='32' and leaves.status=".LMS_REQUESTED_BOSS.")");
+            $this->db->where("(users.manager =" .$manager." AND (leaves.status=".LMS_REQUESTED ." OR leaves.status=".LMS_CANCELLATION_MANAGER."))"." OR (leaves.agent =" .$manager." AND (leaves.status =".LMS_REQUESTED_AGENT." OR leaves.status =".LMS_CANCELLATION_AGENT."))"." OR (".$role_info."='32' and (leaves.status=".LMS_REQUESTED_BOSS." OR leaves.status =".LMS_CANCELLATION_BOSS."))");
         }
         $result = $this->db->get('leaves');
         return $result->row()->number;
