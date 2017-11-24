@@ -52,6 +52,9 @@ define('LMS_ACCEPTED', 3);
 define('LMS_REJECTED', 4);
 define('LMS_CANCELLATION', 5);
 define('LMS_CANCELED', 6);
+define('LMS_CANCELLATION_AGENT', 9);
+define('LMS_CANCELLATION_MANAGER', 10);
+define('LMS_CANCELLATION_BOSS', 11);
 
 //Transitions
 define('LMS_PLANNED_REQUESTED', 102);

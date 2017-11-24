@@ -1265,7 +1265,7 @@ class Leaves_model extends CI_Model {
         left outer join (
           SELECT id, MIN(change_date) as date
           FROM leaves_history
-          WHERE leaves_history.status = 2 OR 7 OR 8 OR 5
+          WHERE leaves_history.status = 2 OR 7 OR 8 OR 5 OR 9 OR 10 OR 11
           GROUP BY id
         ) requested ON leaves.id = requested.id";
       //Case of manager having delegations
@@ -1276,7 +1276,7 @@ class Leaves_model extends CI_Model {
         switch($role_info) {
             case 1;
                 $query .= " WHERE users.manager IN (" . implode(",", $ids) . ")" ;
-                $query .= " OR (leaves.status=7 AND (leaves.agent IN(". implode(",", $ids) .") OR users.manager=$manager OR leaves.agent=$manager))";
+                $query .= " OR ((leaves.status=7 OR leaves.status=9) AND (leaves.agent IN(". implode(",", $ids) .") OR users.manager=$manager OR leaves.agent=$manager))";
                 $query .= " OR (leaves.status=2 AND users.manager=$manager)";
             break;
             case 32;
@@ -1302,7 +1302,7 @@ class Leaves_model extends CI_Model {
         
       } else {
        // $query .= " WHERE (users.manager = $manager and (leaves.status='2' or leaves.status='4' or leaves.status='5')) or (leaves.agent = $manager and (leaves.status='7' or leaves.status='4' or leaves.status='5' )) or (".$role_info."='32' and leaves.status='8')";
-       $query .= " WHERE (users.manager = $manager AND leaves.status='2') OR (leaves.agent = $manager AND (leaves.status='7' OR leaves.status='5')) OR (".$role_info."='32' AND leaves.status='8' AND $manager=16)";
+       $query .= " WHERE (users.manager = $manager AND (leaves.status='2' OR leaves.status='10')) OR (leaves.agent = $manager AND (leaves.status='7' OR leaves.status='9')) OR (".$role_info."='32' AND (leaves.status='8' OR leaves.status='11') AND $manager=16)";
 
       }
 
@@ -1318,7 +1318,7 @@ class Leaves_model extends CI_Model {
       }    */  
        if ($all == FALSE) {
                 $query .= " AND (leaves.status = " . LMS_REQUESTED .
-                " OR leaves.status = " . LMS_CANCELLATION . " OR leaves.status = " . LMS_REQUESTED_AGENT . " OR leaves.status = " . LMS_REQUESTED_BOSS .")";
+                " OR leaves.status = " . LMS_CANCELLATION . " OR leaves.status = " . LMS_CANCELLATION_AGENT . " OR leaves.status = " . LMS_CANCELLATION_MANAGER ." OR leaves.status = " . LMS_CANCELLATION_BOSS ." OR leaves.status = " . LMS_REQUESTED_AGENT . " OR leaves.status = " . LMS_REQUESTED_BOSS .")";
       } 
       $query=$query . " order by leaves.startdate DESC;";
       return $this->db->query($query)->result_array();

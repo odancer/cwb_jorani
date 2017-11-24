@@ -355,10 +355,12 @@ INSERT INTO `status` (`id`, `name`) VALUES
 (3, 'Accepted'),
 (4, 'Rejected'),
 (5, 'Cancellation'),
-(6, 'Canceled');
-(7, 'Requested_Agent');
-(8, 'Requested_Boss')
-
+(6, 'Canceled'),
+(7, 'Requested_Agent'),
+(8, 'Requested_Boss'),
+(9, 'Cancellation_Agent'),
+(10,'Cancellation_Manager'),
+(11,'Cancellation_Boss');
 --
 -- Structure of table `tasks`
 --

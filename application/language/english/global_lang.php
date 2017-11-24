@@ -30,6 +30,9 @@ $lang['Planned'] = 'Planned';
 $lang['Accepted'] = 'Accepted';
 $lang['Rejected'] = 'Rejected';
 $lang['Cancellation'] = 'Cancellation';
+$lang['Cancellation_Agent'] = '取消休假_代理人審核';
+$lang['Cancellation_Manager'] = '取消休假_主管審核';
+$lang['Cancellation_Boss'] = '取消休假_主任審核';
 $lang['Canceled'] = 'Canceled';
 
 $lang['global_link_doc_page_calendar_individual'] = '';

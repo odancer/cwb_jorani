@@ -88,7 +88,7 @@ $db['default'] = array(
 	'char_set' => 'utf8',
 	'dbcollat' => 'utf8_general_ci',
 	'swap_pre' => '',
-	'encrypt' => FALSE,
+	'encrypt'  => FALSE,
 	'compress' => FALSE,
 	'stricton' => FALSE,
 	'failover' => array(),
@@ -96,7 +96,7 @@ $db['default'] = array(
 );
 
 $db['external'] = array(
-    'dsn'       => 'dblib:host=192.83.178.59;dbname=pstest',
+    'dsn'      => 'dblib:host=192.83.178.59;dbname=pstest',
     'hostname' => '',
     'username' => 'pltctst',
     'password' => 'pltctst+123',
@@ -104,8 +104,7 @@ $db['external'] = array(
     'dbdriver' => 'pdo',
     'dbprefix' => '',
     'pconnect' => FALSE,
-    //'db_debug' => (ENVIRONMENT !== 'production'),
-    'db_debug' => TRUE,
+    'db_debug' => (ENVIRONMENT !== 'production'),
     'cache_on' => FALSE,
     'cachedir' => '',
     'char_set' => 'utf8',
@@ -141,4 +140,3 @@ $db['external'] = array(
     'save_queries' => TRUE
 );
 */
-

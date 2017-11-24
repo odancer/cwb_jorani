@@ -92,6 +92,15 @@ class Requests extends CI_Controller {
             case LMS_REQUESTED_BOSS;
                 $this->leaves_model->switchStatus($id, LMS_ACCEPTED); 
                 break;
+            case LMS_CANCELLATION_AGENT;
+                $this->leaves_model->switchStatus($id, LMS_CANCELLATION_MANAGER); 
+                break;
+             case LMS_CANCELLATION_MANAGER;
+                $this->leaves_model->switchStatus($id, LMS_CANCELLATION_BOSS); 
+                break;
+            case LMS_CANCELLATION_BOSS;
+                $this->leaves_model->switchStatus($id, LMS_CANCELLATION); 
+                break;
             }
             #$this->leaves_model->switchStatus($id, LMS_ACCEPTED);
             $this->sendMail($id, LMS_ACCEPTED);

@@ -42,8 +42,9 @@ $this->lang->load('menu', $language);?>
           <a href="<?php echo base_url();?>home" class="brand">&nbsp;<img src="<?php echo base_url();?>assets/images/brand.png" height="18" width="18" style="margin-top:-6px;">&nbsp;Jorani</a>
             <div class="nav-responsive">
                 <ul class="nav">
+                  <?php if (($is_hr == FALSE) && ($is_admin == FALSE) && ($is_boss == FALSE)){ ?>
                     <li><a href="<?php echo base_url();?>leaves" title="<?php echo lang('menu_leaves_list_requests');?>"><i class="icon-list icon-white"></i></a></li>
-              
+                   <?php } ?>
               <?php if ($is_hr == TRUE) { ?>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('menu_admin_title');?> <b class="caret"></b></a>
@@ -84,8 +85,38 @@ $this->lang->load('menu', $language);?>
                 </li>
               <?php } ?>
 
+              <?php if (($is_hr == TRUE) || ($is_admin == TRUE) || ($is_boss == TRUE)){ ?>
+                   <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <?php echo lang('menu_validation_title');?>&nbsp;
+                      <?php if ($requests_count > 0) { ?>
+                      <span class="badge badge-warning"><?php echo $requests_count;?></span>
+                      <?php } ?>
+                      &nbsp;<b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="<?php echo base_url();?>requests/delegations"><?php echo lang('menu_validation_delegations');?></a></li> 
+                    <li><a href="<?php echo base_url();?>requests/collaborators"><?php echo lang('menu_validation_collaborators');?></a></li>
+                    <li><a href="<?php echo base_url();?>requests/balance"><?php echo lang('menu_hr_report_leave_balance');?></a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><?php echo lang('menu_validation_title');?></li>
+                    <li><a href="<?php echo base_url();?>requests">
+                      <?php if ($requested_leaves_count > 0) { ?>
+                      <span class="badge badge-info"><?php echo $requested_leaves_count;?></span>
+                      <?php } ?> 
+                        <?php echo lang('menu_validation_leaves');?></a></li>
+                    <?php if ($this->config->item('disable_overtime') === FALSE) { ?>
+                    <li><a href="<?php echo base_url();?>overtime">
+                      <?php if ($requested_extra_count > 0) { ?>
+                      <span class="badge badge-info"><?php echo $requested_extra_count;?></span>
+                      <?php } ?>
+                        <?php echo lang('menu_validation_overtime');?></a></li>
+                    <?php } ?>
+                  </ul>
+                </li>
+              <?php } ?>
 
-             <?php if ($is_hr == FALSE) { ?>
+             <?php if (($is_hr == FALSE) && ($is_admin == FALSE) && ($is_boss == FALSE)){ ?>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('menu_requests_title');?> <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -151,11 +182,13 @@ $this->lang->load('menu', $language);?>
                      <li><a href="<?php echo base_url();?>calendar/attendance"><?php echo lang('menu_calendar_attendance');?></a></li>
                   </ul>
                 </li>
+              <?php if (($is_hr == FALSE) && ($is_admin == FALSE) && ($is_boss == FALSE)){ ?>
                 <li>
                     <form class="navbar-form pull-left">
                         <a class="btn btn-warning" href="<?php echo base_url();?>leaves/create"><b><?php echo lang('menu_leaves_request_button');?></b></a>
                     </form>
                 </li>
+              <?php } ?>  
               </ul>
           </ul>
             <ul class="nav pull-right">

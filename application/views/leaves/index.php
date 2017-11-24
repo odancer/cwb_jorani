@@ -32,7 +32,10 @@
    <span class="label label-warning"><input type="checkbox" checked id="chkRequested_Agent" class="filterStatus"> &nbsp;<?php echo lang('Requested_Agent');?></span> &nbsp;
    <span class="label label-warning"><input type="checkbox" checked id="chkRequested_Boss" class="filterStatus"> &nbsp;<?php echo lang('Requested_Boss');?></span> &nbsp;
     <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" checked id="chkRejected" class="filterStatus"> &nbsp;<?php echo lang('Rejected');?></span> &nbsp;
-    <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" checked id="chkCancellation" class="filterStatus"> &nbsp;<?php echo lang('Cancellation');?></span> &nbsp;
+    <span class="label label-success"><input type="checkbox" checked id="chkCancellation" class="filterStatus"> &nbsp;<?php echo lang('Cancellation');?></span> &nbsp;
+    <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" checked id="chkCancellation_Agent" class="filterStatus"> &nbsp;<?php echo lang('Cancellation_Agent');?></span> &nbsp;
+    <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" checked id="chkCancellation_Manager" class="filterStatus"> &nbsp;<?php echo lang('Cancellation_Manager');?></span> &nbsp;
+    <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" checked id="chkCancellation_Boss" class="filterStatus"> &nbsp;<?php echo lang('Cancellation_Boss');?></span> &nbsp;
     <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" checked id="chkCanceled" class="filterStatus"> &nbsp;<?php echo lang('Canceled');?></span>
     </div>
 </div>
@@ -161,6 +164,7 @@
             case 1: echo "<td><span class='label'>" . lang($leave['status_name']) . "</span></td>"; break;
             case 2: echo "<td><span class='label label-warning'>" . lang($leave['status_name']) . "</span></td>"; break;
             case 3: echo "<td><span class='label label-success'>" . lang($leave['status_name']) . "</span></td>"; break;
+            case 5: echo "<td><span class='label label-success'>" . lang($leave['status_name']) . "</span></td>"; break;
             case 7: echo "<td><span class='label label-warning'>" . lang($leave['status_name']) . "</span></td>"; break;
             case 8: echo "<td><span class='label label-warning'>" . lang($leave['status_name']) . "</span></td>"; break;
             default: echo "<td><span class='label label-important' style='background-color: #ff0000;'>" . lang($leave['status_name']) . "</span></td>"; break;
@@ -257,6 +261,9 @@ function filterStatusColumn() {
     if ($('#chkRequested').prop('checked')) filter += "<?php echo lang('Requested');?>|";
     if ($('#chkRejected').prop('checked')) filter += "<?php echo lang('Rejected');?>|";
     if ($('#chkCancellation').prop('checked')) filter += "<?php echo lang('Cancellation');?>|";
+    if ($('#chkCancellation_Agent').prop('checked')) filter += "<?php echo lang('Cancellation_Agent');?>|";
+    if ($('#chkCancellation_Manager').prop('checked')) filter += "<?php echo lang('Cancellation_Manager');?>|";
+    if ($('#chkCancellation_Boss').prop('checked')) filter += "<?php echo lang('Cancellation_Boss');?>|";
     if ($('#chkCanceled').prop('checked')) filter += "<?php echo lang('Canceled');?>|";
     if ($('#chkRequested_Agent').prop('checked')) filter += "<?php echo lang('Requested_Agent');?>|";
     if ($('#chkRequested_Boss').prop('checked')) filter += "<?php echo lang('Requested_Boss');?>|";
@@ -375,6 +382,9 @@ $(document).ready(function() {
                 case '6': $("#chkCanceled").prop("checked", true); break;
                 case '7': $("#chkRequested_Agent").prop("checked", true); break;
                 case '8': $("#chkRequested_Boss").prop("checked", true); break;
+                case '9': $("#chkCancellation_Agent").prop("checked", true); break;
+                case '10': $("#chkCancellation_Manager").prop("checked", true); break;
+                case '11': $("#chkCancellation_Boss").prop("checked", true); break;
             }
         });
         //$("#cboLeaveType option[value='" + getURLParameter('type') + "']").prop("selected", true);
