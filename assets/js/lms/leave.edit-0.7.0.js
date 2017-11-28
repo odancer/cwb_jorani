@@ -13,6 +13,10 @@ function getLeaveLength(refreshInfos) {
     var end = moment($('#enddate').val());
     var startType = $('#startdatetype option:selected').val();
     var endType = $('#enddatetype option:selected').val();
+    var starttime = $('#starttime').val();
+    var endtime = $('#endtime').val();
+    console.log(start);
+    console.log(endtime);
 
     if (start.isValid() && end.isValid()) {
         if (start.isSame(end)) {
@@ -47,7 +51,6 @@ function getLeaveLength(refreshInfos) {
         if (refreshInfos) getLeaveInfos(false);
     }
 }
-
 //Get the leave credit, duration and detect overlapping cases (Ajax request)
 //Default behavour is to set the duration field. pass false if you want to disable this behaviour
 function getLeaveInfos(preventDefault) {
@@ -63,6 +66,8 @@ function getLeaveInfos(preventDefault) {
                     enddate: $('#enddate').val(),
                     startdatetype: $('#startdatetype').val(),
                     enddatetype: $('#enddatetype').val(),
+                    starttime: $('#starttime').val(),
+                    endtime: $('#endtime').val(),
                     leave_id: leaveId
                 }
         })
@@ -123,6 +128,8 @@ function refreshLeaveInfo() {
                     enddate: $('#enddate').val(),
                     startdatetype: $('#startdatetype').val(),
                     enddatetype: $('#enddatetype').val(),
+                    starttime: $('#starttime').val(),
+                    endtime: $('#endtime').val(),
                     leave_id: leaveId
                 }
         })
@@ -181,6 +188,8 @@ function showListDayOffHTML(){
               enddate: $('#enddate').val(),
               startdatetype: $('#startdatetype').val(),
               enddatetype: $('#enddatetype').val(),
+              starttime: $('#starttime').val(),
+              endtime: $('#endtime').val(),
               leave_id: leaveId
           }
   })
@@ -240,6 +249,7 @@ $(function () {
     getLeaveLength(false);
 
     //Init the start and end date picker and link them (end>=date)
+
     $("#viz_startdate").datepicker({
         changeMonth: true,
         changeYear: true,
@@ -251,6 +261,7 @@ $(function () {
                 $( "#viz_enddate" ).datepicker( "option", "minDate", selectedDate );
               }
     }, $.datepicker.regional[languageCode]);
+    
     $("#viz_enddate").datepicker({
         changeMonth: true,
         changeYear: true,
@@ -263,6 +274,23 @@ $(function () {
               }
     }, $.datepicker.regional[languageCode]);
 
+    $("#viz_starttime").timepicker({
+        timeFormat :"HH:mm",
+        altFormat: "HH:mm",
+        altField : "#starttime",
+         onClose: function( selectedTime ) {
+                $( "#viz_starttime" ).timepicker( "option", "minTime", selectedTime );
+              }
+    });
+    $("#viz_endtime").timepicker({
+        timeFormat:"HH:mm",
+        altFormat: "HH:mm",
+        altField: "#endtime",
+        onClose: function( selectedTime ) {
+                $( "#viz_endtime" ).timepicker( "option", "maxTime", selectedTime );
+              }
+    });
+
     //Force decimal separator whatever the locale is
     $( "#days" ).keyup(function() {
         var value = $("#days").val();
@@ -271,13 +299,15 @@ $(function () {
     });
 
     $('#viz_startdate').change(function() {getLeaveLength(true);});
+    $('#viz_starttime').change(function() {getLeaveLength();});
     $('#viz_enddate').change(function() {getLeaveLength();});
+    $('#viz_endtime').change(function() {getLeaveLength();});
     $('#startdatetype').change(function() {getLeaveLength();});
     $('#enddatetype').change(function() {getLeaveLength();});
     $('#type').change(function() {getLeaveInfos(false);});
 
     //Check if the user has not exceed the number of entitled days
-    $("#duration").keyup(function() {getLeaveInfos(true);});
+   // $("#duration").keyup(function() {getLeaveInfos(true);});
 
     $("#frmLeaveForm").submit(function(e) {
         if (validate_form()) {

@@ -23,7 +23,7 @@ echo form_open('leaves/create', $attributes) ?>
         <?php echo lang('leaves_create_field_type');?>
         &nbsp;<span class="muted" id="lblCredit"><?php if (!is_null($credit)) { ?>(<?php echo $credit; ?>)<?php } ?></span>
     </label>
-    <select class="input-xxlarge" name="type" id="type">
+    <select class="input-xlarge" name="type" id="type">
     <?php foreach ($types as $typeId => $TypeName): ?>
         <option value="<?php echo $typeId; ?>" <?php if ($typeId == $defaultType) echo "selected"; ?>><?php echo $TypeName; ?></option>
     <?php endforeach ?>
@@ -31,15 +31,21 @@ echo form_open('leaves/create', $attributes) ?>
 
     <label for="viz_startdate"><?php echo lang('leaves_create_field_start');?></label>
     <input type="text" name="viz_startdate" id="viz_startdate" value="<?php echo set_value('startdate'); ?>" autocomplete="off" />
+    <input type="text" name="viz_starttime" id="viz_starttime" value="<?php echo set_value('starttime'); ?>" autocomplete="off" />
     <input type="hidden" name="startdate" id="startdate" />
+    <input type="hidden" name="starttime" id="starttime" />
+    
     <select name="startdatetype" id="startdatetype">
         <option value="Morning" selected><?php echo lang('Morning');?></option>
         <option value="Afternoon"><?php echo lang('Afternoon');?></option>
     </select><br />
-
+    
     <label for="viz_enddate"><?php echo lang('leaves_create_field_end');?></label>
     <input type="text" name="viz_enddate" id="viz_enddate" value="<?php echo set_value('enddate'); ?>" autocomplete="off" />
+    <input type="text" name="viz_endtime" id="viz_endtime" value="<?php echo set_value('endtime'); ?>" autocomplete="off" />
     <input type="hidden" name="enddate" id="enddate" />
+    <input type="hidden" name="endtime" id="endtime" />
+    
     <select name="enddatetype" id="enddatetype">
         <option value="Morning"><?php echo lang('Morning');?></option>
         <option value="Afternoon" selected><?php echo lang('Afternoon');?></option>
@@ -103,7 +109,11 @@ echo form_open('leaves/create', $attributes) ?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/selectize.bootstrap2.css" />
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/flick/jquery-ui.custom.min.css">
+<link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery.timepicker.css">
+<link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery.timepicker.min.css">
 <script src="<?php echo base_url();?>assets/js/jquery-ui.custom.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery.timepicker.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery.timepicker.min.js"></script>
 <?php //Prevent HTTP-404 when localization isn't needed
 if ($language_code != 'en') { ?>
 <script src="<?php echo base_url();?>assets/js/i18n/jquery.ui.datepicker-<?php echo $language_code;?>.js"></script>
@@ -167,3 +177,4 @@ $(function () {
 <?php }?>
 </script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/lms/leave.edit-0.7.0.js" type="text/javascript"></script>
+

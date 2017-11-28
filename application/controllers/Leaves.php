@@ -786,6 +786,8 @@ class Leaves extends CI_Controller {
         $enddate = $this->input->post('enddate', TRUE);
         $startdatetype = $this->input->post('startdatetype', TRUE);     //Mandatory field checked by frontend
         $enddatetype = $this->input->post('enddatetype', TRUE);       //Mandatory field checked by frontend
+        $starttime = $this->input->post('starttime',TRUE);
+        $endtime = $this->input->post('endtime',TRUE);
         $leave_id = $this->input->post('leave_id', TRUE);
         $agent = $this->input->post('agent', TRUE);
         $leaveValidator = new stdClass;
