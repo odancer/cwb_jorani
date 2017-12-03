@@ -11,13 +11,10 @@ function getLeaveLength(refreshInfos) {
     refreshInfos = typeof refreshInfos !== 'undefined' ? refreshInfos : true;
     var start = moment($('#startdate').val());
     var end = moment($('#enddate').val());
+    var stime = $('#starttime').val();
+    var etime = $('#endtime').val();
     var startType = $('#startdatetype option:selected').val();
     var endType = $('#enddatetype option:selected').val();
-    var starttime = $('#starttime').val();
-    var endtime = $('#endtime').val();
-    console.log(start);
-    console.log(endtime);
-
     if (start.isValid() && end.isValid()) {
         if (start.isSame(end)) {
             if (startType == "Morning" && endType == "Morning") {
@@ -57,6 +54,8 @@ function getLeaveInfos(preventDefault) {
         $('#frmModalAjaxWait').modal('show');
         var start = moment($('#startdate').val());
         var end = moment($('#enddate').val());
+        var stime = $('#starttime').val();
+        var etime = $('#endtime').val();
         $.ajax({
         type: "POST",
         url: baseURL + "leaves/validate",
@@ -274,21 +273,16 @@ $(function () {
               }
     }, $.datepicker.regional[languageCode]);
 
-    $("#viz_starttime").timepicker({
-        timeFormat :"HH:mm",
-        altFormat: "HH:mm",
-        altField : "#starttime",
-         onClose: function( selectedTime ) {
-                $( "#viz_starttime" ).timepicker( "option", "minTime", selectedTime );
-              }
+
+    $('#viz_starttime').timepicker();
+    $('#viz_starttime').on('selectTime', function() {
+        $('#viz_starttime').timepicker('getTime'); // this will be a Date object that includes the time
+    //console.log(stime);
     });
-    $("#viz_endtime").timepicker({
-        timeFormat:"HH:mm",
-        altFormat: "HH:mm",
-        altField: "#endtime",
-        onClose: function( selectedTime ) {
-                $( "#viz_endtime" ).timepicker( "option", "maxTime", selectedTime );
-              }
+    $('#viz_endtime').timepicker();
+    $('#viz_endtime').on('selectTime', function() {
+        $('#viz_endtime').timepicker('getTime'); // this will be a Date object that includes the time
+    //console.log(etime);
     });
 
     //Force decimal separator whatever the locale is
