@@ -35,19 +35,13 @@ echo form_open('leaves/create', $attributes) ?>
      />
     <input type="hidden" name="startdate" id="startdate" />
     <input type="hidden" name="starttime" id="starttime" />
-    <select name="startdatetype" id="startdatetype">
-        <option value="Morning" selected><?php echo lang('Morning');?></option>
-        <option value="Afternoon"><?php echo lang('Afternoon');?></option>
-    </select><br />
+    <input type="hidden" name="startdatetype" id="startdatetype">
     <label for="viz_enddate"><?php echo lang('leaves_create_field_end');?></label>
     <input type="text" name="viz_enddate" id="viz_enddate" value="<?php echo set_value('enddate'); ?>" autocomplete="off" />
     <input type="text" name="viz_endtime" id="viz_endtime" value="<?php echo set_value('endtime'); ?>" autocomplete="off" />
     <input type="hidden" name="enddate" id="enddate" />
     <input type="hidden" name="endtime" id="endtime" />
-    <select name="enddatetype" id="enddatetype">
-        <option value="Morning"><?php echo lang('Morning');?></option>
-        <option value="Afternoon" selected><?php echo lang('Afternoon');?></option>
-    </select><br />
+    <input type="hidden" name="enddatetype" id="enddatetype">
     <label for="duration"><?php echo lang('leaves_create_field_duration');?> <span id="tooltipDayOff"></span></label>
     <?php if ($this->config->item('disable_edit_leave_duration') == TRUE) { ?>
     <input type="text" name="duration" id="duration" value="<?php echo set_value('duration'); ?>" readonly />

@@ -172,7 +172,6 @@ class CI_Form_validation {
 		{
 			return $this;
 		}
-
 		// If an array was passed via the first parameter instead of individual string
 		// values we cycle through it and recursively call this function.
 		if (is_array($field))

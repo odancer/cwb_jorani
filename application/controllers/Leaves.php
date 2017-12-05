@@ -208,9 +208,8 @@ class Leaves extends CI_Controller {
         $data = getUserContext($this);
         $this->load->helper('form');
         $this->load->library('form_validation');
-        $data['title'] = lang('leaves_create_title');
+        $data['title'] = lang('leaves_create_title'); 
         $data['help'] = $this->help->create_help_link('global_link_doc_page_request_leave');
-
         $this->form_validation->set_rules('startdate', lang('leaves_create_field_start'), 'required|strip_tags');
         $this->form_validation->set_rules('startdatetype', 'Start Date type', 'required|strip_tags');
         $this->form_validation->set_rules('enddate', lang('leaves_create_field_end'), 'required|strip_tags');
@@ -219,7 +218,6 @@ class Leaves extends CI_Controller {
         $this->form_validation->set_rules('type', lang('leaves_create_field_type'), 'required|strip_tags');
         $this->form_validation->set_rules('cause', lang('leaves_create_field_cause'), 'strip_tags');
         $this->form_validation->set_rules('status', lang('leaves_create_field_status'), 'required|strip_tags');
-
         if ($this->form_validation->run() === FALSE) {
             $this->load->model('contracts_model');
             $leaveTypesDetails = $this->contracts_model->getLeaveTypesDetailsOTypesForUser($this->session->userdata('id'));
@@ -231,7 +229,6 @@ class Leaves extends CI_Controller {
             $data['credit'] = $leaveTypesDetails->credit;
             $data['types'] = $leaveTypesDetails->types;
             $data['userName'] = $userName;
-            //err_log($data['userName']);
             $this->load->view('templates/header', $data);
             $this->load->view('menu/index', $data);
             $this->load->view('leaves/create');
@@ -286,8 +283,10 @@ class Leaves extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('startdate', lang('leaves_edit_field_start'), 'required|strip_tags');
+        $this->form_validation->set_rules('starttime', lang('leaves_edit_field_start'), 'required|strip_tags');
         $this->form_validation->set_rules('startdatetype', 'Start Date type', 'required|strip_tags');
         $this->form_validation->set_rules('enddate', lang('leaves_edit_field_end'), 'required|strip_tags');
+        $this->form_validation->set_rules('endtime', lang('leaves_edit_field_end'), 'required|strip_tags');
         $this->form_validation->set_rules('enddatetype', 'End Date type', 'required|strip_tags');
         $this->form_validation->set_rules('duration', lang('leaves_edit_field_duration'), 'required|strip_tags');
         $this->form_validation->set_rules('type', lang('leaves_edit_field_type'), 'required|strip_tags');
@@ -779,11 +778,14 @@ class Leaves extends CI_Controller {
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
     public function validate() {
+
         header("Content-Type: application/json");
         $id = $this->input->post('id', TRUE);
         $type = $this->input->post('type', TRUE);
         $startdate = $this->input->post('startdate', TRUE);
         $enddate = $this->input->post('enddate', TRUE);
+        $starttime = $this->input->post('viz_starttime', TRUE);
+        $endtime = $this->input->post('viz_endtime', TRUE);
         $startdatetype = $this->input->post('startdatetype', TRUE);     //Mandatory field checked by frontend
         $enddatetype = $this->input->post('enddatetype', TRUE);       //Mandatory field checked by frontend
         $starttime = $this->input->post('starttime',TRUE);
