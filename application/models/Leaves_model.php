@@ -155,11 +155,12 @@ class Leaves_model extends CI_Model {
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
     public function actualLengthAndDaysOff($employee, $startdate, $enddate,
-            $startdatetype, $enddatetype, $daysoff, $deductDayOff = FALSE) {
-        $startDateObject = DateTime::createFromFormat('Y-m-d H:i:s', $startdate . ' 00:00:00');
-        $endDateObject = DateTime::createFromFormat('Y-m-d H:i:s', $enddate . ' 00:00:00');
+            $startdatetype, $enddatetype, $daysoff, $starttime, $endtime, $deductDayOff = FALSE) {
+            $starttime = substr ($starttime,0,5); 
+            $endtime = substr ($endtime,0,5); 
+        $startDateObject = DateTime::createFromFormat('Y-m-d H:i:s', $startdate . ' '.$starttime.':00');
+        $endDateObject = DateTime::createFromFormat('Y-m-d H:i:s', $enddate . ' '.$endtime.':00');
         $iDate = clone $startDateObject;
-
         //Simplify logic
         if ($startdate == $enddate) $one_day = TRUE; else $one_day = FALSE;
         if ($startdatetype == 'Morning') $start_morning = TRUE; else $start_morning = FALSE;
@@ -497,7 +498,9 @@ class Leaves_model extends CI_Model {
             'cause' => $this->input->post('cause'),
             'status' => $this->input->post('status'),
             'employee' => $id,
-            'agent' => $userID
+            'agent' => $userID,
+            'starttime'=> $this->input->post('starttime'),
+            'endtime' => $this->input->post('endtime')
         );
         $this->db->insert('leaves', $data);
         $newId = $this->db->insert_id();

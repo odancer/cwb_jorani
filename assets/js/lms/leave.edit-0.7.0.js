@@ -15,10 +15,10 @@ function getLeaveLength(refreshInfos) {
     var etime = $('#viz_endtime').val();
     var re = new RegExp("AM");
     var re2 = new RegExp("PM");
-    var startType; if (re.test(stime)) {$('#startdatetype').val("Morning")} else if(re2.test(stime)){$('#startdatetype').val("Afternoon")} else {startType = ""};
-    var endType;   if (re.test(etime)){$('#enddatetype').val("Morning")} else if(re2.test(etime)){$('#enddatetype').val("Afternoon")} else {endType = ""};
+    var startType; var endType;
+    if (re.test(stime)){startType="Morning"} else if(re2.test(stime)){strtType="Afternoon"} else {startType=""};
+    if (re.test(etime)){endType="Morning"} else if(re2.test(etime)){endType="Afternoon"} else {endType=""};
     //var startType = $('#startdatetype option:selected').val();
-    //var endType = $('#enddatetype option:selected').val();
     if (start.isValid() && end.isValid()) {
         if (start.isSame(end)) {
             if (startType == "Morning" && endType == "Morning") {
@@ -62,8 +62,10 @@ function getLeaveInfos(preventDefault) {
         var etime = $('#viz_endtime').val();
         var re = new RegExp("AM");
         var re2 = new RegExp("PM");
-        var startType; if (re.test(stime)) {$('#startdatetype').val("Morning")} else if(re2.test(stime)){$('#startdatetype').val("Afternoon")} else {startType = ""};
-        var endType;   if (re.test(etime)){$('#enddatetype').val("Morning")} else if(re2.test(etime)){$('#enddatetype').val("Afternoon")} else {endType = ""};
+        if (re.test(stime)) {$('#startdatetype').val("Morning")} else if(re2.test(stime)){$('#startdatetype').val("Afternoon")} else {$('#startdatetype').val("")};
+        if (re.test(etime)){$('#enddatetype').val("Morning")} else if(re2.test(etime)){$('#enddatetype').val("Afternoon")} else {$('#enddatetype').val("")};
+        $('#starttime').val(stime);
+        $('#endtime').val(etime);
         $.ajax({
         type: "POST",
         url: baseURL + "leaves/validate",
@@ -73,8 +75,8 @@ function getLeaveInfos(preventDefault) {
                     enddate: $('#enddate').val(),
                     startdatetype: $('#startdatetype').val(),
                     enddatetype: $('#enddatetype').val(),
-                    starttime: $('#viz_starttime').val(),
-                    endtime: $('#viz_endtime').val(),
+                    starttime: $('#starttime').val(),
+                    endtime: $('#endtime').val(),
                     leave_id: leaveId
                 }
         })
@@ -287,7 +289,7 @@ $(function () {
         dynamic: false,
         dropdown: true,
         scrollbar: true,
-    });
+    }).val('08:00 AM');
 
     $("#viz_endtime").timepicker({
         timeFormat: 'H:i A',
@@ -295,7 +297,7 @@ $(function () {
         dynamic: false,
         dropdown: true,
         scrollbar: true,
-    });
+    }).val('17:00 PM');
 
     //Force decimal separator whatever the locale is
     $( "#days" ).keyup(function() {

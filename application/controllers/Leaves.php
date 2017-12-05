@@ -212,8 +212,10 @@ class Leaves extends CI_Controller {
         $data['help'] = $this->help->create_help_link('global_link_doc_page_request_leave');
         $this->form_validation->set_rules('startdate', lang('leaves_create_field_start'), 'required|strip_tags');
         $this->form_validation->set_rules('startdatetype', 'Start Date type', 'required|strip_tags');
+        $this->form_validation->set_rules('starttime', 'Leaves Start Time', 'required|strip_tags');
         $this->form_validation->set_rules('enddate', lang('leaves_create_field_end'), 'required|strip_tags');
         $this->form_validation->set_rules('enddatetype', 'End Date type', 'required|strip_tags');
+        $this->form_validation->set_rules('endtime', 'Leaves End Time', 'required|strip_tags');
         $this->form_validation->set_rules('duration', lang('leaves_create_field_duration'), 'required|strip_tags');
         $this->form_validation->set_rules('type', lang('leaves_create_field_type'), 'required|strip_tags');
         $this->form_validation->set_rules('cause', lang('leaves_create_field_cause'), 'strip_tags');
@@ -777,6 +779,7 @@ class Leaves extends CI_Controller {
      *  If the user is linked to a contract, returns end date of the yearly leave period or NULL
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
+    
     public function validate() {
 
         header("Content-Type: application/json");
@@ -784,8 +787,6 @@ class Leaves extends CI_Controller {
         $type = $this->input->post('type', TRUE);
         $startdate = $this->input->post('startdate', TRUE);
         $enddate = $this->input->post('enddate', TRUE);
-        $starttime = $this->input->post('viz_starttime', TRUE);
-        $endtime = $this->input->post('viz_endtime', TRUE);
         $startdatetype = $this->input->post('startdatetype', TRUE);     //Mandatory field checked by frontend
         $enddatetype = $this->input->post('enddatetype', TRUE);       //Mandatory field checked by frontend
         $starttime = $this->input->post('starttime',TRUE);
@@ -825,7 +826,7 @@ class Leaves extends CI_Controller {
             $this->load->model('dayoffs_model');
             $leaveValidator->listDaysOff = $this->dayoffs_model->listOfDaysOffBetweenDates($id, $startdate, $enddate);
             //Sum non-working days and overlapping with day off detection
-            $result = $this->leaves_model->actualLengthAndDaysOff($id, $startdate, $enddate, $startdatetype, $enddatetype, $leaveValidator->listDaysOff, $deductDayOff);
+            $result = $this->leaves_model->actualLengthAndDaysOff($id, $startdate, $enddate, $startdatetype, $enddatetype, $leaveValidator->listDaysOff, $starttime, $endtime, $deductDayOff);
             $leaveValidator->overlapDayOff = $result['overlapping'];
             $leaveValidator->lengthDaysOff = $result['daysoff'];
             $leaveValidator->length = $result['length'];
@@ -841,4 +842,4 @@ class Leaves extends CI_Controller {
 
         echo json_encode($leaveValidator);
     }
-}
+} 

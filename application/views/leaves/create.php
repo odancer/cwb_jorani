@@ -141,7 +141,9 @@ function validate_form() {
     }
 
     if ($('#viz_startdate').val() == "") fieldname = "<?php echo lang('leaves_create_field_start');?>";
+    if ($('#viz_starttime').val() == "") fieldname = "<?php echo lang('leaves_create_field_start');?>";
     if ($('#viz_enddate').val() == "") fieldname = "<?php echo lang('leaves_create_field_end');?>";
+    if ($('#viz_endtime').val() == "") fieldname = "<?php echo lang('leaves_create_field_end');?>";
     if ($('#duration').val() == "" || $('#duration').val() == 0) fieldname = "<?php echo lang('leaves_create_field_duration');?>";
     if (fieldname == "") {
         return true;
