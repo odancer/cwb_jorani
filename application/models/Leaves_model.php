@@ -156,8 +156,7 @@ class Leaves_model extends CI_Model {
      */
     public function actualLengthAndDaysOff($employee, $startdate, $enddate,
             $startdatetype, $enddatetype, $daysoff, $starttime, $endtime, $deductDayOff = FALSE) {
-            $starttime = substr ($starttime,0,5); 
-            $endtime = substr ($endtime,0,5); 
+        $starttime = substr ($starttime,0,5); $endtime = substr ($endtime,0,5); 
         $startDateObject = DateTime::createFromFormat('Y-m-d H:i:s', $startdate . ' '.$starttime.':00');
         $endDateObject = DateTime::createFromFormat('Y-m-d H:i:s', $enddate . ' '.$endtime.':00');
         $iDate = clone $startDateObject;
@@ -182,15 +181,26 @@ class Leaves_model extends CI_Model {
             // - Detect if the leave request exactly overlaps with a day off
             foreach ($daysoff as $dayOff) {
                 $dayOffObject = DateTime::createFromFormat('Y-m-d H:i:s', $dayOff['date'] . ' 00:00:00');
-                if ($dayOffObject == $iDate) {
+                if ($dayOffObject->format('Y-m-d') == $iDate->format('Y-m-d')) {
                     $lengthDaysOff+=$dayOff['length'];
                     $isDayOff = TRUE;
                     $hasDayOff = TRUE;
+                    $startTime = $startDateObject->format('Y-m-d H:i:s');
+                    $endTime =  $endDateObject->format('Y-m-d H:i:s');
                     switch ($dayOff['type']) {
                         case 1: //1 : All day
                             if ($one_day && $start_morning && $end_afternoon && $first_day)
                                 $overlapDayOff = TRUE;
                                 if ($deductDayOff) $length++;
+                               /**
+                                $r_time=$this->sumTime($startTime,$endTime);
+                                $timeArr=explode(" ",$r_time);
+                                if($start_morning && $end_afternoon) $hours=(round($timeArr[2]/60)-1);
+                                if(($start_morning && $end_morning) || ($start_afternoon&& $end_afternoon)) $hours=round($timeArr[2]/60);
+                                $dhours=$timeArr[0]*8;
+                                $length=$hours+$dhours;
+                                 error_log( print_r($length, TRUE) );
+                                 **/
                             break;
                         case 2: //2 : Morning
                             if ($one_day && $start_morning && $end_morning && $first_day)
@@ -211,17 +221,38 @@ class Leaves_model extends CI_Model {
                 }
             }
             if (!$isDayOff) {
+                      $startTime = $startDateObject->format('Y-m-d H:i:s');
+                      $endTime =  $endDateObject->format('Y-m-d H:i:s');
                 if ($one_day) {
-                    if ($start_morning && $end_afternoon) $length++;
-                    if ($start_morning && $end_morning) $length+=0.5;
-                    if ($start_afternoon && $end_afternoon) $length+=0.5;
+                    /**if ($start_morning && $end_afternoon) $length++;
+                       if ($start_morning && $end_morning) $length+=0.5;
+                       if ($start_afternoon && $end_afternoon) $length+=0.5; */
+                      //$startTime = explode(" ", $startDateObject->format('Y-m-d H:i:s'));
+                      //$endTime = explode(" ", $endDateObject->format('Y-m-d H:i:s'));
+                      $r_time=$this->sumTime($startTime,$endTime);
+                      $timeArr=explode(" ",$r_time);
+                      if($start_morning && $end_afternoon) $hours=(round($timeArr[2]/60)-1);
+                      if(($start_morning && $end_morning) || ($start_afternoon&& $end_afternoon)) $hours=round($timeArr[2]/60);
+                      $dhours=$timeArr[0]*8;
+                      $length=$hours+$dhours;
                 } else {
-                    if ($iDate == $endDateObject) $last_day = TRUE; else $last_day = FALSE;
+                    /**if ($iDate == $endDateObject) $last_day = TRUE; else $last_day = FALSE;
                     if (!$first_day && !$last_day) $length++;
                     if ($first_day && $start_morning) $length++;
                     if ($first_day && $start_afternoon) $length+=0.5;
                     if ($last_day && $end_morning) $length+=0.5;
-                    if ($last_day && $end_afternoon) $length++;
+                    if ($last_day && $end_afternoon) $length++;*/
+                    //$startTime = explode(" ", $startDateObject->format('Y-m-d H:i:s'));
+                    //$endTime = explode(" ", $endDateObject->format('Y-m-d H:i:s'));
+                    $r_time=$this->sumTime($startTime,$endTime);
+                    $timeArr=explode(" ",$r_time);
+                    if($start_morning && $end_afternoon) $hours=(round($timeArr[2]/60)-1);
+                    if(($start_morning && $end_morning) || ($start_afternoon && $end_afternoon)) $hours=round($timeArr[2]/60);
+                    if($deductDayOff)
+                        { $timeArr[0]-$lengthDaysOff;
+                        }   
+                    $dhours=$timeArr[0]*8;
+                    $length=$hours+$dhours;
                 }
                 $overlapDayOff = FALSE;
             }
@@ -1905,4 +1936,14 @@ class Leaves_model extends CI_Model {
         return json_encode($json_parsed);
       }
     }
+
+    public function sumTime ($d,$d1){ 
+      $date=floor((strtotime($d1)-strtotime($d))/86400);
+      $hour=floor((strtotime($d1)-strtotime($d))%86400/3600);
+      $minute=floor((strtotime($d1)-strtotime($d))%86400/60);
+      $second=floor((strtotime($d1)-strtotime($d))%86400%60);
+      $n_time = $date.' '.$hour.' '.$minute;
+      return $n_time;
+        }
+
 }
