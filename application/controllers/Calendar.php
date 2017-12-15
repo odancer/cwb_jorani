@@ -93,8 +93,8 @@ class Calendar extends CI_Controller {
         $this->load->model('attendance_model');
         $this->lang->load('calendar', $this->language);
         $data = getUserContext($this);
-        $login_id = $this->login;
-        $data['record'] = $this->attendance_model->getAttendanceRecord($login_id);
+        $login_id = strtoupper ($this->login);
+        $data['records'] = $this->attendance_model->getAttendanceRecord($login_id);
         $this->load->view('templates/header', $data);
         $this->load->view('menu/index', $data);
         $this->load->view('calendar/attendance', $data);
@@ -136,6 +136,7 @@ class Calendar extends CI_Controller {
         $this->load->view('calendar/workmates', $data);
         $this->load->view('templates/footer');
     }
+
 
     /**
      * Display the calendar of the employees managed by the connected user
