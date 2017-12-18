@@ -60,6 +60,6 @@ $lang['menu_calendar_individual'] = '我的行事曆';
 $lang['menu_calendar_workmates'] = '我的同事';
 $lang['menu_calendar_collaborators'] = '我的部屬';
 $lang['menu_calendar_department'] = '部門';
-$lang['menu_calendar_organization'] = '部門';
+$lang['menu_calendar_organization'] = '組織';
 $lang['menu_calendar_tabular'] = '格式';
 $lang['menu_calendar_attendance'] = '刷卡記錄';
