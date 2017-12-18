@@ -9,8 +9,8 @@
  */
 
 $lang['organization_index_title'] = '組織';
-$lang['organization_index_field_search_placeholder'] = '收尋事業體';
-$lang['organization_index_button_search'] = '收尋';
+$lang['organization_index_field_search_placeholder'] = '搜尋事業體';
+$lang['organization_index_button_search'] = '搜尋';
 $lang['organization_index_title_employees'] = '派任員工到事業體';
 $lang['organization_index_thead_id'] = '證號';
 $lang['organization_index_thead_firstname'] = '名';
@@ -41,8 +41,8 @@ $lang['organization_index_error_msg_select_entity'] = '請從組織中選擇（�
 $lang['organization_index_error_msg_select_employee'] = '請於以下使用者名單中選擇一員工於表單中';
 $lang['organization_index_error_msg_delete_root'] = '你無法刪除此組織圖';
 
-$lang['organization_select_field_search_placeholder'] = '收尋事業體';
-$lang['organization_select_button_search'] = '收尋';
+$lang['organization_select_field_search_placeholder'] = '搜尋事業體';
+$lang['organization_select_button_search'] = '搜尋';
 
 $lang['organization_lists_modal_title'] = 'Select a list of employees';
 $lang['organization_lists_button_edit_list'] = 'Rename a list';

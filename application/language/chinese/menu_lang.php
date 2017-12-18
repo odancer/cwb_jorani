@@ -35,11 +35,11 @@ $lang['menu_hr_list_positions'] = '職位職稱';
 $lang['menu_hr_leaves_type_divider'] = '休假';
 $lang['menu_hr_list_leaves_type'] = '總類列表';
 $lang['menu_hr_reports_divider'] = '報告';
-$lang['menu_hr_report_leave_balance'] = '加價平均值';
+$lang['menu_hr_report_leave_balance'] = '部屬休假餘額';
 $lang['menu_hr_report_leaves'] = '休假申請';
 
 $lang['menu_validation_title'] = '批准';
-$lang['menu_validation_delegations'] = '委託團';
+$lang['menu_validation_delegations'] = '簽核代理設定';
 $lang['menu_validation_collaborators'] = '我的部屬';
 $lang['menu_validation_leaves'] = '休假';
 $lang['menu_validation_overtime'] = '加班';
@@ -47,7 +47,7 @@ $lang['menu_validation_overtime'] = '加班';
 $lang['menu_requests_title'] = '申請';
 $lang['menu_requests_leaves'] = '休假';
 $lang['menu_requests_overtime'] = '加班';
-$lang['menu_requests_list_extras'] = 'OT工作列表';
+$lang['menu_requests_list_extras'] = '加班申請列表';
 $lang['menu_requests_request_extra'] = '送出加班申請';
 
 $lang['menu_leaves_counters'] = '櫃檯';

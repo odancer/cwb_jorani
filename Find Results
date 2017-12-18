@@ -1,0 +1,222 @@
+Searching 4258 files for "搜尋"
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/chinese.po:
+  471  
+  472  msgid "Search:"
+  473: msgstr "搜尋"
+  474  
+  475  msgid "No matching records found"
+  ...
+  686  "Object not found. Maybe that you are trying to access to an object that was "
+  687  "deleted."
+  688: msgstr "未搜尋到結果,你搜尋的條件可能已被刪除"
+  689  
+  690  msgid "m/d/Y"
+  ...
+ 1155  
+ 1156  msgid "Search for an entity"
+ 1157: msgstr "搜尋事業體"
+ 1158  
+ 1159  msgid "Search"
+ 1160: msgstr "搜尋"
+ 1161  
+ 1162  msgid "Employees attached to entity"
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/datatable_lang.php:
+   18  $lang['datatable_sLoadingRecords'] = '鼟入中...';
+   19  $lang['datatable_sProcessing'] = '確認中...';
+   20: $lang['datatable_sSearch'] = '搜尋';
+   21  $lang['datatable_sZeroRecords'] = '無符合資料';
+   22  $lang['datatable_sFirst'] = '第一';
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/global_lang.php:
+   14  $lang['global_msg_wait'] = '請稍等';
+   15  $lang['global_msg_old_browser'] = '於IE 8將不支援,煩請更新至IE 9或使用Firefox, Chrome, etc';
+   16: $lang['global_msg_not_found'] = '未搜尋到結果,你搜尋的條件可能已被刪除';
+   17  
+   18  $lang['global_date_format'] = 'Y-m-d';
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/organization_lang.php:
+   10  
+   11  $lang['organization_index_title'] = '組織';
+   12: $lang['organization_index_field_search_placeholder'] = '搜尋事業體';
+   13: $lang['organization_index_button_search'] = '搜尋';
+   14  $lang['organization_index_title_employees'] = '派任員工到事業體';
+   15  $lang['organization_index_thead_id'] = '證號';
+   ..
+   42  $lang['organization_index_error_msg_delete_root'] = '你無法刪除此組織圖';
+   43  
+   44: $lang['organization_select_field_search_placeholder'] = '搜尋事業體';
+   45: $lang['organization_select_button_search'] = '搜尋';
+   46  
+   47  $lang['organization_lists_modal_title'] = 'Select a list of employees';
+
+12 matches across 4 files
+
+
+Searching 4258 files for "搜尋"
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/chinese.po:
+  471  
+  472  msgid "Search:"
+  473: msgstr "搜尋"
+  474  
+  475  msgid "No matching records found"
+  ...
+  686  "Object not found. Maybe that you are trying to access to an object that was "
+  687  "deleted."
+  688: msgstr "未搜尋到結果,你搜尋的條件可能已被刪除"
+  689  
+  690  msgid "m/d/Y"
+  ...
+ 1155  
+ 1156  msgid "Search for an entity"
+ 1157: msgstr "搜尋事業體"
+ 1158  
+ 1159  msgid "Search"
+ 1160: msgstr "搜尋"
+ 1161  
+ 1162  msgid "Employees attached to entity"
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/datatable_lang.php:
+   18  $lang['datatable_sLoadingRecords'] = '鼟入中...';
+   19  $lang['datatable_sProcessing'] = '確認中...';
+   20: $lang['datatable_sSearch'] = '搜尋';
+   21  $lang['datatable_sZeroRecords'] = '無符合資料';
+   22  $lang['datatable_sFirst'] = '第一';
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/global_lang.php:
+   14  $lang['global_msg_wait'] = '請稍等';
+   15  $lang['global_msg_old_browser'] = '於IE 8將不支援,煩請更新至IE 9或使用Firefox, Chrome, etc';
+   16: $lang['global_msg_not_found'] = '未搜尋到結果,你搜尋的條件可能已被刪除';
+   17  
+   18  $lang['global_date_format'] = 'Y-m-d';
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/organization_lang.php:
+   10  
+   11  $lang['organization_index_title'] = '組織';
+   12: $lang['organization_index_field_search_placeholder'] = '搜尋事業體';
+   13: $lang['organization_index_button_search'] = '搜尋';
+   14  $lang['organization_index_title_employees'] = '派任員工到事業體';
+   15  $lang['organization_index_thead_id'] = '證號';
+   ..
+   42  $lang['organization_index_error_msg_delete_root'] = '你無法刪除此組織圖';
+   43  
+   44: $lang['organization_select_field_search_placeholder'] = '搜尋事業體';
+   45: $lang['organization_select_button_search'] = '搜尋';
+   46  
+   47  $lang['organization_lists_modal_title'] = 'Select a list of employees';
+
+12 matches across 4 files
+
+
+Searching 4258 files for "搜尋"
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/chinese.po:
+  471  
+  472  msgid "Search:"
+  473: msgstr "搜尋"
+  474  
+  475  msgid "No matching records found"
+  ...
+  686  "Object not found. Maybe that you are trying to access to an object that was "
+  687  "deleted."
+  688: msgstr "未搜尋到結果,你搜尋的條件可能已被刪除"
+  689  
+  690  msgid "m/d/Y"
+  ...
+ 1155  
+ 1156  msgid "Search for an entity"
+ 1157: msgstr "搜尋事業體"
+ 1158  
+ 1159  msgid "Search"
+ 1160: msgstr "搜尋"
+ 1161  
+ 1162  msgid "Employees attached to entity"
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/datatable_lang.php:
+   18  $lang['datatable_sLoadingRecords'] = '鼟入中...';
+   19  $lang['datatable_sProcessing'] = '確認中...';
+   20: $lang['datatable_sSearch'] = '搜尋';
+   21  $lang['datatable_sZeroRecords'] = '無符合資料';
+   22  $lang['datatable_sFirst'] = '第一';
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/global_lang.php:
+   14  $lang['global_msg_wait'] = '請稍等';
+   15  $lang['global_msg_old_browser'] = '於IE 8將不支援,煩請更新至IE 9或使用Firefox, Chrome, etc';
+   16: $lang['global_msg_not_found'] = '未搜尋到結果,你搜尋的條件可能已被刪除';
+   17  
+   18  $lang['global_date_format'] = 'Y-m-d';
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/organization_lang.php:
+   10  
+   11  $lang['organization_index_title'] = '組織';
+   12: $lang['organization_index_field_search_placeholder'] = '搜尋事業體';
+   13: $lang['organization_index_button_search'] = '搜尋';
+   14  $lang['organization_index_title_employees'] = '派任員工到事業體';
+   15  $lang['organization_index_thead_id'] = '證號';
+   ..
+   42  $lang['organization_index_error_msg_delete_root'] = '你無法刪除此組織圖';
+   43  
+   44: $lang['organization_select_field_search_placeholder'] = '搜尋事業體';
+   45: $lang['organization_select_button_search'] = '搜尋';
+   46  
+   47  $lang['organization_lists_modal_title'] = 'Select a list of employees';
+
+12 matches across 4 files
+
+
+Searching 4258 files for "搜尋"
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/chinese.po:
+  471  
+  472  msgid "Search:"
+  473: msgstr "搜尋"
+  474  
+  475  msgid "No matching records found"
+  ...
+  686  "Object not found. Maybe that you are trying to access to an object that was "
+  687  "deleted."
+  688: msgstr "未搜尋到結果,你搜尋的條件可能已被刪除"
+  689  
+  690  msgid "m/d/Y"
+  ...
+ 1155  
+ 1156  msgid "Search for an entity"
+ 1157: msgstr "搜尋事業體"
+ 1158  
+ 1159  msgid "Search"
+ 1160: msgstr "搜尋"
+ 1161  
+ 1162  msgid "Employees attached to entity"
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/datatable_lang.php:
+   18  $lang['datatable_sLoadingRecords'] = '鼟入中...';
+   19  $lang['datatable_sProcessing'] = '確認中...';
+   20: $lang['datatable_sSearch'] = '搜尋';
+   21  $lang['datatable_sZeroRecords'] = '無符合資料';
+   22  $lang['datatable_sFirst'] = '第一';
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/global_lang.php:
+   14  $lang['global_msg_wait'] = '請稍等';
+   15  $lang['global_msg_old_browser'] = '於IE 8將不支援,煩請更新至IE 9或使用Firefox, Chrome, etc';
+   16: $lang['global_msg_not_found'] = '未搜尋到結果,你搜尋的條件可能已被刪除';
+   17  
+   18  $lang['global_date_format'] = 'Y-m-d';
+
+/Users/davidhsieh/Documents/git/cwb_jorani/application/language/chinese/organization_lang.php:
+   10  
+   11  $lang['organization_index_title'] = '組織';
+   12: $lang['organization_index_field_search_placeholder'] = '搜尋事業體';
+   13: $lang['organization_index_button_search'] = '搜尋';
+   14  $lang['organization_index_title_employees'] = '派任員工到事業體';
+   15  $lang['organization_index_thead_id'] = '證號';
+   ..
+   42  $lang['organization_index_error_msg_delete_root'] = '你無法刪除此組織圖';
+   43  
+   44: $lang['organization_select_field_search_placeholder'] = '搜尋事業體';
+   45: $lang['organization_select_button_search'] = '搜尋';
+   46  
+   47  $lang['organization_lists_modal_title'] = 'Select a list of employees';
+
+12 matches across 4 files

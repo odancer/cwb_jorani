@@ -8,12 +8,12 @@
  * @author      Ceibga Bao <info@sansin.com.tw>
  */
 
-$lang['Leave Management System'] = '離開管理系統';
+$lang['Leave Management System'] = '休假管理系統';
 $lang['global_link_tooltip_documentation'] = '連結至紀錄';
 $lang['global_msg_error_forbidden'] = '運行（%s）不被允許';
 $lang['global_msg_wait'] = '請稍等';
 $lang['global_msg_old_browser'] = '於IE 8將不支援,煩請更新至IE 9或使用Firefox, Chrome, etc';
-$lang['global_msg_not_found'] = '未收尋到結果,你收尋的條件可能已被刪除';
+$lang['global_msg_not_found'] = '未搜尋到結果,你搜尋的條件可能已被刪除';
 
 $lang['global_date_format'] = 'Y-m-d';
 $lang['global_date_js_format'] = 'yy-mm-dd';

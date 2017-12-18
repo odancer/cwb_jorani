@@ -17,7 +17,7 @@ $lang['admin_diagnostic_requests_description'] = 'Accepted but duplicated Leave 
 $lang['admin_diagnostic_requests_thead_id'] = '證號';
 $lang['admin_diagnostic_requests_thead_employee'] = '員工';
 $lang['admin_diagnostic_requests_thead_start_date'] = '開始日期';
-$lang['admin_diagnostic_requests_thead_status'] = '職位';
+$lang['admin_diagnostic_requests_thead_status'] = '狀態';
 $lang['admin_diagnostic_requests_thead_type'] = '編輯';
 
 $lang['admin_diagnostic_datetype_tab'] = '上午/下午';
@@ -27,14 +27,14 @@ $lang['admin_diagnostic_datetype_thead_employee'] = '員工';
 $lang['admin_diagnostic_datetype_thead_start_date'] = '日期';
 $lang['admin_diagnostic_datetype_thead_start_type'] = '開始';
 $lang['admin_diagnostic_datetype_thead_end_type'] = '結束';
-$lang['admin_diagnostic_datetype_thead_status'] = '職位';
+$lang['admin_diagnostic_datetype_thead_status'] = '狀態';
 
 $lang['admin_diagnostic_entitlements_tab'] = '享有類別';
 $lang['admin_diagnostic_entitlements_description'] = 'List of contracts and employees having entitlements for more than one year.';
 $lang['admin_diagnostic_entitlements_thead_id'] = '證號';
 $lang['admin_diagnostic_entitlements_thead_type'] = '編輯';
 $lang['admin_diagnostic_entitlements_thead_name'] = '名字';
-$lang['admin_diagnostic_entitlements_thead_start_date'] = '開始日期';
+$lang['admin_diagnostic_entitlements_thead_start_date'] = '開始日期'; 
 $lang['admin_diagnostic_entitlements_thead_end_date'] = '結束日期';
 $lang['admin_diagnostic_entitlements_type_contract'] = '類別';
 $lang['admin_diagnostic_entitlements_type_employee'] = '員工';
@@ -53,7 +53,7 @@ $lang['admin_diagnostic_overtime_thead_id'] = '證號';
 $lang['admin_diagnostic_overtime_thead_employee'] = '員工';
 $lang['admin_diagnostic_overtime_thead_date'] = '日期';
 $lang['admin_diagnostic_overtime_thead_duration'] = '時段';
-$lang['admin_diagnostic_overtime_thead_status'] = '職位';
+$lang['admin_diagnostic_overtime_thead_status'] = '狀態';
 
 $lang['admin_diagnostic_contract_tab'] = '類別';
 $lang['admin_diagnostic_contract_description'] = '沒使用的類別（請檢查重複類別）';
@@ -66,7 +66,7 @@ $lang['admin_diagnostic_balance_thead_id'] = '證號';
 $lang['admin_diagnostic_balance_thead_employee'] = '員工';
 $lang['admin_diagnostic_balance_thead_contract'] = '類別';
 $lang['admin_diagnostic_balance_thead_start_date'] = '開始日期';
-$lang['admin_diagnostic_balance_thead_status'] = '職位';
+$lang['admin_diagnostic_balance_thead_status'] = '狀態';
 
 $lang['admin_oauthclients_title'] = 'OAuth clients and sessions';
 $lang['admin_oauthclients_tab_clients'] = 'Clients';

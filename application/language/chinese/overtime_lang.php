@@ -17,9 +17,9 @@ $lang['overtime_index_thead_id'] = '證號';
 $lang['overtime_index_thead_fullname'] = '全名';
 $lang['overtime_index_thead_date'] = '日期';
 $lang['overtime_index_thead_duration'] = '時段';
-$lang['overtime_index_thead_status'] = '職位';
+$lang['overtime_index_thead_status'] = '狀態';
 $lang['overtime_index_button_export'] = '匯出此單';
-$lang['overtime_index_button_show_all'] = '所以申請';
+$lang['overtime_index_button_show_all'] = '全部列表';
 $lang['overtime_index_button_show_pending'] = '列表申請中';
 
 $lang['overtime_reject_flash_msg_error'] = '你不是此員工隸屬主管,你無法拒絕此加班申請';
@@ -33,4 +33,4 @@ $lang['overtime_export_thead_fullname'] = '全名';
 $lang['overtime_export_thead_date'] = '日期';
 $lang['overtime_export_thead_duration'] = '時段';
 $lang['overtime_export_thead_cause'] = '理由';
-$lang['overtime_export_thead_status'] = '職位';
+$lang['overtime_export_thead_status'] = '狀態';

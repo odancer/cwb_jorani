@@ -191,7 +191,7 @@ class Leaves_model extends CI_Model {
                         case 1: //1 : All day
                             if ($one_day && $start_morning && $end_afternoon && $first_day)
                                 $overlapDayOff = TRUE;
-                                if ($deductDayOff) $length++;
+                                //if ($deductDayOff) $length++;
                                /**
                                 $r_time=$this->sumTime($startTime,$endTime);
                                 $timeArr=explode(" ",$r_time);
@@ -199,7 +199,6 @@ class Leaves_model extends CI_Model {
                                 if(($start_morning && $end_morning) || ($start_afternoon&& $end_afternoon)) $hours=round($timeArr[2]/60);
                                 $dhours=$timeArr[0]*8;
                                 $length=$hours+$dhours;
-                                 error_log( print_r($length, TRUE) );
                                  **/
                             break;
                         case 2: //2 : Morning
@@ -216,10 +215,11 @@ class Leaves_model extends CI_Model {
                             break;
                         default:
                             break;
-                    }
+                    } 
                     break;
-                }
+                } 
             }
+
             if (!$isDayOff) {
                       $startTime = $startDateObject->format('Y-m-d H:i:s');
                       $endTime =  $endDateObject->format('Y-m-d H:i:s');
@@ -248,9 +248,6 @@ class Leaves_model extends CI_Model {
                     $timeArr=explode(" ",$r_time);
                     if($start_morning && $end_afternoon) $hours=(round($timeArr[2]/60)-1);
                     if(($start_morning && $end_morning) || ($start_afternoon && $end_afternoon)) $hours=round($timeArr[2]/60);
-                    if($deductDayOff)
-                        { $timeArr[0]-$lengthDaysOff;
-                        }   
                     $dhours=$timeArr[0]*8;
                     $length=$hours+$dhours;
                 }
@@ -263,6 +260,11 @@ class Leaves_model extends CI_Model {
         if ($hasDayOff && ($length == 0)) {
             $overlapDayOff = TRUE;
         }
+        if($deductDayOff && $length !=0)
+             { 
+                    //$timeArr[0]-$lengthDaysOff; 
+                    $length -=$lengthDaysOff*8;
+                }   
         return array('length' => $length, 'daysoff' => $lengthDaysOff, 'overlapping' => $overlapDayOff);
     }
 

@@ -47,7 +47,7 @@ $lang['requests_summary_flash_msg_forbidden'] = '你不是此員工管理者';
 $lang['requests_summary_button_list'] = '部屬列表';
 
 $lang['requests_index_button_export'] = '匯出此單';
-$lang['requests_index_button_show_all'] = '所以申請';
+$lang['requests_index_button_show_all'] = '全部列表';
 $lang['requests_index_button_show_pending'] = '列表申請中';
 
 $lang['requests_accept_flash_msg_error'] = '你不是此員工隸屬管理者,你不能接受此休假申請';
@@ -65,7 +65,7 @@ $lang['requests_export_thead_enddate_type'] = '上午/下午';
 $lang['requests_export_thead_duration'] = '時段';
 $lang['requests_export_thead_type'] = '編輯';
 $lang['requests_export_thead_cause'] = '理由';
-$lang['requests_export_thead_status'] = '職位';
+$lang['requests_export_thead_status'] = '狀態';
 
 $lang['requests_delegations_title'] = '委託列表';
 $lang['requests_delegations_description'] = '此列表為可受理你的申請的管理者';

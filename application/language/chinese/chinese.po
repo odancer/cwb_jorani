@@ -40,7 +40,7 @@ msgid "Start Date"
 msgstr "開始日期"
 
 msgid "Status"
-msgstr "職位"
+msgstr "狀態"
 
 msgid "Type"
 msgstr "編輯"
@@ -470,7 +470,7 @@ msgid "Processing..."
 msgstr "確認中..."
 
 msgid "Search:"
-msgstr "收尋"
+msgstr "搜尋"
 
 msgid "No matching records found"
 msgstr "無符合資料"
@@ -666,7 +666,7 @@ msgid "List of overtime worked"
 msgstr "加班列表"
 
 msgid "Leave Management System"
-msgstr "離開管理系統"
+msgstr "休假管理系統"
 
 msgid "Link to documentation"
 msgstr "連結至紀錄"
@@ -685,7 +685,7 @@ msgstr "於IE 8將不支援,煩請更新至IE 9或使用Firefox, Chrome, etc"
 msgid ""
 "Object not found. Maybe that you are trying to access to an object that was "
 "deleted."
-msgstr "未收尋到結果,你收尋的條件可能已被刪除"
+msgstr "未搜尋到結果,你搜尋的條件可能已被刪除"
 
 msgid "m/d/Y"
 msgstr "月/日/年"
@@ -784,7 +784,7 @@ msgid "Presence report"
 msgstr "簽署報告"
 
 msgid "Delegations"
-msgstr "委託團"
+msgstr "簽核代理設定"
 
 msgid "Firstname"
 msgstr "名"
@@ -1109,7 +1109,7 @@ msgid "Reports"
 msgstr "報告"
 
 msgid "Leave balance"
-msgstr "加價平均值"
+msgstr "部屬休假餘額"
 
 msgid "Leave requests"
 msgstr "休假申請"
@@ -1124,7 +1124,7 @@ msgid "Requests"
 msgstr "申請"
 
 msgid "List of OT Worked"
-msgstr "OT工作列表"
+msgstr "加班申請列表"
 
 msgid "Submit an OT Request"
 msgstr "送出加班申請"
@@ -1154,10 +1154,10 @@ msgid "Tabular"
 msgstr "格式"
 
 msgid "Search for an entity"
-msgstr "收尋事業體"
+msgstr "搜尋事業體"
 
 msgid "Search"
-msgstr "收尋"
+msgstr "搜尋"
 
 msgid "Employees attached to entity"
 msgstr "派任員工到事業體"
