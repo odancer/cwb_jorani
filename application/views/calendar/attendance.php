@@ -13,9 +13,33 @@
 <h2><?php echo lang('attendance_title');?></h2>
 <table cellpadding="0" cellspacing="0" class="display" id="attendance" width="100%">
         <tr>
-             <th><?php echo lang('calendar/attendance');?></th>
+             <th><?php echo lang('leaves/create');?></th>
         </tr>
+
 <table/>
+<?php
+$attributes = array('id' => 'searchMonthDataForm');
+echo form_open('calendar/attendance', $attributes) ?>
+
+<select name="selectmonth" id="selectmonth" value="" size="1" style="width: 150px;">
+  <option selected>=== 選擇月份 ===</option> 
+<?php foreach($monthArr as $month_Item):?>
+  <option value ="<?php echo $month_Item?>"><?php echo $month_Item?></option>
+<?php endforeach;?>
+</select>
+<?php if ($is_hr == TRUE || $is_admin == TRUE) { ?>
+ &nbsp;
+ <select class="input-large" name="selectuser" id="selectuser" value="" size="1" style="width: 150px;">
+      <option selected>=== 選擇人員 ===</option> 
+    <?php foreach ($userName as $agentId => $AgentName): ?>
+        <option value="<?php echo $AgentName; ?>"><?php echo $AgentName; ?></option>
+    <?php endforeach ?>
+ </select>
+<?php } ?>
+
+ &nbsp; <button value="7" type="submit" style="width:60px;height:22px;font-size:8px;">查詢</button>
+ <br/><br/>
+</form>
 
 <table cellpadding="0" cellspacing="0" border="2" class="display" id="attendance2" width="100%">
     <thead>
@@ -38,7 +62,7 @@
         <td align="center"><?php echo $records_item['first']; ?></td> 
         <td align="center"><?php echo $records_item['final']; ?></td>   
     </tr>
-<?php endforeach ?>
+    <?php endforeach ?>
 
 	</tbody>
 </table>

@@ -88,18 +88,82 @@ class Calendar extends CI_Controller {
      * Data (calendar events) is retrieved by AJAX from leaves' controller
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
-      public function attendance() {
+      public function attendance(){
         setUserContext($this);
+        $this->load->helper('form');
         $this->load->model('attendance_model');
         $this->lang->load('calendar', $this->language);
+        $selectmonth = $this->input->post('selectmonth');
+        $selectuser = $this->input->post('selectuser');
         $data = getUserContext($this);
-        $login_id = strtoupper ($this->login);
-        $data['records'] = $this->attendance_model->getAttendanceRecord($login_id);
+        $crr_year = date("Y")-1911;
+        $crr_month = date("m");
+        $monthArr = array();
+        $userListDetails = $this->users_model->getUsers(0);
+            foreach($userListDetails as $key => $value) {
+              $userName[] = $value['id']."_".$value['lastname'].$value['firstname'];
+        } 
+        for($i=1;$i<=12;$i++) {
+            $i = str_pad($i,2,'0',STR_PAD_LEFT);
+            $monthArr[] = $crr_year.$i;
+        }
+
+        if($data['is_hr']==TRUE|| $data['is_admin']==TRUE || $data['is_boss']==TRUE)
+        {
+             if(empty($selectuser)) {
+                  $login_id = strtoupper ($this->input->post('user_id', TRUE));
+             }else {
+                  $userArr = explode('_',$selectuser);
+                  $login_id = strtoupper ($this->users_model->getLoginid((int)$userArr[0]));
+
+             }
+               
+             if(empty($selectmonth)) {
+                 $date = $crr_year.$crr_month;
+             }else {
+                  $date = $selectmonth;
+             }
+
+         }else {
+             $login_id = strtoupper ($this->login);
+             if(empty($selectmonth)) {
+                 $date = $crr_year.$crr_month;
+             }else {
+                 $date = $selectmonth;
+             }
+          }   
+        
+        $records = $this->attendance_model->getAttendanceRecord($login_id,$date);
+        $date_convr = substr($date,0,2)."-".substr($date,2); 
+        $daycount = date("t",strtotime($date_convr));
+        $dataArray = array();
+        $tcdate = array();
+        foreach($records as $record) {
+             $tcdate[]=$record['tc_date'];
+        }
+
+         for ($i=1;$i<=$daycount;$i++) {
+            $i = str_pad($i,2,'0',STR_PAD_LEFT);
+            $date2 = $date.$i;
+            $key = array_search($date2,$tcdate);
+            if($key) {
+                  $first = $records[$key]['first'];
+                  $final = $records[$key]['final'];
+                  if(empty($records[$key]['first'])) $first = '無紀錄';
+                  if(empty($records[$key]['final'])) $final = '無紀錄';
+                  array_push($dataArray,array('userid'=>$login_id,'tc_date'=>$date2,'first'=>$first,'final'=>$final));
+                }else {
+                  array_push($dataArray,array('userid'=>$login_id,'tc_date'=>$date2,'first'=>'無紀錄','final'=>'無紀錄'));
+                }
+        }
+        $data['records'] = $dataArray;
+        $data['monthArr'] = $monthArr;
+        $data['userName'] = $userName;
         $this->load->view('templates/header', $data);
         $this->load->view('menu/index', $data);
         $this->load->view('calendar/attendance', $data);
         $this->load->view('templates/footer');
-    }
+}
 
 
     public function individual() {

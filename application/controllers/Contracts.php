@@ -98,6 +98,7 @@ class Contracts extends CI_Controller {
      * Display the form / action Create a new contract
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
+
     public function create() {
         $this->auth->checkIfOperationIsAllowed('create_contract');
         $data = getUserContext($this);
