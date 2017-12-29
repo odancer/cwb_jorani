@@ -98,5 +98,7 @@ $lang['attendance_index_date'] = '日期';
 $lang['attendance_index_day'] = '星期';
 $lang['attendance_index_in'] = '上班';
 $lang['attendance_index_out'] = '下班';
+$lang['attendance_search'] = '查詢';
+$lang['attendance_export'] = '匯出';
 
 

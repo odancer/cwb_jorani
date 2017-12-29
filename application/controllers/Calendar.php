@@ -22,6 +22,8 @@ class Calendar extends CI_Controller {
     public function __construct() {
         parent::__construct();
         //This controller differs from the others, because some calendars can be public
+        setUserContext($this);
+        $this->load->model('attendance_model');
     }
 
     /**
@@ -111,11 +113,12 @@ class Calendar extends CI_Controller {
         if($data['is_hr']==TRUE|| $data['is_admin']==TRUE || $data['is_boss']==TRUE)
         {
              if(empty($selectuser)) {
-                  $login_id = strtoupper ($this->input->post('user_id', TRUE));
+                   $login_id = strtoupper ($this->login);
              }else {
                   $userArr = explode('_',$selectuser);
+                  $fullname = $this->users_model->getName((int)$userArr[0]);
                   $login_id = strtoupper ($this->users_model->getLoginid((int)$userArr[0]));
-
+                  $data['fullname'] = $fullname;
              }
                
              if(empty($selectmonth)) {
@@ -156,9 +159,11 @@ class Calendar extends CI_Controller {
                   array_push($dataArray,array('userid'=>$login_id,'tc_date'=>$date2,'first'=>'無紀錄','final'=>'無紀錄'));
                 }
         }
-        $data['records'] = $dataArray;
+        $data['records']  = $dataArray;
         $data['monthArr'] = $monthArr;
         $data['userName'] = $userName;
+        $data['login_id'] = $login_id;
+        $data['date'] = $date;
         $this->load->view('templates/header', $data);
         $this->load->view('menu/index', $data);
         $this->load->view('calendar/attendance', $data);
@@ -577,4 +582,12 @@ class Calendar extends CI_Controller {
         $data['year'] = $year;
         $this->load->view('calendar/export_year', $data);
     }
+
+        public function export($login_id ='P074',$date = '10605') {
+        $this->load->library('excel');
+        $data['login_id'] = $login_id;
+        $data['date'] = $date;
+        $this->load->view('calendar/export', $data);
+    }
 }
+

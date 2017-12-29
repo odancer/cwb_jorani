@@ -11,12 +11,7 @@
 <div class="row-fluid">
     <div class="span12">
 <h2><?php echo lang('attendance_title');?></h2>
-<table cellpadding="0" cellspacing="0" class="display" id="attendance" width="100%">
-        <tr>
-             <th><?php echo lang('leaves/create');?></th>
-        </tr>
 
-<table/>
 <?php
 $attributes = array('id' => 'searchMonthDataForm');
 echo form_open('calendar/attendance', $attributes) ?>
@@ -36,14 +31,12 @@ echo form_open('calendar/attendance', $attributes) ?>
     <?php endforeach ?>
  </select>
 <?php } ?>
-
- &nbsp; <button value="7" type="submit" style="width:60px;height:22px;font-size:8px;">查詢</button>
- <br/><br/>
+ &nbsp; <button value="7" type="submit" style="width:60px;height:22px;font-size:8px;"><?php echo lang('attendance_search');?></button>
 </form>
+&nbsp;<a href="<?php echo base_url();?>calendar/export/<?php echo $login_id; ?>/<?php echo $date;?>" class="btn btn-primary"><i class="fa fa-file-excel-o"></i>&nbsp; <?php echo lang('attendance_export');?></a>
 
 <table cellpadding="0" cellspacing="0" border="2" class="display" id="attendance2" width="100%">
     <thead>
-
         <tr>
             <th><?php echo lang('attendance_index_user_id');?></th>
             <th><?php echo lang('attendance_index_user_fullname');?></th>
