@@ -97,9 +97,17 @@ class Overtime_model extends CI_Model {
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
     public function acceptExtra($id) {
-        $data = array(
-            'status' => 3
-        );
+        $extraInfo = $this->getExtras($id);
+        $status = $extraInfo['status'];
+        $data = array();
+        switch($status) {
+            case 2:
+                $data = array('status' => 12);
+                break;
+            case 12:
+                $data = array('status'=>3);
+                break;
+        }
         $this->db->where('id', $id);
         return $this->db->update('overtime', $data);
     }
@@ -145,6 +153,7 @@ class Overtime_model extends CI_Model {
      * @return array Recordset (can be empty if no requests or not a manager)
      */
     public function requests($user_id, $all = FALSE) {
+        $role_info =$this->users_model->getRole($user_id);
         $this->load->model('delegations_model');
         $ids = $this->delegations_model->listManagersGivingDelegation($user_id);
         $this->db->select('overtime.id as id, users.*, overtime.*');
@@ -155,10 +164,14 @@ class Overtime_model extends CI_Model {
             array_push($ids, $user_id);
             $this->db->where_in('users.manager', $ids);
         } else {
-            $this->db->where('users.manager', $user_id);
+            if($role_info != 32) $this->db->where('users.manager', $user_id);
         }
         if ($all == FALSE) {
-            $this->db->where('status', 2);
+            if($role_info == 32) {
+                $this->db->where('status', 12);
+            }else {
+                $this->db->where('status', 2);
+            }
         }
         $this->db->order_by('date', 'desc');
         $query = $this->db->get('overtime');
@@ -172,17 +185,21 @@ class Overtime_model extends CI_Model {
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
     public function countExtraRequestedToManager($manager) {
+        $role_info =$this->users_model->getRole($manager);
         $this->load->model('delegations_model');
         $ids = $this->delegations_model->listManagersGivingDelegation($manager);
         $this->db->select('count(*) as number', FALSE);
         $this->db->join('users', 'users.id = overtime.employee');
-        $this->db->where('status', 2);
-
         if (count($ids) > 0) {
             array_push($ids, $manager);
             $this->db->where_in('users.manager', $ids);
         } else {
-            $this->db->where('users.manager', $manager);
+             if($role_info == 32) {
+                    $this->db->where('status', 12);
+                }else {
+                    $this->db->where('status', 2);
+                    $this->db->where('users.manager', $manager);
+                }
         }
         $result = $this->db->get('overtime');
         return $result->row()->number;

@@ -362,7 +362,9 @@ INSERT INTO `status` (`id`, `name`) VALUES
 (8, 'Requested_Boss'),
 (9, 'Cancellation_Agent'),
 (10,'Cancellation_Manager'),
-(11,'Cancellation_Boss');
+(11,'Cancellation_Boss'),
+(12,'Overtime_Boss'),
+
 --
 -- Structure of table `tasks`
 --

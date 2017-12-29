@@ -55,6 +55,7 @@ define('LMS_CANCELED', 6);
 define('LMS_CANCELLATION_AGENT', 9);
 define('LMS_CANCELLATION_MANAGER', 10);
 define('LMS_CANCELLATION_BOSS', 11);
+define('LMS_OVERTIME_BOSS', 12);
 
 //Transitions
 define('LMS_PLANNED_REQUESTED', 102);
