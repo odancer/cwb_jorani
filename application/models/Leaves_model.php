@@ -80,7 +80,7 @@ class Leaves_model extends CI_Model {
         left outer join (
           SELECT id, MIN(change_date) as date
           FROM leaves_history
-          WHERE leaves_history.status = 2
+          WHERE leaves_history.status = 2 or 7 or 8
           GROUP BY id
         ) requested ON leaves.id = requested.id
         WHERE leaves.employee = $employee")->result_array();
