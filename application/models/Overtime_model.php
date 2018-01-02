@@ -192,7 +192,12 @@ class Overtime_model extends CI_Model {
         $this->db->join('users', 'users.id = overtime.employee');
         if (count($ids) > 0) {
             array_push($ids, $manager);
-            $this->db->where_in('users.manager', $ids);
+            if($role_info == 32) {
+                    $this->db->where('status', 12);
+                }else {
+                    $this->db->where_in('users.manager', $ids);
+                    $this->db->where('status', 2);
+                }
         } else {
              if($role_info == 32) {
                     $this->db->where('status', 12);

@@ -293,6 +293,7 @@ class Leaves_model extends CI_Model {
         $results = $this->db->get()->result_array();
         //Create an associated array have the leave type as key
         $entitled_days = array();
+        error_log( print_r($entitled_days, TRUE) );
         foreach ($results as $result) {
             $entitled_days[$result['type_id']] = $result;
         }
@@ -1325,7 +1326,7 @@ class Leaves_model extends CI_Model {
             break;
 
             default;
-                $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11)";
+                $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11 AND leaves.status !=7)";
                 $query .= " OR ((leaves.status=7 OR leaves.status=9) AND leaves.agent IN(". implode(",", $ids) ."))";
                 $query .= " OR ((leaves.status=7 OR leaves.status=9) AND leaves.agent=$manager)";
             break;
@@ -1395,7 +1396,7 @@ class Leaves_model extends CI_Model {
             break;
 
             default;
-                $this->db->where("(users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11 )");
+                $this->db->where("(users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11 AND leaves.status !=7)");
                 $this->db->or_where("((leaves.status=7 OR leaves.status=9) AND leaves.agent IN(". implode(",", $ids) ."))");
                 $this->db->or_where("((leaves.status=7 OR leaves.status=9) AND leaves.agent=$manager)");
             break;
