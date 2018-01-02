@@ -171,7 +171,7 @@ function exportSpreadsheet($context, $filename)
             $objWriter = PHPExcel_IOFactory::createWriter($context->excel, 'Excel2007');
             break;
     }
-    $haha = $objWriter->save('php://output');
+    $objWriter->save('php://output');
 }
 
 //Function cal_days_in_month might not exist with HHVM and FreeBSD without proper config

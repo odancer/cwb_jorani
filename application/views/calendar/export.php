@@ -6,7 +6,7 @@
  * @link            https://github.com/bbalet/jorani
  * @since         0.2.0
  */
-
+$this->lang->load('calendar', $this->language);
 $sheet = $this->excel->setActiveSheetIndex(0);
 $sheet->setTitle(mb_strimwidth(lang('attendance_title'), 0, 28, "..."));  //Maximum 31 characters allowed in sheet title.
 $sheet->setCellValue('A1', lang('attendance_index_user_id'));
@@ -54,4 +54,4 @@ foreach(range('A', 'E') as $colD) {
     $sheet->getColumnDimension($colD)->setAutoSize(TRUE);
 }
 
-exportSpreadsheet($this, 'attendance');
+exportSpreadsheet($this, 'calendar');

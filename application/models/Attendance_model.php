@@ -12,5 +12,6 @@ class Attendance_model extends CI_Model{
         $records = $db2->get()->result_array();
         return $records;
     }
+
 }
 ?>

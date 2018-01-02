@@ -126,7 +126,6 @@ if ($showAll == FALSE) {
         <td><?php echo $request['duration']; ?></td>
         <td><?php echo $request['type_name']; ?></td>
         <?php
-                    error_log( print_r($request['status_name'], TRUE) );
         switch ($request['status']) {
             case 1: echo "<td><span class='label'>" . lang($request['status_name']) . "</span></td>"; break;
             case 2: echo "<td><span class='label label-warning'>" . lang($request['status_name']) . "</span></td>"; break;

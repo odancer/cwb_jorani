@@ -293,7 +293,6 @@ class Leaves_model extends CI_Model {
         $results = $this->db->get()->result_array();
         //Create an associated array have the leave type as key
         $entitled_days = array();
-        error_log( print_r($entitled_days, TRUE) );
         foreach ($results as $result) {
             $entitled_days[$result['type_id']] = $result;
         }

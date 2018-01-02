@@ -112,7 +112,7 @@ class Calendar extends CI_Controller {
 
         if($data['is_hr']==TRUE|| $data['is_admin']==TRUE || $data['is_boss']==TRUE)
         {
-             if(empty($selectuser)) {
+             if(empty($selectuser) || $selectuser == "=== \xe9\x81\xb8\xe6\x93\x87\xe4\xba\xba\xe5\x93\xa1 ===") {
                    $login_id = strtoupper ($this->login);
              }else {
                   $userArr = explode('_',$selectuser);
@@ -121,7 +121,7 @@ class Calendar extends CI_Controller {
                   $data['fullname'] = $fullname;
              }
                
-             if(empty($selectmonth)) {
+             if(empty($selectmonth) || $selectmonth == "=== \xe9\x81\xb8\xe6\x93\x87\xe6\x9c\x88\xe4\xbb\xbd ===") {
                  $date = $crr_year.$crr_month;
              }else {
                   $date = $selectmonth;
@@ -129,7 +129,7 @@ class Calendar extends CI_Controller {
 
          }else {
              $login_id = strtoupper ($this->login);
-             if(empty($selectmonth)) {
+             if(empty($selectmonth) || $selectmonth == "=== \xe9\x81\xb8\xe6\x93\x87\xe6\x9c\x88\xe4\xbb\xbd ===") {
                  $date = $crr_year.$crr_month;
              }else {
                  $date = $selectmonth;

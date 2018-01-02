@@ -318,7 +318,6 @@ class CI_Config {
 				$base_url = $protocol.substr($base_url, strpos($base_url, '://'));
 			}
 		}
-		error_log( print_r($base_url, TRUE) );
 		return $base_url.$this->_uri_string($uri);
 	}
 

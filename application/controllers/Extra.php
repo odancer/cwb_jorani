@@ -40,7 +40,6 @@ class Extra extends CI_Controller {
         $data = getUserContext($this);
         $this->lang->load('datatable', $this->language);
         $data['extras'] = $this->overtime_model->getExtrasOfEmployee($this->user_id);
-        error_log( print_r($data['extras'], TRUE) );
         $data['title'] = lang('extra_index_title');
         $data['help'] = $this->help->create_help_link('global_link_doc_page_extra_list');
         $data['flash_partial_view'] = $this->load->view('templates/flash', $data, TRUE);
