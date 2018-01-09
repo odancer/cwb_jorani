@@ -1325,7 +1325,7 @@ class Leaves_model extends CI_Model {
             break;
 
             default;
-                $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11 AND leaves.status !=7)";
+                $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11 AND leaves.status !=7 AND leaves.status !=9)";
                 $query .= " OR ((leaves.status=7 OR leaves.status=9) AND leaves.agent IN(". implode(",", $ids) ."))";
                 $query .= " OR ((leaves.status=7 OR leaves.status=9) AND leaves.agent=$manager)";
             break;
@@ -1395,7 +1395,7 @@ class Leaves_model extends CI_Model {
             break;
 
             default;
-                $this->db->where("(users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11 AND leaves.status !=7)");
+                $this->db->where("(users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11 AND leaves.status !=7 AND leaves.status !=9)");
                 $this->db->or_where("((leaves.status=7 OR leaves.status=9) AND leaves.agent IN(". implode(",", $ids) ."))");
                 $this->db->or_where("((leaves.status=7 OR leaves.status=9) AND leaves.agent=$manager)");
             break;

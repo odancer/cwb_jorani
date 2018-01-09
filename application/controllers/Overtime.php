@@ -99,7 +99,7 @@ class Overtime extends CI_Controller {
         }
         $employee = $this->users_model->getUsers($extra['employee']);
         $is_delegate = $this->delegations_model->isDelegateOfManager($this->user_id, $employee['manager']);
-        if (($this->user_id == $employee['manager']) || ($this->is_hr)  || ($is_delegate)) {
+        if (($this->user_id == $employee['manager']) || ($this->is_hr)  || ($is_delegate) || ($this->is_boss)) {
             $this->overtime_model->rejectExtra($id);
             $this->sendMail($id);
             $this->session->set_flashdata('msg', lang('overtime_reject_flash_msg_success'));
