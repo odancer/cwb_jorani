@@ -64,18 +64,20 @@ foreach ($events as $event) {
     $objLeave->status = $leave['status'];
     $objLeave->statusName = $event['status_name'];
     $fullObject = clone $objLeave;
-    
+   
+   
     //Display only the cells with changes
-    $objLeave->startDate = ($startDate==$lastObject->startDate)?'':$startDate;
-    $objLeave->endDate = ($endDate==$lastObject->endDate)?'':$endDate;
-    $objLeave->cause = ($event['cause']==$lastObject->cause)?'':$event['cause'];
-    $objLeave->duration = ($event['duration']==$lastObject->duration)?'':$event['duration'];
-    $objLeave->typeName = ($event['type_name']==$lastObject->typeName)?'':$event['type_name'];
+    //$objLeave->startDate = ($startDate==$lastObject->startDate)?'':$startDate;
+    //$objLeave->endDate = ($endDate==$lastObject->endDate)?'':$endDate;
+    //$objLeave->cause = ($event['cause']==$lastObject->cause)?'':$event['cause'];
+    //$objLeave->duration = ($event['duration']==$lastObject->duration)?'':$event['duration'];
+    //$objLeave->typeName = ($event['type_name']==$lastObject->typeName)?'':$event['type_name'];
     $objLeave->status = $event['status'];
     $objLeave->statusName = ($event['status_name']==$lastObject->statusName)?'':$event['status_name'];
     array_push($history, $objLeave);
     $lastObject = clone $fullObject;
 }
+
 
 if (!empty($leave)) {
     $objLeave = new stdClass;
@@ -93,7 +95,6 @@ if (!empty($leave)) {
     $objLeave->statusName = $leave['status_name'];
     array_push($history, $objLeave);
 }
-
 ?>
         
     <?php foreach ($history as $objLeave): ?>
@@ -111,6 +112,10 @@ if (!empty($leave)) {
             case LMS_PLANNED: echo "<td><span class='label'>" . lang($objLeave->statusName) . "</span></td>"; break;
             case LMS_REQUESTED: echo "<td><span class='label label-warning'>" . lang($objLeave->statusName) . "</span></td>"; break;
             case LMS_ACCEPTED: echo "<td><span class='label label-success'>" . lang($objLeave->statusName) . "</span></td>"; break;
+            case LMS_REQUESTED_AGENT: echo "<td><span class='label label-warning'>" . lang($objLeave->statusName) . "</span></td>"; 
+                break;
+            case LMS_REQUESTED_BOSS: echo "<td><span class='label label-warning'>" . lang($objLeave->statusName) . "</span></td>"; 
+                break;
             default: echo "<td><span class='label label-important' style='background-color: #ff0000;'>" . lang($objLeave->statusName) . "</span></td>"; break;
         }?></td>
     </tr>

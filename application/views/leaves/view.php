@@ -42,6 +42,8 @@
 switch ($leave['status']) {
     case LMS_PLANNED: $style= "dropdown-planned"; break;
     case LMS_REQUESTED: $style= "dropdown-requested"; break;
+    case LMS_REQUESTED_AGENT: $style= "dropdown-requested"; break;
+    case LMS_REQUESTED_BOSS: $style= "dropdown-requested"; break;
     case LMS_ACCEPTED: $style= "dropdown-accepted"; break;
     default: $style= "dropdown-rejected"; break;
 } ?>
@@ -103,6 +105,8 @@ switch ($leave['status']) {
         switch ($comments_item->status_number) {
           case 1: echo "<span class='label'>" . lang($comments_item->status) . "</span>"; break;
           case 2: echo "<span class='label label-warning'>" . lang($comments_item->status) . "</span>"; break;
+          case 7: echo "<span class='label label-warning'>" . lang($comments_item->status) . "</span>"; break;
+          case 8: echo "<span class='label label-warning'>" . lang($comments_item->status) . "</span>"; break;
           case 3: echo "<span class='label label-success'>" . lang($comments_item->status) . "</span>"; break;
           default: echo "<span class='label label-important' style='background-color: #ff0000;'>" . lang($comments_item->status) . "</span>"; break;
         }

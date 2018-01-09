@@ -241,6 +241,7 @@ class Leaves extends CI_Controller {
             }
             $leave_id = $this->leaves_model->setLeaves($this->session->userdata('id'));
             $this->session->set_flashdata('msg', lang('leaves_create_flash_msg_success'));
+            error_log( print_r($leave_id, TRUE) );
             //If the status is requested, send an email to the manager
             if ($this->input->post('status') == 2) {
                 $this->sendMailOnLeaveRequestCreation($leave_id);
