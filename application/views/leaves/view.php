@@ -17,15 +17,11 @@
 
     <label for="startdate"><?php echo lang('leaves_view_field_start');?></label>
     <input type="text" name="startdate" value="<?php $date = new DateTime($leave['startdate']); echo $date->format(lang('global_date_format'));?>" readonly />
-    <select name="startdatetype" readonly>
-        <option selected><?php echo lang($leave['startdatetype']); ?></option>
-    </select><br />
+    <input type="text" name="starttime" value="<?php echo $leave['starttime'];?>" readonly/>
 
     <label for="enddate"><?php echo lang('leaves_view_field_end');?></label>
     <input type="text" name="enddate"  value="<?php $date = new DateTime($leave['enddate']); echo $date->format(lang('global_date_format'));?>" readonly />
-    <select name="enddatetype" readonly>
-        <option selected><?php echo lang($leave['enddatetype']); ?></option>
-    </select><br />
+    <input type="text" name="endtime" value="<?php echo $leave['endtime'];?>" readonly/>
 
     <label for="duration"><?php echo lang('leaves_view_field_duration');?></label>
     <input type="text" name="duration"  value="<?php echo $leave['duration']; ?>" readonly />
@@ -52,7 +48,7 @@ switch ($leave['status']) {
         <option selected><?php echo lang($leave['status_name']); ?></option>
     </select><br />
     <?php if($leave['status'] == LMS_PLANNED){ ?>
-      <a href="<?php echo base_url();?>leaves/request/<?php echo $leave['id'] ?>/" class="btn btn-primary "><i class="fa fa-check"></i>&nbsp;<?php echo lang('Requested');?></a>
+      <a href="<?php echo base_url();?>leaves/request/<?php echo $leave['id'] ?>/" class="btn btn-primary "><i class="fa fa-check"></i>&nbsp;<?php echo lang('Requested_Agent');?></a>
       <br/><br/>
     <?php } ?>
     <?php if ($leave['status'] == LMS_ACCEPTED) { ?>

@@ -28,27 +28,27 @@ if (isset($_GET['source'])) {
         <?php echo lang('leaves_edit_field_type');?>
         &nbsp;<span class="muted" id="lblCredit"><?php if (!is_null($credit)) { ?>(<?php echo $credit; ?>)<?php } ?></span>
     </label>
-    <select class="input-xxlarge" name="type" id="type">
+    <select class="input-xlarge" name="type" id="type">
     <?php foreach ($types as $typeId => $TypeName): ?>
         <option value="<?php echo $typeId; ?>" <?php if ($typeId == $leave['type']) echo "selected"; ?>><?php echo $TypeName; ?></option>
     <?php endforeach ?>
     </select>
 
     <label for="viz_startdate"><?php echo lang('leaves_edit_field_start');?></label>
-    <input type="text" name="viz_startdate" id="viz_startdate" value="<?php $date = new DateTime($leave['startdate']); echo $date->format(lang('global_date_format'));?>" autocomplete="off" />
-    <input type="hidden" name="startdate" id="startdate" value="<?php echo $leave['startdate'];?>" />
-    <select name="startdatetype" id="startdatetype">
-        <option value="Morning" <?php if ($leave['startdatetype'] == "Morning") {echo "selected";}?>><?php echo lang('Morning');?></option>
-        <option value="Afternoon" <?php if ($leave['startdatetype'] == "Afternoon") {echo "selected";}?>><?php echo lang('Afternoon');?></option>
-    </select><br />
-
+    <input type="text" name="viz_startdate" id="viz_startdate" value="<?php echo $leave['startdate']; set_value('startdate');?>" autocomplete="off" />
+    <input type="text" name="viz_starttime" id="viz_starttime" value="<?php echo $leave['starttime']; set_value('starttime');?>" autocomplete="off"
+     />
+    <input type="hidden" name="startdate" id="startdate"/>
+    <input type="hidden" name="starttime" id="starttime"/>
+    <input type="hidden" name="startdatetype" id="startdatetype">
     <label for="viz_enddate"><?php echo lang('leaves_edit_field_end');?></label>
-    <input type="text" name="viz_enddate" id="viz_enddate" value="<?php $date = new DateTime($leave['enddate']); echo $date->format(lang('global_date_format'));?>" autocomplete="off" />
-    <input type="hidden" name="enddate" id="enddate" value="<?php echo $leave['enddate'];?>" />
-    <select name="enddatetype" id="enddatetype">
-        <option value="Morning" <?php if ($leave['enddatetype'] == "Morning") {echo "selected";}?>><?php echo lang('Morning');?></option>
-        <option value="Afternoon" <?php if ($leave['enddatetype'] == "Afternoon") {echo "selected";}?>><?php echo lang('Afternoon');?></option>
-    </select><br />
+    <input type="text" name="viz_enddate" id="viz_enddate" value="<?php echo $leave['enddate']; set_value('enddate');?>" autocomplete="off" />
+    <input type="text" name="viz_endtime" id="viz_endtime" value="<?php echo $leave['endtime']; set_value('endtime');?>" autocomplete="off" />
+    <input type="hidden" name="enddate" id="enddate"/>
+    <input type="hidden" name="endtime" id="endtime"/>
+    <input type="hidden" name="enddatetype" id="enddatetype">
+    
+
     <label for="duration"><?php echo lang('leaves_edit_field_duration');?> <span id="tooltipDayOff"></span></label>
 
     <?php if ($this->config->item('disable_edit_leave_duration') == TRUE) { ?>
@@ -98,12 +98,12 @@ if (isset($_GET['source'])) {
     <label for="status"><?php echo lang('leaves_edit_field_status');?></label>
     <select name="status" class="<?php echo $style; ?>">
         <option value="1" <?php if ($leave['status'] == LMS_PLANNED) echo 'selected'; ?>><?php echo lang('Planned');?></option>
-        <option value="2" <?php if (($leave['status'] == LMS_REQUESTED) || $this->config->item('leave_status_requested')) echo 'selected'; ?>><?php echo lang('Requested');?></option>
+        <option value="7" <?php if (($leave['status'] == LMS_REQUESTED_AGENT) || $this->config->item('leave_status_requested')) echo 'selected'; ?>><?php echo lang('Requested_Agent');?></option>
     </select>
     <br/>
     <button name="status" value="1" type="submit" class="btn btn-primary"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; <?php echo lang('Planned');?></button>
     &nbsp;&nbsp;
-    <button name="status" value="2" type="submit" class="btn btn-primary "><i class="icon-ok icon-white"></i>&nbsp; <?php echo lang('Requested');?></button>
+    <button name="status" value="7" type="submit" class="btn btn-primary "><i class="icon-ok icon-white"></i>&nbsp; <?php echo lang('Ok');?></button>
     <br/>
     <?php } ?>
     <br />
@@ -187,7 +187,10 @@ if (isset($_GET['source'])) {
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/selectize.bootstrap2.css" />
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/flick/jquery-ui.custom.min.css">
+<link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery.timepicker.css">
 <script src="<?php echo base_url();?>assets/js/jquery-ui.custom.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery.timepicker.js"></script>
+
 <?php //Prevent HTTP-404 when localization isn't needed
 if ($language_code != 'en') { ?>
 <script src="<?php echo base_url();?>assets/js/i18n/jquery.ui.datepicker-<?php echo $language_code;?>.js"></script>
@@ -223,9 +226,10 @@ function validate_form() {
     if (typeof triggerValidateEditForm == 'function') {
        if (triggerValidateEditForm() == false) return false;
     }
-
-    if ($('#viz_startdate').val() == "") fieldname = "<?php echo lang('leaves_edit_field_start');?>";
-    if ($('#viz_enddate').val() == "") fieldname = "<?php echo lang('leaves_edit_field_end');?>";
+    if ($('#viz_startdate').val() == "") fieldname = "<?php echo lang('leaves_create_field_start');?>";
+    if ($('#viz_starttime').val() == "") fieldname = "<?php echo lang('leaves_create_field_start');?>";
+    if ($('#viz_enddate').val() == "") fieldname = "<?php echo lang('leaves_create_field_end');?>";
+    if ($('#viz_endtime').val() == "") fieldname = "<?php echo lang('leaves_create_field_end');?>";
     if ($('#duration').val() == "" || $('#duration').val() == 0) fieldname = "<?php echo lang('leaves_edit_field_duration');?>";
     if (fieldname == "") {
         return true;

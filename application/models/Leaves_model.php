@@ -543,7 +543,7 @@ class Leaves_model extends CI_Model {
             $this->load->model('history_model');
             $this->history_model->setHistory(1, 'leaves', $newId, $this->session->userdata('id'));
         }
-        $statusNum = 7;
+        $statusNum = $data['status'];
         $json = $this->leaves_model->prepareCommentOnStatusChanged($newId, $statusNum);
         $data = array(
               'status' => $statusNum,

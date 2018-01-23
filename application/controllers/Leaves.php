@@ -108,6 +108,7 @@ class Leaves extends CI_Controller {
      * @param int $id identifier of the leave request
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
+  
     public function view($source, $id) {
         $this->auth->checkIfOperationIsAllowed('view_leaves');
         $this->load->model('users_model');
@@ -241,7 +242,6 @@ class Leaves extends CI_Controller {
             }
             $leave_id = $this->leaves_model->setLeaves($this->session->userdata('id'));
             $this->session->set_flashdata('msg', lang('leaves_create_flash_msg_success'));
-            error_log( print_r($leave_id, TRUE) );
             //If the status is requested, send an email to the manager
             if ($this->input->post('status') == 2) {
                 $this->sendMailOnLeaveRequestCreation($leave_id);
@@ -359,7 +359,7 @@ class Leaves extends CI_Controller {
            }
            //We can cancel a leave request only with a status 'Accepted'
            if ($leave['status'] == LMS_PLANNED) {
-               $this->leaves_model->switchStatus($id, LMS_REQUESTED);
+               $this->leaves_model->switchStatus($id, LMS_REQUESTED_AGENT);
                $this->sendMailOnLeaveRequestCreation($id);
                $this->session->set_flashdata('msg', lang('leaves_cancellation_flash_msg_success'));
                redirect('leaves');
