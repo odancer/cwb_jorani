@@ -45,6 +45,14 @@
             <button id="cmdSelectSupervisor" class="btn btn-primary"><?php echo lang('organization_index_button_select_supervisor');?></button>
         </div>
         <br /><br />
+
+        <h3><?php echo lang('organization_index_title_supervisor');?></h3>
+        <p><?php echo lang('organization_index_description_supervisor');?></p>
+        <div class="input-append">
+            <input type="text" id="txtSupervisor2" />
+            <button id="cmdDeleteSupervisor2" class="btn btn-danger"><i class="icon-remove icon-white"></i></button>
+            <button id="cmdSelectSupervisor2" class="btn btn-primary"><?php echo lang('organization_index_button_select_supervisor');?></button>
+        </div>
     </div>
 </div>
 
@@ -90,6 +98,22 @@
         <a href="#" onclick="$('#frmSelectSupervisor').modal('hide');" class="btn"><?php echo lang('organization_index_popup_supervisor_button_cancel');?></a>
     </div>
 </div>
+
+<div id="frmSelectSupervisor2" class="modal hide fade">
+    <div class="modal-header">
+        <a href="#" onclick="$('#frmSelectSupervisor2').modal('hide');" class="close">&times;</a>
+         <h3><?php echo lang('organization_index_popup_supervisor_title');?></h3>
+    </div>
+    <div class="modal-body" id="frmSelectSupervisorBody2">
+        <img src="<?php echo base_url();?>assets/images/loading.gif">
+    </div>
+    <div class="modal-footer">
+        <a href="#" onclick="select_supervisor2();" class="btn"><?php echo lang('organization_index_popup_supervisor_button_ok');?></a>
+        <a href="#" onclick="$('#frmSelectSupervisor2').modal('hide');" class="btn"><?php echo lang('organization_index_popup_supervisor_button_cancel');?></a>
+    </div>
+</div>
+
+
 
 <div id="frmError" class="modal hide fade">
     <div class="modal-header">
@@ -163,6 +187,26 @@
             $('#frmModalAjaxWait').modal('hide');
           });
     }
+
+
+    function select_supervisor2() {
+        $("#frmSelectSupervisor2").modal('hide');
+        $('#frmModalAjaxWait').modal('show');
+        var employees = $('#employees').DataTable();
+        var id = employees.rows({selected: true}).data()[0][0];
+        var text = employees.rows({selected: true}).data()[0][1] + ' ' + employees.rows({selected: true}).data()[0][2];
+        var entity = $('#organization').jstree('get_selected')[0];
+        $.ajax({
+            type: "GET",
+            url: "<?php echo base_url(); ?>organization/setsupervisor2",
+            data: { 'user': id, 'entity': entity }
+          })
+          .done(function(msg) {
+            //Update field with the name of employee (the supervisor)
+            $('#txtSupervisor2').val(text);
+            $('#frmModalAjaxWait').modal('hide');
+          });
+    }
     
     function delete_supervisor() {
         $('#frmModalAjaxWait').modal('show');
@@ -175,6 +219,21 @@
           .done(function(msg) {
             //Update field with the name of employee (the supervisor)
             $('#txtSupervisor').val("");
+            $('#frmModalAjaxWait').modal('hide');
+          });
+    }
+
+    function delete_supervisor2() {
+        $('#frmModalAjaxWait').modal('show');
+        var entity = $('#organization').jstree('get_selected')[0];
+        $.ajax({
+            type: "GET",
+            url: "<?php echo base_url(); ?>organization/setsupervisor2",
+            data: { 'user': null, 'entity': entity }
+          })
+          .done(function(msg) {
+            //Update field with the name of employee (the supervisor)
+            $('#txtSupervisor2').val("");
             $('#frmModalAjaxWait').modal('hide');
           });
     }
@@ -231,11 +290,30 @@
                 $("#frmError").modal('show');
             }
         });
+
+         $("#cmdSelectSupervisor2").click(function() {
+            if ($("#organization").jstree('get_selected').length == 1) {
+                $("#frmSelectSupervisor2").modal('show');
+                $("#frmSelectSupervisorBody2").load('<?php echo base_url(); ?>users/employees');
+            } else {
+                $("#lblError").text("<?php echo lang('organization_index_error_msg_select_entity');?>");
+                $("#frmError").modal('show');
+            }
+        });
         
         //Delete the supervisor of the entity
         $("#cmdDeleteSupervisor").click(function() {
             if ($("#organization").jstree('get_selected').length == 1) {
                 delete_supervisor();
+            } else {
+                $("#lblError").text("<?php echo lang('organization_index_error_msg_select_entity');?>");
+                $("#frmError").modal('show');
+            }
+        });
+
+        $("#cmdDeleteSupervisor2").click(function() {
+            if ($("#organization").jstree('get_selected').length == 1) {
+                delete_supervisor2();
             } else {
                 $("#lblError").text("<?php echo lang('organization_index_error_msg_select_entity');?>");
                 $("#frmError").modal('show');

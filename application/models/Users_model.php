@@ -99,6 +99,14 @@ class Users_model extends CI_Model {
         }
     }
  
+
+    public function getGroup($id) {
+        $record = $this->getUsers($id);
+        if (count($record) > 0) {
+            return $record['organization'] ;
+        }
+    }
+    
     public function getLoginid($id) {
         $record = $this->getUsers($id);
         if (count($record) > 0) {

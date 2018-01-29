@@ -301,6 +301,24 @@ class Organization extends CI_Controller {
         }
     }
 
+
+     public function setsupervisor2() {
+        header("Content-Type: application/json");
+        setUserContext($this);
+        if ($this->auth->isAllowed('edit_organization') == FALSE) {
+            $this->output->set_header("HTTP/1.1 403 Forbidden");
+        } else {
+            if ($this->input->get('user', TRUE) == "") {
+                $id = NULL;
+            } else {
+                $id = $this->input->get('user', TRUE);
+            }
+            $entity = $this->input->get('entity', TRUE);
+            $this->load->model('organization_model');
+            echo json_encode($this->organization_model->setSupervisor2($id, $entity));
+        }
+    }
+
     /**
      * Modal form allowing to create and manage custom lists of employees
      * @author Benjamin BALET <benjamin.balet@gmail.com>

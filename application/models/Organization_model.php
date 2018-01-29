@@ -268,6 +268,14 @@ class Organization_model extends CI_Model {
         return $this->db->update('organization', $data);
     }
     
+
+    public function setSupervisor2($id, $entity) {
+        $data = array(
+            'supervisor2' => $id
+        );
+        $this->db->where('id', $entity);
+        return $this->db->update('organization', $data);
+    }
     /**
      * Returns the supervisor of an entity
      * @param int $entity identifier of the entity
@@ -278,6 +286,17 @@ class Organization_model extends CI_Model {
         $this->db->select('users.id, CONCAT(users.firstname, \' \', users.lastname) as username, email', FALSE);
         $this->db->from('organization');
         $this->db->join('users', 'users.id = organization.supervisor');
+        $this->db->where('organization.id', $entity);
+        $result = $this->db->get()->result();
+        if (count($result) > 0) {
+            return $result[0];
+        } else {
+            return NULL;
+        }
+    }
+   public function getSupervisor2($entity) {
+        $this->db->select('supervisor2', FALSE);
+        $this->db->from('organization');
         $this->db->where('organization.id', $entity);
         $result = $this->db->get()->result();
         if (count($result) > 0) {
