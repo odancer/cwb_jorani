@@ -325,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 INSERT INTO `roles` (`id`, `name`) VALUES
 (1, 'admin'),
 (2, 'user'),
-(8, 'HR admin');
+(8, 'HR admin'),
 (9,'boss');
 
 --
