@@ -269,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `organization` (
   `name` varchar(512) CHARACTER SET utf8 DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `supervisor` INT NULL DEFAULT NULL COMMENT 'this user will receive a copy of accepted and rejected leave requests',
-  `superviso2` INT NULL DEFAULT NULL COMMENT 'this user will receive a copy of accepted and rejected leave requests',
+  `supervisor2` INT NULL DEFAULT NULL COMMENT 'this user will receive a copy of accepted and rejected leave requests',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -364,7 +364,7 @@ INSERT INTO `status` (`id`, `name`) VALUES
 (9, 'Cancellation_Agent'),
 (10,'Cancellation_Manager'),
 (11,'Cancellation_Boss'),
-(12,'Overtime_Boss'),
+(12,'Overtime_Boss');
 
 --
 -- Structure of table `tasks`
