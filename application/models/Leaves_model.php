@@ -1318,6 +1318,7 @@ class Leaves_model extends CI_Model {
       $role_info =$this->users_model->getRole($manager);
       $grp_info =$this->users_model->getGroup($manager);
       $grp_super2=($this->organization_model->getSupervisor2($grp_info))->supervisor2;
+      if($grp_super2 ==NULL) $grp_super2 =1;
       if (count($ids) > 0) {    
         switch($role_info) {
             case 1;
@@ -1385,6 +1386,7 @@ class Leaves_model extends CI_Model {
         $role_info =$this->users_model->getRole($manager);
         $grp_info =$this->users_model->getGroup($manager);
         $grp_super2=($this->organization_model->getSupervisor2($grp_info))->supervisor2;
+        if($grp_super2 ==NULL) $grp_super2 =1;
         $this->db->select('count(*) as number', FALSE);
         $this->db->join('users', 'users.id = leaves.employee');
         $this->db->where_in('leaves.status', array(LMS_REQUESTED, LMS_CANCELLATION,LMS_REQUESTED_AGENT,LMS_REQUESTED_BOSS,LMS_CANCELLATION_AGENT,LMS_CANCELLATION_MANAGER,LMS_CANCELLATION_BOSS));

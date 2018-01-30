@@ -279,6 +279,18 @@ class Organization extends CI_Controller {
         }
     }
 
+    public function getsupervisor3() {
+        header("Content-Type: application/json");
+        setUserContext($this);
+        $entity = $this->input->get('entity', TRUE);
+        if (isset($entity)) {
+            $this->load->model('organization_model');
+            echo json_encode($this->organization_model->getSupervisor3($entity));
+        } else {
+            $this->output->set_header("HTTP/1.1 422 Unprocessable entity");
+        }
+    }
+
     /**
      * Ajax endpoint: Select the supervisor of an entity of the organization
      * takes parameters by GET

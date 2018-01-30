@@ -37,17 +37,18 @@
         <button id="cmdAddEmployee" class="btn btn-primary"><?php echo lang('organization_index_button_add_employee');?></button>
         <button id="cmdRemoveEmployee" class="btn btn-primary"><?php echo lang('organization_index_button_remove_employee');?></button>
         <br />
+        <!--
         <h3><?php echo lang('organization_index_title_supervisor');?></h3>
         <p><?php echo lang('organization_index_description_supervisor');?></p>
         <div class="input-append">
             <input type="text" id="txtSupervisor" />
             <button id="cmdDeleteSupervisor" class="btn btn-danger"><i class="icon-remove icon-white"></i></button>
             <button id="cmdSelectSupervisor" class="btn btn-primary"><?php echo lang('organization_index_button_select_supervisor');?></button>
-        </div>
+        </div>-->
         <br /><br />
 
-        <h3><?php echo lang('organization_index_title_supervisor');?></h3>
-        <p><?php echo lang('organization_index_description_supervisor');?></p>
+        <h3><?php echo lang('organization_index_title_supervisor2');?></h3>
+        <p><?php echo lang('organization_index_description_supervisor2');?></p>
         <div class="input-append">
             <input type="text" id="txtSupervisor2" />
             <button id="cmdDeleteSupervisor2" class="btn btn-danger"><i class="icon-remove icon-white"></i></button>
@@ -361,7 +362,10 @@
             $( "#employees" ).remove();
             $(this).removeData('modal');
         });
-        
+         $('#frmSelectSupervisor2').on('hidden', function() {
+            $( "#employees" ).remove();
+            $(this).removeData('modal');
+        });
         //Search in the treeview
         $("#cmdSearch").click(function () {
             $("#organization").jstree("search", $("#txtSearch").val(), true, true);
@@ -512,15 +516,17 @@
                         }, true);
                 $.ajax({
                     type: "GET",
-                    url: "<?php echo base_url(); ?>organization/getsupervisor",
+                    url: "<?php echo base_url(); ?>organization/getsupervisor3",
                         data: { 'entity': data.selected.join(':') }
                       })
                     .done(function(data) {
                         //Update field with the name of employee (the supervisor)
                         if (data != null && typeof data === 'object') {
-                            $('#txtSupervisor').val(data.username);
+                           // $('#txtSupervisor').val(data.username);
+                            $('#txtSupervisor2').val(data.username);
                         } else {
-                            $('#txtSupervisor').val("");
+                           // $('#txtSupervisor').val("");
+                            $('#txtSupervisor2').val("");
                         }
                         $.when(isTableLoaded, isTableLoaded).done(function() { 
                             $("#frmModalAjaxWait").modal('hide');

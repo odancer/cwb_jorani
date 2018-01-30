@@ -294,6 +294,20 @@ class Organization_model extends CI_Model {
             return NULL;
         }
     }
+
+    public function getSupervisor3($entity) {
+        $this->db->select('users.id, CONCAT(users.firstname, \' \', users.lastname) as username, email', FALSE);
+        $this->db->from('organization');
+        $this->db->join('users', 'users.id = organization.supervisor2');
+        $this->db->where('organization.id', $entity);
+        $result = $this->db->get()->result();
+        if (count($result) > 0) {
+            return $result[0];
+        } else {
+            return NULL;
+        }
+    }
+   
    public function getSupervisor2($entity) {
         $this->db->select('supervisor2', FALSE);
         $this->db->from('organization');
