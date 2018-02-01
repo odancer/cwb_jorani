@@ -103,7 +103,8 @@ class Requests extends CI_Controller {
                 break;
             }
             #$this->leaves_model->switchStatus($id, LMS_ACCEPTED);
-            $this->sendMail($id, LMS_ACCEPTED);
+            #$this->sendMail($id, LMS_ACCEPTED);
+            $this->sendMail($id, LMS_REQUESTED_ACCEPTED);
             $this->session->set_flashdata('msg', lang('requests_accept_flash_msg_success'));
             if (isset($_GET['source'])) {
                 redirect($_GET['source']);

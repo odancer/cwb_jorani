@@ -551,6 +551,7 @@ class Leaves_model extends CI_Model {
             );;
         $this->db->where('id', $newId);
         $this->db->update('leaves', $data);
+        $this->db->update('leaves_history', $data);
 
         return $newId;
     }
@@ -1938,7 +1939,7 @@ class Leaves_model extends CI_Model {
     */
     private function prepareCommentOnStatusChanged($id,$status){
       $request = $this->getCommentLeaveAndStatus($id);
-      if($request['status'] === $status){
+      if($request['status'] === $status && $request['status'] != 7){
         return json_encode($request['comments']);
       } else {
         $json_parsed = $request['comments'];

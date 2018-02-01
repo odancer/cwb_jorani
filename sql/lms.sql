@@ -326,7 +326,7 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 (1, 'admin'),
 (2, 'user'),
 (8, 'HR admin'),
-(9,'boss');
+(32,'boss');
 
 --
 -- Structure of table `settings`

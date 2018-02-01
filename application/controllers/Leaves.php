@@ -243,7 +243,7 @@ class Leaves extends CI_Controller {
             $leave_id = $this->leaves_model->setLeaves($this->session->userdata('id'));
             $this->session->set_flashdata('msg', lang('leaves_create_flash_msg_success'));
             //If the status is requested, send an email to the manager
-            if ($this->input->post('status') == 2) {
+            if ($this->input->post('status') == 7) {
                 $this->sendMailOnLeaveRequestCreation($leave_id);
             }
             if (isset($_GET['source'])) {
@@ -530,7 +530,6 @@ class Leaves extends CI_Controller {
      *
      */
     private function sendGenericMail($leave, $user, $manager, $lang_mail, $title, $detailledSubject, $emailModel) {
-
         $date = new DateTime($leave['startdate']);
         $startdate = $date->format($lang_mail->line('global_date_format'));
         $date = new DateTime($leave['enddate']);
