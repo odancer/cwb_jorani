@@ -409,7 +409,21 @@ class Leaves extends CI_Controller {
         //We load everything from DB as the LR can be edited from HR/Employees
         $leave = $this->leaves_model->getLeaves($id);
         $user = $this->users_model->getUsers($leave['employee']);
-        $manager = $this->users_model->getUsers($user['manager']);
+        $leave_status = $leave['status'];
+        switch ($leave_status) {
+          case 7:
+            $manager = $this->users_model->getUsers($leave['agent']);
+            break;
+          case 2:
+            $manager = $this->users_model->getUsers($user['manager']);
+            break;
+          case 8:
+            $grp_id = $user['organization'];
+            $this->load->model('organization_model');
+            $boss = ($this->organization_model->getSupervisor2($grp_id))->supervisor2;
+            $manager = $this->users_model->getUsers($boss);
+            break;
+        }
         if (empty($manager['email'])) {
             $this->session->set_flashdata('msg', lang('leaves_create_flash_msg_error'));
         } else {
@@ -438,6 +452,7 @@ class Leaves extends CI_Controller {
             }
         }
     }
+
     
     /**
      * Send a notification to the manager of the connected employee when the
@@ -487,6 +502,21 @@ class Leaves extends CI_Controller {
         //We load everything from DB as the LR can be edited from HR/Employees
         $leave = $this->leaves_model->getLeaves($id);
         $user = $this->users_model->getUsers($leave['employee']);
+         switch ($leave_status) {
+          case 9:
+            $manager = $this->users_model->getUsers($leave['agent']);
+            break;
+          case 10:
+            $manager = $this->users_model->getUsers($user['manager']);
+            break;
+          case 11:
+            $grp_id = $user['organization'];
+            $this->load->model('organization_model');
+            $boss = ($this->organization_model->getSupervisor2($grp_id))->supervisor2;
+            $manager = $this->users_model->getUsers($boss);
+            break;
+        }
+
         $manager = $this->users_model->getUsers($user['manager']);
         if (empty($manager['email'])) {
             $this->session->set_flashdata('msg', lang('leaves_cancel_flash_msg_error'));

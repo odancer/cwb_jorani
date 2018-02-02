@@ -17,12 +17,17 @@ $lang['email_leave_request_title'] = '休假申請';
 $lang['email_leave_request_creation_subject'] = '休假申請從';
 $lang['email_leave_request_creation_title'] = '休假申請';
 
-$lang['email_leave_request_cancellation_subject'] = 'Leave Request Cancellation from';
-$lang['email_leave_request_cancellation_title'] = 'Leave Request Cancellation';
-$lang['email_leave_cancel_accept_subject'] = 'Your Cancellation Request has been accepted';
-$lang['email_leave_cancel_reject_subject'] = 'Your Cancellation Request has been rejected';
+$lang['email_leave_request_cancellation_subject'] = '取消休假申請從';
+$lang['email_leave_request_cancellation_title'] = '取消休假申請';
+$lang['email_leave_cancel_accept_subject_agent'] = '代理人已接受你的取消休假申請 (待管理者核准中)';
+$lang['email_leave_cancel_accept_subject_manager'] = '管理者已接受你的取消休假申請 (待主任核准中)';
+$lang['email_leave_cancel_accept_subject_boss'] = '主任已接受你的取消休假申請 (已核准)';
+$lang['email_leave_cancel_accept_subject'] = '已接受你的取消休假';
+$lang['email_leave_cancel_reject_subject'] = '你的取消休假申請已被拒絕';
 
-$lang['email_leave_request_accept_subject'] = '你的休假申請已被接受';
+$lang['email_leave_request_accept_subject_agent'] = '代理人已接受你的休假申請 (待管理者核准中)';
+$lang['email_leave_request_accept_subject_manager'] = '管理者已接受你的休假申請 (待主任核准中)';
+$lang['email_leave_request_accept_subject_boss'] = '主任已接受你的休假申請 (已核准)';
 $lang['email_leave_request_reject_subject'] = '你的休假申請已被拒絕';
 $lang['email_leave_request_validation_title'] = '休假申請';
 

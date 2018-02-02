@@ -85,18 +85,22 @@ class Requests extends CI_Controller {
             switch ($status_id) {
             case LMS_REQUESTED_AGENT;
                 $this->leaves_model->switchStatus($id, LMS_REQUESTED);
+                $this->sendMailOnLeaveRequestCreation($id);
                 break;
             case LMS_REQUESTED;
                 $this->leaves_model->switchStatus($id, LMS_REQUESTED_BOSS); 
+                $this->sendMailOnLeaveRequestCreation($id);
                 break;
             case LMS_REQUESTED_BOSS;
                 $this->leaves_model->switchStatus($id, LMS_ACCEPTED); 
                 break;
             case LMS_CANCELLATION_AGENT;
                 $this->leaves_model->switchStatus($id, LMS_CANCELLATION_MANAGER); 
+                $this->sendMailOnLeaveRequestCancellation($id);
                 break;
              case LMS_CANCELLATION_MANAGER;
                 $this->leaves_model->switchStatus($id, LMS_CANCELLATION_BOSS); 
+                $this->sendMailOnLeaveRequestCancellation($id);
                 break;
             case LMS_CANCELLATION_BOSS;
                 $this->leaves_model->switchStatus($id, LMS_CANCELLATION); 
@@ -104,7 +108,8 @@ class Requests extends CI_Controller {
             }
             #$this->leaves_model->switchStatus($id, LMS_ACCEPTED);
             #$this->sendMail($id, LMS_ACCEPTED);
-            $this->sendMail($id, LMS_REQUESTED_ACCEPTED);
+            if($status_id == LMS_REQUESTED_AGENT || LMS_REQUESTED || LMS_REQUESTED_BOSS) $this->sendMail($id, LMS_REQUESTED_ACCEPTED);
+             if($status_id == LMS_CANCELLATION_AGENT || LMS_CANCELLATION_MANAGER|| LMS_CANCELLATION_BOSS) $this->sendMail($id, LMS_CANCELLATION_REQUESTED);
             $this->session->set_flashdata('msg', lang('requests_accept_flash_msg_success'));
             if (isset($_GET['source'])) {
                 redirect($_GET['source']);
@@ -385,7 +390,7 @@ class Requests extends CI_Controller {
         $leave = $this->leaves_model->getLeaves($id);
         $employee = $this->users_model->getUsers($leave['employee']);
         $supervisor = $this->organization_model->getSupervisor($employee['organization']);
-
+        $status = $leave['status'];
         //Send an e-mail to the employee
         $this->load->library('email');
         $this->load->library('polyglot');
@@ -400,19 +405,22 @@ class Requests extends CI_Controller {
         $startdate = $date->format($lang_mail->line('global_date_format'));
         $date = new DateTime($leave['enddate']);
         $enddate = $date->format($lang_mail->line('global_date_format'));
-
         switch ($transition) {
             case LMS_REQUESTED_ACCEPTED:
+                if ($status == 2) $subject = $lang_mail->line('email_leave_request_accept_subject_agent');
+                if ($status == 8) $subject = $lang_mail->line('email_leave_request_accept_subject_manager');
+                if ($status == 3) $subject = $lang_mail->line('email_leave_request_accept_subject_boss');
                 $title = $lang_mail->line('email_leave_request_validation_title');
-                $subject = $lang_mail->line('email_leave_request_accept_subject');
                 break;
             case LMS_REQUESTED_REJECTED:
                 $title = $lang_mail->line('email_leave_request_validation_title');
                 $subject = $lang_mail->line('email_leave_request_reject_subject');
                 break;
             case LMS_CANCELLATION_REQUESTED:
+                if ($status == 10) $subject = $lang_mail->line('email_leave_cancel_accept_subject_agent');
+                if ($status == 11) $subject = $lang_mail->line('email_leave_cancel_accept_subject_manager');
+                if ($status == 5)  $subject = $lang_mail->line('email_leave_cancel_accept_subject_boss');
                 $title = $lang_mail->line('email_leave_request_cancellation_title');
-                $subject = $lang_mail->line('email_leave_cancel_reject_subject');
                 break;
             case LMS_CANCELLATION_CANCELED:
                 $title = $lang_mail->line('email_leave_request_cancellation_title');
@@ -525,4 +533,216 @@ class Requests extends CI_Controller {
         $this->load->view('requests/balance', $data);
         $this->load->view('templates/footer');
     }
+
+        /**
+     * Send a leave request creation email to the manager of the connected employee
+     * @param int $id Leave request identifier
+     * @param int $reminder In case where the employee wants to send a reminder
+     * @author Benjamin BALET <benjamin.balet@gmail.com>
+     */
+    private function sendMailOnLeaveRequestCreation($id, $reminder=FALSE) {
+        $this->load->model('users_model');
+        $this->load->model('types_model');
+        $this->load->model('delegations_model');
+        //We load everything from DB as the LR can be edited from HR/Employees
+        $leave = $this->leaves_model->getLeaves($id);
+        $user = $this->users_model->getUsers($leave['employee']);
+        $leave_status = $leave['status'];
+        switch ($leave_status) {
+          case 7:
+            $manager = $this->users_model->getUsers($leave['agent']);
+            break;
+          case 2:
+            $manager = $this->users_model->getUsers($user['manager']);
+            break;
+          case 8:
+            $grp_id = $user['organization'];
+            $this->load->model('organization_model');
+            $boss = ($this->organization_model->getSupervisor2($grp_id))->supervisor2;
+            $manager = $this->users_model->getUsers($boss);
+            break;
+        }
+        if (empty($manager['email'])) {
+            $this->session->set_flashdata('msg', lang('leaves_create_flash_msg_error'));
+        } else {
+            //Send an e-mail to the manager
+            $this->load->library('email');
+            $this->load->library('polyglot');
+            $usr_lang = $this->polyglot->code2language($manager['language']);
+
+            //We need to instance an different object as the languages of connected user may differ from the UI lang
+            $lang_mail = new CI_Lang();
+            $lang_mail->load('email', $usr_lang);
+            $lang_mail->load('global', $usr_lang);
+            
+            if ($reminder) {
+                $this->sendGenericMail($leave, $user, $manager, $lang_mail,
+                    $lang_mail->line('email_leave_request_reminder') . ' ' .
+                    $lang_mail->line('email_leave_request_creation_title'),
+                    $lang_mail->line('email_leave_request_reminder') . ' ' .
+                    $lang_mail->line('email_leave_request_creation_subject'),
+                    'request');
+            } else {
+                $this->sendGenericMail($leave, $user, $manager, $lang_mail,
+                    $lang_mail->line('email_leave_request_creation_title'),
+                    $lang_mail->line('email_leave_request_creation_subject'),
+                    'request');
+            }
+        }
+    }
+
+    
+    /**
+     * Send a notification to the manager of the connected employee when the
+     * leave request has been canceled by its collaborator.
+     * @param int $id Leave request identifier
+     * @author Benjamin BALET <benjamin.balet@gmail.com>
+     */
+    private function sendMailOnLeaveRequestCanceled($id) {
+        $this->load->model('users_model');
+        $this->load->model('types_model');
+        $this->load->model('delegations_model');
+        //We load everything from DB as the LR can be edited from HR/Employees
+        $leave = $this->leaves_model->getLeaves($id);
+        $user = $this->users_model->getUsers($leave['employee']);
+        $manager = $this->users_model->getUsers($user['manager']);
+        if (empty($manager['email'])) {
+            //TODO: create specific error message when the employee has no manager
+            $this->session->set_flashdata('msg', lang('leaves_cancel_flash_msg_error'));
+        } else {
+            //Send an e-mail to the manager
+            $this->load->library('email');
+            $this->load->library('polyglot');
+            $usr_lang = $this->polyglot->code2language($manager['language']);
+
+            //We need to instance an different object as the languages of connected user may differ from the UI lang
+            $lang_mail = new CI_Lang();
+            $lang_mail->load('email', $usr_lang);
+            $lang_mail->load('global', $usr_lang);
+            
+            $this->sendGenericMail($leave, $user, $manager, $lang_mail,
+                $lang_mail->line('email_leave_request_cancellation_title'),
+                $lang_mail->line('email_leave_request_cancellation_subject'),
+                'cancelled');
+        }
+    }
+
+    /**
+     * Send a leave request cancellation email to the manager of the connected employee
+     * @param int $id Leave request identifier
+     * @param int $reminder In case where the employee wants to send a reminder
+     * @author Guillaume Blaquiere <guillaume.blaquiere@gmail.com>
+     */
+    private function sendMailOnLeaveRequestCancellation($id, $reminder=FALSE) {
+        $this->load->model('users_model');
+        $this->load->model('types_model');
+        $this->load->model('delegations_model');
+        //We load everything from DB as the LR can be edited from HR/Employees
+        $leave = $this->leaves_model->getLeaves($id);
+        $user = $this->users_model->getUsers($leave['employee']);
+        $leave_status = $leave['status'];
+        switch ($leave_status) {
+          case 9:
+            $manager = $this->users_model->getUsers($leave['agent']);
+            break;
+          case 10:
+            $manager = $this->users_model->getUsers($user['manager']);
+            break;
+          case 11:
+            $grp_id = $user['organization'];
+            $this->load->model('organization_model');
+            $boss = ($this->organization_model->getSupervisor2($grp_id))->supervisor2;
+            $manager = $this->users_model->getUsers($boss);
+            break;
+        }
+        if (empty($manager['email'])) {
+            $this->session->set_flashdata('msg', lang('leaves_cancel_flash_msg_error'));
+        } else {
+            //Send an e-mail to the manager
+            $this->load->library('email');
+            $this->load->library('polyglot');
+            $usr_lang = $this->polyglot->code2language($manager['language']);
+
+            //We need to instance an different object as the languages of connected user may differ from the UI lang
+            $lang_mail = new CI_Lang();
+            $lang_mail->load('email', $usr_lang);
+            $lang_mail->load('global', $usr_lang);
+            
+            if ($reminder) {
+                $this->sendGenericMail($leave, $user, $manager, $lang_mail,
+                    $lang_mail->line('email_leave_request_reminder') . ' ' .
+                    $lang_mail->line('email_leave_request_cancellation_title'),
+                    $lang_mail->line('email_leave_request_reminder') . ' ' .
+                    $lang_mail->line('email_leave_request_cancellation_subject'),
+                    'request');
+            } else {
+                $this->sendGenericMail($leave, $user, $manager, $lang_mail,
+                    $lang_mail->line('email_leave_request_cancellation_title'),
+                    $lang_mail->line('email_leave_request_cancellation_subject'),
+                    'cancel');
+            }
+        }
+    }
+
+    /**
+     * Send a generic email from the collaborator to the manager (delegate in copy) when a leave request is created or cancelled
+     * @param $leave Leave request
+     * @param $user Connected employee
+     * @param $manager Manger of connected employee
+     * @param $lang_mail Email language library
+     * @param $title Email Title
+     * @param $detailledSubject Email detailled Subject
+     * @param $emailModel template email to use
+     * @author Guillaume Blaquiere <guillaume.blaquiere@gmail.com>
+     *
+     */
+    private function sendGenericMail($leave, $user, $manager, $lang_mail, $title, $detailledSubject, $emailModel) {
+        $date = new DateTime($leave['startdate']);
+        $startdate = $date->format($lang_mail->line('global_date_format'));
+        $date = new DateTime($leave['enddate']);
+        $enddate = $date->format($lang_mail->line('global_date_format'));
+
+        $comments=$leave['comments'];
+        $comment = '';
+        if(!empty($comments)){
+          $comments=json_decode($comments);
+          foreach ($comments->comments as $comments_item) {
+            if($comments_item->type == "comment"){
+              $comment = $comments_item->value;
+            }
+          }
+        }
+        log_message('info', "comment : " . $comment);
+        $this->load->library('parser');
+        $data = array(
+            'Title' => $title,
+            'Firstname' => $user['firstname'],
+            'Lastname' => $user['lastname'],
+            'StartDate' => $startdate,
+            'EndDate' => $enddate,
+            'StartDateType' => $lang_mail->line($leave['startdatetype']),
+            'EndDateType' => $lang_mail->line($leave['enddatetype']),
+            'Type' => $this->types_model->getName($leave['type']),
+            'Duration' => $leave['duration'],
+            'Balance' => $this->leaves_model->getLeavesTypeBalanceForEmployee($leave['employee'] , $leave['type_name'], $leave['startdate']),
+            'Reason' => $leave['cause'],
+            'BaseUrl' => $this->config->base_url(),
+            'LeaveId' => $leave['id'],
+            'UserId' => $this->user_id,
+            'Comments' => $comment
+        );
+        $message = $this->parser->parse('emails/' . $manager['language'] . '/'.$emailModel, $data, TRUE);
+
+        $to = $manager['email'];
+        $subject = $detailledSubject . ' ' . $user['firstname'] . ' ' . $user['lastname'];
+        //Copy to the delegates, if any
+        $cc = NULL;
+        $delegates = $this->delegations_model->listMailsOfDelegates($manager['id']);
+        if ($delegates != '') {
+            $cc = $delegates;
+        }
+
+        sendMailByWrapper($this, $subject, $message, $to, $cc);
+    }
+
 }

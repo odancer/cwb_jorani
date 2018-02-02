@@ -17,10 +17,14 @@ $lang['email_leave_request_creation_subject'] = 'Leave Request from';
 $lang['email_leave_request_creation_title'] = 'Leave Request';
 $lang['email_leave_request_cancellation_subject'] = 'Leave Request Cancellation from';
 $lang['email_leave_request_cancellation_title'] = 'Leave Request Cancellation';
-$lang['email_leave_cancel_accept_subject'] = 'Your Cancellation Request has been accepted';
+$lang['email_leave_cancel_accept_subject_agent'] = 'Your Cancellation Request has been accepted by agent (waitting manager approve)';
+$lang['email_leave_cancel_accept_subject_manager'] = 'Your Cancellation Request has been accepted by agent (waitting boss approve)';
+$lang['email_leave_cancel_accept_subject_boss'] = 'Your Cancellation Request has been accepted by agent (request approved)';
 $lang['email_leave_cancel_reject_subject'] = 'Your Cancellation Request has been rejected';
 
-$lang['email_leave_request_accept_subject'] = 'Your leave request has been accepted';
+$lang['email_leave_request_accept_subject_agent'] = 'Your leave request has been accepted by agent (waitting manager approve)';
+$lang['email_leave_request_accept_subject_manager'] = 'Your leave request has been accepted by manager (waitting boss approve)';
+$lang['email_leave_request_accept_subject_boss'] = 'Your leave request has been accepted by boss (request approved)';
 $lang['email_leave_request_reject_subject'] = 'Your leave request has been rejected';
 $lang['email_leave_request_validation_title'] = 'Leave Request';
 
