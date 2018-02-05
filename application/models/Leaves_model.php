@@ -551,8 +551,6 @@ class Leaves_model extends CI_Model {
             );;
         $this->db->where('id', $newId);
         $this->db->update('leaves', $data);
-        $this->db->update('leaves_history', $data);
-
         return $newId;
     }
 

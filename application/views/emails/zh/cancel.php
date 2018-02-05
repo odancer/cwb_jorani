@@ -32,7 +32,7 @@
                 <td>Type &nbsp;</td><td>{Type}</td>
             </tr>
             <tr>
-                <td>Duration &nbsp;</td><td>{Duration}</td>
+                <td>Duration(hours) &nbsp;</td><td>{Duration}</td>
             </tr>
             <tr>
                 <td>Balance &nbsp;</td><td>{Balance}</td>

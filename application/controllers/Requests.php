@@ -108,8 +108,8 @@ class Requests extends CI_Controller {
             }
             #$this->leaves_model->switchStatus($id, LMS_ACCEPTED);
             #$this->sendMail($id, LMS_ACCEPTED);
-            if($status_id == LMS_REQUESTED_AGENT || LMS_REQUESTED || LMS_REQUESTED_BOSS) $this->sendMail($id, LMS_REQUESTED_ACCEPTED);
-             if($status_id == LMS_CANCELLATION_AGENT || LMS_CANCELLATION_MANAGER|| LMS_CANCELLATION_BOSS) $this->sendMail($id, LMS_CANCELLATION_REQUESTED);
+            if(($status_id == LMS_REQUESTED_AGENT) || ($status_id == LMS_REQUESTED) || ($status_id == LMS_REQUESTED_BOSS)) $this->sendMail($id, LMS_REQUESTED_ACCEPTED);
+            if(($status_id == LMS_CANCELLATION_AGENT) || ($status_id ==LMS_CANCELLATION_MANAGER) || ($status_id ==LMS_CANCELLATION_BOSS)) $this->sendMail($id, LMS_CANCELLATION_REQUESTED);
             $this->session->set_flashdata('msg', lang('requests_accept_flash_msg_success'));
             if (isset($_GET['source'])) {
                 redirect($_GET['source']);
@@ -437,7 +437,6 @@ class Requests extends CI_Controller {
             }
           }
         }
-
         $data = array(
             'Title' => $title,
             'Firstname' => $employee['firstname'],
@@ -448,6 +447,7 @@ class Requests extends CI_Controller {
             'EndDateType' => $lang_mail->line($leave['enddatetype']),
             'Cause' => $leave['cause'],
             'Type' => $leave['type_name'],
+            'Duration' => $leave['duration'],
             'Comments' => $comment
         );
         $this->load->library('parser');

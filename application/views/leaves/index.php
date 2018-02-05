@@ -118,8 +118,7 @@
                     $showDelete = TRUE;
                 }
                 //Reminder rules
-                if (($leave['status'] == LMS_REQUESTED) || 
-                        ($leave['status'] == LMS_CANCELLATION) || ($leave['status'] == LMS_REQUESTED_AGENT)) {
+                if (($leave['status'] == LMS_REQUESTED_AGENT) || ($leave['status'] == LMS_REQUESTED) || ($leave['status'] == LMS_REQUESTED_BOSS) || ($leave['status'] == LMS_CANCELLATION_AGENT) || ($leave['status'] == LMS_CANCELLATION_MANAGER) || ($leave['status'] == LMS_CANCELLATION_BOSS)) {
                     $showReminder = TRUE;
                 }
                 //Direct cancelation by the employee

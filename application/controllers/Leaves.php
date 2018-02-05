@@ -381,10 +381,14 @@ class Leaves extends CI_Controller {
         $data = getUserContext($this);
         $leave = $this->leaves_model->getLeaves($id);
         switch($leave['status']) {
-            case LMS_REQUESTED: //Requested
+            case LMS_REQUESTED_AGENT:
+            case LMS_REQUESTED: 
+            case LMS_REQUESTED_BOSS:  //Requested
                 $this->sendMailOnLeaveRequestCreation($id, TRUE);
                 break;
-            case LMS_CANCELLATION: //Cancellation
+            case LMS_CANCELLATION:
+            case LMS_CANCELLATION_AGENT:
+            case LMS_CANCELLATION_BOSS:   //Cancellation
                 $this->sendMailOnLeaveRequestCancellation($id, TRUE);
                 break;
         }
@@ -502,7 +506,8 @@ class Leaves extends CI_Controller {
         //We load everything from DB as the LR can be edited from HR/Employees
         $leave = $this->leaves_model->getLeaves($id);
         $user = $this->users_model->getUsers($leave['employee']);
-         switch ($leave_status) {
+        $leave_status = $leave['status'];
+        switch ($leave_status) {
           case 9:
             $manager = $this->users_model->getUsers($leave['agent']);
             break;
@@ -516,8 +521,6 @@ class Leaves extends CI_Controller {
             $manager = $this->users_model->getUsers($boss);
             break;
         }
-
-        $manager = $this->users_model->getUsers($user['manager']);
         if (empty($manager['email'])) {
             $this->session->set_flashdata('msg', lang('leaves_cancel_flash_msg_error'));
         } else {

@@ -71,6 +71,8 @@ class Overtime extends CI_Controller {
         if (($this->user_id == $employee['manager']) || ($this->is_hr)  || ($is_delegate) || ($this->is_boss)) {
             $this->overtime_model->acceptExtra($id);
             $this->sendMail($id);
+            $extra = $this->overtime_model->getExtras($id);
+            if($extra['status'] == 12) $this->sendMail2($id);
             $this->session->set_flashdata('msg', lang('overtime_accept_flash_msg_success'));
             if (isset($_GET['source'])) {
                 redirect($_GET['source']);
@@ -149,20 +151,59 @@ class Overtime extends CI_Controller {
             'Firstname' => $employee['firstname'],
             'Lastname' => $employee['lastname'],
             'Date' => $startdate,
-            'Duration' => $extra['duration'],
+            'Duration(小時)' => $extra['duration'],
             'Cause' => $extra['cause']
         );
         
-        if ($extra['status'] == 3) {
+        if (($extra['status'] == 3) || ($extra['status'] == 12)) {
             $message = $this->parser->parse('emails/' . $employee['language'] . '/overtime_accepted', $data, TRUE);
-            $subject = $lang_mail->line('email_overtime_request_accept_subject');
+            if($extra['status'] == 3) $subject = $lang_mail->line('email_overtime_request_accept_subject');
+            if($extra['status'] == 12) $subject = $lang_mail->line('email_overtime_request_accept_subject_boss');
         } else {
             $message = $this->parser->parse('emails/' . $employee['language'] . '/overtime_rejected', $data, TRUE);
             $subject = $lang_mail->line('email_overtime_request_reject_subject');
         }
         sendMailByWrapper($this, $subject, $message, $employee['email'], is_null($supervisor)?NULL:$supervisor->email);
     }
-    
+
+    private function sendMail2($id) {
+        $this->load->model('users_model');
+        $this->load->model('delegations_model');
+        $extra = $this->overtime_model->getExtras($id);
+        $employee = $this->users_model->getUsers($extra['employee']);
+        $grp_id = $user['organization'];
+        $this->load->model('organization_model');
+        $boss = ($this->organization_model->getSupervisor2($grp_id))->supervisor2;
+        $manager = $this->users_model->getUsers($boss);
+
+            //Send an e-mail to the manager
+            $this->load->library('email');
+            $this->load->library('polyglot');
+            $usr_lang = $this->polyglot->code2language($employee['language']);
+            //We need to instance an different object as the languages of connected user may differ from the UI lang
+            $lang_mail = new CI_Lang();
+            $lang_mail->load('email', $usr_lang);
+            $lang_mail->load('global', $usr_lang);
+
+            $date = new DateTime($extra['date']);
+            $startdate = $date->format($lang_mail->line('global_date_format'));
+
+            $this->load->library('parser');
+            $data = array(
+                'Title' => $lang_mail->line('email_overtime_request_validation_title'),
+                'Firstname' => $employee['firstname'],
+                'Lastname' => $employee['lastname'],
+                'Date' => $startdate,
+                'Duration' => $extra['duration'],
+                'Cause' => $extra['cause']
+            );
+            $message = $this->parser->parse('emails/' . $manager['language'] . '/overtime', $data, TRUE);
+            //Copy to the delegates, if any
+            $delegates = $this->delegations_model->listMailsOfDelegates($manager['id']);
+            $subject = $lang_mail->line('email_extra_request_reject_subject') . ' ' .
+                                $employee['firstname'] . ' ' .$employee['lastname'];
+            sendMailByWrapper($this, $subject, $message, $manager['email'], $delegates);
+    }
     /**
      * Export the list of all overtime requests (sent to the connected user) into an Excel file
      * @param string $name Filter the list of submitted overtime requests (all or requested)

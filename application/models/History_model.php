@@ -101,6 +101,7 @@ class History_model extends CI_Model {
         $sql .= ' ' . $type;
         $sql .= ', ' . $user_id;
         $sql .= ', NOW() FROM ' . $table . ' WHERE id = ' . $id;
+        error_log( print_r($sql, TRUE) );
         $this->db->query($sql);
     }
     

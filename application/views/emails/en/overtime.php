@@ -26,7 +26,7 @@
                 <td>Date &nbsp;</td><td>{Date}</td>
             </tr>
             <tr>
-                <td>Duration &nbsp;</td><td>{Duration}</td>
+                <td>Duration(hours) &nbsp;</td><td>{Duration}</td>
             </tr>
             <tr>
                 <td>Reason &nbsp;</td><td>{Cause}</td>

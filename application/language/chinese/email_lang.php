@@ -33,7 +33,8 @@ $lang['email_leave_request_validation_title'] = '休假申請';
 
 $lang['email_leave_request_reminder'] = '[提醒]';
 
-$lang['email_overtime_request_accept_subject'] = '你的加班申請已被接受';
+$lang['email_overtime_request_accept_subject'] = '你的加班申請已被接受（已核准）';
+$lang['email_overtime_request_accept_subject_boss'] = '你的加班申請已被管理者接受 (待主任核准中)';
 $lang['email_overtime_request_reject_subject'] = '你的加班申請已被拒絕';
 $lang['email_overtime_request_validation_title'] = '加班申請';
 $lang['email_extra_request_reject_subject'] = '加班申請從';
