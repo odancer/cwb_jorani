@@ -126,7 +126,7 @@ $lang['leaves_export_thead_type'] = '編輯';
 $lang['leaves_export_thead_status'] = '狀態';
 
 $lang['leaves_button_send_reminder'] = 'Send a reminder';
-$lang['leaves_reminder_flash_msg_success'] = 'The reminder email was sent to the manager';
+$lang['leaves_reminder_flash_msg_success'] = 'The reminder email has been sent';
 
 $lang['leaves_comment_title'] = 'Comments';
 $lang['leaves_comment_new_comment'] = 'New comment';

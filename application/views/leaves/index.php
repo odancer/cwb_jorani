@@ -122,7 +122,7 @@
                     $showReminder = TRUE;
                 }
                 //Direct cancelation by the employee
-                if (($leave['status'] == LMS_REQUESTED) || ($leave['status'] == LMS_REQUESTED_AGENT)) {
+                if (($leave['status'] == LMS_REQUESTED_AGENT) || ($leave['status'] == LMS_REQUESTED) || ($leave['status'] == LMS_REQUESTED_BOSS)) {
                     $showCancelByUser = TRUE;
                 }
                 ?>

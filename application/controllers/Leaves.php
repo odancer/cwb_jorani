@@ -708,7 +708,7 @@ class Leaves extends CI_Controller {
                 redirect('leaves');
             }
             //We can cancel a leave request only with a status 'Requested'
-            if ($leave['status'] == LMS_REQUESTED || LMS_REQUESTED_AGENT || LMS_REQUESTED_BOSS) {
+            if (($leave['status'] == LMS_REQUESTED_AGENT) || ($leave['status'] == LMS_REQUESTED) || ($leave['status'] == LMS_REQUESTED_BOSS)) {
                 $this->leaves_model->switchStatus($id, LMS_CANCELED);
                 $this->sendMailOnLeaveRequestCanceled($id);
                 $this->session->set_flashdata('msg', lang('requests_cancellation_accept_flash_msg_success'));
