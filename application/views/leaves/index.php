@@ -50,6 +50,7 @@
             <th><?php echo lang('leaves_index_thead_duration');?></th>
             <th><?php echo lang('leaves_index_thead_type');?></th>
             <th><?php echo lang('leaves_index_thead_status');?></th>
+            <th><?php echo lang('leaves_index_thead_authorizer');?></th>
             <?php
             if ($this->config->item('enable_history') == TRUE){
               echo "<th>".lang('leaves_index_thead_requested_date')."</th>";
@@ -168,6 +169,7 @@
             case 8: echo "<td><span class='label label-warning'>" . lang($leave['status_name']) . "</span></td>"; break;
             default: echo "<td><span class='label label-important' style='background-color: #ff0000;'>" . lang($leave['status_name']) . "</span></td>"; break;
         }?>
+        <td><?php echo $leave['authorizer']; ?></td>
         <?php
         if ($this->config->item('enable_history') == TRUE){
           echo "<td data-order='".$tmpRequestDate."'>" . $requestdate . "</td>";

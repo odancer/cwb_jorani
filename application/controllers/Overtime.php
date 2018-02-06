@@ -171,7 +171,7 @@ class Overtime extends CI_Controller {
         $this->load->model('delegations_model');
         $extra = $this->overtime_model->getExtras($id);
         $employee = $this->users_model->getUsers($extra['employee']);
-        $grp_id = $user['organization'];
+        $grp_id = $employee['organization'];
         $this->load->model('organization_model');
         $boss = ($this->organization_model->getSupervisor2($grp_id))->supervisor2;
         $manager = $this->users_model->getUsers($boss);

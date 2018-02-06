@@ -34,6 +34,7 @@ $lang['leaves_index_thead_cause'] = 'Reason';
 $lang['leaves_index_thead_duration'] = 'Duration';
 $lang['leaves_index_thead_type'] = 'Type';
 $lang['leaves_index_thead_status'] = 'Status';
+$lang['leaves_index_thead_authorizer'] = 'Authorizer';
 $lang['leaves_index_thead_requested_date'] = 'Requested';
 $lang['leaves_index_thead_last_change'] = 'Last change';
 $lang['leaves_index_button_export'] = 'Export this list';

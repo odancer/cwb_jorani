@@ -29,6 +29,7 @@ class Leaves extends CI_Controller {
         $this->load->model('leaves_model');
         $this->load->model('types_model');
         $this->load->model('users_model');
+        $this->load->model('organization_model');
         $this->lang->load('leaves', $this->language);
         $this->lang->load('global', $this->language);
     }
@@ -50,6 +51,33 @@ class Leaves extends CI_Controller {
         $data['title'] = lang('leaves_index_title');
         $data['help'] = $this->help->create_help_link('global_link_doc_page_leave_requests_list');
         $data['flash_partial_view'] = $this->load->view('templates/flash', $data, TRUE);
+
+        for($i=0; $i < count($data['leaves']); $i++) {
+          if(($data['leaves'][$i]['status']==7) || ($data['leaves'][$i]['status']==9)) {
+            $id=$data['leaves'][$i]['agent'];
+            $name = $this->users_model->getName($id);
+            $data['leaves'][$i]+= ["authorizer" => $name];
+          }elseif(($data['leaves'][$i]['status']==2) || ($data['leaves'][$i]['status']==10)) {
+              $id=$data['leaves'][$i]['employee'];
+              $userinfo=$this->users_model->getUsers($id);
+              $manager = $userinfo['manager'];
+              $name = $this->users_model->getName($manager);
+              $data['leaves'][$i]+= ["authorizer" => $name];
+          }elseif(($data['leaves'][$i]['status']==8) || ($data['leaves'][$i]['status']==11) ||($data['leaves'][$i]['status']==12)) {
+              $id=$data['leaves'][$i]['employee'];
+              $userinfo=$this->users_model->getUsers($id);
+              $grp_id=$userinfo['organization'];
+              $manager=($this->organization_model->getSupervisor2($grp_id))->supervisor2;
+              $name = $this->users_model->getName($manager);
+              $data['leaves'][$i]+= ["authorizer" => $name];
+          }elseif(($data['leaves'][$i]['status']==3) || ($data['leaves'][$i]['status']==5)) {
+              $name = "已核准";
+              $data['leaves'][$i]+= ["authorizer" => $name];
+            }else {
+            $name="";
+            $data['leaves'][$i]+= ["authorizer" => $name];
+          }
+        }
         $this->load->view('templates/header', $data);
         $this->load->view('menu/index', $data);
         $this->load->view('leaves/index', $data);
