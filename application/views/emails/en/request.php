@@ -45,7 +45,7 @@
             </tr>
             <tr>
                 <td><a href="{BaseUrl}requests/accept/{LeaveId}">Accept</a> &nbsp;</td>
-                <td><a href="{BaseUrl}requests?rejected={LeaveId}">Reject</a></td>
+                <td><a href="{BaseUrl}requests/rejected/{LeaveId}">Reject</a></td>
             </tr>
         </table>
         <br />
