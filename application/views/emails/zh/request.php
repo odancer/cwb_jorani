@@ -44,8 +44,8 @@
               <td>Last Comment &nbsp;</td><td>{Comments}</td>
             </tr>
             <tr>
-                <td><a href="{BaseUrl}requests?rejected={LeaveId}">Accept</a> &nbsp;</td><td><a href="{BaseUrl}requests/reject/{LeaveId}">Reject</a></td>
-            </tr>
+                <td><a href="{BaseUrl}requests/accept/{LeaveId}">Accept</a> &nbsp;</td>
+                <td><a href="{BaseUrl}requests/rejected/{LeaveId}">Reject</a></td>
         </table>
         <br />
         You can check the <a href="{BaseUrl}hr/counters/collaborators/{UserId}">leave balance</a> before validating the leave request.
