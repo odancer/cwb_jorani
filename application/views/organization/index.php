@@ -35,18 +35,7 @@
         </table>
         <br />
         <button id="cmdAddEmployee" class="btn btn-primary"><?php echo lang('organization_index_button_add_employee');?></button>
-        <button id="cmdRemoveEmployee" class="btn btn-primary"><?php echo lang('organization_index_button_remove_employee');?></button>
-        <br />
-        <!--
-        <h3><?php echo lang('organization_index_title_supervisor');?></h3>
-        <p><?php echo lang('organization_index_description_supervisor');?></p>
-        <div class="input-append">
-            <input type="text" id="txtSupervisor" />
-            <button id="cmdDeleteSupervisor" class="btn btn-danger"><i class="icon-remove icon-white"></i></button>
-            <button id="cmdSelectSupervisor" class="btn btn-primary"><?php echo lang('organization_index_button_select_supervisor');?></button>
-        </div>-->
-        <br /><br />
-
+        <!--<button id="cmdRemoveEmployee" class="btn btn-primary"><?php echo lang('organization_index_button_remove_employee');?></button>-->
         <h3><?php echo lang('organization_index_title_supervisor2');?></h3>
         <p><?php echo lang('organization_index_description_supervisor2');?></p>
         <div class="input-append">

@@ -1326,7 +1326,8 @@ class Leaves_model extends CI_Model {
                 $query .= " OR ((leaves.status=2 OR leaves.status=10) AND users.manager=$manager)";
             break;
             case 32;
-                if (!in_array('16',$ids)) {
+                if (!in_array($grp_super2,$ids)) {
+                //if (!in_array('16',$ids)) {
                        $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11)";}
                 else {
                        $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status !=3) OR (leaves.status=8 OR leaves.status=11 )";
@@ -1401,7 +1402,8 @@ class Leaves_model extends CI_Model {
                 $this->db->or_where("((leaves.status=2 OR leaves.status=10) AND users.manager=$manager)");
             break;
             case 32;
-                 if (!in_array('16',$ids)) {
+                 if (!in_array($grp_super2,$ids)) {
+                 //if (!in_array('16',$ids)) {
                        $this->db->where("(users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11)");}
                 else {
                        $this->db->where("(users.manager IN (" . implode(",", $ids) . ") AND leaves.status !=3) OR (leaves.status=8 OR leaves.status=11)");
