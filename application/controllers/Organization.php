@@ -237,6 +237,7 @@ class Organization extends CI_Controller {
             //nop
         } else {
             setUserContext($this);
+            $data = getUserContext($this);
             $this->auth->checkIfOperationIsAllowed('organization_select');
         }
 
@@ -244,8 +245,11 @@ class Organization extends CI_Controller {
         if ($id == "#") {
             unset($id);
         }
+        $userid=$data['user_id'];
         $this->load->model('organization_model');
-        $entities = $this->organization_model->getAllEntities();
+        $grp_info=$this->users_model->getGroup($userid);
+        if($grp_info ==1) $entities = $this->organization_model->getAllEntities();
+        if($grp_info !=1) $entities = $this->organization_model->getAllEntities2($grp_info);
         $msg = '[';
         foreach ($entities->result() as $entity) {
             $msg .= '{"id":"' . $entity->id . '",';

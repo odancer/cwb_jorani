@@ -68,6 +68,15 @@ class Organization_model extends CI_Model {
         return $this->db->get();
     }
 
+    public function getAllEntities2($grp_info) {
+        $this->db->from('organization');
+        $this->db->where('id',$grp_info);
+        $this->db->or_where('id',0);
+        $this->db->order_by("parent_id", "desc"); 
+        $this->db->order_by("name", "asc");
+        return $this->db->get();
+    }
+
     /**
      * Get all children of an entity
      * @param int $id identifier of the entity

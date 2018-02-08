@@ -23,6 +23,7 @@ class Users extends CI_Controller {
         parent::__construct();
         setUserContext($this);
         $this->load->model('users_model');
+        $this->load->model('organization_model');
         $this->lang->load('users', $this->language);
     }
 
@@ -35,7 +36,9 @@ class Users extends CI_Controller {
         $data = getUserContext($this);
         $this->load->helper('form');
         $this->lang->load('datatable', $this->language);
-        $data['users'] = $this->users_model->getUsersAndRoles();
+        $id=$data['user_id'];
+        $grp_info =$this->users_model->getGroup($id);
+        $data['users'] = $this->users_model->getUsersAndRoles2($grp_info);
         $data['title'] = lang('users_index_title');
         $data['help'] = $this->help->create_help_link('global_link_doc_page_list_users');
         $data['flash_partial_view'] = $this->load->view('templates/flash', $data, TRUE);

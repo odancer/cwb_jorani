@@ -51,6 +51,16 @@ class Users_model extends CI_Model {
         $query = $this->db->get('users');
         return $query->result_array();
     }
+
+    public function getUsersAndRoles2($grp_info) {
+        $this->db->select('users.id, active, firstname, lastname, login, email');
+        $this->db->select("GROUP_CONCAT(roles.name SEPARATOR ',') as roles_list", FALSE);
+        $this->db->join('roles', 'roles.id = (users.role & roles.id)');
+        if($grp_info !=0 ) $this->db->where('organization',$grp_info);
+        $this->db->group_by('users.id, active, firstname, lastname, login, email');
+        $query = $this->db->get('users');
+        return $query->result_array();
+    }
     
     /**
      * Get the list of employees
