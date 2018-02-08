@@ -73,6 +73,13 @@ class Users_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function getAllEmployees2($grp_info) {
+        $this->db->select('id, firstname, lastname, email');
+        $this->db->where('organization',$grp_info);
+        $query = $this->db->get('users');
+        return $query->result_array();
+    }
+
     /**
      * Get the list of employees and the name of their entities
      * @return array record of users

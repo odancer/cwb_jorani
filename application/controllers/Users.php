@@ -87,7 +87,13 @@ class Users extends CI_Controller {
         $this->auth->checkIfOperationIsAllowed('employees_list');
         $data = getUserContext($this);
         $this->lang->load('datatable', $this->language);
-        $data['employees'] = $this->users_model->getAllEmployees();
+        $userid=$data['user_id'];
+        $grp_info=$this->users_model->getGroup($userid);
+        if($grp_info == 0) {
+            $data['employees'] = $this->users_model->getAllEmployees();
+        }else{
+            $data['employees'] = $this->users_model->getAllEmployees2($grp_info);    
+        }
         $data['title'] = lang('employees_index_title');
         $this->load->view('users/employees', $data);
     }
