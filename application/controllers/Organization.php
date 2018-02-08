@@ -248,8 +248,12 @@ class Organization extends CI_Controller {
         $userid=$data['user_id'];
         $this->load->model('organization_model');
         $grp_info=$this->users_model->getGroup($userid);
-        if($grp_info = 1) $entities = $this->organization_model->getAllEntities();
-        if($grp_info !=1) $entities = $this->organization_model->getAllEntities2($grp_info);
+        if($grp_info == 0) {
+                $entities = $this->organization_model->getAllEntities();
+            }else{
+                $entities = $this->organization_model->getAllEntities2($grp_info);
+            }
+
         $msg = '[';
         foreach ($entities->result() as $entity) {
             $msg .= '{"id":"' . $entity->id . '",';
