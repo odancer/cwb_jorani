@@ -105,6 +105,14 @@ class Leaves_model extends CI_Model {
         return $this->db->get()->result_array();
     }
 
+
+    public function getChangedBy($leveid,$changedate) {
+        $this->db->select('changed_by');
+        $this->db->from('leaves_history');
+        $this->db->where('id', $leveid);
+        $this->db->where('change_date',$changedate);
+        return $this->db->get()->result_array();
+    }
     /**
      * Try to calculate the length of a leave using the start and and date of the leave
      * and the non working days defined on a contract

@@ -70,13 +70,17 @@ class Leaves extends CI_Controller {
               $manager=($this->organization_model->getSupervisor2($grp_id))->supervisor2;
               $name = $this->users_model->getName($manager);
               $data['leaves'][$i]+= ["authorizer" => $name];
-          }elseif(($data['leaves'][$i]['status']==3) || ($data['leaves'][$i]['status']==5)) {
-              $name = "已核准";
+          }elseif(($data['leaves'][$i]['status']==3) || ($data['leaves'][$i]['status']==5) || ($data['leaves'][$i]['status']==4)) {
+              //$name ="申請成功";
+              //if($data['leaves'][$i]['status']==4) $name="申請失敗";
+              $id= $this->leaves_model->getChangedBy($data['leaves'][$i]['id'],$data['leaves'][$i]['change_date']);
+              $changedby = $id[0]['changed_by'];
+              $name = $this->users_model->getName($changedby);
               $data['leaves'][$i]+= ["authorizer" => $name];
             }else {
             $name="";
             $data['leaves'][$i]+= ["authorizer" => $name];
-          }
+          } 
         }
         $this->load->view('templates/header', $data);
         $this->load->view('menu/index', $data);
