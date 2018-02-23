@@ -306,7 +306,7 @@ msgid "edit contract"
 msgstr "編輯類別"
 
 msgid "entitled days"
-msgstr "享有天數"
+msgstr "享有時數"
 
 msgid "days off and weekends"
 msgstr "休假與週末"
@@ -542,13 +542,13 @@ msgid "Overtime request from"
 msgstr "加班申請從"
 
 msgid "Entitled days for contract"
-msgstr "應享有休假天數於類別中"
+msgstr "應享有休假時數於類別中"
 
 msgid "Edit"
 msgstr "編輯"
 
 msgid "Days"
-msgstr "天數"
+msgstr "時數"
 
 msgid "Leave type"
 msgstr "休假類別"
@@ -557,7 +557,7 @@ msgid "Description"
 msgstr "描述"
 
 msgid "Add entitled days"
-msgstr "外加應享有天數"
+msgstr "外加應享有時數"
 
 msgid "Add"
 msgstr "外加"
@@ -575,19 +575,19 @@ msgid "Step"
 msgstr "步驟"
 
 msgid "Entitled days for employee"
-msgstr "員工應享有天數"
+msgstr "員工應享有時數"
 
 msgid "Back to the list of employees"
 msgstr "返回員工列表"
 
 msgid "Entitled days to Contract #"
-msgstr "類別的應享有天數"
+msgstr "類別的應享有時數"
 
 msgid "Yearly leave period: "
-msgstr "年休假天數"
+msgstr "年休假時數"
 
 msgid "Entitled days to Employee"
-msgstr "員工應享有天數"
+msgstr "員工應享有時數"
 
 msgid "My overtime requests"
 msgstr "我的加班申請"
@@ -866,7 +866,7 @@ msgid ""
 msgstr "你可以刪除一休假申請,但無法再做復原"
 
 msgid "You are exceeding your entitled days"
-msgstr "你已超出可使用天數"
+msgstr "你已超出可使用時數"
 
 msgid "You have requested another leave request within the same dates."
 msgstr "你已有申請同一天休假"
@@ -931,13 +931,13 @@ msgid ""
 msgstr "此報告僅顯示上月統計之同意休假筆數"
 
 msgid "Number of days"
-msgstr "天數"
+msgstr "時數"
 
 msgid "Number of working days"
-msgstr "工作天數"
+msgstr "工作時數"
 
 msgid "Number of non-working days"
-msgstr "非工作天數"
+msgstr "非工作時數"
 
 msgid "Duration of leaves"
 msgstr "休假時段"
@@ -969,7 +969,7 @@ msgstr "補給"
 msgid ""
 "No entitled or taken days for this period. Please contact your HR Officer / "
 "Manager."
-msgstr "此時段無可休假天數,請聯繫HR部門/管理者"
+msgstr "此時段無可休假時數,請聯繫HR部門/管理者"
 
 msgid "My leave requests"
 msgstr "我的休假申請"
