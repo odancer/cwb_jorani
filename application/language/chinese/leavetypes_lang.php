@@ -18,7 +18,7 @@ $lang['leavetypes_type_thead_deduct'] = 'Deduct non working days';
 $lang['leavetypes_type_thead_tip_delete'] = '刪除';
 $lang['leavetypes_type_thead_tip_edit'] = '編輯';
 $lang['leavetypes_type_button_export'] = '匯出此單';
-$lang['leavetypes_type_button_create'] = '建立新總類';
+$lang['leavetypes_type_button_create'] = '建立新種類';
 $lang['leavetypes_type_not_found'] = '無休假種類於系統中';
 
 $lang['leavetypes_js_unique_error_msg'] = '請假事由已存在';

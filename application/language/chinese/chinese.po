@@ -1021,7 +1021,7 @@ msgid ""
 msgstr "休假總類＃0為加班補休,你確認要重新命名嗎？"
 
 msgid "Create a new type"
-msgstr "建立新總類"
+msgstr "建立新種類"
 
 msgid "No leave type found into the database."
 msgstr "無休假總類於系統中"
