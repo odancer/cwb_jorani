@@ -1330,11 +1330,13 @@ class Leaves_model extends CI_Model {
       if (count($ids) > 0) {    
         switch($role_info) {
             case 1;
+                error_log( print_r("leaves_111", TRUE) );
                 $query .= " WHERE users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11" ;
                 $query .= " OR ((leaves.status=7 OR leaves.status=9) AND (leaves.agent IN(". implode(",", $ids) .") OR leaves.agent=$manager))";
                 $query .= " OR ((leaves.status=2 OR leaves.status=10) AND users.manager=$manager)";
             break;
             case 32;
+                error_log( print_r("leaves_222", TRUE) );
                 if (!in_array($grp_super2,$ids)) {
                 //if (!in_array('16',$ids)) {
                        $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11)";}
@@ -1346,7 +1348,8 @@ class Leaves_model extends CI_Model {
             break;
 
             default;
-                $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11 AND leaves.status !=7 AND leaves.status !=9)";
+             error_log( print_r("leaves_333", TRUE) );
+                $query .= " WHERE (users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11 AND leaves.status !=7 AND leaves.status !=9 AND leaves.status !=4 AND leaves.status !=5)";
                 $query .= " OR ((leaves.status=7 OR leaves.status=9) AND leaves.agent IN(". implode(",", $ids) ."))";
                 $query .= " OR ((leaves.status=7 OR leaves.status=9) AND leaves.agent=$manager)";
             break;
@@ -1359,6 +1362,7 @@ class Leaves_model extends CI_Model {
       } else {
        // $query .= " WHERE (users.manager = $manager and (leaves.status='2' or leaves.status='4' or leaves.status='5')) or (leaves.agent = $manager and (leaves.status='7' or leaves.status='4' or leaves.status='5' )) or (".$role_info."='32' and leaves.status='8')";
        //$query .= " WHERE (users.manager = $manager AND (leaves.status='2' OR leaves.status='10')) OR (leaves.agent = $manager AND (leaves.status='7' OR leaves.status='9')) OR (".$role_info."='32' AND (leaves.status='8' OR leaves.status='11') AND $manager=16)";
+       error_log( print_r("leaves_444", TRUE) );
        $query .= " WHERE (users.manager = $manager AND (leaves.status='2' OR leaves.status='10')) OR (leaves.agent = $manager AND (leaves.status='7' OR leaves.status='9')) OR (".$role_info."='32' AND (leaves.status='8' OR leaves.status='11') AND $manager=".$grp_super2." AND users.organization=".$grp_info.")";
 
       }
@@ -1374,6 +1378,7 @@ class Leaves_model extends CI_Model {
             }
       }    */  
        if ($all == FALSE) {
+                error_log( print_r("leaves_555", TRUE) );
                 $query .= " AND (leaves.status = " . LMS_REQUESTED .
                 " OR leaves.status = " . LMS_CANCELLATION . " OR leaves.status = " . LMS_CANCELLATION_AGENT . " OR leaves.status = " . LMS_CANCELLATION_MANAGER ." OR leaves.status = " . LMS_CANCELLATION_BOSS ." OR leaves.status = " . LMS_REQUESTED_AGENT . " OR leaves.status = " . LMS_REQUESTED_BOSS .")";
       } 
@@ -1422,7 +1427,7 @@ class Leaves_model extends CI_Model {
             break;
 
             default;
-                $this->db->where("(users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11 AND leaves.status !=7 AND leaves.status !=9)");
+                $this->db->where("(users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11 AND leaves.status !=7 AND leaves.status !=9 AND leaves.status !=5 AND leaves.status!=4)");
                 $this->db->or_where("((leaves.status=7 OR leaves.status=9) AND leaves.agent IN(". implode(",", $ids) ."))");
                 $this->db->or_where("((leaves.status=7 OR leaves.status=9) AND leaves.agent=$manager)");
             break;

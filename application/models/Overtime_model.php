@@ -155,21 +155,31 @@ class Overtime_model extends CI_Model {
     public function requests($user_id, $all = FALSE) {
         $role_info =$this->users_model->getRole($user_id);
         $this->load->model('delegations_model');
+        $this->load->model('users_model');
+        $this->load->model('organization_model');
+        $grp_info =$this->users_model->getGroup($user_id);
         $ids = $this->delegations_model->listManagersGivingDelegation($user_id);
+        $grp_super2=($this->organization_model->getSupervisor2($grp_info))->supervisor2;
         $this->db->select('overtime.id as id, users.*, overtime.*');
         $this->db->select('status.name as status_name');
         $this->db->join('status', 'overtime.status = status.id');
         $this->db->join('users', 'users.id = overtime.employee');
         if (count($ids) > 0) {
             array_push($ids, $user_id);
-            $this->db->where_in('users.manager', $ids);
+            if($role_info !=32)  $this->db->where_in('users.manager', $ids);
         } else {
             if($role_info != 32) $this->db->where('users.manager', $user_id);
         }
         if ($all == FALSE) {
             if($role_info == 32) {
-                $this->db->where('status', 12);
+                $this->db->where('organization', $grp_info);
+                if ((!in_array($grp_super2,$ids)) && ($user_id != $grp_super2)) {
+                    $this->db->where('status', 0);
+                }else {
+                    $this->db->where('status', 12);
+                }
             }else {
+                $this->db->where('organization', $grp_info);
                 $this->db->where('status', 2);
             }
         }
@@ -187,25 +197,30 @@ class Overtime_model extends CI_Model {
     public function countExtraRequestedToManager($manager) {
         $role_info =$this->users_model->getRole($manager);
         $this->load->model('delegations_model');
+        $this->load->model('users_model');
+        $this->load->model('organization_model');
+        $grp_info =$this->users_model->getGroup($manager);
         $ids = $this->delegations_model->listManagersGivingDelegation($manager);
+        $grp_super2=($this->organization_model->getSupervisor2($grp_info))->supervisor2;
         $this->db->select('count(*) as number', FALSE);
         $this->db->join('users', 'users.id = overtime.employee');
         if (count($ids) > 0) {
             array_push($ids, $manager);
-            if($role_info == 32) {
-                    $this->db->where('status', 12);
-                }else {
-                    $this->db->where_in('users.manager', $ids);
-                    $this->db->where('status', 2);
-                }
+            if($role_info !=32)  $this->db->where_in('users.manager', $ids);
         } else {
-             if($role_info == 32) {
-                    $this->db->where('status', 12);
-                }else {
-                    $this->db->where('status', 2);
-                    $this->db->where('users.manager', $manager);
-                }
+            if($role_info != 32) $this->db->where('users.manager', $manager);
         }
+        if($role_info == 32) {
+            $this->db->where('organization', $grp_info);
+            if ((!in_array($grp_super2,$ids)) && ($manager != $grp_super2)) {
+                    $this->db->where('status', 0);
+                }else {
+                    $this->db->where('status', 12);
+                }
+            }else {
+                $this->db->where('organization', $grp_info);
+                $this->db->where('status', 2);
+            }
         $result = $this->db->get('overtime');
         return $result->row()->number;
     }
