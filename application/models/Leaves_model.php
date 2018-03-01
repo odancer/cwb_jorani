@@ -1331,9 +1331,10 @@ class Leaves_model extends CI_Model {
         switch($role_info) {
             case 1;
                 error_log( print_r("leaves_111", TRUE) );
-                $query .= " WHERE users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11" ;
-                $query .= " OR ((leaves.status=7 OR leaves.status=9) AND (leaves.agent IN(". implode(",", $ids) .") OR leaves.agent=$manager))";
-                $query .= " OR ((leaves.status=2 OR leaves.status=10) AND users.manager=$manager)";
+                 $query .= " WHERE users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11" ;
+                 $query .= " OR ((leaves.status=7 OR leaves.status=9) AND (leaves.agent IN(". implode(",", $ids) .") OR leaves.agent=$manager))";
+                 $query .= " OR ((leaves.status=2 OR leaves.status=10) AND users.manager=$manager)";
+                 if(in_array($grp_super2,$ids)) $query .= " OR ((leaves.status=8 OR leaves.status=11))";
             break;
             case 32;
                 error_log( print_r("leaves_222", TRUE) );
