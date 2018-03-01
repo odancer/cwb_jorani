@@ -1415,6 +1415,7 @@ class Leaves_model extends CI_Model {
                 $this->db->where("users.manager IN (" . implode(",", $ids) . ") AND leaves.status != 8 AND leaves.status !=3 AND leaves.status !=11") ;
                 $this->db->or_where("((leaves.status=7 OR leaves.status=9) AND (leaves.agent IN(". implode(",", $ids) .") OR leaves.agent=$manager))");
                 $this->db->or_where("((leaves.status=2 OR leaves.status=10) AND users.manager=$manager)");
+                if(in_array($grp_super2,$ids)) $this->db->or_where("(leaves.status=8 OR leaves.status=11)");
             break;
             case 32;
                  if (!in_array($grp_super2,$ids)) {
