@@ -165,22 +165,29 @@ class Overtime_model extends CI_Model {
         $this->db->join('status', 'overtime.status = status.id');
         $this->db->join('users', 'users.id = overtime.employee');
         if (count($ids) > 0) {
+            error_log( print_r("overtime_111", TRUE) );
             array_push($ids, $user_id);
             if($role_info !=32)  $this->db->where_in('users.manager', $ids);
         } else {
+            error_log( print_r("overtime_222", TRUE) );
             if($role_info != 32) $this->db->where('users.manager', $user_id);
         }
         if ($all == FALSE) {
             if($role_info == 32) {
+                error_log( print_r("overtime_333", TRUE) );
                 $this->db->where('organization', $grp_info);
                 if ((!in_array($grp_super2,$ids)) && ($user_id != $grp_super2)) {
+                    error_log( print_r("overtime_444", TRUE) );
                     $this->db->where('status', 0);
                 }else {
+                    error_log( print_r("overtime_555", TRUE) );
                     $this->db->where('status', 12);
                 }
             }else {
+                error_log( print_r("overtime_666", TRUE) );
                 $this->db->where('organization', $grp_info);
                 $this->db->where('status', 2);
+                if(in_array($grp_super2,$ids)) $this->db->or_where('status',12);
             }
         }
         $this->db->order_by('date', 'desc');
@@ -220,6 +227,7 @@ class Overtime_model extends CI_Model {
             }else {
                 $this->db->where('organization', $grp_info);
                 $this->db->where('status', 2);
+                if(in_array($grp_super2,$ids)) $this->db->or_where('status',12);
             }
         $result = $this->db->get('overtime');
         return $result->row()->number;
