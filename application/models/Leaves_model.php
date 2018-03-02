@@ -1364,7 +1364,9 @@ class Leaves_model extends CI_Model {
        // $query .= " WHERE (users.manager = $manager and (leaves.status='2' or leaves.status='4' or leaves.status='5')) or (leaves.agent = $manager and (leaves.status='7' or leaves.status='4' or leaves.status='5' )) or (".$role_info."='32' and leaves.status='8')";
        //$query .= " WHERE (users.manager = $manager AND (leaves.status='2' OR leaves.status='10')) OR (leaves.agent = $manager AND (leaves.status='7' OR leaves.status='9')) OR (".$role_info."='32' AND (leaves.status='8' OR leaves.status='11') AND $manager=16)";
        error_log( print_r("leaves_444", TRUE) );
-       $query .= " WHERE (users.manager = $manager AND (leaves.status='2' OR leaves.status='10')) OR (leaves.agent = $manager AND (leaves.status='7' OR leaves.status='9')) OR (".$role_info."='32' AND (leaves.status='8' OR leaves.status='11') AND $manager=".$grp_super2." AND users.organization=".$grp_info.")";
+       //$query .= " WHERE (users.manager = $manager AND (leaves.status='2' OR leaves.status='10')) OR (leaves.agent = $manager AND (leaves.status='7' OR leaves.status='9')) OR (".$role_info."='32' AND (leaves.status='8' OR leaves.status='11') AND $manager=".$grp_super2." AND users.organization=".$grp_info.")";
+        $query .= " WHERE (users.manager = $manager AND (leaves.status='2' OR leaves.status='10')) OR (leaves.agent = $manager AND (leaves.status='7' OR leaves.status='9')) OR (".$role_info."='32' AND (leaves.status='8' OR leaves.status='11') AND $manager=".$grp_super2.")";
+
 
       }
 
@@ -1437,7 +1439,9 @@ class Leaves_model extends CI_Model {
         } else {
             //$this->db->where('users.manager', $manager);
             //$this->db->where('leaves.agent', $manager);
-            $this->db->where("(users.manager =" .$manager." AND (leaves.status=".LMS_REQUESTED ." OR leaves.status=".LMS_CANCELLATION_MANAGER."))"." OR (leaves.agent =" .$manager." AND (leaves.status =".LMS_REQUESTED_AGENT." OR leaves.status =".LMS_CANCELLATION_AGENT."))"." OR (".$role_info."='32' and (leaves.status=".LMS_REQUESTED_BOSS." OR leaves.status =".LMS_CANCELLATION_BOSS.") AND ".$manager."=".$grp_super2." AND users.organization=".$grp_info.")");
+            //$this->db->where("(users.manager =" .$manager." AND (leaves.status=".LMS_REQUESTED ." OR leaves.status=".LMS_CANCELLATION_MANAGER."))"." OR (leaves.agent =" .$manager." AND (leaves.status =".LMS_REQUESTED_AGENT." OR leaves.status =".LMS_CANCELLATION_AGENT."))"." OR (".$role_info."='32' and (leaves.status=".LMS_REQUESTED_BOSS." OR leaves.status =".LMS_CANCELLATION_BOSS.") AND ".$manager."=".$grp_super2." AND users.organization=".$grp_info.")");
+            $this->db->where("(users.manager =" .$manager." AND (leaves.status=".LMS_REQUESTED ." OR leaves.status=".LMS_CANCELLATION_MANAGER."))"." OR (leaves.agent =" .$manager." AND (leaves.status =".LMS_REQUESTED_AGENT." OR leaves.status =".LMS_CANCELLATION_AGENT."))"." OR (".$role_info."='32' and (leaves.status=".LMS_REQUESTED_BOSS." OR leaves.status =".LMS_CANCELLATION_BOSS.") AND ".$manager."=".$grp_super2.")");
+
         }
         $result = $this->db->get('leaves');
         return $result->row()->number;
