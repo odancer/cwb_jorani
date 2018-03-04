@@ -68,10 +68,35 @@ class Organization_model extends CI_Model {
         return $this->db->get();
     }
 
-    public function getAllEntities2($grp_info) {
+
+    public function getParentId($id) {
+        $this->db->select ('id,parent_id');
         $this->db->from('organization');
-        $this->db->where('id',$grp_info);
-        $this->db->or_where('id',0);
+        $this->db->where('id',$id);
+        $query=$this->db->get();
+        $record = $query->result_array();
+        if(count($record) > 0) {
+            return $record;
+        } else {
+            return ;
+        }
+
+    }
+
+    public function getAllEntities2($grp_info) {
+        $id=$grp_info;
+        $parr=array();
+        while($id != 0 )  {
+            array_push($parr,$id);
+            $rtn = $this->getParentId($id);
+            $id=$rtn[0]['parent_id'];
+        }
+        $this->db->from('organization');
+        $this->db->where('id',0);
+        for ($i=0;$i<count($parr);$i++) {
+        $this->db->or_where('id',$parr[$i]);
+        }
+
         $this->db->order_by("parent_id", "desc"); 
         $this->db->order_by("name", "asc");
         return $this->db->get();

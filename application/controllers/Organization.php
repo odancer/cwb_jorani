@@ -250,8 +250,12 @@ class Organization extends CI_Controller {
         $grp_info=$this->users_model->getGroup($userid);
         if($grp_info == 0) {
                 $entities = $this->organization_model->getAllEntities();
+                error_log( print_r("hahahahhaha", TRUE) );
+                error_log( print_r($entities, TRUE) );
             }else{
                 $entities = $this->organization_model->getAllEntities2($grp_info);
+                error_log( print_r("lalalalalal", TRUE) );
+                error_log( print_r($entities, TRUE) );
             }
 
         $msg = '[';

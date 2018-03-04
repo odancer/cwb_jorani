@@ -636,6 +636,7 @@ class Users_model extends CI_Model {
      */
     public function employeesOfEntity($id = 0, $children = TRUE, $filterActive = "all",
             $criterion1 = NULL, $date1 = NULL, $criterion2 = NULL, $date2 = NULL) {
+            $grp_id = $this->getGroup($this->user_id);
         $this->db->select('users.id as id,'
                 . ' users.firstname as firstname,'
                 . ' users.lastname as lastname,'
@@ -651,7 +652,6 @@ class Users_model extends CI_Model {
         $this->db->join('positions', 'positions.id = users.position', 'left outer');
         $this->db->join('users as managers', 'managers.id = users.manager', 'left outer');
         $this->db->join('organization', 'organization.id = users.organization', 'left outer');
-
         if ($children == TRUE) {
             $this->load->model('organization_model');
             $list = $this->organization_model->getAllChildren($id);
@@ -661,8 +661,13 @@ class Users_model extends CI_Model {
                     $ids = explode(",", $list[0]['id']);
                 }
             }
-            array_push($ids, $id);
-            $this->db->where_in('organization.id', $ids);
+            if($this->user_id == 1) {
+                array_push($ids, $id);
+                $this->db->where_in('organization.id', $ids);
+            }else {
+                $this->db->where('users.organization', $grp_id);
+            }
+            //$this->db->where_in('organization.id', $ids);
         } else {
             $this->db->where('users.organization', $id);
         }

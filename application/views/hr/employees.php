@@ -14,7 +14,7 @@
 <h2><?php echo lang('hr_employees_title');?>&nbsp;<?php echo $help;?></h2>
 
 <?php echo $flash_partial_view;?>
-
+     <?php if ($user_id == 1) { ?>
         <div class="row-fluid">
             <div class="span6">
                 <input type="hidden" name="entity" id="entity" />
@@ -31,6 +31,7 @@
                 </div>
             </div>
         </div>
+    <?php } ?>
         <div class="row-fluid">
             <div class="span12">
                 <div class="btn-group" data-toggle="buttons-radio">

@@ -72,7 +72,6 @@ class Hr extends CI_Controller {
             $this->load->model('users_model');
             $employees = $this->users_model->employeesOfEntity($id, $children, $filterActive,
                     $criterion1, $date1, $criterion2, $date2);
-            
             //Prepare an object that will be encoded in JSON
             $msg = new \stdClass();
             $msg->draw = 1;
