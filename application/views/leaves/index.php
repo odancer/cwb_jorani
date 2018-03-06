@@ -154,26 +154,26 @@
                 <?php } ?> 
             </div>
         </td>
-        <td data-order="<?php echo $tmpStartDate; ?>"><?php echo $startdate . ' (' . lang($leave['startdatetype']). ')'; ?></td>
-        <td data-order="<?php echo $tmpEndDate; ?>"><?php echo $enddate . ' (' . lang($leave['enddatetype']) . ')'; ?></td>
+        <td align='center' valign='middle' data-order="<?php echo $tmpStartDate; ?>"><?php echo $startdate . ' (' . lang($leave['startdatetype']). ')'; ?></td>
+        <td align='center' valign='middle' data-order="<?php echo $tmpEndDate; ?>"><?php echo $enddate . ' (' . lang($leave['enddatetype']) . ')'; ?></td>
         <td><?php echo $leave['cause']; ?></td>
-        <td><?php echo $leave['duration']; ?></td>
-        <td><?php echo $leave['type_name']; ?></td>
+        <td align='center' valign='middle'><?php echo $leave['duration']; ?></td>
+        <td align='center' valign='middle'><?php echo $leave['type_name']; ?></td>
        <?php
         switch ($leave['status']) {
-            case 1: echo "<td><span class='label'>" . lang($leave['status_name']) . "</span></td>"; break;
-            case 2: echo "<td><span class='label label-warning'>" . lang($leave['status_name']) . "</span></td>"; break;
-            case 3: echo "<td><span class='label label-success'>" . lang($leave['status_name']) . "</span></td>"; break;
-            case 5: echo "<td><span class='label label-success'>" . lang($leave['status_name']) . "</span></td>"; break;
-            case 7: echo "<td><span class='label label-warning'>" . lang($leave['status_name']) . "</span></td>"; break;
-            case 8: echo "<td><span class='label label-warning'>" . lang($leave['status_name']) . "</span></td>"; break;
-            default: echo "<td><span class='label label-important' style='background-color: #ff0000;'>" . lang($leave['status_name']) . "</span></td>"; break;
+            case 1: echo "<td align='center' valign='middle'><span class='label'>" . lang($leave['status_name']) . "</span></td>"; break;
+            case 2: echo "<td align='center' valign='middle'><span class='label label-warning'>" . lang($leave['status_name']) . "</span></td>"; break;
+            case 3: echo "<td align='center' valign='middle'><span class='label label-success'>" . lang($leave['status_name']) . "</span></td>"; break;
+            case 5: echo "<td align='center' valign='middle'><span class='label label-success'>" . lang($leave['status_name']) . "</span></td>"; break;
+            case 7: echo "<td align='center' valign='middle'><span class='label label-warning'>" . lang($leave['status_name']) . "</span></td>"; break;
+            case 8: echo "<td align='center' valign='middle'><span class='label label-warning'>" . lang($leave['status_name']) . "</span></td>"; break;
+            default: echo "<td align='center' valign='middle'><span class='label label-important' style='background-color: #ff0000;'>" . lang($leave['status_name']) . "</span></td>"; break;
         }?>
-        <td><?php echo $leave['authorizer']; ?></td>
+        <td align='center' valign='middle'><?php echo $leave['authorizer']; ?></td>
         <?php
         if ($this->config->item('enable_history') == TRUE){
-          echo "<td data-order='".$tmpRequestDate."'>" . $requestdate . "</td>";
-          echo "<td data-order='".$tmpLastChangeDate."'>" . $lastchangedate . "</td>";
+          echo "<td align='center' valign='middle' data-order='".$tmpRequestDate."'>" . $requestdate . "</td>";
+          echo "<td align='center' valign='middle' data-order='".$tmpLastChangeDate."'>" . $lastchangedate . "</td>";
         }
         ?>
     </tr>

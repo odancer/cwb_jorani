@@ -8,15 +8,15 @@
  * @author      Ceibga Bao <info@sansin.com.tw>
  */
 
-$lang['session_login_title'] = '登錄';
+$lang['session_login_title'] = '登入';
 $lang['session_login_field_language'] = '語言';
-$lang['session_login_field_login'] = '登錄';
+$lang['session_login_field_login'] = '登入';
 $lang['session_login_field_password'] = '密碼';
-$lang['session_login_button_login'] = '登錄';
+$lang['session_login_button_login'] = '登入';
 $lang['session_login_button_forget_password'] = '提供我的密碼';
 $lang['session_login_msg_forget_password'] = 'Are you sure that you want to reset your password?';
 $lang['session_login_msg_empty_login'] = '請填入登陸表格';
-$lang['session_login_msg_unknown_login'] = '無法登錄,請聯繫你的HR部門/管理者';
+$lang['session_login_msg_unknown_login'] = '無法登入,請聯繫你的HR部門/管理者';
 $lang['session_login_msg_password_sent'] = '密碼已傳送至你的信箱';
 $lang['session_login_flash_bad_credentials'] = '個別登陸帳號或密碼';
 $lang['session_login_flash_change_language'] = '語言已成功更改';

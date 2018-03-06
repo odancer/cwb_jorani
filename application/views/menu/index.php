@@ -42,9 +42,6 @@ $this->lang->load('menu', $language);?>
           <a href="<?php echo base_url();?>home" class="brand">&nbsp;<img src="<?php echo base_url();?>assets/images/brand.png" height="18" width="18" style="margin-top:-6px;">&nbsp;Jorani</a>
             <div class="nav-responsive">
                 <ul class="nav">
-                  <?php if (($is_hr == FALSE) && ($is_admin == FALSE) && ($is_boss == FALSE)){ ?>
-                    <li><a href="<?php echo base_url();?>leaves" title="<?php echo lang('menu_leaves_list_requests');?>"><i class="icon-list icon-white"></i></a></li>
-                   <?php } ?>
               <?php if ($is_hr == TRUE) { ?>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('menu_admin_title');?> <b class="caret"></b></a>

@@ -222,7 +222,7 @@ Searching 4260 files for "建立新"
    85  $lang['users_reset_flash_msg_success'] = '密碼已成功更改';
    86  
    87: $lang['users_create_title'] = '建立新使用者';
-   88  $lang['users_create_field_firstname'] = '名';
-   89  $lang['users_create_field_lastname'] = '姓';
+   88  $lang['users_create_field_firstname'] = '名字';
+   89  $lang['users_create_field_lastname'] = '姓氏';
 
 5 matches across 3 files

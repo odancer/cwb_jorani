@@ -39,12 +39,12 @@
             &nbsp;
             <a href="<?php echo base_url();?>overtime/reject/<?php echo $requests_item['id']; ?>" title="<?php echo lang('overtime_index_thead_tip_reject');?>"><i class="icon-remove"></i></a>
         </td>
-        <td><?php echo $requests_item['firstname'] . ' ' . $requests_item['lastname']; ?></td>
+        <td align='center' valign='middle'><?php echo $requests_item['firstname'] . ' ' . $requests_item['lastname']; ?></td>
 <?php $date = new DateTime($requests_item['date']);
 $tmpDate = $date->getTimestamp();?>
-        <td data-order="<?php echo $tmpDate; ?>"><?php echo $date->format(lang('global_date_format'));?></td>
-        <td><?php echo $requests_item['duration']; ?></td>
-        <td><?php echo lang($requests_item['status_name']); ?></td>
+        <td align='center' valign='middle' data-order="<?php echo $tmpDate; ?>"><?php echo $date->format(lang('global_date_format'));?></td>
+        <td align='center' valign='middle'><?php echo $requests_item['duration']; ?></td>
+        <td align='center' valign='middle'><?php echo lang($requests_item['status_name']); ?></td>
         
     </tr>
 <?php endforeach ?>

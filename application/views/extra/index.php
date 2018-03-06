@@ -43,10 +43,10 @@
         </td>
 <?php $date = new DateTime($extra_item['date']);
 $tmpDate = $date->getTimestamp();?>
-        <td data-order="<?php echo $tmpDate; ?>"><?php echo $date->format(lang('global_date_format'));?></td>
-        <td><?php echo $extra_item['duration']; ?></td>
-        <td><?php echo $extra_item['cause']; ?></td>
-        <td><?php echo lang($extra_item['status_name']); ?></td>
+        <td align='center' valign='middle' data-order="<?php echo $tmpDate; ?>"><?php echo $date->format(lang('global_date_format'));?></td>
+        <td align='center' valign='middle'><?php echo $extra_item['duration']; ?></td>
+        <td align='center' valign='middle'><?php echo $extra_item['cause']; ?></td>
+        <td align='center' valign='middle'><?php echo lang($extra_item['status_name']); ?></td>
     </tr>
 <?php endforeach ?>
 	</tbody>

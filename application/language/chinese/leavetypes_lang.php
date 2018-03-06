@@ -11,7 +11,7 @@
 $lang['leavetypes_type_title'] = '休假種類';
 $lang['leavetypes_type_description'] = '休假種類＃0為加班補休,勿使用於其他申請';
 $lang['leavetypes_type_confirm_rename'] = '休假種類＃0為加班補休,你確認要重新命名嗎？';
-$lang['leavetypes_type_thead_id'] = '證號';
+$lang['leavetypes_type_thead_id'] = '序號';
 $lang['leavetypes_type_thead_acronym'] = 'Acronym';
 $lang['leavetypes_type_thead_name'] = '名字';
 $lang['leavetypes_type_thead_deduct'] = 'Deduct non working days';
@@ -51,7 +51,7 @@ $lang['leavetypes_popup_delete_flash_error'] = '你無法刪除系統休假種�
 $lang['leavetypes_popup_delete_flash_forbidden'] = '你無法刪除已使用的休假種類';
 
 $lang['leavetypes_type_export_title'] = '休假種類';
-$lang['leavetypes_type_export_thead_id'] = '證號';
+$lang['leavetypes_type_export_thead_id'] = '序號';
 $lang['leavetypes_type_export_thead_name'] = '名字';
 $lang['leavetypes_type_export_thead_acronym'] = 'Acronym';
 $lang['leavetypes_type_export_thead_deduct'] = 'Deduct non working days';

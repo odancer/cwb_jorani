@@ -29,7 +29,7 @@ $lang['Ok'] = '確認變更';
 $lang['Requested_Agent'] = '代理人審核';
 $lang['Requested_Boss'] = '主任審核';
 $lang['Overtime_Boss'] = '主任審核';
-$lang['Planned'] = '計畫';
+$lang['Planned'] = '草稿';
 $lang['Accepted'] = '接受';
 $lang['Rejected'] = '拒絕';
 $lang['Cancellation'] = '取消休假成功';
@@ -77,17 +77,17 @@ $lang['Morning'] = '早上';
 $lang['Afternoon'] = '下午';
 $lang['today'] = '今天';
 $lang['identifier'] = '識別碼';
-$lang['firstname'] = '名';
-$lang['lastname'] = '姓';
+$lang['firstname'] = '名字';
+$lang['lastname'] = '姓氏';
 $lang['datehired'] = '到職日';
 $lang['department'] = '部門';
 $lang['position'] = '職稱';
-$lang['contract'] = '類別';
+$lang['contract'] = '給假類別';
 $lang['day off'] = '休假';
 $lang['leave'] = '離職';
 
 $lang['All'] = '所有';
-$lang['OK'] = '好';
+$lang['OK'] = '確定';
 $lang['Cancel'] = '取消';
 $lang['copied'] = '複製';
 
@@ -95,5 +95,5 @@ $lang['oauth2_authorize_question'] = 'Do You Authorize %s application?';
 $lang['Yes'] = 'Yes';
 $lang['No'] = 'No';
 
-$lang['global_ajax_timeout'] = '你的時段已過時請重新登錄';
+$lang['global_ajax_timeout'] = '你的時段已過時請重新登入';
 $lang['global_ajax_error'] = '未預期錯誤';

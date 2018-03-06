@@ -258,6 +258,8 @@ class Organization_model extends CI_Model {
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
     public function allEmployees($id, $children = FALSE) {
+        $this->load->model('users_model');
+        $grp_id = $this->users_model->getGroup($this->user_id);
         $this->db->select('users.id, users.identifier, users.firstname, users.lastname, users.datehired');
         $this->db->select('organization.name as department, positions.name as position, contracts.name as contract');
         $this->db->select('contracts.id as contract_id');
@@ -265,21 +267,27 @@ class Organization_model extends CI_Model {
         $this->db->join('users', 'users.organization = organization.id');
         $this->db->join('positions', 'positions.id  = users.position', 'left');
         $this->db->join('contracts', 'contracts.id  = users.contract', 'left');
-        if ($children === TRUE) {
+        if ($children == TRUE) {
             $this->load->model('organization_model');
             $list = $this->organization_model->getAllChildren($id);
             $ids = array();
             if (count($list) > 0) {
                 if ($list[0]['id'] != '') {
                     $ids = explode(",", $list[0]['id']);
-                    array_push($ids, $id);
-                    $this->db->where_in('organization.id', $ids);
+                    if($this->user_id == 1) {
+                        array_push($ids, $id);
+                        $this->db->where_in('organization.id', $ids);
+                    }else {
+                        $this->db->where('users.organization', $grp_id);
+                    }
+                    
                 } else {
                     $this->db->where('organization.id', $id);
                 }
             }
         } else {
-            $this->db->where('organization.id', $id);
+           // $this->db->where('organization.id', $id);
+           $this->db->where('organization.id', $grp_id);
         }
         $this->db->order_by('lastname', 'asc'); 
         $this->db->order_by('firstname', 'asc');

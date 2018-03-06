@@ -8,9 +8,9 @@
  * @author      Ceibga Bao <info@sansin.com.tw>
  */
 
-$lang['contract_index_title'] = '類別名單';
-$lang['contract_index_thead_id'] = '證號';
-$lang['contract_index_thead_name'] = '名字';
+$lang['contract_index_title'] = '給假類別清單';
+$lang['contract_index_thead_id'] = '序號';
+$lang['contract_index_thead_name'] = '類別名稱';
 $lang['contract_index_thead_start'] = '開始期間';
 $lang['contract_index_thead_end'] = '結束期間';
 $lang['contract_index_tip_delete'] = '刪除類別';
@@ -40,33 +40,33 @@ $lang['contract_exclude_tip_default_type'] = 'You cannot exclude the default lea
 
 $lang['contract_edit_title'] = '編輯的類別';
 $lang['contract_edit_description'] = '編輯類別';
-$lang['contract_edit_field_name'] = '名字';
+$lang['contract_edit_field_name'] = '類別名稱';
 $lang['contract_edit_field_start_month'] = '月/開始';
 $lang['contract_edit_field_start_day'] = '天/開始';
 $lang['contract_edit_field_end_month'] = '月/結束';
 $lang['contract_edit_field_end_day'] = '天/結束';
-$lang['contract_edit_default_leave_type'] = 'Default leave type';
+$lang['contract_edit_default_leave_type'] = '預設假別';
 $lang['contract_edit_button_update'] = '更新類別';
 $lang['contract_edit_button_cancel'] = '取消';
 
 $lang['contract_edit_msg_success'] = '此類別已更新成功';
 
 $lang['contract_create_title'] = '創立新類別';
-$lang['contract_create_field_name'] = '名字';
-$lang['contract_create_field_start_month'] = '月/開始';
-$lang['contract_create_field_start_day'] = '天/開始';
-$lang['contract_create_field_end_month'] = '月/結束';
-$lang['contract_create_field_end_day'] = '天/結束';
-$lang['contract_create_default_leave_type'] = 'Default leave type';
+$lang['contract_create_field_name'] = '類別名稱 (必填)';
+$lang['contract_create_field_start_month'] = '月/開始 (必選)';
+$lang['contract_create_field_start_day'] = '天/開始 (必選)';
+$lang['contract_create_field_end_month'] = '月/結束 (必選)';
+$lang['contract_create_field_end_day'] = '天/結束 (必選)';
+$lang['contract_create_default_leave_type'] = '預設假別';
 $lang['contract_create_button_create'] = '創造類別';
 $lang['contract_create_button_cancel'] = '取消';
 
 $lang['contract_create_msg_success'] = '類別已成功創立';
 $lang['contract_delete_msg_success'] = '類別已成功刪除';
 
-$lang['contract_export_title'] = '類別名單';
-$lang['contract_export_thead_id'] = '證號';
-$lang['contract_export_thead_name'] = '名字';
+$lang['contract_export_title'] = '給假類別清單';
+$lang['contract_export_thead_id'] = '序號';
+$lang['contract_export_thead_name'] = '類別名稱';
 $lang['contract_export_thead_start'] = '開始期間';
 $lang['contract_export_thead_end'] = '結束期間';
 
@@ -86,7 +86,7 @@ $lang['contract_calendar_popup_dayoff_type_off'] = '全日休假';
 $lang['contract_calendar_popup_dayoff_type_morning'] = '上午休假';
 $lang['contract_calendar_popup_dayoff_type_afternoon'] = '下午休假';
 $lang['contract_calendar_popup_dayoff_button_delete'] = '刪除';
-$lang['contract_calendar_popup_dayoff_button_ok'] = '好';
+$lang['contract_calendar_popup_dayoff_button_ok'] = '確定';
 $lang['contract_calendar_popup_dayoff_button_cancel'] = '取消';
 $lang['contract_calendar_button_import'] = '匯入 ical';
 $lang['contract_calendar_prompt_import'] = 'URL 非工作天於 ICal 資料夾';
@@ -101,7 +101,7 @@ $lang['contract_calendar_popup_series_field_as_off'] = '全日休假';
 $lang['contract_calendar_popup_series_field_as_morning'] = '上午休假';
 $lang['contract_calendar_popup_series_field_as_afternnon'] = '下午休假';
 $lang['contract_calendar_popup_series_field_title'] = '抬頭';
-$lang['contract_calendar_popup_series_button_ok'] = '好';
+$lang['contract_calendar_popup_series_button_ok'] = '確定';
 $lang['contract_calendar_popup_series_button_cancel'] = '取消';
 $lang['contract_calendar_button_copy'] = '複製';
 $lang['contract_calendar_copy_destination_js_msg'] = '你必須選擇類別';

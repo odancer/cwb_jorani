@@ -31,7 +31,7 @@ msgid "Accepted but duplicated Leave Requests"
 msgstr ""
 
 msgid "ID"
-msgstr "證號"
+msgstr "序號"
 
 msgid "Employee"
 msgstr "員工"
@@ -43,7 +43,7 @@ msgid "Status"
 msgstr "狀態"
 
 msgid "Type"
-msgstr "編輯"
+msgstr "假別"
 
 msgid "Afternoon/Morning"
 msgstr "上午/下午"
@@ -74,7 +74,7 @@ msgid "End Date"
 msgstr "結束日期"
 
 msgid "Contract"
-msgstr "類別"
+msgstr "給假類別"
 
 msgid "Incomplete deletion into database."
 msgstr "刪除資料失敗"
@@ -98,7 +98,7 @@ msgid "Overtime"
 msgstr "加班"
 
 msgid "Duration"
-msgstr "時段"
+msgstr "申請時數"
 
 msgid "Contracts"
 msgstr "類別"
@@ -165,7 +165,7 @@ msgid ""
 msgstr "如你不屬於任何部門.請聯絡HR工作部門/主管"
 
 msgid "Calendar of the organization"
-msgstr "組織的行事曆"
+msgstr "群組的行事曆"
 
 msgid "Global calendar with a filter on entity"
 msgstr "部門的日曆"
@@ -183,7 +183,7 @@ msgid "Select an entity"
 msgstr "選擇部門"
 
 msgid "OK"
-msgstr "好"
+msgstr "確定"
 
 msgid "Cancel"
 msgstr "取消"
@@ -204,7 +204,7 @@ msgid "Calendar Tabular"
 msgstr "行事曆格式"
 
 msgid "Entity"
-msgstr "事業體"
+msgstr "群組"
 
 msgid "Sub-entities"
 msgstr "分部門"
@@ -551,7 +551,7 @@ msgid "Days"
 msgstr "時數"
 
 msgid "Leave type"
-msgstr "休假類別"
+msgstr "假別"
 
 msgid "Description"
 msgstr "描述"
@@ -712,7 +712,7 @@ msgid "Requested"
 msgstr "要求"
 
 msgid "Planned"
-msgstr "計畫"
+msgstr "草稿"
 
 msgid "Accepted"
 msgstr "接受"
@@ -742,7 +742,7 @@ msgid "position"
 msgstr "職稱"
 
 msgid "contract"
-msgstr "類別"
+msgstr "給假類別"
 
 msgid "day off"
 msgstr "休假"
@@ -757,7 +757,7 @@ msgid "copied"
 msgstr "複製"
 
 msgid "Your session has expired please login again"
-msgstr "你的時段已過時請重新登錄"
+msgstr "你的時段已過時請重新登入"
 
 msgid "Unexpected Ajax Error"
 msgstr "未預期錯誤"
@@ -835,7 +835,7 @@ msgid "Select Contract"
 msgstr "選擇類別"
 
 msgid "Select Entity"
-msgstr "選擇事業體"
+msgstr "選擇群組"
 
 msgid "Submit a leave request"
 msgstr "送出休假申請"
@@ -1097,7 +1097,7 @@ msgid "Employees"
 msgstr "員工"
 
 msgid "Organization"
-msgstr "組織"
+msgstr "群組"
 
 msgid "List of positions"
 msgstr "職位職稱"
@@ -1130,7 +1130,7 @@ msgid "Submit an OT Request"
 msgstr "送出加班申請"
 
 msgid "Counters"
-msgstr "櫃檯"
+msgstr "休假餘額清單"
 
 msgid "List of leave requests"
 msgstr "休假申請列表"
@@ -1154,13 +1154,13 @@ msgid "Tabular"
 msgstr "格式"
 
 msgid "Search for an entity"
-msgstr "搜尋事業體"
+msgstr "搜尋群組"
 
 msgid "Search"
 msgstr "搜尋"
 
 msgid "Employees attached to entity"
-msgstr "派任員工到事業體"
+msgstr "派任員工到群組"
 
 msgid "Attach an Employee"
 msgstr "派任員工"
@@ -1180,10 +1180,10 @@ msgid "Select a Supervisor"
 msgstr "選擇管理人"
 
 msgid "Delete Entity"
-msgstr "刪除事業體"
+msgstr "刪除群組"
 
 msgid "You are about to delete one entity, this procedure is irreversible."
-msgstr "你可以刪除事業體,但無法再做復原"
+msgstr "你可以刪除群組,但無法再做復原"
 
 msgid "Add an Employee"
 msgstr "新增一位員工"
@@ -1195,7 +1195,7 @@ msgid "Name of the entity"
 msgstr "名稱"
 
 msgid "Please select one entity in the organization (treeview on the right)."
-msgstr "請從組織中選擇（右邊有組織圖參考）"
+msgstr "請從群組中選擇（右邊有群組圖參考）"
 
 msgid ""
 "Please select one employee in the table of users belonging to the selected "
@@ -1203,7 +1203,7 @@ msgid ""
 msgstr "請於以下使用者名單中選擇一員工於表單中"
 
 msgid "You cannot delete the root entity."
-msgstr "你無法刪除此組織圖"
+msgstr "你無法刪除此群組圖"
 
 msgid "Overtime Requests submitted to me"
 msgstr "加班申請傳送給我"
@@ -1350,7 +1350,7 @@ msgid ""
 msgstr ""
 
 msgid "Login"
-msgstr "登錄"
+msgstr "登入"
 
 msgid "Language"
 msgstr "語言"
@@ -1365,7 +1365,7 @@ msgid "Please fill the login field"
 msgstr "請填入登陸表格"
 
 msgid "Unknown login. Please contact your HR Officer / Manager."
-msgstr "無法登錄,請聯繫你的HR部門/管理者"
+msgstr "無法登入,請聯繫你的HR部門/管理者"
 
 msgid "The password has been sent to your e-mail adress."
 msgstr "密碼已傳送至你的信箱"

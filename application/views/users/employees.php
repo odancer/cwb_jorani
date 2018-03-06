@@ -23,10 +23,10 @@
     <tbody>
 <?php foreach ($employees as $employee): ?>
     <tr>
-        <td><?php echo $employee['id'] ?></td>
-        <td><?php echo $employee['firstname'] ?></td>
-        <td><?php echo $employee['lastname'] ?></td>
-        <td><?php echo $employee['email'] ?></td>
+        <td align='center' valign='middle'><?php echo $employee['id'] ?></td>
+        <td align='center' valign='middle'><?php echo $employee['firstname'] ?></td>
+        <td align='center' valign='middle'><?php echo $employee['lastname'] ?></td>
+        <td align='center' valign='middle'><?php echo $employee['email'] ?></td>
     </tr>
 <?php endforeach ?>
     </tbody>

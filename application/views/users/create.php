@@ -43,11 +43,11 @@ echo form_open('users/create', $attributes); ?>
     
     <div class="span4">
         <div class="control-group">
-            <label class="control-label" for="login"><?php echo lang('users_create_field_login');?></label>
+            <label class="control-label" for="login"><?php echo lang('users_create_field_login');echo '<br>';echo lang('users_create_field_login2');?></label>
             <div class="controls">
                 <div class="input-append">
                     <input type="text" name="login" id="login" required />
-                    <a id="cmdRefreshLogin" class="btn btn-primary"><i class="icon-refresh icon-white"></i></a>
+                    <!--<a id="cmdRefreshLogin" class="btn btn-primary"><i class="icon-refresh icon-white"></i></a>-->
                 </div>
             </div>
         </div>
@@ -193,7 +193,7 @@ echo form_open('users/create', $attributes); ?>
         <div class="control-group">
             <label class="control-label" for="identifier"><?php echo lang('users_create_field_identifier');?></label>
             <div class="controls">
-                <input type="text" name="identifier" />
+                <input type="text" name="identifier" id="identifier" />
             </div>
         </div>
     </div>
@@ -226,7 +226,7 @@ echo form_open('users/create', $attributes); ?>
             <div class="controls">
                 <?php 
                 $tzdef = $this->config->item('default_timezone');
-                if ($tzdef == FALSE) $tzdef = 'Europe/Paris';
+                if ($tzdef == FALSE) $tzdef = 'Asia/Taipei';
                 $tzlist = DateTimeZone::listIdentifiers(DateTimeZone::ALL);?>
                 <select id="timezone" name="timezone" class="selectized input-xlarge">
                 <?php foreach ($tzlist as $tz) { ?>
@@ -484,6 +484,7 @@ if ($language_code != 'en') { ?>
         
         //On any change on firstname or lastname fields, automatically build the
         //login identifier with first character of firstname and the 31 first characters of lastname
+        /**
         $("#firstname").change(function() {
             var login = generateLogin($("#firstname").val(), $("#lastname").val(), '<?php echo $this->config->item('login_pattern')!==FALSE?$this->config->item('login_pattern'):'jdoe';?>',32);
             $("#login").val(login);
@@ -495,16 +496,20 @@ if ($language_code != 'en') { ?>
             var login = generateLogin($("#firstname").val(), $("#lastname").val(), '<?php echo $this->config->item('login_pattern')!==FALSE?$this->config->item('login_pattern'):'jdoe';?>',32);
             $("#login").val(login);
         });
-        
         //
         $('#cmdRefreshLogin').click(function() {
             var login = generateLogin($("#firstname").val(), $("#lastname").val(), '<?php echo $this->config->item('login_pattern')!==FALSE?$this->config->item('login_pattern'):'jdoe';?>',32);
             $("#login").val(login);
             checkLogin();
         });
-        
+             **/
+
+
+
         //Check if the user has not exceed the number of entitled days
         $("#login").change(function() {
+            var identifier = $("#login").val();
+            $("#identifier").val(identifier);
             checkLogin();
         });
         

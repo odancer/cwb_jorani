@@ -27,11 +27,11 @@ $lang['menu_admin_oauth_clients'] = 'OAuth Clients';
 
 $lang['menu_hr_title'] = '人力管理者';
 $lang['menu_hr_employees_divider'] = '員工';
-$lang['menu_hr_list_organization'] = '組織';
+$lang['menu_hr_list_organization'] = '群組管理';
 $lang['menu_hr_list_employees'] = '員工列表';
-$lang['menu_hr_contracts_divider'] = '類別';
-$lang['menu_hr_list_contracts'] = '類別名單';
-$lang['menu_hr_list_positions'] = '職位職稱';
+$lang['menu_hr_contracts_divider'] = '給假類別';
+$lang['menu_hr_list_contracts'] = '類別管理';
+$lang['menu_hr_list_positions'] = '職稱管理';
 $lang['menu_hr_leaves_type_divider'] = '休假';
 $lang['menu_hr_list_leaves_type'] = '種類列表';
 $lang['menu_hr_reports_divider'] = '報告';
@@ -50,7 +50,7 @@ $lang['menu_requests_overtime'] = '加班';
 $lang['menu_requests_list_extras'] = '加班申請列表';
 $lang['menu_requests_request_extra'] = '送出加班申請';
 
-$lang['menu_leaves_counters'] = '櫃檯';
+$lang['menu_leaves_counters'] = '休假餘額清單';
 $lang['menu_leaves_list_requests'] = '休假申請列表';
 $lang['menu_leaves_create_request'] = '申請一個休假';
 
@@ -60,6 +60,6 @@ $lang['menu_calendar_individual'] = '我的行事曆';
 $lang['menu_calendar_workmates'] = '我的同事';
 $lang['menu_calendar_collaborators'] = '我的部屬';
 $lang['menu_calendar_department'] = '部門';
-$lang['menu_calendar_organization'] = '組織';
+$lang['menu_calendar_organization'] = '群組';
 $lang['menu_calendar_tabular'] = '格式';
 $lang['menu_calendar_attendance'] = '刷卡記錄';

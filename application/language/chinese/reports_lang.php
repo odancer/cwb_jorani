@@ -25,7 +25,7 @@ $lang['reports_balance_field_subdepts'] = '包含分部門';
 $lang['reports_balance_button_launch'] = '實施';
 $lang['reports_balance_button_export'] = '匯出';
 $lang['reports_balance_popup_entity_title'] = '選擇部門';
-$lang['reports_balance_popup_entity_button_ok'] = '好';
+$lang['reports_balance_popup_entity_button_ok'] = '確定';
 $lang['reports_balance_popup_entity_button_cancel'] = '取消';
 
 $lang['reports_export_balance_title'] = '休假平均值';
@@ -40,7 +40,7 @@ $lang['reports_leaves_field_leave_requests'] = '休假申請';
 $lang['reports_leaves_button_launch'] = '實施';
 $lang['reports_leaves_button_export'] = '匯出';
 $lang['reports_leaves_popup_entity_title'] = '選擇部門';
-$lang['reports_leaves_popup_entity_button_ok'] = '好';
+$lang['reports_leaves_popup_entity_button_ok'] = '確定';
 $lang['reports_leaves_popup_entity_button_cancel'] = '取消';
 
 $lang['reports_export_leaves_title'] = '休假申請';

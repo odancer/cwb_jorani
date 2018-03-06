@@ -119,26 +119,26 @@ if ($showAll == FALSE) {
                 <a href="#" class="show-history" data-id="<?php echo $request['leave_id'];?>" title="<?php echo lang('requests_index_thead_tip_history');?>"><i class="fa fa-clock-o" style="color:black;"></i></a>
                 <?php } ?> 
             </div>
-        </td>
-        <td><?php echo $request['firstname'] . ' ' . $request['lastname']; ?></td>
-        <td data-order="<?php echo $tmpStartDate; ?>"><?php echo $startdate . ' (' . lang($request['startdatetype']). ')'; ?></td>
-        <td data-order="<?php echo$tmpEndDate; ?>"><?php echo $enddate . ' (' . lang($request['enddatetype']) . ')'; ?></td>
-        <td><?php echo $request['duration']; ?></td>
-        <td><?php echo $request['type_name']; ?></td>
+     </td>
+        <td align='center' valign='middle'><?php echo $request['firstname'] . ' ' . $request['lastname']; ?></td>
+        <td align='center' valign='middle' data-order="<?php echo $tmpStartDate; ?>"><?php echo $startdate . ' (' . lang($request['startdatetype']). ')'; ?></td>
+        <td align='center' valign='middle' data-order="<?php echo$tmpEndDate; ?>"><?php echo $enddate . ' (' . lang($request['enddatetype']) . ')'; ?></td>
+        <td align='center' valign='middle'><?php echo $request['duration']; ?></td>
+        <td align='center' valign='middle'><?php echo $request['type_name']; ?></td>
         <?php
         switch ($request['status']) {
-            case 1: echo "<td><span class='label'>" . lang($request['status_name']) . "</span></td>"; break;
-            case 2: echo "<td><span class='label label-warning'>" . lang($request['status_name']) . "</span></td>"; break;
-            case 7: echo "<td><span class='label label-warning'>" . lang($request['status_name']) . "</span></td>"; break;
-            case 8: echo "<td><span class='label label-warning'>" . lang($request['status_name']) . "</span></td>"; break;
-            case 3: echo "<td><span class='label label-success'>" . lang($request['status_name']) . "</span></td>"; break;
-            case 5: echo "<td><span class='label label-success'>" . lang($request['status_name']) . "</span></td>"; break;
+            case 1: echo "<td align='center' valign='middle'><span class='label'>" . lang($request['status_name']) . "</span></td>"; break;
+            case 2: echo "<td align='center' valign='middle'><span class='label label-warning'>" . lang($request['status_name']) . "</span></td>"; break;
+            case 7: echo "<td align='center' valign='middle'><span class='label label-warning'>" . lang($request['status_name']) . "</span></td>"; break;
+            case 8: echo "<td align='center' valign='middle'><span class='label label-warning'>" . lang($request['status_name']) . "</span></td>"; break;
+            case 3: echo "<td align='center' valign='middle'><span class='label label-success'>" . lang($request['status_name']) . "</span></td>"; break;
+            case 5: echo "<td align='center' valign='middle'><span class='label label-success'>" . lang($request['status_name']) . "</span></td>"; break;
             default: echo "<td><span class='label label-important' style='background-color: #ff0000;'>" . lang($request['status_name']) . "</span></td>"; break;
         }?>
         <?php
         if ($this->config->item('enable_history') == TRUE){
-          echo "<td data-order='".$tmpRequestDate."'>" . $requestdate . "</td>";
-          echo "<td data-order='".$tmpLastChangeDate."'>" . $lastchangedate . "</td>";
+          echo "<td align='center' valign='middle' data-order='".$tmpRequestDate."'>" . $requestdate . "</td>";
+          echo "<td align='center' valign='middle' data-order='".$tmpLastChangeDate."'>" . $lastchangedate . "</td>";
         }
         ?>
     </tr>

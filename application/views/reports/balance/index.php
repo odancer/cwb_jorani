@@ -18,19 +18,25 @@
         </div>
     </div>
     <div class="span4">	
+        <?php if ($user_id == 1) { ?>
         <label for="txtEntity"><?php echo lang('reports_balance_field_entity');?></label>
+        <?php } ?>
         <div class="input-append">
+        <?php if ($user_id == 1) { ?>
         <input type="text" id="txtEntity" name="txtEntity" readonly />
         <button id="cmdSelectEntity" class="btn btn-primary"><?php echo lang('reports_balance_button_entity');?></button>
+        <?php } ?>
         </div>
     </div>
     <div class="span4">
-        <div class="pull-right">    
+        <div class="pull-right">   
+            <?php if ($user_id == 1) { ?>
             <label for="chkIncludeChildren">
                 <input type="checkbox" id="chkIncludeChildren" name="chkIncludeChildren" checked /> <?php echo lang('reports_balance_field_subdepts');?>
             </label>
+            <?php } ?>
             &nbsp;
-            <button class="btn btn-primary" id="cmdLaunchReport"><i class="icon-file icon-white"></i>&nbsp; <?php echo lang('reports_balance_button_launch');?></button>
+            <button class="btn btn-primary" id="cmdLaunchReport"><i class="icon-file icon-white"></i>&nbsp;<?php echo lang('reports_balance_button_launch');?></button>
             <button class="btn btn-primary" id="cmdExportReport"><i class="fa fa-file-excel-o"></i>&nbsp; <?php echo lang('reports_balance_button_export');?></button>
         </div>
     </div>
