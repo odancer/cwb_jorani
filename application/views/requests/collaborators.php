@@ -42,10 +42,10 @@
                     &nbsp;<a href="<?php echo base_url();?>calendar/year/<?php echo $collaborator['id'] ?>" title="<?php echo lang('requests_collaborators_thead_link_year');?>"><i class="icon-calendar"></i></a>
                 </div>
             </td>
-            <td><?php echo $collaborator['firstname'] ?></td>
-            <td><?php echo $collaborator['lastname'] ?></td>
-            <td><a href="mailto:<?php echo $collaborator['email']; ?>"><?php echo $collaborator['email']; ?></a></td>
-            <td><?php echo $collaborator['identifier'] ?></td>
+            <td align='center' valign='middle'><?php echo $collaborator['firstname'] ?></td>
+            <td align='center' valign='middle'><?php echo $collaborator['lastname'] ?></td>
+            <td align='center' valign='middle'><a href="mailto:<?php echo $collaborator['email']; ?>"><?php echo $collaborator['email']; ?></a></td>
+            <td align='center' valign='middle'><?php echo $collaborator['identifier'] ?></td>
         </tr>
     <?php endforeach ?>
     </tbody>

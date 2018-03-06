@@ -31,6 +31,7 @@ if ($showAll == FALSE) {
     $checked = "";
 }
 ?>
+    <div align="center"><?php echo lang('requests_filter_title');?></div>
     <div class="span1">&nbsp;</div>
     <div class="span8">
     <span class="label"><input type="checkbox" <?php echo $checked;?> id="chkPlanned" class="filterStatus" <?php echo $disable;?>> &nbsp;<?php echo lang('Planned');?></span> &nbsp;

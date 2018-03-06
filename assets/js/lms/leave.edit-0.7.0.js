@@ -237,6 +237,13 @@ function showOverlappingMessage(leaveInfo) {
     if (typeof leaveInfo.overlap !== 'undefined') {
         if (Boolean(leaveInfo.overlap)) {
             $("#lblOverlappingAlert").show();
+            $("#viz_startdate").val("");
+            $("#startdate").val("");
+            $("#starttime").val("");
+            $("#viz_enddate").val("");
+            $("#enddate").val("");
+            $("#endtime").val("");
+            $("#duration").val("");
         } else {
             $("#lblOverlappingAlert").hide();
         }

@@ -911,13 +911,13 @@ msgid "Leave balance for user #"
 msgstr "使用者的休假平衡"
 
 msgid "Available"
-msgstr "可行"
+msgstr "未休時數"
 
 msgid "Taken"
-msgstr "拿取"
+msgstr "已休時數"
 
 msgid "Entitled"
-msgstr "可享有權利"
+msgstr "可享有休假時數"
 
 msgid "This employee has no contract."
 msgstr "此員工無類別"

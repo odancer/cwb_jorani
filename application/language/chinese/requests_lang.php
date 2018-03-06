@@ -10,6 +10,7 @@
 
 $lang['requests_index_title'] = '休假申請傳送給我';
 $lang['requests_index_description'] = '休假申請列表已傳送給你,如你不是管理者此表將為空白';
+$lang['requests_filter_title'] = '狀態欄位過濾 (勾選顯示)';
 $lang['requests_index_thead_tip_view'] = '預覽';
 $lang['requests_index_thead_tip_accept'] = '接受';
 $lang['requests_index_thead_tip_accept_cancellation'] = '接受取消';
@@ -33,16 +34,16 @@ $lang['requests_collaborators_thead_link_balance'] = '休假平衡點';
 $lang['requests_collaborators_thead_link_presence'] = '簽署報告';
 $lang['requests_collaborators_thead_link_year'] = '年曆';
 $lang['requests_collaborators_thead_link_create_leave'] = '建立此部屬休假申請表現';
-$lang['requests_collaborators_thead_firstname'] = '名';
-$lang['requests_collaborators_thead_lastname'] = '姓';
+$lang['requests_collaborators_thead_firstname'] = '名字';
+$lang['requests_collaborators_thead_lastname'] = '姓氏';
 $lang['requests_collaborators_thead_email'] = 'E-mail';
-$lang['requests_collaborators_thead_identifier'] = 'Identifier';
+$lang['requests_collaborators_thead_identifier'] = '登入帳號';
 
 $lang['requests_summary_title'] = '使用者的休假平衡';
 $lang['requests_summary_thead_type'] = '假別';
-$lang['requests_summary_thead_available'] = '可行';
-$lang['requests_summary_thead_taken'] = '拿取';
-$lang['requests_summary_thead_entitled'] = '可享有權利';
+$lang['requests_summary_thead_available'] = '未休時數';
+$lang['requests_summary_thead_taken'] = '已休時數';
+$lang['requests_summary_thead_entitled'] = '可享有休假時數';
 $lang['requests_summary_thead_description'] = '描述';
 $lang['requests_summary_flash_msg_error'] = '此員工無類別';
 $lang['requests_summary_flash_msg_forbidden'] = '你不是此員工管理者';
