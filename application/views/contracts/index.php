@@ -39,7 +39,7 @@
                 <a href="<?php echo base_url();?>contracts/<?php echo $contracts_item['id'] ?>/excludetypes" title="<?php echo lang('contract_index_tip_exclude_types');?>"><i class="icon-ban-circle"></i></a>
             </div>
         </td>
-        <td><?php echo $contracts_item['name']; ?></td>
+        <td align='center' valign='middle'><?php echo $contracts_item['name']; ?></td>
         <?php 
         $startentdate = $contracts_item['startentdate'];
         $endentdate = $contracts_item['endentdate'];
@@ -49,8 +49,8 @@
             $pieces = explode("/", $endentdate);
             $endentdate = $pieces[1] . '/' . $pieces[0];
         }?>
-        <td><?php echo $startentdate; ?></td>
-        <td><?php echo $endentdate; ?></td>
+        <td align='center' valign='middle'><?php echo $startentdate; ?></td>
+        <td align='center' valign='middle'><?php echo $endentdate; ?></td>
     </tr>
 <?php endforeach ?>
 	</tbody>

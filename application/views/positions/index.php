@@ -33,8 +33,8 @@
                 <a href="<?php echo base_url();?>positions/edit/<?php echo $position['id']; ?>" title="<?php echo lang('positions_index_thead_tip_edit');?>"><i class="icon-pencil"></i></a>
             </div>
         </td>
-        <td><?php echo $position['name']; ?></td>
-        <td><?php echo $position['description']; ?></td>
+        <td align='center' valign='middle'><?php echo $position['name']; ?></td>
+        <td align='center' valign='middle'><?php echo $position['description']; ?></td>
     </tr>
 <?php endforeach ?>
 	</tbody>
