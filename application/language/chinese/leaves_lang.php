@@ -27,7 +27,7 @@ $lang['leaves_filter_title'] = '狀態欄位過濾 (勾選顯示)';
 $lang['leaves_index_thead_tip_view'] = '預覽';
 $lang['leaves_index_thead_tip_edit'] = '編輯';
 $lang['leaves_index_thead_tip_delete'] = '刪除';
-$lang['leaves_index_thead_tip_history'] = 'show history';
+$lang['leaves_index_thead_tip_history'] = '歷史資訊';
 $lang['leaves_index_thead_id'] = '序號';
 $lang['leaves_index_thead_start_date'] = '開始日期';
 $lang['leaves_index_thead_end_date'] = '結束日期';
@@ -127,7 +127,7 @@ $lang['leaves_export_thead_duration'] = '申請時數';
 $lang['leaves_export_thead_type'] = '假別';
 $lang['leaves_export_thead_status'] = '狀態';
 
-$lang['leaves_button_send_reminder'] = 'Send a reminder';
+$lang['leaves_button_send_reminder'] = '提醒';
 $lang['leaves_reminder_flash_msg_success'] = 'The reminder email has been sent';
 
 $lang['leaves_comment_title'] = 'Comments';
@@ -138,3 +138,5 @@ $lang['leaves_comment_status_changed'] = 'The status of the leave have been chan
 
 #2017-11-06 by david
 $lang['leaves_agent'] = '職務代理人 (必選)';
+$lang['leaves_index_thead_tip_cancel'] = '取消休假';
+$lang['leaves_index_thead_tip_cancel2'] = '取消申請';

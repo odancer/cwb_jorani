@@ -252,6 +252,9 @@
 .fa-clock-o:before {
   content: "\f017";
 }
+.fa-eye:before {
+  content: "\f06e";
+}
 .fa-road:before {
   content: "\f018";
 }

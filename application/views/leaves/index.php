@@ -137,21 +137,21 @@
                 &nbsp;
                 <?php } ?>
                 <?php if ($showCancel == TRUE) { ?>
-                    <a href="<?php echo base_url();?>leaves/cancellation/<?php echo $leave['id']; ?>" title="<?php echo lang('leaves_index_thead_tip_cancel');?>"><i class="fa fa-undo" style="color:black;"></i></a>
+                    <a href="<?php echo base_url();?>leaves/cancellation/<?php echo $leave['id']; ?>" title="<?php echo lang('leaves_index_thead_tip_cancel');?>"><i class="fa fa-undo fa-2x" style="color:red;"></i></a>
                     &nbsp;
                 <?php } ?>
                 <?php if ($showCancelByUser == TRUE) { ?>
-                    <a href="<?php echo base_url();?>leaves/cancel/<?php echo $leave['id']; ?>" title="<?php echo lang('leaves_index_thead_tip_cancel');?>"><i class="fa fa-undo" style="color:black;"></i></a>
+                    <a href="<?php echo base_url();?>leaves/cancel/<?php echo $leave['id']; ?>" title="<?php echo lang('leaves_index_thead_tip_cancel2');?>"><i class="fa fa-undo fa-2x" style="color:red;"></i></a>
                     &nbsp;
                 <?php } ?>
                 <?php if ($showReminder == TRUE) { ?>
-                    <a href="<?php echo base_url();?>leaves/reminder/<?php echo $leave['id']; ?>" title="<?php echo lang('leaves_button_send_reminder');?>"><i class="fa fa-envelope" style="color:black;"></i></a>
+                    <a href="<?php echo base_url();?>leaves/reminder/<?php echo $leave['id']; ?>" title="<?php echo lang('leaves_button_send_reminder');?>"><i class="fa fa-envelope fa-2x" style="color:blue;"></i></a>
                     &nbsp;
                 <?php } ?> 
-                <a href="<?php echo base_url();?>leaves/leaves/<?php echo $leave['id']; ?>" title="<?php echo lang('leaves_index_thead_tip_view');?>"><i class="icon-eye-open"></i></a>
+                <a href="<?php echo base_url();?>leaves/leaves/<?php echo $leave['id']; ?>" title="<?php echo lang('leaves_index_thead_tip_view');?>"><i class="fa fa-eye fa-2x" style="color:black;"></i></a>
                 <?php if ($this->config->item('enable_history') === TRUE) { ?>
                 &nbsp;
-                <a href="#" class="show-history" data-id="<?php echo $leave['id'];?>" title="<?php echo lang('leaves_index_thead_tip_history');?>"><i class="icon-time"></i></a>
+                <a href="#" class="show-history" data-id="<?php echo $leave['id'];?>" title="<?php echo lang('leaves_index_thead_tip_history');?>"><i class="fa fa-clock-o fa-2x" style="color:black;"></i></a>
                 <?php } ?> 
             </div>
         </td>
