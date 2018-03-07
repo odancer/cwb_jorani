@@ -28,9 +28,8 @@ if ($showAll == FALSE) {
     $checked = "";
 }
 ?>
-    <div align="center"><?php echo lang('requests_filter_title');?></div>
-    <div class="span1">&nbsp;</div>
     <div class="span8">
+    <?php echo lang('requests_filter_title');?>
     <span class="label"><input type="checkbox" <?php echo $checked;?> id="chkPlanned" class="filterStatus" <?php echo $disable;?>> &nbsp;<?php echo lang('Planned');?></span> &nbsp;
     <span class="label label-success"><input type="checkbox" <?php echo $checked;?> id="chkAccepted" class="filterStatus" <?php echo $disable;?>> &nbsp;<?php echo lang('Accepted');?></span> &nbsp;
     <span class="label label-warning"><input type="checkbox" checked id="chkRequested" class="filterStatus"> &nbsp;<?php echo lang('Requested');?></span> &nbsp;

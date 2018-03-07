@@ -137,7 +137,7 @@ if (isset($_GET['source'])) {
     <div class="span12">
         <input type="hidden" name="position" id="position" value="<?php echo $users_item['position']; ?>" />
         <div class="control-group">
-            <label class="control-label" for="txtPosition"><?php echo lang('users_create_field_position');?></label>
+            <label class="control-label" for="txtPosition"><?php echo lang('users_edit_field_position');?></label>
             <div class="controls">
                 <div class="input-append">
                     <input type="text" id="txtPosition" name="txtPosition" value="<?php echo $position_label; ?>" required readonly />
