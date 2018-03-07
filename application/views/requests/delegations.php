@@ -26,8 +26,8 @@
   <tbody>
   <?php foreach ($delegations as $delegation) { ?>
     <tr data-id="<?php echo $delegation['id']; ?>">
-      <td><a href="#" onclick="delete_delegation(<?php echo $delegation['id'] ?>);" title="<?php echo lang('requests_delegations_thead_tip_delete');?>"><i class="icon-remove"></i></a></td>
-      <td><?php echo $delegation['delegate_name']; ?></td>
+      <td align='center' valign='middle'><a href="#" onclick="delete_delegation(<?php echo $delegation['id'] ?>);" title="<?php echo lang('requests_delegations_thead_tip_delete');?>"><i class="icon-remove"></i></a></td>
+      <td align='center' valign='middle'><?php echo $delegation['delegate_name']; ?></td>
     </tr>
   <?php } ?>
   </tbody>

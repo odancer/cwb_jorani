@@ -24,7 +24,7 @@ $lang['positions_index_popup_button_no'] = '否';
 
 $lang['positions_create_title'] = '建立一新職稱';
 $lang['positions_create_field_name'] = '職稱 (必填)';
-$lang['positions_create_field_description'] = '描述 (非必填)';
+$lang['positions_create_field_description'] = '描述 (可不填)';
 $lang['positions_create_button_create'] = '建立職稱';
 $lang['positions_create_button_cancel'] = '取消';
 $lang['positions_create_flash_msg'] = '職稱已被成功建立';
