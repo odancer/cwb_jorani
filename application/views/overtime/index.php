@@ -33,11 +33,13 @@
         <td data-order="<?php echo $requests_item['id'] ?>">
             <a href="<?php echo base_url();?>extra/overtime/<?php echo $requests_item['id']; ?>" title="<?php echo lang('overtime_index_thead_tip_view');?>"><?php echo $requests_item['id']; ?></a>
             &nbsp;
-            <a href="<?php echo base_url();?>extra/overtime/<?php echo $requests_item['id']; ?>" title="<?php echo lang('overtime_index_thead_tip_view');?>"><i class="icon-eye-open"></i></a>
+             <div class="pull-right">
+            <a href="<?php echo base_url();?>extra/overtime/<?php echo $requests_item['id']; ?>" title="<?php echo lang('overtime_index_thead_tip_view');?>"><i class="fa fa-eye fa-2x" style="color:black;"></i></a>
             &nbsp;
-            <a href="<?php echo base_url();?>overtime/accept/<?php echo $requests_item['id']; ?>" title="<?php echo lang('overtime_index_thead_tip_accept');?>"><i class="icon-ok"></i></a>
+            <a href="<?php echo base_url();?>overtime/accept/<?php echo $requests_item['id']; ?>" title="<?php echo lang('overtime_index_thead_tip_accept');?>"><i class="fa fa-check fa-2x" style="color:blue;"></i></a>
             &nbsp;
-            <a href="<?php echo base_url();?>overtime/reject/<?php echo $requests_item['id']; ?>" title="<?php echo lang('overtime_index_thead_tip_reject');?>"><i class="icon-remove"></i></a>
+            <a href="<?php echo base_url();?>overtime/reject/<?php echo $requests_item['id']; ?>" title="<?php echo lang('overtime_index_thead_tip_reject');?>"><i class="fa fa-times fa-2x" style="color:red;"></i></a>
+            </div>
         </td>
         <td align='center' valign='middle'><?php echo $requests_item['firstname'] . ' ' . $requests_item['lastname']; ?></td>
 <?php $date = new DateTime($requests_item['date']);

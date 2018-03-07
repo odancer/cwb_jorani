@@ -32,7 +32,7 @@
             <a href="<?php echo base_url();?>extra/extra/<?php echo $extra_item['id']; ?>" title="<?php echo lang('extra_index_thead_tip_view');?>"><?php echo $extra_item['id']; ?></a>
             &nbsp;
             <div class="pull-right">
-                <a href="<?php echo base_url();?>extra/extra/<?php echo $extra_item['id']; ?>" title="<?php echo lang('extra_index_thead_tip_view');?>"><i class="icon-eye-open"></i></a>
+                <a href="<?php echo base_url();?>extra/extra/<?php echo $extra_item['id']; ?>" title="<?php echo lang('extra_index_thead_tip_view');?>"><i class="fa fa-eye fa-2x" style="color:black;></i></a>
                 &nbsp;
                 <?php if ($extra_item['status'] == 1) { ?>
                 <a href="<?php echo base_url();?>extra/edit/<?php echo $extra_item['id']; ?>" title="<?php echo lang('extra_index_thead_tip_edit');?>"><i class="icon-pencil"></i></a>
@@ -41,6 +41,7 @@
                 <?php } ?>
             </div>
         </td>
+        <div class="pull-center">
 <?php $date = new DateTime($extra_item['date']);
 $tmpDate = $date->getTimestamp();?>
         <td align='center' valign='middle' data-order="<?php echo $tmpDate; ?>"><?php echo $date->format(lang('global_date_format'));?></td>
@@ -48,6 +49,7 @@ $tmpDate = $date->getTimestamp();?>
         <td align='center' valign='middle'><?php echo $extra_item['cause']; ?></td>
         <td align='center' valign='middle'><?php echo lang($extra_item['status_name']); ?></td>
     </tr>
+      </div>
 <?php endforeach ?>
 	</tbody>
 </table>
