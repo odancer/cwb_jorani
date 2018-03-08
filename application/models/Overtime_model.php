@@ -175,7 +175,7 @@ class Overtime_model extends CI_Model {
         if ($all == FALSE) {
             if($role_info == 32) {
                 error_log( print_r("overtime_333", TRUE) );
-                $this->db->where('organization', $grp_info);
+                //$this->db->where('organization', $grp_info);
                 if ((!in_array($grp_super2,$ids)) && ($user_id != $grp_super2)) {
                     error_log( print_r("overtime_444", TRUE) );
                     $this->db->where('status', 0);
@@ -218,7 +218,7 @@ class Overtime_model extends CI_Model {
             if($role_info != 32) $this->db->where('users.manager', $manager);
         }
         if($role_info == 32) {
-            $this->db->where('organization', $grp_info);
+            //$this->db->where('organization', $grp_info);
             if ((!in_array($grp_super2,$ids)) && ($manager != $grp_super2)) {
                     $this->db->where('status', 0);
                 }else {

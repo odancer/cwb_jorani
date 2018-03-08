@@ -30,7 +30,7 @@
                         <div class="pull-right">
                             
                             <?php if ($typesUsage[$typeId] == 0 && $defaultType != $typeId) { ?>
-                            <a href="#" class="exclude" data-id="<?php echo $typeId; ?>" title="<?php echo lang('contract_exclude_tip_exclude_type');?>"><i class="icon-remove"></i></a>
+                            <a href="#" class="exclude" data-id="<?php echo $typeId; ?>" title="<?php echo lang('contract_exclude_tip_exclude_type');?>"><i class="fa fa-times fa-2x" style="color:red;"></i></a>
                             <?php } else { ?>
                             <span class="badge badge-info"><?php echo $typesUsage[$typeId]; ?></span>
                             <?php       if ($defaultType == $typeId) { ?>
@@ -152,7 +152,7 @@ $(function () {
         var newRow = '<tr id="leave_row_' + TypeId + '">' +
                                 '<td>' +
                                     '<div class="pull-right">' +
-                                        '<a href="#" class="exclude" data-id="' + TypeId + '" title="Exclude this leave type"><i class="icon-remove"></i></a>' +
+                                        '<a href="#" class="exclude" data-id="' + TypeId + '" title="Exclude this leave type"><i class="fa fa-times fa-2x" style="color:red;"></i></a>' +
                                    '</div>' +
                                  '</td>' +
                                 '<td>' + TypeId + ' &mdash; <span id="leave_name_' + TypeId + '">' + leaveName + '</span></td>' +

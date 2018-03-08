@@ -26,7 +26,7 @@
   <tbody>
   <?php foreach ($delegations as $delegation) { ?>
     <tr data-id="<?php echo $delegation['id']; ?>">
-      <td align='center' valign='middle'><a href="#" onclick="delete_delegation(<?php echo $delegation['id'] ?>);" title="<?php echo lang('requests_delegations_thead_tip_delete');?>"><i class="icon-remove"></i></a></td>
+      <td align='center' valign='middle'><a href="#" onclick="delete_delegation(<?php echo $delegation['id'] ?>);" title="<?php echo lang('requests_delegations_thead_tip_delete');?>"><i class="fa fa-times fa-2x" style="color:red;"></i></a></td>
       <td align='center' valign='middle'><?php echo $delegation['delegate_name']; ?></td>
     </tr>
   <?php } ?>
@@ -107,7 +107,7 @@
                   }).done(function(id) {
                       if (id != 'null') {
                         htmlRow = '<tr data-id="' + id + '">' +
-                                  '<td><a href="#" onclick="delete_delegation(' + id + ');" title="<?php echo lang('requests_delegations_thead_tip_delete');?>"><i class="icon-remove"></i></a></td>' +
+                                  '<td><a href="#" onclick="delete_delegation(' + id + ');" title="<?php echo lang('requests_delegations_thead_tip_delete');?>"><i class="fa fa-times fa-2x" style="color:red;"></i></a></td>' +
                                   '<td>' + name + '</td>' +
                               '</tr>';
                           objRow=$(htmlRow);

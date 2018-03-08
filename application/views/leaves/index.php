@@ -129,11 +129,11 @@
                 }
                 ?>
                 <?php if ($showEdit == TRUE) { ?>
-                <a href="<?php echo base_url();?>leaves/edit/<?php echo $leave['id']; ?>" title="<?php echo lang('leaves_index_thead_tip_edit');?>"><i class="icon-pencil"></i></a>
+                <a href="<?php echo base_url();?>leaves/edit/<?php echo $leave['id']; ?>" title="<?php echo lang('leaves_index_thead_tip_edit');?>"><i class="fa fa-pencil fa-2x" style="color:blue;"></i></a>
                 &nbsp;
                 <?php } ?>
                 <?php if ($showDelete == TRUE) { ?>
-                <a href="#" class="confirm-delete" data-id="<?php echo $leave['id'];?>" title="<?php echo lang('leaves_index_thead_tip_delete');?>"><i class="icon-trash"></i></a>
+                <a href="#" class="confirm-delete" data-id="<?php echo $leave['id'];?>" title="<?php echo lang('leaves_index_thead_tip_delete');?>"><i class="fa fa-trash fa-2x" style="color:red;" ></i></a>
                 &nbsp;
                 <?php } ?>
                 <?php if ($showCancel == TRUE) { ?>

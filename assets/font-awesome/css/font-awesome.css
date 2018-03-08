@@ -286,6 +286,9 @@
 .fa-lock:before {
   content: "\f023";
 }
+.fa-lock: {
+  content: "\f023";
+}
 .fa-flag:before {
   content: "\f024";
 }
@@ -373,6 +376,9 @@
 .fa-pencil:before {
   content: "\f040";
 }
+.fa-pencil{
+  content: "\f040";
+}
 .fa-map-marker:before {
   content: "\f041";
 }
@@ -382,6 +388,7 @@
 .fa-tint:before {
   content: "\f043";
 }
+.fa-edit,
 .fa-edit:before,
 .fa-pencil-square-o:before {
   content: "\f044";
@@ -520,6 +527,9 @@
 .fa-calendar:before {
   content: "\f073";
 }
+.fa-calendar {
+  content: "\f073";
+}
 .fa-random:before {
   content: "\f074";
 }
@@ -600,6 +610,7 @@
 .fa-external-link:before {
   content: "\f08e";
 }
+.fa-sign-in,
 .fa-sign-in:before {
   content: "\f090";
 }
@@ -1013,6 +1024,7 @@
 .fa-question:before {
   content: "\f128";
 }
+.fa-info,
 .fa-info:before {
   content: "\f129";
 }
@@ -1634,6 +1646,9 @@
   content: "\f1f7";
 }
 .fa-trash:before {
+  content: "\f1f8";
+}
+.fa-trash {
   content: "\f1f8";
 }
 .fa-copyright:before {

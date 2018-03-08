@@ -33,16 +33,16 @@
             <?php echo $users_item['id'] ?>&nbsp;
             <div class="pull-right">
                 <?php if ($users_item['active']) { ?>
-                <a href="<?php echo base_url();?>users/disable/<?php echo $users_item['id'] ?>" title="<?php echo lang('users_index_thead_tip_active');?>"><i class="icon-ok"></i></a>
+                <a href="<?php echo base_url();?>users/disable/<?php echo $users_item['id'] ?>" title="<?php echo lang('users_index_thead_tip_active');?>"><i class="fa fa-check fa-2x" style="color:blue;"></i></a>
                 <?php } else { ?>
-                <a href="<?php echo base_url();?>users/enable/<?php echo $users_item['id'] ?>" title="<?php echo lang('users_index_thead_tip_inactive');?>"><i class="icon-remove"></i></a>
+                <a href="<?php echo base_url();?>users/enable/<?php echo $users_item['id'] ?>" title="<?php echo lang('users_index_thead_tip_inactive');?>"><i class="fa fa-undo fa-2x" style="color:red;"></i></a>
                 <?php } ?>
                 &nbsp;
-                <a href="<?php echo base_url();?>users/edit/<?php echo $users_item['id'] ?>" title="<?php echo lang('users_index_thead_tip_edit');?>"><i class="icon-pencil"></i></a>
+                <a href="<?php echo base_url();?>users/edit/<?php echo $users_item['id'] ?>" title="<?php echo lang('users_index_thead_tip_edit');?>"><i class="fa fa-pencil fa-2x" style="color:blue;"></i></a>
                 &nbsp;
-                <a href="#" class="confirm-delete" data-id="<?php echo $users_item['id'];?>" title="<?php echo lang('users_index_thead_tip_delete');?>"><i class="icon-trash"></i></a>
+                <a href="#" class="confirm-delete" data-id="<?php echo $users_item['id'];?>" title="<?php echo lang('users_index_thead_tip_delete');?>"><i class="fa fa-trash fa-2x" style="color:red;"></i></a>
                 &nbsp;
-                <a href="<?php echo base_url();?>users/reset/<?php echo $users_item['id'] ?>" title="<?php echo lang('users_index_thead_tip_reset');?>" data-target="#frmResetPwd" data-toggle="modal"><i class="icon-lock"></i></a>
+                <a href="<?php echo base_url();?>users/reset/<?php echo $users_item['id'] ?>" title="<?php echo lang('users_index_thead_tip_reset');?>" data-target="#frmResetPwd" data-toggle="modal"><i class="fa fa-lock fa-2x" style="color:red;"></i></a>
             </div>
         </td>
         <td align='center' valign='middle'><?php echo $users_item['firstname']; ?></td>

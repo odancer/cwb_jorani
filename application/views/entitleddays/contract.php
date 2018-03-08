@@ -29,9 +29,9 @@
   <?php foreach ($entitleddays as $days) { ?>
     <tr data-id="<?php echo $days['id']; ?>">
         <td>
-          <a href="#" onclick="delete_entitleddays(<?php echo $days['id'] ?>);" title="<?php echo lang('entitleddays_contract_index_thead_tip_delete');?>"><i class="icon-remove"></i></a>
-          &nbsp;<a href="#" onclick="copy_entitleddays(<?php echo $days['id'] ?>);" title="<?php echo lang('entitleddays_contract_index_thead_tip_copy');?>"><i class="fa fa-copy" style="color:black;"></i></a>
-          &nbsp;<a href="#" onclick="show_edit_entitleddays(<?php echo $days['id'] ?>);" title="<?php echo lang('entitleddays_contract_index_thead_tip_edit');?>"><i class="icon-pencil"></i></a>
+          <a href="#" onclick="delete_entitleddays(<?php echo $days['id'] ?>);" title="<?php echo lang('entitleddays_contract_index_thead_tip_delete');?>"><i class="fa fa-times fa-2x" style="color:red;"></i></a>
+          &nbsp;<a href="#" onclick="copy_entitleddays(<?php echo $days['id'] ?>);" title="<?php echo lang('entitleddays_contract_index_thead_tip_copy');?>"><i class="fa fa-copy fa-2x" style="color:black;"></i></a>
+          &nbsp;<a href="#" onclick="show_edit_entitleddays(<?php echo $days['id'] ?>);" title="<?php echo lang('entitleddays_contract_index_thead_tip_edit');?>"><i class="fa fa-pencil fa-2x" style="color:blue;"></i></a>
         </td>
 <?php $startDate = new DateTime($days['startdate']);
 $endDate = new DateTime($days['enddate']);?>
@@ -330,9 +330,9 @@ if ($language_code != 'en') { ?>
           }).done(function( msg ) {
               id = parseInt(msg);
               htmlRow = '<tr data-id="' + id + '">' +
-                        '<td><a href="#" onclick="delete_entitleddays(' + id + ');" title="<?php echo lang('entitleddays_contract_index_thead_tip_delete');?>"><i class="icon-remove"></i></a>' +
-                        '&nbsp;&nbsp;<a href="#" onclick="copy_entitleddays(' + id + ');" title="<?php echo lang('entitleddays_contract_index_thead_tip_copy');?>"><i class="fa fa-copy" style="color:black;"></i></a>' +
-                        '&nbsp;&nbsp;<a href="#" onclick="show_edit_entitleddays(' + id + ');" title="<?php echo lang('entitleddays_contract_index_thead_tip_edit');?>"><i class="icon-pencil"></i></a></td>' +
+                        '<td><a href="#" onclick="delete_entitleddays(' + id + ');" title="<?php echo lang('entitleddays_contract_index_thead_tip_delete');?>"><i class="fa fa-times fa-2x" style="color:red;"></i></a>' +
+                        '&nbsp;&nbsp;<a href="#" onclick="copy_entitleddays(' + id + ');" title="<?php echo lang('entitleddays_contract_index_thead_tip_copy');?>"><i class="fa fa-copy fa-2x" style="color:black;"></i></a>' +
+                        '&nbsp;&nbsp;<a href="#" onclick="show_edit_entitleddays(' + id + ');" title="<?php echo lang('entitleddays_contract_index_thead_tip_edit');?>"><i class="fa fa-pencil fa-2x" style="color:blue;"></i></a></td>' +
                         '<td data-order="' + moment.utc(startdate, "YYYY-MM-DD").unix() + '">' + viz_startdate + '</td>' +
                         '<td data-order="' + moment.utc(enddate, "YYYY-MM-DD").unix() + '">' + viz_enddate + '</td>' +
                         '<td data-order="' + days.toFixed(2) + '"><span id="days' + id + '" class="credit">' + days.toFixed(2) + '</span> &nbsp; ' +

@@ -263,15 +263,15 @@
 <div id="context-menu">
   <ul class="dropdown-menu" role="menu">
         <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>hr/leaves/create/{id}"><i class="icon-plus"></i>&nbsp;<?php echo lang('hr_employees_thead_link_create_leave');?></a></li>
-        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>users/edit/{id}?source=hr%2Femployees"><i class="icon-pencil"></i>&nbsp;<?php echo lang('hr_employees_thead_tip_edit');?></a></li>
-        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>entitleddays/user/{id}"><i class="icon-edit"></i>&nbsp;<?php echo lang('hr_employees_thead_tip_entitlment');?></a></li>
+        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>users/edit/{id}?source=hr%2Femployees"><i class="fa fa-pencil fa-2x" style="color:blue;"></i>&nbsp;<?php echo lang('hr_employees_thead_tip_edit');?></a></li>
+        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>entitleddays/user/{id}"><i class="fa fa-edit fa-2x" style="color:blue;"></i>&nbsp;<?php echo lang('hr_employees_thead_tip_entitlment');?></a></li>
         <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>hr/leaves/{id}"><i class="icon-list-alt"></i>&nbsp;<?php echo lang('hr_employees_thead_link_leaves');?></a></li>
         <?php if ($this->config->item('disable_overtime') == FALSE) { ?>
         <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>hr/overtime/{id}"><i class="icon-list-alt"></i>&nbsp;<?php echo lang('hr_employees_thead_link_extra');?></a></li>
         <?php } ?>
-        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>hr/counters/employees/{id}"><i class="icon-info-sign"></i>&nbsp;<?php echo lang('hr_employees_thead_link_balance');?></a></li>
+        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>hr/counters/employees/{id}"><i class="fa fa-info fa-2x" style="color:black;"></i>&nbsp;<?php echo lang('hr_employees_thead_link_balance');?></a></li>
         <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>hr/presence/employees/{id}"><i class="fa fa-pie-chart"></i>&nbsp;<?php echo lang('hr_employees_thead_link_presence');?></a></li>
-        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>calendar/year/{id}"><i class="icon-calendar"></i>&nbsp;<?php echo lang('hr_employees_thead_link_calendar');?></a></li>
+        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>calendar/year/{id}"><i class="fa fa-calendar fa-2x" style="color:black;"></i>&nbsp;<?php echo lang('hr_employees_thead_link_calendar');?></a></li>
         <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>requests/delegations/{id}"><i class="icon-share-alt"></i>&nbsp;<?php echo lang('hr_employees_thead_link_delegation');?></a></li>
   </ul>
 </div>
@@ -279,15 +279,15 @@
 <div class="modal hide fade" id="frmContextMenu">
     <div class="modal-body">
         <a class="context-mobile" href="<?php echo base_url();?>hr/leaves/create/{id}"><i class="icon-plus"></i>&nbsp;<?php echo lang('hr_employees_thead_link_create_leave');?></a><br />
-        <a class="context-mobile" href="<?php echo base_url();?>users/edit/{id}?source=hr%2Femployees"><i class="icon-pencil"></i>&nbsp;<?php echo lang('hr_employees_thead_tip_edit');?></a><br />
-        <a class="context-mobile" href="<?php echo base_url();?>entitleddays/user/{id}"><i class="icon-edit"></i>&nbsp;<?php echo lang('hr_employees_thead_tip_entitlment');?></a><br />
+        <a class="context-mobile" href="<?php echo base_url();?>users/edit/{id}?source=hr%2Femployees"><i class="fa fa-pencil fa-2x" style="color:blue;"></i>&nbsp;<?php echo lang('hr_employees_thead_tip_edit');?></a><br />
+        <a class="context-mobile" href="<?php echo base_url();?>entitleddays/user/{id}"><i class="fa fa-edit fa-2x" style="color:blue;"></i>&nbsp;<?php echo lang('hr_employees_thead_tip_entitlment');?></a><br />
         <a class="context-mobile" href="<?php echo base_url();?>hr/leaves/{id}"><i class="icon-list-alt"></i>&nbsp;<?php echo lang('hr_employees_thead_link_leaves');?></a><br />
         <?php if ($this->config->item('disable_overtime') == FALSE) { ?>
         <a class="context-mobile" href="<?php echo base_url();?>hr/overtime/{id}"><i class="icon-list-alt"></i>&nbsp;<?php echo lang('hr_employees_thead_link_extra');?></a><br />
         <?php } ?>
-        <a class="context-mobile" href="<?php echo base_url();?>hr/counters/employees/{id}"><i class="icon-info-sign"></i>&nbsp;<?php echo lang('hr_employees_thead_link_balance');?></a><br />
-        <a class="context-mobile" href="<?php echo base_url();?>hr/presence/employees/{id}"><i class="fa fa-pie-chart" style="color:black;"></i>&nbsp;<?php echo lang('hr_employees_thead_link_presence');?></a><br />
-        <a class="context-mobile" href="<?php echo base_url();?>calendar/year/{id}"><i class="icon-calendar"></i>&nbsp;<?php echo lang('hr_employees_thead_link_calendar');?></a><br />
+        <a class="context-mobile" href="<?php echo base_url();?>hr/counters/employees/{id}"><i class="fa fa-info fa-2x" style="color:black;"></i>&nbsp;<?php echo lang('hr_employees_thead_link_balance');?></a><br />
+        <a class="context-mobile" href="<?php echo base_url();?>hr/presence/employees/{id}"><i class="fa fa-pie-chart fa-2x" style="color:black;"></i>&nbsp;<?php echo lang('hr_employees_thead_link_presence');?></a><br />
+        <a class="context-mobile" href="<?php echo base_url();?>calendar/year/{id}"><i class="fa fa-calendar fa-2x" style="color:black;"></i>&nbsp;<?php echo lang('hr_employees_thead_link_calendar');?></a><br />
         <a class="context-mobile" href="<?php echo base_url();?>requests/delegations/{id}"><i class="icon-share-alt"></i>&nbsp;<?php echo lang('hr_employees_thead_link_delegation');?></a>
   </div>
 </div>

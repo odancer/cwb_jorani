@@ -29,8 +29,8 @@
         <td data-order="<?php echo $position['id']; ?>">
             <?php echo $position['id'];?>
             <div class="pull-right">
-                <a href="#" class="confirm-delete" data-id="<?php echo $position['id'];?>" title="<?php echo lang('positions_index_thead_tip_delete');?>"><i class="icon-trash"></i></a>&nbsp; 
-                <a href="<?php echo base_url();?>positions/edit/<?php echo $position['id']; ?>" title="<?php echo lang('positions_index_thead_tip_edit');?>"><i class="icon-pencil"></i></a>
+                <a href="#" class="confirm-delete" data-id="<?php echo $position['id'];?>" title="<?php echo lang('positions_index_thead_tip_delete');?>"><i class="fa fa-trash fa-2x" style="color:red;"></i></a>&nbsp; 
+                <a href="<?php echo base_url();?>positions/edit/<?php echo $position['id']; ?>" title="<?php echo lang('positions_index_thead_tip_edit');?>"><i class="fa fa-pencil fa-2x" style="color:blue;"></i></a>
             </div>
         </td>
         <td align='center' valign='middle'><?php echo $position['name']; ?></td>

@@ -37,7 +37,7 @@
             <?php foreach ($clients as $client): ?>
             <tr data-id="<?php echo $client['client_id']; ?>">
                 <td>
-                    <a href="#" class="confirm-delete" data-id="<?php echo $client['client_id'];?>" title="<?php echo lang('admin_oauthclients_thead_tip_delete');?>"><i class="icon-trash"></i></a>
+                    <a href="#" class="confirm-delete" data-id="<?php echo $client['client_id'];?>" title="<?php echo lang('admin_oauthclients_thead_tip_delete');?>"><i class="fa fa-trash fa-2x" style="color:red;"></i></a>
                     &nbsp;<?php echo $client['client_id']; ?>
                 </td>
                 <td><?php echo $client['client_secret']; ?></td>

@@ -28,15 +28,15 @@
             <?php echo $contracts_item['id'] ?>
             &nbsp;
             <div class="pull-right">
-                <a href="#" class="confirm-delete" data-id="<?php echo $contracts_item['id'];?>" title="<?php echo lang('contract_index_tip_delete');?>"><i class="icon-trash"></i></a>
+                <a href="#" class="confirm-delete" data-id="<?php echo $contracts_item['id'];?>" title="<?php echo lang('contract_index_tip_delete');?>"><i class="fa fa-trash fa-2x" style="color:red;"></i></a>
                 &nbsp;
-                <a href="<?php echo base_url();?>contracts/edit/<?php echo $contracts_item['id'] ?>" title="<?php echo lang('contract_index_tip_edit');?>"><i class="icon-pencil"></i></a>
+                <a href="<?php echo base_url();?>contracts/edit/<?php echo $contracts_item['id'] ?>" title="<?php echo lang('contract_index_tip_edit');?>"><i class="fa fa-pencil fa-2x" style="color:blue;"></i></a>
                 &nbsp;
-                <a href="<?php echo base_url();?>entitleddays/contract/<?php echo $contracts_item['id'] ?>" title="<?php echo lang('contract_index_tip_entitled');?>"><i class="icon-edit"></i></a>
+                <a href="<?php echo base_url();?>entitleddays/contract/<?php echo $contracts_item['id'] ?>" title="<?php echo lang('contract_index_tip_entitled');?>"><i class="fa fa-edit fa-2x" style="color:blue;"></i></a>
                 &nbsp;
-                <a href="<?php echo base_url();?>contracts/<?php echo $contracts_item['id'] ?>/calendar" title="<?php echo lang('contract_index_tip_dayoffs');?>"><i class="icon-calendar"></i></a>
+                <a href="<?php echo base_url();?>contracts/<?php echo $contracts_item['id'] ?>/calendar" title="<?php echo lang('contract_index_tip_dayoffs');?>"><i class="fa fa-calendar fa-2x" style="color:black;"></i></a>
                 &nbsp;
-                <a href="<?php echo base_url();?>contracts/<?php echo $contracts_item['id'] ?>/excludetypes" title="<?php echo lang('contract_index_tip_exclude_types');?>"><i class="icon-ban-circle"></i></a>
+                <a href="<?php echo base_url();?>contracts/<?php echo $contracts_item['id'] ?>/excludetypes" title="<?php echo lang('contract_index_tip_exclude_types');?>"><i class="fa fa-ban fa-2x" style="color:black;"></i></a>
             </div>
         </td>
         <td align='center' valign='middle'><?php echo $contracts_item['name']; ?></td>

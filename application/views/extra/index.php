@@ -32,12 +32,13 @@
             <a href="<?php echo base_url();?>extra/extra/<?php echo $extra_item['id']; ?>" title="<?php echo lang('extra_index_thead_tip_view');?>"><?php echo $extra_item['id']; ?></a>
             &nbsp;
             <div class="pull-right">
-                <a href="<?php echo base_url();?>extra/extra/<?php echo $extra_item['id']; ?>" title="<?php echo lang('extra_index_thead_tip_view');?>"><i class="fa fa-eye fa-2x" style="color:black;></i></a>
                 &nbsp;
+                <a href="<?php echo base_url();?>extra/extra/<?php echo $extra_item['id']; ?>" title="<?php echo lang('extra_index_thead_tip_view');?>"><i class="fa fa-eye fa-2x" style="color:black;"></i></a>
                 <?php if ($extra_item['status'] == 1) { ?>
-                <a href="<?php echo base_url();?>extra/edit/<?php echo $extra_item['id']; ?>" title="<?php echo lang('extra_index_thead_tip_edit');?>"><i class="icon-pencil"></i></a>
                 &nbsp;
-                <a href="#" class="confirm-delete" data-id="<?php echo $extra_item['id'];?>" title="<?php echo lang('extra_index_thead_tip_delete');?>"><i class="icon-trash"></i></a>
+                <a href="<?php echo base_url();?>extra/edit/<?php echo $extra_item['id']; ?>" title="<?php echo lang('extra_index_thead_tip_edit');?>"><i class="fa fa-pencil fa-2x" style="color:blue;" ></i></a>
+                &nbsp;
+                <a href="#" class="confirm-delete" data-id="<?php echo $extra_item['id'];?>" title="<?php echo lang('extra_index_thead_tip_delete');?>"><i class="fa fa-trash fa-2x" style="color:red;"></i></a>
                 <?php } ?>
             </div>
         </td>

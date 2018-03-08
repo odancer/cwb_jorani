@@ -150,10 +150,10 @@ if ($configFileExists) {
                   </thead>
                   <tbody id="tblServer">
                       <?php if ($env != '') {?>
-                      <tr><td><i class="icon-info-sign"></i>&nbsp;Environment</td><td><?php echo $env; ?></td></tr>
+                      <tr><td><i class="fa fa-info fa-2x" style="color:black;"></i>&nbsp;Environment</td><td><?php echo $env; ?></td></tr>
                       <?php } ?>
                           
-                      <tr><td><i class="icon-info-sign"></i>&nbsp;Server software</td><td><?php echo $server_software; ?></td></tr>
+                      <tr><td><i class="fa fa-info fa-2x" style="color:black;"></i>&nbsp;Server software</td><td><?php echo $server_software; ?></td></tr>
 
                       <tr><td><?php if (strtolower($allow_overwrite) == "on") {?><i class="icon-ok-sign"></i><?php } else { ?><i class="icon-remove-sign"></i><?php } ?>
                       &nbsp;Allow overwrite (.htaccess files)</td><td><?php echo $allow_overwrite; ?> (used for cool URLs) Ignore this message if you are running something else than Apache.</td></tr>
@@ -171,9 +171,9 @@ if ($configFileExists) {
                       <?php } ?><td>Ignore this message if you are running an exotic PHP runtime</td></tr>
                       
                       <?php if (defined('HHVM_VERSION')) {?>
-                       <tr><td><i class="icon-info-sign"></i>&nbsp;HHVM</td><td><?php echo HHVM_VERSION; ?></td></tr>
+                       <tr><td><i class="fa fa-info fa-2x" style="color:black;"></i>&nbsp;HHVM</td><td><?php echo HHVM_VERSION; ?></td></tr>
                        <?php } else { ?>
-                       <tr><td><i class="icon-info-sign"></i>&nbsp;PHP</td><td><?php echo PHP_VERSION; ?></td></tr>
+                       <tr><td><i class="fa fa-info fa-2x" style="color:black;"></i>&nbsp;PHP</td><td><?php echo PHP_VERSION; ?></td></tr>
                        <?php } ?>
                        
                       <?php if ($tmz != 'UTC') {?>
@@ -323,7 +323,7 @@ if ($configFileExists) {
                   <tbody id="tblSchema">                      
 <?php if (!$dbConnError && !$dbQueryError) {
 	foreach ($rowsSchema as $row) {  ?>
-                <tr><td><i class="icon-info-sign"></i>&nbsp;<?php echo $row['TABLE_NAME']; ?></td><td><?php echo $row['signature']; ?></td></tr>
+                <tr><td><i class="fa fa-info fa-2x" style="color:black;"></i>&nbsp;<?php echo $row['TABLE_NAME']; ?></td><td><?php echo $row['signature']; ?></td></tr>
 <?php }
         } else { ?>
                 <tr><td colspan="2"><i>Impossible to query database</i></td></tr>
