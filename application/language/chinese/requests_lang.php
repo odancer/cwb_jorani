@@ -88,3 +88,20 @@ $lang['requests_balance_date_field'] = '報告建立日期';
 $lang['requests_comment_reject_request_title'] = 'Comment';
 $lang['requests_comment_reject_request_button_cancel'] = 'Cancel';
 $lang['requests_comment_reject_request_button_reject'] = 'Reject';
+
+
+$lang['requests_view_title'] = '預覽休假申請';
+$lang['requests_view_html_title'] = '預覽一休假申請';
+$lang['requests_view_field_start'] = '開始日期';
+$lang['requests_view_field_end'] = '結束日期';
+$lang['requests_view_field_type'] = '假別';
+$lang['requests_view_field_duration'] = '申請時數';
+$lang['requests_view_field_cause'] = '理由';
+$lang['requests_view_field_status'] = '狀態';
+$lang['requests_view_button_edit'] = '編輯';
+$lang['requests_view_button_back_list'] = '返回列表';
+$lang['requests_comment_title'] = 'Comments';
+$lang['requests_comment_new_comment'] = 'New comment';
+$lang['requests_comment_send_comment'] = 'Send comment';
+$lang['requests_comment_author_saying'] = ' says';
+$lang['requests_comment_status_changed'] = 'The status of the leave have been changed to ';

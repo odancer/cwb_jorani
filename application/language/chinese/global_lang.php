@@ -33,6 +33,7 @@ $lang['Planned'] = '草稿';
 $lang['Accepted'] = '接受';
 $lang['Rejected'] = '拒絕';
 $lang['Cancellation'] = '取消休假成功';
+$lang['Cancellation2'] = '取消休假';
 $lang['Cancellation_Agent'] = '取消休假_代理人審核';
 $lang['Cancellation_Manager'] = '取消休假_主管審核';
 $lang['Cancellation_Boss'] = '取消休假_主任審核';

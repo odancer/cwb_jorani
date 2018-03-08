@@ -110,6 +110,8 @@ if ($showAll == FALSE) {
                 <a href="#" class="lnkAccept" data-id="<?php echo $request['leave_id']; ?>" title="<?php echo lang('requests_index_thead_tip_accept');?>"><i class="fa fa-check fa-2x" style="color:blue;"></i></a>
                 &nbsp;
                 <a href="#" class="lnkReject" data-id="<?php echo $request['leave_id']; ?>" title="<?php echo lang('requests_index_thead_tip_reject');?>"><i class="fa fa-times fa-2x" style="color:red;"></i></a>
+                &nbsp;
+                <a href="<?php echo base_url();?>requests/requests/<?php echo $request['leave_id']; ?>" title="<?php echo lang('leaves_index_thead_tip_view');?>"><i class="fa fa-eye fa-2x" style="color:black;"></i></a>
                 <?php } ?>
                 <?php if ($this->config->item('enable_history') === TRUE) { ?>
                 &nbsp;

@@ -745,4 +745,67 @@ class Requests extends CI_Controller {
         sendMailByWrapper($this, $subject, $message, $to, $cc);
     }
 
+        public function view($source, $id) {
+        $this->auth->checkIfOperationIsAllowed('view_requests');
+        $this->load->model('users_model');
+        $this->load->model('status_model');
+        $this->load->helper('form');
+        $data = getUserContext($this);
+        $data['leave'] = $this->leaves_model->getLeaveWithComments($id);
+        if (empty($data['leave'])) {
+            redirect('notfound');
+        }
+        //If the user is not its not HR, not manager and not the creator of the leave
+        //the employee can't see it, redirect to LR list
+        if ($data['leave']['employee'] != $this->user_id) {
+            if ((!$this->is_hr)) {
+                $this->load->model('users_model');
+                $employee = $this->users_model->getUsers($data['leave']['employee']);
+               /** if ($employee['manager'] != $this->user_id) {
+                    $this->load->model('delegations_model');
+                    if (!$this->delegations_model->isDelegateOfManager($this->user_id, $employee['manager'])) {
+                        log_message('error', 'User #' . $this->user_id . ' illegally tried to view leave #' . $id);
+                        redirect('leaves');
+                    }
+                }**/
+            } //Admin
+        } //Current employee
+        $data['source'] = $source;
+        //overwrite source (for taking into account the tabular calendar)
+        if ($this->input->get('source') != NULL) {
+            $data['source'] = urldecode($this->input->get('source'));
+        }
+        
+        $data['title'] = lang('leaves_view_html_title');
+        if ($source == 'requests') {
+            if (empty($employee)) {
+                $this->load->model('users_model');
+                $data['name'] = $this->users_model->getName($data['leave']['employee']);
+            } else {
+                $data['name'] = $employee['firstname'] . ' ' . $employee['lastname'];
+            }
+        } else {
+            $data['name'] = '';
+        }
+        if (isset($data["leave"]["comments"])){
+          $last_comment = new stdClass();;
+          foreach ($data["leave"]["comments"]->comments as $comments_item) {
+            if($comments_item->type == "comment"){
+              $comments_item->author = $this->users_model->getName($comments_item->author);
+              $comments_item->in = "in";
+              $last_comment->in="";
+              $last_comment=$comments_item;
+            } else if($comments_item->type == "change"){
+              $comments_item->status = $this->status_model->getName($comments_item->status_number);
+            }
+          }
+        }
+        $this->load->view('templates/header', $data);
+        $this->load->view('menu/index', $data);
+        $this->load->view('requests/view', $data);
+        $this->load->view('templates/footer');
+    }
+
+
+
 }

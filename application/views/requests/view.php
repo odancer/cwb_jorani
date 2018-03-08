@@ -7,7 +7,7 @@
  * @since         0.1.0
  */
 ?>
-<h2><?php echo lang('leaves_view_title');?><?php echo $leave['id']; if ($name != "") {?>&nbsp;<span class="muted">(<?php echo $name; ?>)</span><?php } ?></h2>
+<h2><?php echo lang('requests_view_title');?><?php echo $leave['id']; if ($name != "") {?>&nbsp;<span class="muted">(<?php echo $name; ?>)</span><?php } ?></h2>
 
 <div class="row">
   <div class="span6">
@@ -15,23 +15,23 @@
 <div class="row-fluid">
     <div class="span12">
 
-    <label for="startdate"><?php echo lang('leaves_view_field_start');?></label>
+    <label for="startdate"><?php echo lang('requests_view_field_start');?></label>
     <input type="text" name="startdate" value="<?php $date = new DateTime($leave['startdate']); echo $date->format(lang('global_date_format'));?>" readonly />
     <input type="text" name="starttime" value="<?php echo $leave['starttime'];?>" readonly/>
 
-    <label for="enddate"><?php echo lang('leaves_view_field_end');?></label>
+    <label for="enddate"><?php echo lang('requests_view_field_end');?></label>
     <input type="text" name="enddate"  value="<?php $date = new DateTime($leave['enddate']); echo $date->format(lang('global_date_format'));?>" readonly />
     <input type="text" name="endtime" value="<?php echo $leave['endtime'];?>" readonly/>
 
-    <label for="duration"><?php echo lang('leaves_view_field_duration');?></label>
+    <label for="duration"><?php echo lang('requests_view_field_duration');?></label>
     <input type="text" name="duration"  value="<?php echo $leave['duration']; ?>" readonly />
 
-    <label for="type"><?php echo lang('leaves_view_field_type');?></label>
+    <label for="type"><?php echo lang('apache_request_headers()_view_field_type');?></label>
     <select name="type" readonly>
         <option selected><?php echo $leave['type_name']; ?></option>
     </select><br />
 
-    <label for="cause"><?php echo lang('leaves_view_field_cause');?></label>
+    <label for="cause"><?php echo lang('requests_view_field_cause');?></label>
     <textarea name="cause" readonly><?php echo $leave['cause']; ?></textarea>
 
 <?php $style= "dropdown-rejected";
@@ -43,34 +43,17 @@ switch ($leave['status']) {
     case LMS_ACCEPTED: $style= "dropdown-accepted"; break;
     default: $style= "dropdown-rejected"; break;
 } ?>
-    <label for="status"><?php echo lang('leaves_view_field_status');?></label>
+    <label for="status"><?php echo lang('requests_view_field_status');?></label>
     <select name="status" class="<?php echo $style; ?>" readonly>
         <option selected><?php echo lang($leave['status_name']); ?></option>
     </select><br />
-    <?php if($leave['status'] == LMS_PLANNED){ ?>
-      <a href="<?php echo base_url();?>leaves/request/<?php echo $leave['id'] ?>/" class="btn btn-primary "><i class="fa fa-check"></i>&nbsp;<?php echo lang('Requested_Agent');?></a>
-      <br/><br/>
-    <?php } ?>
-    <?php if ($leave['status'] == LMS_ACCEPTED) { ?>
-      <a href="<?php echo base_url();?>leaves/cancellation/<?php echo $leave['id'] ?>" class="btn btn-primary"><i class="fa fa-undo" style="color:red;"></i>&nbsp;<?php echo lang('Cancellation2');?></a>
-      <br/><br/>
-    <?php } ?>
-    <?php if ($leave['status'] == LMS_REQUESTED) { ?>
-      <a href="<?php echo base_url();?>leaves/reminder/<?php echo $leave['id']; ?>" title="<?php echo lang('leaves_button_send_reminder');?>" class="btn btn-primary"><i class="fa fa-envelope"></i>&nbsp;<?php echo lang('leaves_button_send_reminder');?></a>
-      <br/><br/>
-    <?php } ?>
-    <?php if (($leave['status'] == LMS_PLANNED) || ($is_hr)) { ?>
-    <a href="<?php echo base_url();?>leaves/edit/<?php echo $leave['id'] ?>" class="btn btn-primary"><i class="icon-pencil icon-white"></i>&nbsp;<?php echo lang('leaves_view_button_edit');?></a>
-    &nbsp;
-    <?php } ?>
-    <a href="<?php echo base_url() . $source; ?>" class="btn btn-primary"><i class="icon-arrow-left icon-white"></i>&nbsp;<?php echo lang('leaves_view_button_back_list');?></a>
-
+       <a href="<?php echo base_url() . $source; ?>" class="btn btn-primary"><i class="icon-arrow-left icon-white"></i>&nbsp;<?php echo lang('requests_view_button_back_list');?></a>
     </div>
 </div>
 </div>
 <div class="span6">
 
-  <h4><?php echo lang('leaves_comment_title');?></h4>
+  <h4><?php echo lang('requests_comment_title');?></h4>
   <?php
   if(isset($leave["comments"])){
 
@@ -124,9 +107,9 @@ switch ($leave['status']) {
    }
    ?>
    <form method="post"
-   <label for="comment"><?php echo lang('leaves_comment_new_comment');?></label>
+   <label for="comment"><?php echo lang('requests_comment_new_comment');?></label>
    <textarea name="comment" class="form-control" rows="5" style="min-width: 100%"></textarea>
-   <button type="submit" class="btn btn-primary"><i class="icon-comment icon-white"></i>&nbsp;<?php echo lang('leaves_comment_send_comment');?></button>
+   <button type="submit" class="btn btn-primary"><i class="icon-comment icon-white"></i>&nbsp;<?php echo lang('requests_comment_send_comment');?></button>
    &nbsp;
  </form>
 </div>

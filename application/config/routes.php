@@ -229,6 +229,7 @@ $route['requests/ajax/delegations/delete'] = 'requests/deleteDelegations';
 $route['requests/ajax/delegations/add'] = 'requests/addDelegations';
 $route['requests/(:any)'] = 'requests/index/$1';
 $route['requests'] = 'requests/index/requested';
+$route['requests/([^/]+)/(:num)'] = 'requests/view/$1/$2';
 
 //_______________________________________________
 //overtime requests
