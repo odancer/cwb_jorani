@@ -292,7 +292,7 @@ $(function () {
 
     $("#viz_starttime").timepicker({
         timeFormat: 'H:i A',
-        interval: 30,
+        //interval: 60,
         dynamic: false,
         dropdown: true,
         scrollbar: true,
@@ -300,7 +300,7 @@ $(function () {
 
     $("#viz_endtime").timepicker({
         timeFormat: 'H:i A',
-        interval: 30,
+        //interval: 60,
         dynamic: false,
         dropdown: true,
         scrollbar: true,
