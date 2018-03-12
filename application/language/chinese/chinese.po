@@ -1371,7 +1371,7 @@ msgid "The password has been sent to your e-mail adress."
 msgstr "密碼已傳送至你的信箱"
 
 msgid "Invalid login id or password"
-msgstr "請輸入登入帳號與密碼"
+msgstr "帳號或密碼錯誤"
 
 msgid "The language has been succesfully set to "
 msgstr "語言已成功更改"
