@@ -52,7 +52,7 @@ $lang['menu_requests_request_extra'] = '送出加班申請';
 
 $lang['menu_leaves_counters'] = '休假餘額清單';
 $lang['menu_leaves_list_requests'] = '休假申請列表';
-$lang['menu_leaves_create_request'] = '申請一個休假';
+$lang['menu_leaves_create_request'] = '送出休假申請';
 
 $lang['menu_calendar_title'] = '行事曆/刷卡記錄';
 $lang['menu_calendar_year'] = '我的行事曆(年曆)';

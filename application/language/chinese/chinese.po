@@ -1136,7 +1136,7 @@ msgid "List of leave requests"
 msgstr "休假申請列表"
 
 msgid "Request a leave"
-msgstr "申請一個休假"
+msgstr "送出休假申請"
 
 msgid "Calendars"
 msgstr "行事曆"
@@ -1371,7 +1371,7 @@ msgid "The password has been sent to your e-mail adress."
 msgstr "密碼已傳送至你的信箱"
 
 msgid "Invalid login id or password"
-msgstr "個別登入帳號或密碼"
+msgstr "請輸入登入帳號與密碼"
 
 msgid "The language has been succesfully set to "
 msgstr "語言已成功更改"

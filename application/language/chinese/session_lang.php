@@ -18,6 +18,6 @@ $lang['session_login_msg_forget_password'] = 'Are you sure that you want to rese
 $lang['session_login_msg_empty_login'] = '請填入登入表格';
 $lang['session_login_msg_unknown_login'] = '無法登入,請聯繫你的HR部門/管理者';
 $lang['session_login_msg_password_sent'] = '密碼已傳送至你的信箱';
-$lang['session_login_flash_bad_credentials'] = '個別登入帳號或密碼';
+$lang['session_login_flash_bad_credentials'] = '請輸入登入帳號與密碼';
 $lang['session_login_flash_change_language'] = '語言已成功更改';
 $lang['session_login_flash_account_disabled'] = '你的賬號已禁用。請聯絡你的主管';
