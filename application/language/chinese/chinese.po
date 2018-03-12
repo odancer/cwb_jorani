@@ -1362,7 +1362,7 @@ msgid "Send me my password"
 msgstr "提供我的密碼"
 
 msgid "Please fill the login field"
-msgstr "請填入登陸表格"
+msgstr "請填入登入表格"
 
 msgid "Unknown login. Please contact your HR Officer / Manager."
 msgstr "無法登入,請聯繫你的HR部門/管理者"
@@ -1371,7 +1371,7 @@ msgid "The password has been sent to your e-mail adress."
 msgstr "密碼已傳送至你的信箱"
 
 msgid "Invalid login id or password"
-msgstr "個別登陸帳號或密碼"
+msgstr "個別登入帳號或密碼"
 
 msgid "The language has been succesfully set to "
 msgstr "語言已成功更改"

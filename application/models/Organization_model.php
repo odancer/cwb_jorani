@@ -256,6 +256,7 @@ class Organization_model extends CI_Model {
      * @return array Result of the query
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
+    /**
     public function employees($id) {
         $this->db->select('id, firstname, lastname, email, datehired');
         $this->db->from('users');
@@ -263,8 +264,54 @@ class Organization_model extends CI_Model {
         $this->db->order_by('lastname', 'asc'); 
         $this->db->order_by('firstname', 'asc');
         return $this->db->get();
-    }
+    }*/
     
+
+    public function employees($id) {
+        $this->load->model('users_model');
+        $this->load->model('organization_model');
+        $grp_id = $this->users_model->getGroup($this->user_id);
+        $grpTree = $this->getAllChildren($grp_id);
+        $grpTreeArr = explode(",",$grpTree[0]['id']);
+        $this->db->select('id, firstname, lastname, email, datehired');
+        $this->db->from('users');
+        if($this->user_id == 1) {
+            $list = $this->organization_model->getAllChildren($id);
+            } else {
+                if (!in_array($id,$grpTreeArr)) {
+                    $list = $this->organization_model->getAllChildren($grp_id);
+                }else {
+                    $list = $this->organization_model->getAllChildren($id);
+                }
+            }
+            $ids = array();
+            if (count($list) > 0) {
+                if ($list[0]['id'] != '') {
+                    if($id == $grp_id || $this->user_id ==1) {
+                        $ids = explode(",", $list[0]['id']);
+                        array_push($ids, $id);
+                        $this->db->where_in('organization', $ids);}
+                    else {
+                        $this->db->where('organization','9999');     
+                    }
+                } else {
+                     if($id == $grp_id || $this->user_id ==1) { 
+                        $this->db->where('organization', $id);
+                     }else {
+                        if (!in_array($id,$grpTreeArr) && $id != $grp_id) {
+                            $this->db->where('organization','9999'); 
+
+                         }else {
+                            $this->db->where('organization', $id); 
+                         }
+                     }
+                }
+            }
+        $this->db->order_by('lastname', 'asc'); 
+        $this->db->order_by('firstname', 'asc');
+        return $this->db->get();
+    }
+
     /**
      * Returns the list of the employees attached to an entity
      * @param int $id identifier of the entity
