@@ -41,28 +41,20 @@
         <br />
     </div>
     <div class="span4">	
-        <?php if ($user_id == 1) { ?>
         <label for="txtEntity"><?php echo lang('reports_leaves_field_entity');?></label>
-        <?php } ?>
         <div class="input-append">
-         <?php if ($user_id == 1) { ?>
         <input type="text" id="txtEntity" name="txtEntity" readonly />
         <button id="cmdSelectEntity" class="btn btn-primary"><?php echo lang('reports_leaves_button_entity');?></button>
-        <?php } ?>
         </div>
-        <?php if ($user_id == 1) { ?>
         <label for="chkIncludeChildren">
                 <input type="checkbox" id="chkIncludeChildren" name="chkIncludeChildren" checked /> <?php echo lang('reports_leaves_field_subdepts');?>
         </label>
-        <?php } ?>
     </div>
     <div class="span4">
-        <div class="pull-right"> 
-            <?php if ($user_id == 1) { ?>   
+        <div class="pull-right">  
             <label for="chkLeaveDetails">
                     <input type="checkbox" id="chkLeaveDetails" name="chkLeaveDetails" /> <?php echo lang('reports_leaves_field_leave_requests');?>
             </label>
-            <?php } ?>
             &nbsp;
             <button class="btn btn-primary" id="cmdLaunchReport"><i class="icon-file icon-white"></i>&nbsp; <?php echo lang('reports_leaves_button_launch');?></button>
             <button class="btn btn-primary" id="cmdExportReport"><i class="fa fa-file-excel-o"></i>&nbsp; <?php echo lang('reports_leaves_button_export');?></button>

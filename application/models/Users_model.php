@@ -634,9 +634,13 @@ class Users_model extends CI_Model {
      * @return array record of users
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
-    public function employeesOfEntity($id = 0, $children = TRUE, $filterActive = "all",
+  
+   public function employeesOfEntity($id = 0, $children = TRUE, $filterActive = "all",
             $criterion1 = NULL, $date1 = NULL, $criterion2 = NULL, $date2 = NULL) {
-            $grp_id = $this->getGroup($this->user_id);
+        $this->load->model('organization_model');
+        $grp_id = $this->getGroup($this->user_id);
+        $grpTree = $this->organization_model->getAllChildren($grp_id);
+        $grpTreeArr = explode(",",$grpTree[0]['id']);
         $this->db->select('users.id as id,'
                 . ' users.firstname as firstname,'
                 . ' users.lastname as lastname,'
@@ -653,23 +657,45 @@ class Users_model extends CI_Model {
         $this->db->join('users as managers', 'managers.id = users.manager', 'left outer');
         $this->db->join('organization', 'organization.id = users.organization', 'left outer');
         if ($children == TRUE) {
-            $this->load->model('organization_model');
-            $list = $this->organization_model->getAllChildren($id);
+            if($this->user_id == 1) {
+                    $list = $this->organization_model->getAllChildren($id);
+                 } else {
+                if (!in_array($id,$grpTreeArr)) {
+                    $list = $this->organization_model->getAllChildren($grp_id);
+                }else {
+                    $list = $this->organization_model->getAllChildren($id);
+                }
+            }
             $ids = array();
             if (count($list) > 0) {
                 if ($list[0]['id'] != '') {
-                    $ids = explode(",", $list[0]['id']);
+                    if($id == $grp_id || $this->user_id ==1) {
+                        $ids = explode(",", $list[0]['id']);
+                        array_push($ids, $id);
+                        $this->db->where_in('organization.id', $ids);}
+                    else {
+                        $this->db->where('organization.id','9999');     
+                    }
+                } else {
+                     if($id == $grp_id || $this->user_id ==1) { 
+                        $this->db->where('organization.id', $id);
+                     }else {
+                        if (!in_array($id,$grpTreeArr) && $id != $grp_id) {
+                            $this->db->where('organization.id','9999'); 
+
+                         }else {
+                            $this->db->where('organization.id', $id); 
+                         }
+                     }
                 }
             }
-            if($this->user_id == 1) {
-                array_push($ids, $id);
-                $this->db->where_in('organization.id', $ids);
-            }else {
-                $this->db->where('users.organization', $grp_id);
-            }
-            //$this->db->where_in('organization.id', $ids);
         } else {
-            $this->db->where('users.organization', $id);
+            if (!in_array($id,$grpTreeArr) && $id != $grp_id) {
+                $this->db->where('organization.id','9999'); 
+
+            }else {
+                $this->db->where('organization.id', $id); 
+            }
         }
         
         //Triple value for active filter ("all" = no where criteria)
@@ -690,7 +716,7 @@ class Users_model extends CI_Model {
         }
         
         return $this->db->get()->result();
-    }
+    } 
     
     /**
      * Update all employees when a contract is deleted (set the field to NULL)

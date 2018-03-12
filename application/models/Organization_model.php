@@ -83,24 +83,39 @@ class Organization_model extends CI_Model {
 
     }
 
+
     public function getAllEntities2($grp_info) {
+        $list=$this->getAllChildren($grp_info);
         $id=$grp_info;
-        $parr=array();
+        $parentList=array();
+        $childList=array();
         while($id != 0 )  {
-            array_push($parr,$id);
+            array_push($parentList,$id);
             $rtn = $this->getParentId($id);
             $id=$rtn[0]['parent_id'];
         }
         $this->db->from('organization');
         $this->db->where('id',0);
-        for ($i=0;$i<count($parr);$i++) {
-        $this->db->or_where('id',$parr[$i]);
+        for ($i=0;$i<count($parentList);$i++) {
+        $this->db->or_where('id',$parentList[$i]);
         }
+
+        if(count($list) >0 ) {
+            if($list[0]['id'] !=''){
+                $childList=explode(",",$list[0]['id']);
+                for ($i=0;$i<count($childList);$i++) {
+                    $this->db->or_where('id',$childList[$i]);
+                 }
+            }
+        }
+
+
 
         $this->db->order_by("parent_id", "desc"); 
         $this->db->order_by("name", "asc");
         return $this->db->get();
     }
+
 
     /**
      * Get all children of an entity
@@ -257,9 +272,13 @@ class Organization_model extends CI_Model {
      * @return  array Result of the query
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
+    
+    
     public function allEmployees($id, $children = FALSE) {
         $this->load->model('users_model');
         $grp_id = $this->users_model->getGroup($this->user_id);
+        $grpTree = $this->getAllChildren($grp_id);
+        $grpTreeArr = explode(",",$grpTree[0]['id']);
         $this->db->select('users.id, users.identifier, users.firstname, users.lastname, users.datehired');
         $this->db->select('organization.name as department, positions.name as position, contracts.name as contract');
         $this->db->select('contracts.id as contract_id');
@@ -269,31 +288,53 @@ class Organization_model extends CI_Model {
         $this->db->join('contracts', 'contracts.id  = users.contract', 'left');
         if ($children == TRUE) {
             $this->load->model('organization_model');
-            $list = $this->organization_model->getAllChildren($id);
+            if($this->user_id == 1) {
+                    $list = $this->organization_model->getAllChildren($id);
+                 } else {
+                if (!in_array($id,$grpTreeArr)) {
+                    $list = $this->organization_model->getAllChildren($grp_id);
+                }else {
+                    $list = $this->organization_model->getAllChildren($id);
+                }
+            }
             $ids = array();
             if (count($list) > 0) {
                 if ($list[0]['id'] != '') {
-                    $ids = explode(",", $list[0]['id']);
-                    if($this->user_id == 1) {
+                    if($id == $grp_id || $this->user_id ==1) {
+                        $ids = explode(",", $list[0]['id']);
                         array_push($ids, $id);
-                        $this->db->where_in('organization.id', $ids);
-                    }else {
-                        $this->db->where('users.organization', $grp_id);
+                        $this->db->where_in('users.organization', $ids);}
+                    else {
+                        $this->db->where('organization.id','9999');     
                     }
-                    
                 } else {
-                    $this->db->where('organization.id', $id);
+                     if($id == $grp_id || $this->user_id ==1) { 
+                        $this->db->where('organization.id', $id);
+                     }else {
+                        if (!in_array($id,$grpTreeArr) && $id != $grp_id) {
+                            $this->db->where('organization.id','9999'); 
+
+                         }else {
+                            $this->db->where('organization.id', $id); 
+                         }
+                     }
                 }
             }
         } else {
-           // $this->db->where('organization.id', $id);
-           $this->db->where('organization.id', $grp_id);
+            if (!in_array($id,$grpTreeArr) && $id != $grp_id) {
+                $this->db->where('organization.id','9999'); 
+
+            }else {
+                $this->db->where('organization.id', $id); 
+            }
         }
         $this->db->order_by('lastname', 'asc'); 
         $this->db->order_by('firstname', 'asc');
         $employees = $this->db->get()->result();
         return $employees;
-    }
+    } 
+
+
     
     /**
      * Add an employee into an entity of the organization
