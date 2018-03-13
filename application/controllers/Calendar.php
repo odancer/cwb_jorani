@@ -144,19 +144,37 @@ class Calendar extends CI_Controller {
         foreach($records as $record) {
              $tcdate[]=$record['tc_date'];
         }
-
          for ($i=1;$i<=$daycount;$i++) {
             $i = str_pad($i,2,'0',STR_PAD_LEFT);
             $date2 = $date.$i;
             $key = array_search($date2,$tcdate);
-            if($key) {
+            if(is_int($key) == TRUE) {
                   $first = $records[$key]['first'];
                   $final = $records[$key]['final'];
                   if(empty($records[$key]['first'])) $first = '無紀錄';
                   if(empty($records[$key]['final'])) $final = '無紀錄';
-                  array_push($dataArray,array('userid'=>$login_id,'tc_date'=>$date2,'first'=>$first,'final'=>$final));
+                  if(empty($records[$key]['first']) ||empty($records[$key]['final'])) {
+                        $abnormal = '刷卡異常';
+                    }else {
+                        $first_str = substr($first,0,2).':'.substr($first,2,2);
+                        $final_str = substr($final,0,2).':'.substr($final,2,2);
+                        $first_time=strtotime($first_str); 
+                        $final_time=strtotime($final_str);
+                        $work_time=$final_time-$first_time; 
+                        $work_hours=$work_time/3600;
+                        if($work_hours >= 9) {
+                            $abnormal = '';
+                        }else {
+                             $tcdate_val=$records[$key]['tc_date'];
+                             $date_str = (substr($tcdate_val,0,3)+1911)."-".substr($tcdate_val,3,2)."-".substr($tcdate_val,5,2); 
+                             
+                             $abnormal = '時數異常';
+                        }
+                    }
+                  array_push($dataArray,array('userid'=>$login_id,'tc_date'=>$date2,'first'=>$first,'final'=>$final, 'abnormal'=>$abnormal));
                 }else {
-                  array_push($dataArray,array('userid'=>$login_id,'tc_date'=>$date2,'first'=>'無紀錄','final'=>'無紀錄'));
+                  $first = '無紀錄'; $final = '無紀錄'; $abnormal='刷卡異常';
+                  array_push($dataArray,array('userid'=>$login_id,'tc_date'=>$date2,'first'=>$first,'final'=>$final, 'abnormal'=>$abnormal));
                 }
         }
         $data['records']  = $dataArray;

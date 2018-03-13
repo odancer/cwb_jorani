@@ -31,7 +31,7 @@ echo form_open('calendar/attendance', $attributes) ?>
     <?php endforeach ?>
  </select>
 <?php } ?>
- &nbsp; <button value="7" type="submit" style="width:60px;height:22px;font-size:8px;"><?php echo lang('attendance_search');?></button>
+ &nbsp; <button value="7" type="submit" style="width:60px;height:22px;font-size:12px;"><?php echo lang('attendance_search');?></button>
 </form>
 &nbsp;<a href="<?php echo base_url();?>calendar/export/<?php echo $login_id; ?>/<?php echo $date;?>" class="btn btn-primary"><i class="fa fa-file-excel-o"></i>&nbsp; <?php echo lang('attendance_export');?></a>
 
@@ -43,6 +43,7 @@ echo form_open('calendar/attendance', $attributes) ?>
             <th><?php echo lang('attendance_index_date');?></th>
             <th><?php echo lang('attendance_index_in');?></th>
             <th><?php echo lang('attendance_index_out');?></th>
+            <th><?php echo lang('attendance_notify_abnormal');?></th>
         </tr>
     </thead>
     <tbody>
@@ -53,7 +54,8 @@ echo form_open('calendar/attendance', $attributes) ?>
         <td align="center"><?php echo $fullname; ?></td>
         <td align="center"><?php echo $records_item['tc_date']; ?></td>
         <td align="center"><?php echo $records_item['first']; ?></td> 
-        <td align="center"><?php echo $records_item['final']; ?></td>   
+        <td align="center"><?php echo $records_item['final']; ?></td>  
+        <td align="center"><?php echo $records_item['abnormal']; ?></td>  
     </tr>
     <?php endforeach ?>
 

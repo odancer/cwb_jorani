@@ -292,18 +292,18 @@ $(function () {
 
     $("#viz_starttime").timepicker({
         timeFormat: 'H:i A',
-        //interval: 60,
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true,
+        step: 5,
+       // dynamic: false,
+        //dropdown: true,
+        //scrollbar: true,
     }).val('08:00 AM');
 
     $("#viz_endtime").timepicker({
         timeFormat: 'H:i A',
-        //interval: 60,
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true,
+        step: 5,
+        //dynamic: false,
+        //dropdown: true,
+        //scrollbar: true,
     }).val('17:00 PM');
 
     //Force decimal separator whatever the locale is
