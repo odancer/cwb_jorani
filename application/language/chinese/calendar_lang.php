@@ -100,5 +100,6 @@ $lang['attendance_index_in'] = '上班';
 $lang['attendance_index_out'] = '下班';
 $lang['attendance_search'] = '查詢';
 $lang['attendance_export'] = '匯出';
+$lang['attendance_notify_abnormal'] = '異常';
 
 

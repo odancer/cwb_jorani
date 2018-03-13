@@ -99,3 +99,4 @@ $lang['attendance_index_date'] = 'Date';
 $lang['attendance_index_day'] = 'Day';
 $lang['attendance_index_in'] = 'On Duty';
 $lang['attendance_index_out'] = 'Off Duty';
+$lang['attendance_notify_abnormal'] = 'Abnormal';

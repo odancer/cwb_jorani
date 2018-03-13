@@ -239,8 +239,8 @@ class Leaves_model extends CI_Model {
                       //$endTime = explode(" ", $endDateObject->format('Y-m-d H:i:s'));
                       $r_time=$this->sumTime($startTime,$endTime);
                       $timeArr=explode(" ",$r_time);
-                      if($start_morning && $end_afternoon) $hours=(round($timeArr[2]/60)-1);
-                      if(($start_morning && $end_morning) || ($start_afternoon&& $end_afternoon)) $hours=round($timeArr[2]/60);
+                      if($start_morning && $end_afternoon) $hours=(ceil($timeArr[2]/60)-1);
+                      if(($start_morning && $end_morning) || ($start_afternoon&& $end_afternoon)) $hours=ceil($timeArr[2]/60);
                       $dhours=$timeArr[0]*8;
                       $length=$hours+$dhours;
                 } else {
@@ -254,8 +254,8 @@ class Leaves_model extends CI_Model {
                     //$endTime = explode(" ", $endDateObject->format('Y-m-d H:i:s'));
                     $r_time=$this->sumTime($startTime,$endTime);
                     $timeArr=explode(" ",$r_time);
-                    if($start_morning && $end_afternoon) $hours=(round($timeArr[2]/60)-1);
-                    if(($start_morning && $end_morning) || ($start_afternoon && $end_afternoon)) $hours=round($timeArr[2]/60);
+                    if($start_morning && $end_afternoon) $hours=(ceil($timeArr[2]/60)-1);
+                    if(($start_morning && $end_morning) || ($start_afternoon && $end_afternoon)) $hours=ceil($timeArr[2]/60);
                     $dhours=$timeArr[0]*8;
                     $length=$hours+$dhours;
                 }
