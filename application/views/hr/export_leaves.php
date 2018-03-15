@@ -12,12 +12,14 @@ $sheet->setTitle(mb_strimwidth(lang('hr_export_leaves_title'), 0, 28, "..."));  
 $sheet->setCellValue('A3', lang('hr_export_leaves_thead_id'));
 $sheet->setCellValue('B3', lang('hr_export_leaves_thead_status'));
 $sheet->setCellValue('C3', lang('hr_export_leaves_thead_start'));
-$sheet->setCellValue('D3', lang('hr_export_leaves_thead_end'));
-$sheet->setCellValue('E3', lang('hr_export_leaves_thead_duration'));
-$sheet->setCellValue('F3', lang('hr_export_leaves_thead_type'));
+$sheet->setCellValue('D3', lang('hr_export_leaves_thead_starttime'));
+$sheet->setCellValue('E3', lang('hr_export_leaves_thead_end'));
+$sheet->setCellValue('F3', lang('hr_export_leaves_thead_endtime'));
+$sheet->setCellValue('G3', lang('hr_export_leaves_thead_duration'));
+$sheet->setCellValue('H3', lang('hr_export_leaves_thead_type'));
 
-$sheet->getStyle('A3:F3')->getFont()->setBold(true);
-$sheet->getStyle('A3:F3')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+$sheet->getStyle('A3:H3')->getFont()->setBold(true);
+$sheet->getStyle('A3:H3')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 $leaves = $this->leaves_model->getLeavesOfEmployee($id);
 $fullname = $this->users_model->getName($id);
 $sheet->setCellValue('A1', $fullname);
@@ -31,14 +33,16 @@ foreach ($leaves as $leave) {
     $sheet->setCellValue('A' . $line, $leave['id']);
     $sheet->setCellValue('B' . $line, lang($leave['status_name']));
     $sheet->setCellValue('C' . $line, $startdate);
-    $sheet->setCellValue('D' . $line, $enddate);
-    $sheet->setCellValue('E' . $line, $leave['duration']);
-    $sheet->setCellValue('F' . $line, $leave['type_name']);
+    $sheet->setCellValue('D' . $line, $leave['starttime']);
+    $sheet->setCellValue('E' . $line, $enddate);
+    $sheet->setCellValue('F' . $line, $leave['endtime']);
+    $sheet->setCellValue('G' . $line, $leave['duration']);
+    $sheet->setCellValue('H' . $line, $leave['type_name']);
     $line++;
 }
 
 //Autofit
-foreach(range('A', 'F') as $colD) {
+foreach(range('A', 'H') as $colD) {
     $sheet->getColumnDimension($colD)->setAutoSize(TRUE);
 }
 

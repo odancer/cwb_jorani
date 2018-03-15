@@ -40,7 +40,9 @@
             <th><?php echo lang('hr_leaves_thead_id');?></th>
             <th><?php echo lang('hr_leaves_thead_status');?></th>
             <th><?php echo lang('hr_leaves_thead_start');?></th>
-            <th><?php echo lang('hr_leaves_thead_end');?></th>            
+            <th><?php echo lang('hr_leaves_thead_starttime');?></th>
+            <th><?php echo lang('hr_leaves_thead_end');?></th>
+            <th><?php echo lang('hr_leaves_thead_endtime');?></th>             
             <th><?php echo lang('hr_leaves_thead_duration');?></th>
             <th><?php echo lang('hr_leaves_thead_type');?></th>
         </tr>
@@ -72,21 +74,23 @@
                 <a href="#" class="confirm-delete" data-id="<?php echo $leave['id'];?>" title="<?php echo lang('hr_leaves_thead_tip_delete');?>"><i class="fa fa-trash fa-2x" style="color:red;"></i></a>
                 <?php if ($this->config->item('enable_history') === TRUE) { ?>
                 &nbsp;
-                <a href="#" class="show-history" data-id="<?php echo $leave['id'];?>" title="<?php echo lang('leaves_index_thead_tip_history');?>"><i class="icon-time"></i></a>
+                <a href="#" class="show-history" data-id="<?php echo $leave['id'];?>" title="<?php echo lang('leaves_index_thead_tip_history');?>"><i class="fa fa-clock-o fa-2x" style="color:black;"></i></a>
                 <?php } ?>
             </div>
         </td>
         <?php
         switch ($leave['status']) {
-            case 1: echo "<td><span class='label'>" . lang($leave['status_name']) . "</span></td>"; break;
-            case 2: echo "<td><span class='label label-warning'>" . lang($leave['status_name']) . "</span></td>"; break;
-            case 3: echo "<td><span class='label label-success'>" . lang($leave['status_name']) . "</span></td>"; break;
-            default: echo "<td><span class='label label-important' style='background-color: #ff0000;'>" . lang($leave['status_name']) . "</span></td>"; break;
+            case 1: echo "<td align='center' valign='middle'><span class='label'>" . lang($leave['status_name']) . "</span></td>"; break;
+            case 2: echo "<td align='center' valign='middle'><span class='label label-warning'>" . lang($leave['status_name']) . "</span></td>"; break;
+            case 3: echo "<td align='center' valign='middle'><span class='label label-success'>" . lang($leave['status_name']) . "</span></td>"; break;
+            default: echo "<td align='center' valign='middle'><span class='label label-important' style='background-color: #ff0000;'>" . lang($leave['status_name']) . "</span></td>"; break;
         }?>
-        <td data-order="<?php echo $tmpStartDate; ?>"><?php echo $startdate . ' (' . lang($leave['startdatetype']). ')'; ?></td>
-        <td data-order="<?php echo $tmpEndDate; ?>"><?php echo $enddate . ' (' . lang($leave['enddatetype']) . ')'; ?></td>
-        <td><?php echo $leave['duration']; ?></td>
-        <td><?php echo $leave['type_name']; ?></td>
+        <td align='center' valign='middle' data-order="<?php echo $tmpStartDate; ?>"><?php echo $startdate . ' (' . lang($leave['startdatetype']). ')'; ?></td>
+        <td align='center' valign='middle'><?php echo $leave['starttime']; ?></td>
+        <td align='center' valign='middle' data-order="<?php echo $tmpEndDate; ?>"><?php echo $enddate . ' (' . lang($leave['enddatetype']) . ')'; ?></td>
+        <td align='center' valign='middle'><?php echo $leave['endtime']; ?></td>
+        <td align='center' valign='middle'><?php echo $leave['duration']; ?></td>
+        <td align='center' valign='middle'><?php echo $leave['type_name']; ?></td>
     </tr>
 <?php endforeach ?>
 	</tbody>
@@ -130,11 +134,13 @@
                 <a href="#" class="show-history" data-id="<?php echo $leave['id'];?>" title="<?php echo lang('hr_leaves_thead_tip_history');?>"><i class="icon-time"></i></a>
             </div>
         </td>
-        <td><?php echo lang($leave['status_name']); ?></td>
-        <td data-order="<?php echo $tmpStartDate; ?>"><?php echo $startdate . ' (' . lang($leave['startdatetype']). ')'; ?></td>
-        <td data-order="<?php echo $tmpEndDate; ?>"><?php echo $enddate . ' (' . lang($leave['enddatetype']) . ')'; ?></td>
-        <td><?php echo $leave['duration']; ?></td>
-        <td><?php echo $leave['type_name']; ?></td>
+        <td align='center' valign='middle'><?php echo lang($leave['status_name']); ?></td>
+        <td align='center' valign='middle' data-order="<?php echo $tmpStartDate; ?>"><?php echo $startdate . ' (' . lang($leave['startdatetype']). ')'; ?></td>
+        <td align='center' valign='middle'><?php echo $leave['starttime']; ?></td>
+        <td align='center' valign='middle' data-order="<?php echo $tmpEndDate; ?>"><?php echo $enddate . ' (' . lang($leave['enddatetype']) . ')'; ?></td>
+        <td align='center' valign='middle'><?php echo $leave['endtime']; ?></td>
+        <td align='center' valign='middle'><?php echo $leave['duration']; ?></td>
+        <td align='center' valign='middle'><?php echo $leave['type_name']; ?></td>
     </tr>
 <?php endforeach ?>
         </tbody>
