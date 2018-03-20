@@ -564,6 +564,15 @@ CREATE TABLE IF NOT EXISTS `parameters` (
 INDEX `param_name` (`name`, `scope`)
 ) COMMENT = 'Application parameters';
 
+CREATE TABLE  `users_history` (
+`change_id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+ `login` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `position` int(11) NOT NULL,
+  `change_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (`change_id`),
+   KEY `change_date` (`change_date`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
