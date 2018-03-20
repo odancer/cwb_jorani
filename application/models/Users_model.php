@@ -130,6 +130,15 @@ class Users_model extends CI_Model {
             return $record['login'] ;
         }
     }
+
+
+    public function getID($login) {
+       $this->db->select('id');
+       $this->db->from('users');
+       $this->db->where('login',$login);
+       $query=$this->db->get();
+       return $query->row_array();
+    }
     
     /**
      * Get the list of employees that are the collaborators of the given user
@@ -262,6 +271,7 @@ class Users_model extends CI_Model {
             $data['ldap_path'] = $this->input->post('ldap_path');
         }
         $this->db->insert('users', $data);
+
         
         //Deal with user having no line manager
         if ($this->input->post('manager') == -1) {
@@ -274,6 +284,47 @@ class Users_model extends CI_Model {
         }
         return $password;
     }
+
+     public function setUsersHistory() {
+        $login=$this->input->post('login');
+        $id =($this->getID($login))['id'];
+        $data=array (
+            'user_id' => $id,
+            'login' => $login
+        );
+        if ($this->input->post('position') != NULL && $this->input->post('position') != '') {
+            $data['position'] = $this->input->post('position');
+        }
+        $this->db->insert('users_history', $data);
+     } 
+
+     public function getUsersHistory($id,$num) {
+        $this->db->select('*');
+        $this->db->from('users_history');
+        $this->db->where('user_id',$id);
+        $this->db->order_by("change_date", "desc");
+        if($num != 0) $this->db->limit($num);
+        $query=$this->db->get();
+        if($num !=0) {
+            return $query->row_array();
+        }else {
+             return $query->result_array();
+        }
+     } 
+
+     public function deleteUsersHistory() {
+        $login=$this->input->post('login');
+        $id =($this->getID($login))['id'];
+        $data=array (
+            'user_id' => $id,
+            'login' => $login
+        );
+        if ($this->input->post('position') != NULL && $this->input->post('position') != '') {
+            $data['position'] = $this->input->post('position');
+        }
+        $this->db->delete('users_history', $data);
+     } 
+
     
     /**
      * Create a user record in the database. the difference with set_users function is that it doesn't rely

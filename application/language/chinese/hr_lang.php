@@ -18,6 +18,7 @@ $lang['hr_employees_thead_link_create_leave'] = '建立休假申請';
 $lang['hr_employees_thead_link_calendar'] = '年曆';
 $lang['hr_employees_thead_link_presence'] = '簽署報告';
 $lang['hr_employees_thead_link_delegation'] = '簽核代理設定';
+$lang['hr_employees_thead_link_view'] = '檢視使用者詳細資料';
 $lang['hr_employees_thead_id'] = '序號';
 $lang['hr_employees_thead_firstname'] = '名字';
 $lang['hr_employees_thead_lastname'] = '姓氏';

@@ -37,7 +37,7 @@ $lang['requests_collaborators_thead_link_create_leave'] = '建立此部屬休假
 $lang['requests_collaborators_thead_firstname'] = '名字';
 $lang['requests_collaborators_thead_lastname'] = '姓氏';
 $lang['requests_collaborators_thead_email'] = 'E-mail';
-$lang['requests_collaborators_thead_identifier'] = '登入帳號';
+$lang['requests_collaborators_thead_identifier'] = '內部識別碼';
 
 $lang['requests_summary_title'] = '使用者的休假平衡';
 $lang['requests_summary_thead_type'] = '假別';

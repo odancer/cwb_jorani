@@ -174,6 +174,8 @@ class Users extends CI_Controller {
         if ($this->config->item('ldap_basedn_db')) $this->form_validation->set_rules('ldap_path', lang('users_edit_field_ldap_path'), 'strip_tags');
         
         $data['users_item'] = $this->users_model->getUsers($id);
+        $data['change_date'] = ($this->users_model->getUsersHistory($id,1))['change_date'];
+
         if (empty($data['users_item'])) {
             redirect('notfound');
         }
@@ -194,6 +196,8 @@ class Users extends CI_Controller {
             $this->load->view('templates/footer');
         } else {
             $this->users_model->updateUsers();
+            $this->users_model->setUsersHistory();
+
             $this->session->set_flashdata('msg', lang('users_edit_flash_msg_success'));
             if (isset($_GET['source'])) {
                 redirect($_GET['source']);
@@ -201,6 +205,59 @@ class Users extends CI_Controller {
                 redirect('users');
             }
         }
+    }
+
+    public function view($id) {
+        $this->auth->checkIfOperationIsAllowed('edit_user');
+        $data = getUserContext($this);
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->load->library('polyglot');
+        $data['title'] = lang('users_edit_html_title');
+        $data['help'] = $this->help->create_help_link('global_link_doc_page_create_user');
+        
+        $this->form_validation->set_rules('firstname', lang('users_edit_field_firstname'), 'required|strip_tags');
+        $this->form_validation->set_rules('lastname', lang('users_edit_field_lastname'), 'required|strip_tags');
+        $this->form_validation->set_rules('login', lang('users_edit_field_login'), 'required|strip_tags');
+        $this->form_validation->set_rules('email', lang('users_edit_field_email'), 'required|strip_tags');
+        $this->form_validation->set_rules('role[]', lang('users_edit_field_role'), 'required');
+        $this->form_validation->set_rules('manager', lang('users_edit_field_manager'), 'required|strip_tags');
+        $this->form_validation->set_rules('contract', lang('users_edit_field_contract'), 'strip_tags');
+        $this->form_validation->set_rules('entity', lang('users_edit_field_entity'), 'strip_tags');
+        $this->form_validation->set_rules('position', lang('users_edit_field_position'), 'strip_tags');
+        $this->form_validation->set_rules('datehired', lang('users_edit_field_hired'), 'strip_tags');
+        $this->form_validation->set_rules('identifier', lang('users_edit_field_identifier'), 'strip_tags');
+        $this->form_validation->set_rules('language', lang('users_edit_field_language'), 'strip_tags');
+        $this->form_validation->set_rules('timezone', lang('users_edit_field_timezone'), 'strip_tags');
+        if ($this->config->item('ldap_basedn_db')) $this->form_validation->set_rules('ldap_path', lang('users_edit_field_ldap_path'), 'strip_tags');
+        
+        $data['users_item'] = $this->users_model->getUsers($id);
+        $data['change_date'] = ($this->users_model->getUsersHistory($id,1))['change_date'];
+        $data['users_history'] = $this->users_model->getUsersHistory($id,0);
+
+        for( $i=0; $i<count($data['users_history']); $i++) {
+            $this->load->model('positions_model');
+            $position_name=$this->positions_model->getName($data['users_history'][$i]['position']);
+            $data['users_history'][$i]=array_merge($data['users_history'][$i],array('position_name'=>$position_name));
+        }
+
+        if (empty($data['users_item'])) {
+            redirect('notfound');
+        }
+
+            $this->load->model('roles_model');
+            $this->load->model('positions_model');
+            $this->load->model('organization_model');
+            $this->load->model('contracts_model');
+            $data['contract'] = ($this->contracts_model->getContracts($data['users_item']['contract']))['name'];;
+            $data['manager_label'] = $this->users_model->getName($data['users_item']['manager']);
+            $data['position_label'] = $this->positions_model->getName($data['users_item']['position']);
+            $data['organization_label'] = $this->organization_model->getName($data['users_item']['organization']);
+            $data['role'] = ($this->roles_model->getRoles($data['users_item']['role']))['name'];
+            $this->load->view('templates/header', $data);
+            $this->load->view('menu/index', $data);
+            $this->load->view('users/view', $data);
+            $this->load->view('templates/footer');
     }
 
     /**
@@ -335,6 +392,7 @@ class Users extends CI_Controller {
             $this->load->view('templates/footer');
         } else {
             $password = $this->users_model->setUsers();
+            $this->users_model->setUsersHistory();
             
             //Send an e-mail to the user so as to inform that its account has been created
             $this->load->library('email');

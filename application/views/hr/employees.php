@@ -271,6 +271,7 @@
         <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>hr/presence/employees/{id}"><i class="fa fa-pie-chart"></i>&nbsp;<?php echo lang('hr_employees_thead_link_presence');?></a></li>
         <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>calendar/year/{id}"><i class="fa fa-calendar fa-2x" style="color:black;"></i>&nbsp;<?php echo lang('hr_employees_thead_link_calendar');?></a></li>
         <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>requests/delegations/{id}"><i class="icon-share-alt"></i>&nbsp;<?php echo lang('hr_employees_thead_link_delegation');?></a></li>
+        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>users/view/{id}"><i class="fa fa-eye fa-2x" style="color:black;"></i>&nbsp;<?php echo lang('hr_employees_thead_link_view');?></a></li>
   </ul>
 </div>
 

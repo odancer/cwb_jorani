@@ -1,3 +1,4 @@
+
 <?php 
 /**
  * This view displays the list of users.
@@ -39,6 +40,8 @@
                 <?php } ?>
                 &nbsp;
                 <a href="<?php echo base_url();?>users/edit/<?php echo $users_item['id'] ?>" title="<?php echo lang('users_index_thead_tip_edit');?>"><i class="fa fa-pencil fa-2x" style="color:blue;"></i></a>
+                &nbsp;
+                <a href="<?php echo base_url();?>users/view/<?php echo $users_item['id'] ?>" title="<?php echo lang('users_index_thead_tip_view');?>"><i class="fa fa-eye fa-2x" style="color:black;"></i></a>
                 &nbsp;
                 <a href="#" class="confirm-delete" data-id="<?php echo $users_item['id'];?>" title="<?php echo lang('users_index_thead_tip_delete');?>"><i class="fa fa-trash fa-2x" style="color:red;"></i></a>
                 &nbsp;
