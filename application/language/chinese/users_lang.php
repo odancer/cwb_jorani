@@ -50,6 +50,7 @@ $lang['users_myprofile_field_identifier'] = '內部識別碼';
 $lang['users_myprofile_field_language'] = '語言';
 
 $lang['users_edit_title'] = '編輯使用者＃';
+$lang['users_edit_view'] = '使用者詳細資訊＃';
 $lang['users_edit_html_title'] = '編輯使用者';
 $lang['users_edit_field_firstname'] = '名字';
 $lang['users_edit_field_lastname'] = '姓氏';
