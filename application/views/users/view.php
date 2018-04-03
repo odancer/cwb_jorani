@@ -171,3 +171,4 @@ if (isset($_GET['source'])) {
     </tbody>
 </table>
 </form>
+<input action="action" onclick="window.history.go(-1); return false;" type="button" class="btn btn-primary" value=<?php echo lang('users_edit_previous');?> />

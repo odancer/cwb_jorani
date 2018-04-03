@@ -41,11 +41,11 @@
                 &nbsp;
                 <a href="<?php echo base_url();?>users/edit/<?php echo $users_item['id'] ?>" title="<?php echo lang('users_index_thead_tip_edit');?>"><i class="fa fa-pencil fa-2x" style="color:blue;"></i></a>
                 &nbsp;
-                <a href="<?php echo base_url();?>users/view/<?php echo $users_item['id'] ?>" title="<?php echo lang('users_index_thead_tip_view');?>"><i class="fa fa-eye fa-2x" style="color:black;"></i></a>
-                &nbsp;
                 <a href="#" class="confirm-delete" data-id="<?php echo $users_item['id'];?>" title="<?php echo lang('users_index_thead_tip_delete');?>"><i class="fa fa-trash fa-2x" style="color:red;"></i></a>
                 &nbsp;
                 <a href="<?php echo base_url();?>users/reset/<?php echo $users_item['id'] ?>" title="<?php echo lang('users_index_thead_tip_reset');?>" data-target="#frmResetPwd" data-toggle="modal"><i class="fa fa-lock fa-2x" style="color:red;"></i></a>
+                 &nbsp;
+                <a href="<?php echo base_url();?>users/view/<?php echo $users_item['id'] ?>" title="<?php echo lang('users_index_thead_tip_view');?>"><i class="fa fa-eye fa-2x" style="color:black;"></i></a>
             </div>
         </td>
         <td align='center' valign='middle'><?php echo $users_item['firstname']; ?></td>
@@ -116,8 +116,7 @@
     </div>
     <div class="modal-footer">
         <a href="#" onclick="$('#frmImportUsers').modal('hide');" class="btn btn-danger"><?php echo lang('Cancel');?></a>
-    </div>
-
+    </div
 </div>
 
 <link href="<?php echo base_url();?>assets/datatable/DataTables-1.10.11/css/jquery.dataTables.min.css" rel="stylesheet">

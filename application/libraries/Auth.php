@@ -73,7 +73,7 @@ class Auth {
             //User management
             case 'list_settings' :
             case 'oauth_clients' :    
-                if ($this->CI->session->userdata('is_admin') == true)
+                if ($this->CI->session->userdata('is_admin') == true) 
                     return true;
                 else
                     return false;
@@ -87,7 +87,7 @@ class Auth {
             case 'update_user' :
             case 'import_user' :
             case 'export_user' :
-                if ($this->CI->session->userdata('is_hr') == true)
+                if (($this->CI->session->userdata('is_hr') == true) || ($this->CI->session->userdata('is_boss') == true) || ($this->CI->session->userdata('is_admin') == true) )
                     return true;
                 else
                     return false;
