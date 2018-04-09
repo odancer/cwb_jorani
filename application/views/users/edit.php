@@ -169,9 +169,55 @@ if (isset($_GET['source'])) {
             </div>
         </div>
     </div>
+
+    <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="jobcategory"><?php echo lang('users_edit_field_job_category');?></label>
+            <div class="controls">
+                <input type="text" name="jobcategory" value="<?php echo $users_item['jobcategory']; ?>"  />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="salarypoint"><?php echo lang('users_edit_field_salary_point');?></label>
+            <div class="controls">
+                <input type="text" name="salarypoint" value="<?php echo $users_item['salarypoint']; ?>"/>
+            </div>
+        </div>
+    </div>
     
     <div class="span4">
-        &nbsp;
+        <div class="control-group">
+            <label class="control-label" for="salary"><?php echo lang('users_edit_field_salary');?></label>
+            <div class="controls">
+                <input type="text" name="salary" value="<?php echo $users_item['salary']; ?>" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="rating"><?php echo lang('users_edit_field_rating');?></label>
+            <div class="controls">
+                <input type="text" name="rating" value="<?php echo $users_item['rating']; ?>" />
+            </div>
+        </div>
+    </div>
+    
+    <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="grade"><?php echo lang('users_edit_field_grade');?></label>
+            <div class="controls">
+                <input type="text" name="grade" value="<?php echo $users_item['grade']; ?>" />
+            </div>
+        </div>
     </div>
 </div>
 

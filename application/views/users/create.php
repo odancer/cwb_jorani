@@ -197,11 +197,38 @@ echo form_open('users/create', $attributes); ?>
             </div>
         </div>
     </div>
-    
+
     <div class="span4">
-        &nbsp;
+        <div class="control-group">
+            <label class="control-label" for="jobcategory"><?php echo lang('users_create_field_job_category');?></label>
+            <div class="controls">
+                <input type="text" name="jobcategory" id="jobcategory" />
+            </div>
+        </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="salarypoint"><?php echo lang('users_create_field_salary_point');?></label>
+            <div class="controls">
+                <input type="text" name="salarypoint" id="salarypoint" />
+            </div>
+        </div>
+    </div>
+    
+    <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="salary"><?php echo lang('users_create_field_salary');?></label>
+            <div class="controls">
+                <input type="text" name="salary" id="salary" />
+            </div>
+        </div>
+    </div>
+</div>
+
+&nbsp;
 
 <div class="row">
     <div class="span4">

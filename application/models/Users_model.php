@@ -253,6 +253,9 @@ class Users_model extends CI_Model {
             'manager' => $this->input->post('manager'),
             'contract' => $this->input->post('contract'),
             'identifier' => $this->input->post('identifier'),
+            'jobcategory' => $this->input->post('jobcategory'),
+            'salarypoint' => $this->input->post('salarypoint'),
+            'salary' => $this->input->post('salary'),
             'language' => $this->input->post('language'),
             'timezone' => $this->input->post('timezone')
         );
@@ -437,6 +440,11 @@ class Users_model extends CI_Model {
             'manager' => $manager,
             'contract' => $this->input->post('contract'),
             'identifier' => $this->input->post('identifier'),
+            'jobcategory' => $this->input->post('jobcategory'),
+            'salarypoint' => $this->input->post('salarypoint'),
+            'salary' => $this->input->post('salary'),
+            'rating' => $this->input->post('rating'),
+            'grade' => $this->input->post('grade'),
             'language' => $this->input->post('language'),
             'timezone' => $this->input->post('timezone')
         );
