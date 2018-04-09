@@ -89,6 +89,7 @@ $lang['users_edit_popup_position_button_cancel'] = '取消';
 $lang['users_edit_button_update'] = '更新使用者';
 $lang['users_edit_button_cancel'] = '取消';
 $lang['users_edit_flash_msg_success'] = '使用者已成功更新';
+$lang['users_edit_previous'] = '返回列表';
 
 $lang['users_delete_flash_msg_success'] = '使用者已成功刪除';
 $lang['users_reset_flash_msg_success'] = '密碼已成功更改';

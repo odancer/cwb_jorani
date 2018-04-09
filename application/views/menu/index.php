@@ -81,7 +81,6 @@ $this->lang->load('menu', $language);?>
                   </ul>
                 </li>
               <?php } ?>
-
               <?php if (($is_hr == TRUE) || ($is_admin == TRUE) || ($is_boss == TRUE)){ ?>
                    <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
