@@ -212,6 +212,7 @@ class Users_model extends CI_Model {
         );
         $this->db->where('manager', $id);
         $this->db->update('users', $data);
+        $this->deleteUsersHistory($id);
     }
 
     /**
@@ -288,18 +289,48 @@ class Users_model extends CI_Model {
         return $password;
     }
 
-     public function setUsersHistory() {
+     public function setUsersHistory($userInfo) {
+        //error_log( print_r($userInfo['position'], TRUE) );
+        $login=$this->input->post('login');
+        $id =($this->getID($login))['id'];
+        $position=$this->input->post('position');
+        $jobcategory=$this->input->post('jobcategory');
+        $rating=$this->input->post('rating');
+        $grade=$this->input->post('grade');
+        $salary=$this->input->post('salary');
+        $salarypoint=$this->input->post('salarypoint');
+
+        $data=array (
+            'user_id' => $id,
+            'login' => $login
+        );
+
+        if (($position != $userInfo['position']) || ($jobcategory!= $userInfo['jobcategory']) || ($rating != $userInfo['rating']) || ($grade != $userInfo['grade']) || ($salary != $userInfo['salary']) || ($salarypoint != $userInfo['salarypoint'])) {
+            $data['position'] = $this->input->post('position');
+            $data['jobcategory'] = $this->input->post('jobcategory');
+            $data['rating'] = $this->input->post('rating');
+            $data['grade'] = $this->input->post('grade');
+            $data['salary'] = $this->input->post('salary');
+            $data['salarypoint'] = $this->input->post('salarypoint');
+            $this->db->insert('users_history', $data);
+        }
+
+     } 
+
+     public function createUsersHistory() {
+        //error_log( print_r($userInfo['position'], TRUE) );
         $login=$this->input->post('login');
         $id =($this->getID($login))['id'];
         $data=array (
             'user_id' => $id,
             'login' => $login
         );
-        if ($this->input->post('position') != NULL && $this->input->post('position') != '') {
-            $data['position'] = $this->input->post('position');
-        }
+        $data['position']=$this->input->post('position');
+        $data['jobcategory']=$this->input->post('jobcategory');
+        $data['salary']=$this->input->post('salary');
+        $data['salarypoint']=$this->input->post('salarypoint');
         $this->db->insert('users_history', $data);
-     } 
+     }
 
      public function getUsersHistory($id,$num) {
         $this->db->select('*');
@@ -315,17 +346,8 @@ class Users_model extends CI_Model {
         }
      } 
 
-     public function deleteUsersHistory() {
-        $login=$this->input->post('login');
-        $id =($this->getID($login))['id'];
-        $data=array (
-            'user_id' => $id,
-            'login' => $login
-        );
-        if ($this->input->post('position') != NULL && $this->input->post('position') != '') {
-            $data['position'] = $this->input->post('position');
-        }
-        $this->db->delete('users_history', $data);
+     public function deleteUsersHistory($id) {
+        $this->db->delete('users_history', array('user_id' => $id));
      } 
 
     

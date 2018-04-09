@@ -575,6 +575,11 @@ CREATE TABLE  `users_history` (
  `login` varchar(32) CHARACTER SET utf8 NOT NULL,
   `position` int(11) NOT NULL,
   `change_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `jobcategory` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `rating` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
+  `grade` int(11) DEFAULT NULL,
+  `salary` int(11) DEFAULT NULL,
+  `salarypoint` float(5) DEFAULT NULL,
    PRIMARY KEY (`change_id`),
    KEY `change_date` (`change_date`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0;

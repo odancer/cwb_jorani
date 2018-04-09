@@ -125,6 +125,52 @@ if (isset($_GET['source'])) {
      </div>
     </div>
 
+      <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="jobcategory"><?php echo lang('users_edit_field_job_category');?></label>
+            <div class="controls">
+                <input readonly="value" type="text" name="jobcategory" value="<?php echo $users_item['jobcategory']; ?>"  />
+            </div>
+        </div>
+    </div>
+
+    <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="salarypoint"><?php echo lang('users_edit_field_salary_point');?></label>
+            <div class="controls">
+                <input readonly="value" type="text" name="salarypoint" value="<?php echo $users_item['salarypoint']; ?>"/>
+            </div>
+        </div>
+    </div>
+
+      <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="salary"><?php echo lang('users_edit_field_salary');?></label>
+            <div class="controls">
+                <input readonly="value" type="text" name="salary" value="<?php echo $users_item['salary']; ?>" />
+            </div>
+        </div>
+    </div>
+
+    <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="rating"><?php echo lang('users_edit_field_rating');?></label>
+            <div class="controls">
+                <input readonly="value" type="text" name="rating" value="<?php echo $users_item['rating']; ?>" />
+            </div>
+        </div>
+    </div>
+
+     <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="grade"><?php echo lang('users_edit_field_grade');?></label>
+            <div class="controls">
+                <input readonly="value" type="text" name="grade" value="<?php echo $users_item['grade']; ?>" />
+            </div>
+        </div>
+    </div>
+
+
     <div class="span4">
         <div class="control-group">
             <label class="control-label" for="language"><?php echo lang('users_edit_field_language');?></label>
@@ -156,6 +202,11 @@ if (isset($_GET['source'])) {
             <th><?php echo lang('users_edit_field_firstname');?></th>
             <th><?php echo lang('users_edit_field_lastname');?></th>
             <th><?php echo lang('users_edit_field_position');?></th>
+            <th><?php echo lang('users_edit_field_jobcategory');?></th>
+            <th><?php echo lang('users_edit_field_rating');?></th>
+            <th><?php echo lang('users_edit_field_grade');?></th>
+            <th><?php echo lang('users_edit_field_salary');?></th>
+            <th><?php echo lang('users_edit_field_salarypoint');?></th>
             <th><?php echo lang('users_edit_field_raise');?></th>
         </tr>
     </thead>
@@ -165,6 +216,11 @@ if (isset($_GET['source'])) {
              <td align='center' valign='middle'><?php  echo $users_item['firstname']; ?></td>
              <td align='center' valign='middle'><?php echo $users_item['lastname']; ?></td>
              <td align='center' valign='middle'><?php echo $record['position_name'] ; ?></td>
+             <td align='center' valign='middle'><?php echo $record['jobcategory'] ; ?></td>
+             <td align='center' valign='middle'><?php echo $record['rating'] ; ?></td>
+             <td align='center' valign='middle'><?php echo $record['grade'] ; ?></td>
+             <td align='center' valign='middle'><?php echo $record['salary'] ; ?></td>
+             <td align='center' valign='middle'><?php echo $record['salarypoint'] ; ?></td>
              <td align='center' valign='middle'><?php echo $record['change_date'];?></td>
           </tr>
        <?php endforeach ?>

@@ -172,16 +172,13 @@ class Users extends CI_Controller {
         $this->form_validation->set_rules('jobcategory', lang('users_edit_field_job_category'), 'required|strip_tags');
         $this->form_validation->set_rules('salarypoint', lang('users_edit_field_salary_point'), 'required|strip_tags');
         $this->form_validation->set_rules('salary', lang('users_edit_field_salary'), 'required|strip_tags');
-        $this->form_validation->set_rules('rating', lang('users_edit_field_rating'), 'required|strip_tags');
-        $this->form_validation->set_rules('grade', lang('users_edit_field_grade'), 'required|strip_tags');
+       // $this->form_validation->set_rules('rating', lang('users_edit_field_rating'), 'required|strip_tags');
+       // $this->form_validation->set_rules('grade', lang('users_edit_field_grade'), 'required|strip_tags');
         $this->form_validation->set_rules('language', lang('users_edit_field_language'), 'strip_tags');
         $this->form_validation->set_rules('timezone', lang('users_edit_field_timezone'), 'strip_tags');
         if ($this->config->item('ldap_basedn_db')) $this->form_validation->set_rules('ldap_path', lang('users_edit_field_ldap_path'), 'strip_tags');
-        
         $data['users_item'] = $this->users_model->getUsers($id);
         $data['change_date'] = ($this->users_model->getUsersHistory($id,1))['change_date'];
-
-        error_log( print_r($data, TRUE) );
 
         if (empty($data['users_item'])) {
             redirect('notfound');
@@ -203,8 +200,7 @@ class Users extends CI_Controller {
             $this->load->view('templates/footer');
         } else {
             $this->users_model->updateUsers();
-            $this->users_model->setUsersHistory();
-
+            $this->users_model->setUsersHistory($data['users_item']);
             $this->session->set_flashdata('msg', lang('users_edit_flash_msg_success'));
             if (isset($_GET['source'])) {
                 redirect($_GET['source']);
@@ -237,7 +233,6 @@ class Users extends CI_Controller {
         $this->form_validation->set_rules('language', lang('users_edit_field_language'), 'strip_tags');
         $this->form_validation->set_rules('timezone', lang('users_edit_field_timezone'), 'strip_tags');
         if ($this->config->item('ldap_basedn_db')) $this->form_validation->set_rules('ldap_path', lang('users_edit_field_ldap_path'), 'strip_tags');
-        
         $data['users_item'] = $this->users_model->getUsers($id);
         $data['change_date'] = ($this->users_model->getUsersHistory($id,1))['change_date'];
         $data['users_history'] = $this->users_model->getUsersHistory($id,0);
@@ -405,7 +400,7 @@ class Users extends CI_Controller {
             $this->load->view('templates/footer');
         } else {
             $password = $this->users_model->setUsers();
-            $this->users_model->setUsersHistory();
+            $this->users_model->createUsersHistory();
             
             //Send an e-mail to the user so as to inform that its account has been created
             $this->load->library('email');
