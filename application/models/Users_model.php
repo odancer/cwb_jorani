@@ -258,6 +258,8 @@ class Users_model extends CI_Model {
             'salarypoint' => $this->input->post('salarypoint'),
             'salary' => $this->input->post('salary'),
             'language' => $this->input->post('language'),
+            'grade' =>0,
+            'rating'=>"未評定",
             'timezone' => $this->input->post('timezone')
         );
         
@@ -306,12 +308,21 @@ class Users_model extends CI_Model {
         );
 
         if (($position != $userInfo['position']) || ($jobcategory!= $userInfo['jobcategory']) || ($rating != $userInfo['rating']) || ($grade != $userInfo['grade']) || ($salary != $userInfo['salary']) || ($salarypoint != $userInfo['salarypoint'])) {
+
+            if($position != $userInfo['position']) $change_type=1;
+            if($jobcategory!= $userInfo['jobcategory']) $change_type=2;
+            if($rating != $userInfo['rating']) $change_type=3;
+            if($grade != $userInfo['grade']) $change_type=4;
+            if($salary != $userInfo['salary']) $change_type=5;
+            if($salarypoint != $userInfo['salarypoint']) $change_type=6;
+
             $data['position'] = $this->input->post('position');
             $data['jobcategory'] = $this->input->post('jobcategory');
             $data['rating'] = $this->input->post('rating');
             $data['grade'] = $this->input->post('grade');
             $data['salary'] = $this->input->post('salary');
             $data['salarypoint'] = $this->input->post('salarypoint');
+            $data['change_type'] = $change_type;
             $this->db->insert('users_history', $data);
         }
 
@@ -329,10 +340,12 @@ class Users_model extends CI_Model {
         $data['jobcategory']=$this->input->post('jobcategory');
         $data['salary']=$this->input->post('salary');
         $data['salarypoint']=$this->input->post('salarypoint');
+        $data['grade']=0;
+        $data['rating']="未評定";
         $this->db->insert('users_history', $data);
      }
 
-     public function getUsersHistory($id,$num) {
+     public function getUsersHistory($id,$num,$change_type) {
         $this->db->select('*');
         $this->db->from('users_history');
         $this->db->where('user_id',$id);

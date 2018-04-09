@@ -207,7 +207,8 @@ if (isset($_GET['source'])) {
             <th><?php echo lang('users_edit_field_grade');?></th>
             <th><?php echo lang('users_edit_field_salary');?></th>
             <th><?php echo lang('users_edit_field_salarypoint');?></th>
-            <th><?php echo lang('users_edit_field_raise');?></th>
+            <th><?php echo lang('users_edit_field_change_date');?></th>
+            <th><?php echo lang('users_edit_field_change_type_name');?></th>
         </tr>
     </thead>
     <tbody>
@@ -222,6 +223,7 @@ if (isset($_GET['source'])) {
              <td align='center' valign='middle'><?php echo $record['salary'] ; ?></td>
              <td align='center' valign='middle'><?php echo $record['salarypoint'] ; ?></td>
              <td align='center' valign='middle'><?php echo $record['change_date'];?></td>
+             <td align='center' valign='middle'><?php echo $record['change_type_name'];?></td>
           </tr>
        <?php endforeach ?>
     </tbody>

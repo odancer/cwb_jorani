@@ -580,6 +580,7 @@ CREATE TABLE  `users_history` (
   `grade` int(11) DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
   `salarypoint` float(5) DEFAULT NULL,
+  `change_type` int(4) NOT NULL DEFAULT 0,
    PRIMARY KEY (`change_id`),
    KEY `change_date` (`change_date`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0;

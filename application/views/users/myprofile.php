@@ -55,8 +55,26 @@
         </div>
 
         <div class="row-fluid">
+            <div class="span6"><strong><?php echo lang('users_myprofile_field_raise');?></strong></div>
+            <div class="span6"><?php 
+            $changedate = new DateTime($change_date);
+            echo $changedate->format(lang('global_date_format'));
+            ?></div>
+        </div>
+
+        <div class="row-fluid">
             <div class="span6"><strong><?php echo lang('users_myprofile_field_identifier');?></strong></div>
             <div class="span6"><?php echo $user['identifier'];?></div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span6"><strong><?php echo lang('users_myprofile_field_jobcategory');?></strong></div>
+            <div class="span6"><?php echo $user['jobcategory'];?></div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span6"><strong><?php echo lang('users_myprofile_field_salary');?></strong></div>
+            <div class="span6"><?php echo $user['salary'];?></div>
         </div>
 
         <div class="row-fluid">

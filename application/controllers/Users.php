@@ -138,6 +138,7 @@ class Users extends CI_Controller {
         $data['position_label'] = $this->positions_model->getName($data['user']['position']);
         $data['organization_label'] = $this->organization_model->getName($data['user']['organization']);
         $data['apps'] = $this->oauthclients_model->listOAuthApps($this->user_id);
+        $data['change_date'] =$this->users_model->getUsersHistory($this->user_id,1,0)['change_date'];
         $this->load->view('templates/header', $data);
         $this->load->view('menu/index', $data);
         $this->load->view('users/myprofile', $data);
@@ -178,7 +179,7 @@ class Users extends CI_Controller {
         $this->form_validation->set_rules('timezone', lang('users_edit_field_timezone'), 'strip_tags');
         if ($this->config->item('ldap_basedn_db')) $this->form_validation->set_rules('ldap_path', lang('users_edit_field_ldap_path'), 'strip_tags');
         $data['users_item'] = $this->users_model->getUsers($id);
-        $data['change_date'] = ($this->users_model->getUsersHistory($id,1))['change_date'];
+        $data['change_date'] = ($this->users_model->getUsersHistory($id,1,0))['change_date'];
 
         if (empty($data['users_item'])) {
             redirect('notfound');
@@ -234,14 +235,42 @@ class Users extends CI_Controller {
         $this->form_validation->set_rules('timezone', lang('users_edit_field_timezone'), 'strip_tags');
         if ($this->config->item('ldap_basedn_db')) $this->form_validation->set_rules('ldap_path', lang('users_edit_field_ldap_path'), 'strip_tags');
         $data['users_item'] = $this->users_model->getUsers($id);
-        $data['change_date'] = ($this->users_model->getUsersHistory($id,1))['change_date'];
-        $data['users_history'] = $this->users_model->getUsersHistory($id,0);
+        $data['change_date'] = ($this->users_model->getUsersHistory($id,1,0))['change_date'];
+        $data['users_history'] = $this->users_model->getUsersHistory($id,0,0);
 
         for( $i=0; $i<count($data['users_history']); $i++) {
             $this->load->model('positions_model');
             $position_name=$this->positions_model->getName($data['users_history'][$i]['position']);
             $data['users_history'][$i]=array_merge($data['users_history'][$i],array('position_name'=>$position_name));
+
+            switch($data['users_history'][$i]['change_type']) {
+                 case 0:
+                  $change_type_name="新建資料";
+                  break;
+                case 1:
+                  $change_type_name="變更職稱/職等";
+                  break;
+                case 2:                
+                  $change_type_name="變更工作類別";
+                  break;
+                case 3:                
+                  $change_type_name="變更等第";
+                  break;
+                case 4:                
+                  $change_type_name="變更分數";
+                  break;
+                case 5:                
+                  $change_type_name="變更薪資";
+                  break;
+                case 6:                
+                  $change_type_name="變更薪點";
+                  break;
+
+            }
+            $data['users_history'][$i]=array_merge($data['users_history'][$i],array('change_type_name'=>$change_type_name));
         }
+
+
 
         if (empty($data['users_item'])) {
             redirect('notfound');
