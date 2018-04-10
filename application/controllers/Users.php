@@ -24,6 +24,7 @@ class Users extends CI_Controller {
         setUserContext($this);
         $this->load->model('users_model');
         $this->load->model('organization_model');
+        $this->load->model('positions_model');
         $this->lang->load('users', $this->language);
     }
 
@@ -138,7 +139,7 @@ class Users extends CI_Controller {
         $data['position_label'] = $this->positions_model->getName($data['user']['position']);
         $data['organization_label'] = $this->organization_model->getName($data['user']['organization']);
         $data['apps'] = $this->oauthclients_model->listOAuthApps($this->user_id);
-        $data['change_date'] =$this->users_model->getUsersHistory($this->user_id,1,0)['change_date'];
+        $data['change_date'] =$this->users_model->getUsersHistory($this->user_id,1,1)['change_date'];
         $this->load->view('templates/header', $data);
         $this->load->view('menu/index', $data);
         $this->load->view('users/myprofile', $data);
@@ -201,7 +202,8 @@ class Users extends CI_Controller {
             $this->load->view('templates/footer');
         } else {
             $this->users_model->updateUsers();
-            $this->users_model->setUsersHistory($data['users_item']);
+            $rtn = $this->users_model->setUsersHistory($data['users_item']);
+            if ($rtn) $this->sendMail($id,$rtn);
             $this->session->set_flashdata('msg', lang('users_edit_flash_msg_success'));
             if (isset($_GET['source'])) {
                 redirect($_GET['source']);
@@ -217,7 +219,7 @@ class Users extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->library('polyglot');
-        $data['title'] = lang('users_edit_html_title');
+        $data['title'] = lang('users_view_html_title');
         $data['help'] = $this->help->create_help_link('global_link_doc_page_create_user');
         
         $this->form_validation->set_rules('firstname', lang('users_edit_field_firstname'), 'required|strip_tags');
@@ -237,6 +239,7 @@ class Users extends CI_Controller {
         $data['users_item'] = $this->users_model->getUsers($id);
         $data['change_date'] = ($this->users_model->getUsersHistory($id,1,0))['change_date'];
         $data['users_history'] = $this->users_model->getUsersHistory($id,0,0);
+        $data['raise_date'] = ($this->users_model->getUsersHistory($id,1,1))['change_date'];
 
         for( $i=0; $i<count($data['users_history']); $i++) {
             $this->load->model('positions_model');
@@ -507,4 +510,53 @@ class Users extends CI_Controller {
         $this->load->library('excel');
         $this->load->view('users/export');
     }
-}
+
+
+     private function sendMail($id,$change_type) {
+        $user = $this->users_model->getUsers($id);
+        $email = $user['email'];
+        $connectUrl = base_url() . 'jorani';
+        $change_type_name=array();
+        for($i=0;$i<count($change_type);$i++) {
+         switch($change_type[$i]) {
+                case 1:
+                  $position = ($this->positions_model->getPositions($user['position']))['name'];
+                  array_push($change_type_name,"即日起變更職稱/職等為:".$position);
+                  break;
+                case 2:
+                  array_push($change_type_name,"即日起變更工作類別為".$user['jobcategory']);                
+                  break;                                 
+                case 5:  
+                  array_push($change_type_name,"即日起變更薪資為".$user['salary']);                
+                  break;                              
+          }
+        }
+            //Send an e-mail to the manager
+            $this->load->library('email');
+            $this->load->library('polyglot');
+            $usr_lang = $this->polyglot->code2language($user['language']);
+            //We need to instance an different object as the languages of connected user may differ from the UI lang
+            $lang_mail = new CI_Lang();
+            $lang_mail->load('email', $usr_lang);
+            $lang_mail->load('global', $usr_lang);
+            for ($i=0; $i<count($change_type_name); $i++) {
+              $changeStr.=("'$change_type_name[$i]'<br>"); //Now it is string...
+            }
+            $date = new DateTime($this->input->post('date'));
+            $startdate = $date->format($lang_mail->line('global_date_format'));
+
+            $this->load->library('parser');
+            $data = array(
+                'Title' => $lang_mail->line('email_user_info_title'),
+                'Firstname' => $user['firstname'],
+                'Lastname' => $user['lastname'],
+                'Date' => $startdate,
+                'Url' => $connectUrl,
+                'Changeinfo' => $changeStr,
+            );
+            $message = $this->parser->parse('emails/' . $user['language'] . '/user_notice', $data, TRUE);
+            $subject = $lang_mail->line('email_user_info_subject') . ' ' .
+                                $user['firstname'] . ' ' .$user['lastname'];
+            sendMailByWrapper($this, $subject, $message, $user['email'], $delegates);
+        }
+    }

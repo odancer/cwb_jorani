@@ -41,3 +41,8 @@ $lang['email_extra_request_reject_subject'] = '加班申請從';
 $lang['email_extra_request_validation_title'] = '加班申請';
 $lang['email_password_forgotten_subject'] = '你已重設密碼';
 $lang['email_password_forgotten_title'] = '你已重設密碼';
+
+$lang['email_user_info_title'] = '使用者資訊變更';
+$lang['email_user_info_subject'] = '使用者資訊變更通知';
+
+

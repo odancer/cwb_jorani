@@ -117,6 +117,18 @@ if (isset($_GET['source'])) {
     </div>
 
     <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="raise"><?php echo lang('users_edit_field_raise');?></label>
+            <div class="controls">
+                <input readonly="value" type="text" id="raise" name="raise" value="<?php 
+                    $raisedate = new DateTime($raise_date);
+                    echo $raisedate->format(lang('global_date_format'));?>" required />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="span4">
      <div class="control-group">
             <label class="control-label" for="identifier"><?php echo lang('users_edit_field_identifier');?></label>
             <div class="controls">
