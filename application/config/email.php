@@ -3,9 +3,9 @@
 $config['useragent']        = 'PHPMailer';              // Mail engine switcher: 'CodeIgniter' or 'PHPMailer'
 $config['protocol']         = 'smtp';                   // 'mail', 'sendmail', or 'smtp'
 $config['mailpath']         = '/usr/sbin/sendmail';
-$config['smtp_host']        = 'ms1.cwb.gov.tw';
-$config['smtp_user']        = 'hsiang';
-$config['smtp_pass']        = 'Davidhsieh+16845';
+$config['smtp_host']        = '';
+$config['smtp_user']        = '';
+$config['smtp_pass']        = '';
 $config['smtp_port']        = 25;
 $config['smtp_timeout']     = 30;                       // (in seconds)
 $config['smtp_crypto']      = '';                       // '' or 'tls' or 'ssl'
