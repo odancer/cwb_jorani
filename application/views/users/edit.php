@@ -219,6 +219,31 @@ if (isset($_GET['source'])) {
             </div>
         </div>
     </div>
+    <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="stationedorg"><?php echo lang('users_edit_field_stationedorg');?></label>
+            <div class="controls">
+                <input type="text" name="stationedorg" value="<?php echo $users_item['stationedorg']; ?>" />
+            </div>
+        </div>
+    </div>
+    <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="stationedunit"><?php echo lang('users_edit_field_stationedunit');?></label>
+            <div class="controls">
+                <input type="text" name="stationedunit" value="<?php echo $users_item['stationedunit']; ?>" />
+            </div>
+        </div>
+    </div>
+        <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="bidname"><?php echo lang('users_edit_field_bidname');?></label>
+            <div class="controls"  style='width:100%;'>
+                <input type="text" name="bidname" style='width:100%' value="<?php echo $users_item['bidname']; ?>" />
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <div class="row">

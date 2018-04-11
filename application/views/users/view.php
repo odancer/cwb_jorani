@@ -182,8 +182,23 @@ if (isset($_GET['source'])) {
         </div>
     </div>
 
-
     <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="stationedorg"><?php echo lang('users_edit_field_stationedorg');?></label>
+            <div class="controls">
+                <input readonly="value" type="text" name="stationedorg" value="<?php echo $users_item['stationedorg']; ?>" />
+            </div>
+        </div>
+    </div>
+    <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="stationedunit"><?php echo lang('users_edit_field_stationedunit');?></label>
+            <div class="controls">
+                <input readonly="value" type="text" name="stationedunit" value="<?php echo $users_item['stationedunit']; ?>" />
+            </div>
+        </div>
+    </div>
+  <div class="span4">
         <div class="control-group">
             <label class="control-label" for="language"><?php echo lang('users_edit_field_language');?></label>
             <div class="controls">
@@ -201,10 +216,22 @@ if (isset($_GET['source'])) {
         </div>
     </div>
 
+</div>
+
+<div class="row">
+        <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="bidname"><?php echo lang('users_edit_field_bidname');?></label>
+            <div class="controls"  style='width:100%;'>
+                <input readonly="value" type="text" name="bidname" style='width:100%' value="<?php echo $users_item['bidname']; ?>" />
+            </div>
+        </div>
+    </div>
+</div>
+
     <div class="span4">
         &nbsp;
     </div>
-</div>
     
 <hr />
 
@@ -226,7 +253,7 @@ if (isset($_GET['source'])) {
     <tbody>
        <?php foreach ($users_history as $record): ?>
           <tr>
-             <td align='center' valign='middle'><?php  echo $users_item['firstname']; ?></td>
+             <td align='center' valign='middle'><?php echo $users_item['firstname']; ?></td>
              <td align='center' valign='middle'><?php echo $users_item['lastname']; ?></td>
              <td align='center' valign='middle'><?php echo $record['position_name'] ; ?></td>
              <td align='center' valign='middle'><?php echo $record['jobcategory'] ; ?></td>

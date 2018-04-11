@@ -28,14 +28,27 @@ class Users_model extends CI_Model {
      * @return array record of users
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
-    public function getUsers($id = 0) {
+    public function getUsers($id=0) {
         $this->db->select('users.*');
-        if ($id === 0) {
+        if ($id === 0 ) {
             $query = $this->db->get('users');
             return $query->result_array();
         }
         $query = $this->db->get_where('users', array('users.id' => $id));
         return $query->row_array();
+    }
+
+
+    public function getUsers2($role=0,$grp=0) {
+        $this->db->select('users.*');
+        if ( ($role === 0 && $grp === 0)  ) {
+            $query = $this->db->get('users');
+            return $query->result_array();
+        } 
+        if($role !=0) $this->db->where('role',$role);
+        if($grp !=0) $this->db->where('organization',$grp);
+        $query = $this->db->get('users');
+        return $query->result_array();
     }
     
     /**
@@ -260,6 +273,9 @@ class Users_model extends CI_Model {
             'language' => $this->input->post('language'),
             'grade' =>0,
             'rating'=>"未評定",
+            'stationedorg' => $this->input->post('stationedorg'),
+            'stationedunit' => $this->input->post('stationedunit'),
+            'bidname' => $this->input->post('bidname'),
             'timezone' => $this->input->post('timezone')
         );
         
@@ -485,6 +501,9 @@ class Users_model extends CI_Model {
             'salary' => $this->input->post('salary'),
             'rating' => $this->input->post('rating'),
             'grade' => $this->input->post('grade'),
+            'stationedorg' => $this->input->post('stationedorg'),
+            'stationedunit' => $this->input->post('stationedunit'),
+            'bidname' => $this->input->post('bidname'),
             'language' => $this->input->post('language'),
             'timezone' => $this->input->post('timezone')
         );

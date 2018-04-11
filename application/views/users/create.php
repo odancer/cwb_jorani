@@ -226,6 +226,30 @@ echo form_open('users/create', $attributes); ?>
             </div>
         </div>
     </div>
+    <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="stationedorg"><?php echo lang('users_create_field_stationedorg');?></label>
+            <div class="controls">
+                <input type="text" name="stationedorg" id="stationedorg" />
+            </div>
+        </div>
+    </div>
+    <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="stationedunit"><?php echo lang('users_create_field_stationedunit');?></label>
+            <div class="controls">
+                <input type="text" name="stationedunit" id="stationedunit" />
+            </div>
+        </div>
+    </div>
+     <div class="span4">
+        <div class="control-group">
+            <label class="control-label" for="bidname"><?php echo lang('users_create_field_bidname');?></label>
+            <div class="controls" style='width:100%;'>
+                <input type="text" name="bidname" id="bidname" style='width:100%;'/>
+            </div>
+        </div>
+    </div>
 </div>
 
 &nbsp;

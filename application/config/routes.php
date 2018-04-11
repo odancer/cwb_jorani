@@ -55,6 +55,7 @@ $route['users/myprofile'] = 'users/myProfile';
 $route['users/employees'] = 'users/employees';
 $route['users/employeesMultiSelect'] = 'users/employeesMultiSelect';
 $route['users/export'] = 'users/export';
+$route['users/exportrating'] = 'users/exportrating';
 $route['users/reset/(:num)'] = 'users/reset/$1';
 $route['users/create'] = 'users/create';
 $route['users/edit/(:num)'] = 'users/edit/$1';

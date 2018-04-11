@@ -44,7 +44,6 @@ class Roles_model extends CI_Model {
             return $query->result_array();
         }
         $query = $this->db->get_where('roles', array('id' => $id));
-        error_log( print_r($query, TRUE) );
         return $query->row_array();
     }
 

@@ -174,6 +174,9 @@ class Users extends CI_Controller {
         $this->form_validation->set_rules('jobcategory', lang('users_edit_field_job_category'), 'required|strip_tags');
         $this->form_validation->set_rules('salarypoint', lang('users_edit_field_salary_point'), 'required|strip_tags');
         $this->form_validation->set_rules('salary', lang('users_edit_field_salary'), 'required|strip_tags');
+        $this->form_validation->set_rules('stationedorg', lang('users_edit_field_stationedorg'), 'required|strip_tags');
+        $this->form_validation->set_rules('stationedunit', lang('users_edit_field_stationedunit'), 'required|strip_tags');
+        $this->form_validation->set_rules('bidname', lang('users_edit_field_bidname'), 'required|strip_tags');
        // $this->form_validation->set_rules('rating', lang('users_edit_field_rating'), 'required|strip_tags');
        // $this->form_validation->set_rules('grade', lang('users_edit_field_grade'), 'required|strip_tags');
         $this->form_validation->set_rules('language', lang('users_edit_field_language'), 'strip_tags');
@@ -420,8 +423,9 @@ class Users extends CI_Controller {
         $this->form_validation->set_rules('jobcategory', lang('users_create_field_job_category'), 'required|strip_tags');
         $this->form_validation->set_rules('salarypoint', lang('users_create_field_salary_point'), 'required|strip_tags');
         $this->form_validation->set_rules('salary', lang('users_create_field_salary'), 'required|strip_tags');
-        $this->form_validation->set_rules('firstname', lang('users_create_field_firstname'), 'required|strip_tags');
-
+        $this->form_validation->set_rules('stationedorg', lang('users_create_field_stationedorg'), 'required|strip_tags');
+        $this->form_validation->set_rules('stationedunit', lang('users_create_field_stationedorg'), 'required|strip_tags');
+        $this->form_validation->set_rules('bidname', lang('users_create_field_bidname'), 'required|strip_tags');
 
         if ($this->config->item('ldap_basedn_db')) $this->form_validation->set_rules('ldap_path', lang('users_create_field_ldap_path'), 'strip_tags');
 
@@ -507,8 +511,19 @@ class Users extends CI_Controller {
      */
     public function export() {
         $this->auth->checkIfOperationIsAllowed('export_user');
+        $data['user_info'] = $this->users_model->getUsers($this->user_id); 
+        //error_log( print_r($data['user']['organization'], TRUE) );    
         $this->load->library('excel');
-        $this->load->view('users/export');
+        $this->load->view('users/export', $data);
+    }
+
+    public function exportrating() {
+        $this->auth->checkIfOperationIsAllowed('export_user');
+        $data = getUserContext($this);
+        $data['user_info'] = $this->users_model->getUsers($this->user_id);
+        //error_log( print_r($data['user']['organization'], TRUE) ); 
+        $this->load->library('excel');
+        $this->load->view('users/exportrating', $data);
     }
 
 
