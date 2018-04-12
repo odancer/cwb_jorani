@@ -38,7 +38,14 @@
           <?php } ?>
           </tbody>
         </table>
+        <br>
     </div>
+     <br>
+     <?php if ($source == 'employees') {?>
+        <a href=<?php echo base_url();?>hr/counters/export/employees/<?php echo $employee_id;?> class="btn btn-primary"><i class="fa fa-file-excel-o"></i>&nbsp;<?php echo lang('hr_summary_thead_export');?></a>
+      <?php } else { ?>
+         <a href=<?php echo base_url();?>hr/counters/export/collaborators/<?php echo $employee_id;?> class="btn btn-primary"><i class="fa fa-file-excel-o"></i>&nbsp;<?php echo lang('hr_summary_thead_export');?></a>
+      <?php } ?>
 </div>
 
 <div class="row-fluid">

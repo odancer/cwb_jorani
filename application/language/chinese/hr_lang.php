@@ -145,11 +145,13 @@ $lang['hr_export_overtime_thead_duration'] = '申請時數';
 $lang['hr_export_overtime_thead_cause'] = '理由';
 
 $lang['hr_summary_title'] = '使用者的休假平衡';
+$lang['hr_summary_thead_name'] = '姓名';
 $lang['hr_summary_thead_type'] = '假別';
 $lang['hr_summary_thead_available'] = '未休時數';
 $lang['hr_summary_thead_taken'] = '已休時數';
 $lang['hr_summary_thead_entitled'] = '可享有休假時數';
 $lang['hr_summary_thead_description'] = '描述';
+$lang['hr_summary_thead_export'] = '匯出休假總表';
 $lang['hr_summary_flash_msg_error'] = '此員工無類別';
 $lang['hr_summary_button_list'] = '員工列表';
 $lang['hr_summary_date_field'] = '報告建立日期';

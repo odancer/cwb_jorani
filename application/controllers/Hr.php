@@ -462,6 +462,45 @@ class Hr extends CI_Controller {
         $data['id'] = $id;
         $this->load->view('hr/export_leaves', $data);
     }
+
+    public function exportCounter($source, $id, $refTmp = NULL) {
+        $data = getUserContext($this);
+        if ($source == 'collaborators') { $data['source'] = 'collaborators'; }
+        if ($source == 'employees') { $data['source'] = 'employees'; }
+        $this->lang->load('entitleddays', $this->language);
+        $this->lang->load('datatable', $this->language);
+        $refDate = date("Y-m-d");
+        if ($refTmp != NULL) {
+            $refDate = date("Y-m-d", $refTmp);
+            $data['isDefault'] = 0;
+        } else {
+            $data['isDefault'] = 1;
+        }
+        $data['refDate'] = $refDate;
+        $data['summary'] = $this->leaves_model->getLeaveBalanceForEmployee($id, FALSE, $refDate);
+        if (!is_null($data['summary'])) {
+            $this->load->model('entitleddays_model');
+            $this->load->model('users_model');
+            $user = $this->users_model->getUsers($id);
+            $data['employee_name'] = $user['firstname'] . ' ' . $user['lastname'];
+            $this->load->model('contracts_model');
+            $contract = $this->contracts_model->getContracts($user['contract']); 
+            $data['contract_name'] = $contract['name'];
+            $data['contract_start'] = $contract['startentdate'];
+            $data['contract_end'] = $contract['endentdate'];
+            $data['employee_id'] = $id;
+            $data['contract_id'] = $user['contract'];
+            $data['entitleddayscontract'] = $this->entitleddays_model->getEntitledDaysForContract($user['contract']);
+            $data['entitleddaysemployee'] = $this->entitleddays_model->getEntitledDaysForEmployee($id);
+            $data['title'] = lang('hr_summary_title');
+            $data['help'] = $this->help->create_help_link('global_link_doc_page_leave_balance_employee');
+            $this->load->library('excel');
+            $this->load->view('hr/export_counter', $data);
+        } else {
+            $this->session->set_flashdata('msg', lang('hr_summary_flash_msg_error'));
+            redirect('hr/employees');
+        }
+    }
     
     /**
      * Export the list of all overtime requests of an employee into an Excel file
