@@ -266,7 +266,7 @@ class Users extends CI_Controller {
                   $change_type_name="變更分數";
                   break;
                 case 5:                
-                  $change_type_name="變更薪資";
+                  $change_type_name="變更薪俸";
                   break;
                 case 6:                
                   $change_type_name="變更薪點";
@@ -542,7 +542,7 @@ class Users extends CI_Controller {
                   array_push($change_type_name,"即日起變更工作類別為".$user['jobcategory']);                
                   break;                                 
                 case 5:  
-                  array_push($change_type_name,"即日起變更薪資為".$user['salary']);                
+                  array_push($change_type_name,"即日起變更薪俸為".$user['salary']);                
                   break;                              
           }
         }
