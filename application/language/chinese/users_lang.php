@@ -24,6 +24,7 @@ $lang['users_index_thead_role'] = '角色';
 $lang['users_index_thead_manager'] = '管理者';
 $lang['users_index_button_export'] = '匯出此單';
 $lang['users_index_button_export_rating'] = '匯出年終考核成績';
+$lang['users_index_export_history'] = '匯出個人歷程';
 $lang['users_index_button_create_user'] = '建立新使用者';
 $lang['users_index_button_import_user'] = '匯入使用者';
 $lang['users_index_popup_delete_title'] = '刪除使用者';
@@ -173,6 +174,7 @@ $lang['users_export_thead_manager'] = '管理者';
 
 $lang['users_export_title2'] = '計畫聘用人員年終及獎懲表';
 $lang['users_export_title3'] = '__________年度計畫聘用人員年終及獎懲表';
+$lang['users_export_title4'] = '個人歷程表';
 $lang['users_export_date'] = '_____年_____月_____日';
 $lang['users_export_thead_stationedorg'] = '派駐機關';
 $lang['users_export_thead_stationedunit'] = '派駐單位';

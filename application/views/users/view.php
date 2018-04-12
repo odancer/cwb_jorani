@@ -269,3 +269,5 @@ if (isset($_GET['source'])) {
 </table>
 </form>
 <input action="action" onclick="window.history.go(-1); return false;" type="button" class="btn btn-primary" value=<?php echo lang('users_edit_previous');?> />
+ &nbsp;
+       <a href=<?php echo base_url();?>users/exporthistory/<?php echo $users_item['id'];?> class="btn btn-primary"><i class="fa fa-file-excel-o"></i>&nbsp;<?php echo lang('users_index_export_history');?></a>
