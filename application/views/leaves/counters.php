@@ -25,7 +25,7 @@
       <th rowspan="2"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;<?php echo lang('leaves_summary_thead_entitled');?></th>
       <th rowspan="2"><i class="fa fa-minus-circle" aria-hidden="true"></i>&nbsp;<?php echo lang('leaves_summary_thead_taken');?>&nbsp;<i class="fa fa-question-circle" data-toggle="tooltip" title="<?php echo lang('Accepted');?> + <?php echo lang('Cancellation');?>"></i></th>
       <th rowspan="2"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;<span class="label"><?php echo lang('Planned');?></span></th>
-      <th rowspan="2"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;<span class="label label-warning"><?php echo lang('Requested');?></span></th>
+      <th rowspan="2"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;<span class="label label-warning"><?php echo lang('Requested2');?></span></th>
     </tr>
     <tr>
       <th><?php echo lang('leaves_summary_thead_actual');?>&nbsp;<i class="fa fa-question-circle" data-toggle="tooltip" title="<?php echo lang('leaves_summary_thead_entitled');?> - (<?php echo lang('Accepted');?> + <?php echo lang('Cancellation');?>)"></i></th>
@@ -59,7 +59,7 @@
       <?php if (empty($value[5])) { ?>
       <td>&nbsp;</td>
       <?php } else { ?>
-      <td><a href="<?php echo base_url();?>leaves?statuses=2&type=<?php echo $value[3]; ?>" target="_blank"><?php echo ((float) $value[5]); ?></a></td>
+      <td><a href="<?php echo base_url();?>leaves?statuses=2|7|8&type=<?php echo $value[3]; ?>" target="_blank"><?php echo ((float) $value[5]); ?></a></td>
       <?php } ?>
     </tr>
   <?php }

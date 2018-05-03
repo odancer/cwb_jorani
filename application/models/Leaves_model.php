@@ -421,7 +421,7 @@ class Leaves_model extends CI_Model {
                 $this->db->from('leaves');
                 $this->db->join('types', 'types.id = leaves.type');
                 $this->db->where('leaves.employee', $id);
-                $this->db->where('leaves.status', LMS_REQUESTED);
+                $this->db->where_in('leaves.status', array(LMS_REQUESTED,LMS_REQUESTED_AGENT,LMS_REQUESTED_BOSS));
                 $this->db->where('leaves.startdate >= ', $entitlement['min_date']);
                 $this->db->where('leaves.enddate <=', $entitlement['max_date']);
                 $this->db->where('leaves.type', $entitlement['type_id']);
