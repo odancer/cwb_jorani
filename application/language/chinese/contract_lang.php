@@ -19,7 +19,7 @@ $lang['contract_index_tip_entitled'] = '享有時數';
 $lang['contract_index_tip_dayoffs'] = '休假與週末';
 $lang['contract_index_tip_exclude_types'] = 'Exclude leave types';
 $lang['contract_index_button_export'] = '匯出此單';
-$lang['contract_index_button_create'] = '創造類別';
+$lang['contract_index_button_create'] = '新增類別';
 $lang['contract_index_popup_delete_title'] = '刪除類別';
 $lang['contract_index_popup_delete_description'] = '你可以刪除一個類別,但無法再做復原';
 $lang['contract_index_popup_delete_confirm'] = '你要繼續嗎？';
@@ -58,10 +58,10 @@ $lang['contract_create_field_start_day'] = '天/開始 (必選)';
 $lang['contract_create_field_end_month'] = '月/結束 (必選)';
 $lang['contract_create_field_end_day'] = '天/結束 (必選)';
 $lang['contract_create_default_leave_type'] = '預設假別';
-$lang['contract_create_button_create'] = '創造類別';
+$lang['contract_create_button_create'] = '新增類別';
 $lang['contract_create_button_cancel'] = '取消';
 
-$lang['contract_create_msg_success'] = '類別已成功創立';
+$lang['contract_create_msg_success'] = '類別已成功新增';
 $lang['contract_delete_msg_success'] = '類別已成功刪除';
 
 $lang['contract_export_title'] = '給假類別清單';

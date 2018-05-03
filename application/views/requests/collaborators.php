@@ -41,7 +41,7 @@
                     &nbsp;<a href="<?php echo base_url();?>hr/presence/collaborators/<?php echo $collaborator['id'] ?>" title="<?php echo lang('requests_collaborators_thead_link_presence');?>"><i class="fa fa-pie-chart fa-2x" style="color:black;"></i></a>
                     &nbsp;<a href="<?php echo base_url();?>calendar/year/<?php echo $collaborator['id'] ?>" title="<?php echo lang('requests_collaborators_thead_link_year');?>"><i class="fa fa-calendar fa-2x" style="color:black;"></i></a>
                     <?php if (($is_hr == TRUE) || ($is_admin == TRUE) || ($is_boss == TRUE)){ ?>
-                    &nbsp;<a href="<?php echo base_url();?>users/view/<?php echo $collaborator['id'] ?>" title="<?php echo lang('users_index_thead_tip_view');?>"><i class="fa fa-eye fa-2x" style="color:black;"></i></a>
+                    &nbsp;<a href="<?php echo base_url();?>users/view/<?php echo $collaborator['id'] ?>" title="<?php echo lang('requests_index_thead_tip_view');?>"><i class="fa fa-eye fa-2x" style="color:black;"></i></a>
                      <?php } ?>
                 </div>
             </td>

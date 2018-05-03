@@ -25,6 +25,7 @@ $lang['footer_link_go_top'] = '至頂端';
 $lang['footer_copyright_notice'] = '&copy; 2014 Jorani Authors';
 
 $lang['Requested'] = '主管審核';
+$lang['Requested2'] = '審核';
 $lang['Ok'] = '確認變更';
 $lang['Requested_Agent'] = '代理人審核';
 $lang['Requested_Boss'] = '主任審核';
