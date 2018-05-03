@@ -164,18 +164,28 @@ $this->lang->load('menu', $language);?>
                   <ul class="dropdown-menu">
                       <li><a href="<?php echo base_url();?>calendar/individual"><?php echo lang('menu_calendar_individual');?></a></li>
                       <li><a href="<?php echo base_url();?>calendar/year"><?php echo lang('menu_calendar_year');?></a></li>
-                      <li><a href="<?php echo base_url();?>calendar/department"><?php echo lang('menu_calendar_department');?></a></li>
-                      <!--<li><a href="<?php echo base_url();?>calendar/workmates"><?php echo lang('menu_calendar_workmates');?></a></li>-->
-                      <?php if ($is_manager == TRUE) { ?>
-                      <li><a href="<?php echo base_url();?>calendar/collaborators"><?php echo lang('menu_calendar_collaborators');?></a></li>
-                      <?php } ?>
-                      <?php if (($is_hr == TRUE) || ($is_boss == TRUE) || ($is_admin == TRUE) || ($this->config->item('hide_global_cals_to_users') === FALSE) ) { ?>
-                      <?php if ($this->config->item('disable_department_calendar') == FALSE) { ?>
+                      <?php if (($is_hr == FALSE) && ($is_admin == FALSE) && ($is_boss == FALSE)){ ?>
                       <li><a href="<?php echo base_url();?>calendar/department"><?php echo lang('menu_calendar_department');?></a></li>
                       <?php } ?>
-                      <li><a href="<?php echo base_url();?>calendar/organization"><?php echo lang('menu_calendar_organization');?></a></li>
-                      <li><a href="<?php echo base_url();?>calendar/tabular"><?php echo lang('menu_calendar_tabular');?></a></li>
+                      
+                      <?php if ($is_manager == TRUE && $is_boss == FALSE && $is_hr == FALSE) { ?>
+                        <li><a href="<?php echo base_url();?>calendar/collaborators"><?php echo lang('menu_calendar_collaborators');?></a></li>
+                        <li><a href="<?php echo base_url();?>calendar/department"><?php echo lang('menu_calendar_department');?></a></li>
+                        <li><a href="<?php echo base_url();?>calendar/organization"><?php echo lang('menu_calendar_organization');?></a></li>
+                        <li><a href="<?php echo base_url();?>calendar/tabular"><?php echo lang('menu_calendar_tabular');?></a></li>
                       <?php } ?>
+
+                      <?php if (($is_boss == TRUE)) { ?>
+                        <li><a href="<?php echo base_url();?>calendar/department"><?php echo lang('menu_calendar_department');?></a></li>
+                        <li><a href="<?php echo base_url();?>calendar/organization"><?php echo lang('menu_calendar_organization');?></a></li>
+                      <?php } ?>
+                      
+                      <?php if (($is_hr == TRUE)) { ?>
+                        <li><a href="<?php echo base_url();?>calendar/department"><?php echo lang('menu_calendar_department');?></a></li>
+                        <li><a href="<?php echo base_url();?>calendar/organization"><?php echo lang('menu_calendar_organization');?></a></li>
+                        <li><a href="<?php echo base_url();?>calendar/tabular"><?php echo lang('menu_calendar_tabular');?></a></li>
+                      <?php } ?>
+                     
                      <li><a href="<?php echo base_url();?>calendar/attendance"><?php echo lang('menu_calendar_attendance');?></a></li>
                   </ul>
                 </li>
