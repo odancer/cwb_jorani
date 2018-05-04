@@ -75,6 +75,8 @@ if (count($tabular) > 0) {?>
                 {
                     case 1: $class = "planned"; break;  // Planned
                     case 2: $class = "requested"; break;  // Requested
+                    case 7: $class = "requested"; break;  // Requested
+                    case 8: $class = "requested"; break;  // Requested
                     case 3: $class = "accepted"; break;  // Accepted
                     case 4: $class = "rejected"; break;  // Rejected
                     case 5: $class = "rejected"; break;  // Cancellation
@@ -86,6 +88,8 @@ if (count($tabular) > 0) {?>
                 {
                     case 1: $class .= "planned"; break;  // Planned
                     case 2: $class .= "requested"; break;  // Requested
+                    case 7: $class .= "requested"; break;  // Requested
+                    case 8: $class .= "requested"; break;  // Requested
                     case 3: $class .= "accepted"; break;  // Accepted
                     case 4: $class .= "rejected"; break;  // Rejected
                     case 5: $class .= "rejected"; break;  // Cancellation
@@ -99,6 +103,8 @@ if (count($tabular) > 0) {?>
                     {
                         case 1: $class = "allplanned"; break;  // Planned
                         case 2: $class = "allrequested"; break;  // Requested
+                        case 7: $class = "requested"; break;  // Requested
+                        case 8: $class = "requested"; break;  // Requested
                         case 3: $class = "allaccepted"; break;  // Accepted
                         case 4: $class = "allrejected"; break;  // Rejected
                         case 5: $class = "allrejected"; break;  // Cancellation
@@ -117,6 +123,8 @@ if (count($tabular) > 0) {?>
                       {
                           case 1: $class = "allplanned"; break;  // Planned
                           case 2: $class = "allrequested"; break;  // Requested
+                          case 7: $class = "allrequested"; break;  // Requested
+                          case 8: $class = "allrequested"; break;  // Requested
                           case 3: $class = "allaccepted"; break;  // Accepted
                           case 4: $class = "allrejected"; break;  // Rejected
                           case 5: $class = "allrejected"; break;  // Cancellation
@@ -128,6 +136,8 @@ if (count($tabular) > 0) {?>
                       {
                           case 1: $class = "amplanned"; break;  // Planned
                           case 2: $class = "amrequested"; break;  // Requested
+                          case 7: $class = "amrequested"; break;  // Requested
+                          case 8: $class = "amrequested"; break;  // Requested
                           case 3: $class = "amaccepted"; break;  // Accepted
                           case 4: $class = "amrejected"; break;  // Rejected
                           case 5: $class = "amrejected"; break;  // Cancellation
@@ -139,6 +149,8 @@ if (count($tabular) > 0) {?>
                       {
                           case 1: $class = "pmplanned"; break;  // Planned
                           case 2: $class = "pmrequested"; break;  // Requested
+                          case 7: $class = "pmrequested"; break;  // Requested
+                          case 8: $class = "pmrequested"; break;  // Requested
                           case 3: $class = "pmaccepted"; break;  // Accepted
                           case 4: $class = "pmrejected"; break;  // Rejected
                           case 5: $class = "pmrejected"; break;  // Cancellation
