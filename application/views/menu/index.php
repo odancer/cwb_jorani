@@ -168,11 +168,13 @@ $this->lang->load('menu', $language);?>
                       <li><a href="<?php echo base_url();?>calendar/department"><?php echo lang('menu_calendar_department');?></a></li>
                       <?php } ?>
                       
-                      <?php if ($is_manager == TRUE && $is_boss == FALSE && $is_hr == FALSE) { ?>
+                      <?php if ($is_admin == TRUE && $is_boss == FALSE && $is_hr == FALSE) { ?>
                         <li><a href="<?php echo base_url();?>calendar/collaborators"><?php echo lang('menu_calendar_collaborators');?></a></li>
                         <li><a href="<?php echo base_url();?>calendar/department"><?php echo lang('menu_calendar_department');?></a></li>
+                        <!--
                         <li><a href="<?php echo base_url();?>calendar/organization"><?php echo lang('menu_calendar_organization');?></a></li>
                         <li><a href="<?php echo base_url();?>calendar/tabular"><?php echo lang('menu_calendar_tabular');?></a></li>
+                         -->
                       <?php } ?>
 
                       <?php if (($is_boss == TRUE)) { ?>

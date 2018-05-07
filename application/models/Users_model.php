@@ -136,6 +136,14 @@ class Users_model extends CI_Model {
             return $record['organization'] ;
         }
     }
+
+    public function getGroupBySupervisor2($id) {
+        $this->db->select('id');
+        $this->db->from('organization');
+        $this->db->where('supervisor2',$id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     
     public function getLoginid($id) {
         $record = $this->getUsers($id);
@@ -160,6 +168,15 @@ class Users_model extends CI_Model {
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
     public function getCollaboratorsOfManager($id = 0) {
+        $grp_list=array();
+        $user_info=$this->getUsers($id);
+        if($user_info['role'] ==32) {
+            $group_list=$this->getGroupBySupervisor2($id);
+            for($i=0;$i<count($group_list);$i++) {
+                array_push($grp_list,$group_list[$i]['id']);
+            }
+        }
+        //error_log( print_r($grp_list,TRUE) );
         $this->db->select('users.*');
         $this->db->select('organization.name as department_name, positions.name as position_name, contracts.name as contract_name');
         $this->db->from('users');
@@ -168,11 +185,20 @@ class Users_model extends CI_Model {
         $this->db->join('contracts', 'contracts.id  = users.contract', 'left');
         $this->db->order_by("lastname", "asc");
         $this->db->order_by("firstname", "asc");
-        $this->db->where('manager', $id);
+        if(($user_info['role'] !=8) && ($user_info['role'] !=32)) $this->db->where('manager', $id);
+        if(($user_info['role'] ==8) && ($user_info['id'] !=1)) $this->db->where('organization', $user_info['organization']);
+        if($user_info['role'] ==32) {
+            if (empty($grp_list)) {
+                    $this->db->where_in('organization', $user_info['organization']);
+                }else{
+                    $this->db->where_in('organization', $grp_list);   
+                }
+        }
         $query = $this->db->get();
         return $query->result_array();
     }
-    
+
+
     /**
      * Check if an employee is the collaborator of the given user
      * @param int $employee identifier of the collaborator
