@@ -396,7 +396,7 @@ class Hr extends CI_Controller {
         
         //Details about the employee
         $employee = $this->users_model->getUsers($id);
-        if (($this->user_id != $employee['manager']) && ($this->is_hr === FALSE)) {
+        if (($this->user_id != $employee['manager']) && ($this->is_hr === FALSE) && ($this->is_boss === FALSE)) {
             log_message('error', 'User #' . $this->user_id . ' illegally tried to access to hr/presence  #' . $id);
             $this->session->set_flashdata('msg', sprintf(lang('global_msg_error_forbidden'), 'hr/presence'));
             redirect('leaves');

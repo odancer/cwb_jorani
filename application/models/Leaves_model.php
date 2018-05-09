@@ -1647,7 +1647,6 @@ class Leaves_model extends CI_Model {
         $start = $year . '-' . $month . '-' .  '1';    //first date of selected month
         $lastDay = date("t", strtotime($start));    //last day of selected month
         $end = $year . '-' . $month . '-' . $lastDay;    //last date of selected month
-
         //We must show all users of the departement
         $this->load->model('dayoffs_model');
         $this->load->model('users_model');

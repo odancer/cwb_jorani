@@ -49,7 +49,7 @@ class Calendar extends CI_Controller {
             $employee = $this->user_id;
             $user = $this->users_model->getUsers($employee);
         } else {
-            if (!$this->is_hr) {
+            if ((!$this->is_hr ) && (!$this->is_boss)) {
                 if ($this->user_id != $user['manager']) {
                     $employee = $this->user_id;
                     $user = $this->users_model->getUsers($employee);
