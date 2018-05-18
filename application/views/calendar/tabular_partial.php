@@ -80,6 +80,9 @@ if (count($tabular) > 0) {?>
                     case 3: $class = "accepted"; break;  // Accepted
                     case 4: $class = "rejected"; break;  // Rejected
                     case 5: $class = "rejected"; break;  // Cancellation
+                    case 9: $class = "rejected"; break;  // Cancellation
+                    case 10: $class = "rejected"; break;  // Cancellation
+                    case 11: $class = "rejected"; break;  // Cancellation
                     case 6: $class = "rejected"; break;  // Canceled
                     case 12: $class = "dayoff"; break;
                     case 13: $class = "dayoff"; break;
@@ -93,6 +96,9 @@ if (count($tabular) > 0) {?>
                     case 3: $class .= "accepted"; break;  // Accepted
                     case 4: $class .= "rejected"; break;  // Rejected
                     case 5: $class .= "rejected"; break;  // Cancellation
+                    case 9: $class .= "rejected"; break;  // Cancellation
+                    case 10: $class .= "rejected"; break;  // Cancellation
+                    case 11: $class .= "rejected"; break;  // Cancellation
                     case 6: $class .= "rejected"; break;  // Canceled
                     case 12: $class .= "dayoff"; break;
                     case 13: $class .= "dayoff"; break;
@@ -108,6 +114,9 @@ if (count($tabular) > 0) {?>
                         case 3: $class = "allaccepted"; break;  // Accepted
                         case 4: $class = "allrejected"; break;  // Rejected
                         case 5: $class = "allrejected"; break;  // Cancellation
+                        case 9: $class = "allrejected"; break;  // Cancellation
+                        case 10: $class = "allrejected"; break;  // Cancellation
+                        case 11: $class = "allrejected"; break;  // Cancellation
                         case 6: $class = "allrejected"; break;  // Canceled
                     }
                 }
@@ -128,6 +137,9 @@ if (count($tabular) > 0) {?>
                           case 3: $class = "allaccepted"; break;  // Accepted
                           case 4: $class = "allrejected"; break;  // Rejected
                           case 5: $class = "allrejected"; break;  // Cancellation
+                          case 9: $class = "allrejected"; break;  // Cancellation
+                          case 10: $class = "allrejected"; break;  // Cancellation
+                          case 11: $class = "allrejected"; break;  // Cancellation
                           case 6: $class = "allrejected"; break;  // Canceled
                       }
                       break;
@@ -141,6 +153,9 @@ if (count($tabular) > 0) {?>
                           case 3: $class = "amaccepted"; break;  // Accepted
                           case 4: $class = "amrejected"; break;  // Rejected
                           case 5: $class = "amrejected"; break;  // Cancellation
+                          case 9: $class = "amrejected"; break;  // Cancellation
+                          case 10: $class = "amrejected"; break;  // Cancellation
+                          case 11: $class = "amrejected"; break;  // Cancellation
                           case 6: $class = "amrejected"; break;  // Canceled
                       }
                     break;
@@ -154,6 +169,9 @@ if (count($tabular) > 0) {?>
                           case 3: $class = "pmaccepted"; break;  // Accepted
                           case 4: $class = "pmrejected"; break;  // Rejected
                           case 5: $class = "pmrejected"; break;  // Cancellation
+                          case 9: $class = "pmrejected"; break;  // Cancellation
+                          case 10: $class = "pmrejected"; break;  // Cancellation
+                          case 11: $class = "pmrejected"; break;  // Cancellation
                           case 6: $class = "pmrejected"; break;  // Canceled
                       }
                     break;

@@ -52,7 +52,7 @@
         <span class="label"><input type="checkbox" checked id="chkPlanned" class="filterStatus"> &nbsp;<?php echo lang('Planned');?></span> &nbsp;
         <span class="label label-success"><input type="checkbox" checked id="chkAccepted" class="filterStatus"> &nbsp;<?php echo lang('Accepted');?></span> &nbsp;
         <span class="label label-warning"><input type="checkbox" checked id="chkRequested" class="filterStatus"> &nbsp;<?php echo lang('Requested2');?></span> &nbsp;
-        <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" checked id="chkCancellation" class="filterStatus"> &nbsp;<?php echo lang('Cancellation');?></span> &nbsp;
+        <span class="label label-important" style="background-color: #ff0000;"><input type="checkbox" checked id="chkCancellation" class="filterStatus"> &nbsp;<?php echo lang('Cancellation2');?></span> &nbsp;
     </div>
 </div>
 
@@ -175,6 +175,9 @@
         if ($("#chkRequested").prop("checked")) statuses+="8|";
         if ($("#chkAccepted").prop("checked")) statuses+="3|";
         if ($("#chkCancellation").prop("checked")) statuses+="5|";
+        if ($("#chkCancellation").prop("checked")) statuses+="9|";
+        if ($("#chkCancellation").prop("checked")) statuses+="10|";
+        if ($("#chkCancellation").prop("checked")) statuses+="11|";
         statuses = statuses.replace(/\|*$/, "");
         if (statuses!="") statuses = '?statuses=' + statuses;
         return statuses;
@@ -325,6 +328,9 @@
                     case '3': $("#chkAccepted").prop("checked", true); break;
                     case '4': $("#chkRejected").prop("checked", true); break;
                     case '5': $("#chkCancellation").prop("checked", true); break;
+                    case '9': $("#chkCancellation").prop("checked", true); break;
+                    case '10': $("#chkCancellation").prop("checked", true); break;
+                    case '11': $("#chkCancellation").prop("checked", true); break;
                     case '6': $("#chkCanceled").prop("checked", true); break;
                 }
             });
