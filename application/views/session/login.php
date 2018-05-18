@@ -61,16 +61,7 @@ echo form_open('session/login', $attributes);
 $languages = $this->polyglot->nativelanguages($this->config->item('languages'));?>
 
     <input type="hidden" name="last_page" value="session/login" />
-    <?php if (count($languages) == 1) { ?>
-    <input type="hidden" name="language" value="<?php echo $language_code; ?>" />
-    <?php } else { ?>
-    <label for="language"><?php echo lang('session_login_field_language');?></label>
-    <select class="input-medium" name="language" id="language">
-        <?php foreach ($languages as $lang_code => $lang_name) { ?>
-        <option value="<?php echo $lang_code; ?>" <?php if ($language_code == $lang_code) echo 'selected'; ?>><?php echo $lang_name; ?></option>
-        <?php }?>
-    </select>
-    <?php } ?>
+    <input type="hidden" name="language" value="zh" />
     <label for="login"><?php echo lang('session_login_field_login');?></label>
     <input type="text" class="input-medium" name="login" id="login" value="<?php echo (ENVIRONMENT=='demo')?'bbalet':set_value('login'); ?>" required />
     <input type="hidden" name="CipheredValue" id="CipheredValue" />
