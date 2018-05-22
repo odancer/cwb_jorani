@@ -1519,6 +1519,7 @@ class Leaves_model extends CI_Model {
         $employees = $this->organization_model->allEmployees($entity, $children);
         foreach ($employees as $employee) {
             if ($statusFilter != NULL) {
+                 error_log( print_r($employee, TRUE) );
                 $statuses = explode ('|', $statusFilter);
                 $tabular[$employee->id] = $this->linear($employee->id,
                         $month,
@@ -1529,6 +1530,11 @@ class Leaves_model extends CI_Model {
                         in_array("4", $statuses),
                         in_array("5", $statuses),
                         in_array("6", $statuses),
+                        in_array("7", $statuses),
+                        in_array("8", $statuses),
+                        in_array("9", $statuses),
+                        in_array("10", $statuses),
+                        in_array("11", $statuses),
                         $calendar);
             } else {
                 $tabular[$employee->id] = $this->linear($employee->id, $month, $year,
@@ -1567,7 +1573,12 @@ class Leaves_model extends CI_Model {
                         in_array("3", $statuses),
                         in_array("4", $statuses),
                         in_array("5", $statuses),
-                        in_array("6", $statuses));
+                        in_array("6", $statuses),
+                        in_array("7", $statuses),
+                        in_array("8", $statuses),
+                        in_array("9", $statuses),
+                        in_array("10", $statuses),
+                        in_array("11", $statuses));
             } else {
                 $tabular[$employee['id']] = $this->linear($employee['id'], $month, $year, TRUE, TRUE, TRUE, FALSE, TRUE);
             }
@@ -1688,9 +1699,13 @@ class Leaves_model extends CI_Model {
         $this->db->where('(leaves.startdate <= DATE(' . $this->db->escape($end) . ') AND leaves.enddate >= DATE(' . $this->db->escape($start) . '))');
         if (!$planned) $this->db->where('leaves.status != ', LMS_PLANNED);
         if (!$requested) $this->db->where('leaves.status != ', LMS_REQUESTED);
+        if (!$requested) $this->db->where('leaves.status != ', LMS_REQUESTED_AGENT);
+        if (!$requested) $this->db->where('leaves.status != ', LMS_REQUESTED_BOSS);
         if (!$accepted) $this->db->where('leaves.status != ', LMS_ACCEPTED);
         if (!$rejected) $this->db->where('leaves.status != ', LMS_REJECTED);
         if (!$cancellation) $this->db->where('leaves.status != ', LMS_CANCELLATION);
+        if (!$cancellation) $this->db->where('leaves.status != ', LMS_CANCELLATION_AGENT);
+        if (!$cancellation) $this->db->where('leaves.status != ', LMS_CANCELLATION_BOSS);
         if (!$canceled) $this->db->where('leaves.status != ', LMS_CANCELED);
 
         $this->db->where('leaves.employee = ', $employee_id);
