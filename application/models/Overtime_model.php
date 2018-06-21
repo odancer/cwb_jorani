@@ -64,12 +64,19 @@ class Overtime_model extends CI_Model {
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
     public function setExtra() {
+        $status = $this->input->post('status');
+        $pay=0;
+        if($status == 3) {
+            $status = 2;
+            $pay =1;
+        }  
         $data = array(
             'date' => $this->input->post('date'),
             'employee' => $this->session->userdata('id'),
             'duration' => $this->input->post('duration'),
             'cause' => $this->input->post('cause'),
-            'status' => $this->input->post('status')
+            'status' => $status,
+            'pay' => $pay
         );
         $this->db->insert('overtime', $data);
         return $this->db->insert_id();
@@ -99,6 +106,7 @@ class Overtime_model extends CI_Model {
     public function acceptExtra($id) {
         $extraInfo = $this->getExtras($id);
         $status = $extraInfo['status'];
+        $pay = $extraInfo['pay'];
         $data = array();
         switch($status) {
             case 2:
@@ -185,7 +193,7 @@ class Overtime_model extends CI_Model {
                 }
             }else {
                 error_log( print_r("overtime_666", TRUE) );
-                $this->db->where('organization', $grp_info);
+                //$this->db->where('organization', $grp_info);
                 $this->db->where('status', 2);
                 if(in_array($grp_super2,$ids)) $this->db->or_where('status',12);
             }
@@ -225,7 +233,7 @@ class Overtime_model extends CI_Model {
                     $this->db->where('status', 12);
                 }
             }else {
-                $this->db->where('organization', $grp_info);
+                //$this->db->where('organization', $grp_info);
                 $this->db->where('status', 2);
                 if(in_array($grp_super2,$ids)) $this->db->or_where('status',12);
             }

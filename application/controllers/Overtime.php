@@ -47,6 +47,7 @@ class Overtime extends CI_Controller {
         $data['help'] = $this->help->create_help_link('global_link_doc_page_overtime_list');
         $data['requests'] = $this->overtime_model->requests($this->user_id, $showAll);
         $data['flash_partial_view'] = $this->load->view('templates/flash', $data, TRUE);
+        //error_log(print_r($data['requests'],TRUE));
         $this->load->view('templates/header', $data);
         $this->load->view('menu/index', $data);
         $this->load->view('overtime/index', $data);

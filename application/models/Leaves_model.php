@@ -341,7 +341,8 @@ class Leaves_model extends CI_Model {
                 //$this->db->where_in('leaves.status', array(LMS_ACCEPTED, LMS_CANCELLATION));
                 $this->db->where_in('leaves.status',LMS_ACCEPTED);
                 $this->db->where('leaves.startdate >= ', $entitlement['min_date']);
-                $this->db->where('leaves.enddate <=', $entitlement['max_date']);
+                //$this->db->where('leaves.enddate <=', $entitlement['max_date']);
+                $this->db->where('leaves.enddate <=', $refDate);
                 $this->db->where('leaves.type', $entitlement['type_id']);
                 $this->db->group_by("leaves.type");
                 $taken_days = $this->db->get()->result_array();
@@ -359,8 +360,10 @@ class Leaves_model extends CI_Model {
             $this->db->select('duration, date, cause');
             $this->db->from('overtime');
             $this->db->where('employee', $id);
-            $this->db->where("date >= DATE_SUB(STR_TO_DATE('" . $refDate . "', '%Y-%m-%d'),INTERVAL 1 YEAR)");
+            //$this->db->where("date >= DATE_SUB(STR_TO_DATE('" . $refDate . "', '%Y-%m-%d'),INTERVAL 1 YEAR)");
+            $this->db->where("date <= STR_TO_DATE('" . $refDate . "', '%Y-%m-%d')");
             $this->db->where('status = 3'); //Accepted
+            $this->db->where('pay = 0'); //Leave_Apply
             $overtime_days = $this->db->get()->result_array();
             $sum = 0;
             foreach ($overtime_days as $entitled) {
@@ -376,7 +379,9 @@ class Leaves_model extends CI_Model {
             $this->db->where('leaves.employee', $id);
             $this->db->where('leaves.status', 3);
             $this->db->where('leaves.type', 0);
-            $this->db->where("leaves.startdate >= DATE_SUB(STR_TO_DATE('" . $refDate . "', '%Y-%m-%d'),INTERVAL 1 YEAR)");
+            //$this->db->where("leaves.startdate >= DATE_SUB(STR_TO_DATE('" . $refDate . "', '%Y-%m-%d'),INTERVAL 1 YEAR)");
+            $this->db->where('leaves.startdate >= ', $entitlement['min_date']);
+            $this->db->where('leaves.enddate <=', $refDate);
             $this->db->group_by("leaves.type");
             $taken_days = $this->db->get()->result_array();
             if (count($taken_days) > 0) {
@@ -421,9 +426,10 @@ class Leaves_model extends CI_Model {
                 $this->db->from('leaves');
                 $this->db->join('types', 'types.id = leaves.type');
                 $this->db->where('leaves.employee', $id);
-                $this->db->where_in('leaves.status', array(LMS_REQUESTED,LMS_REQUESTED_AGENT,LMS_REQUESTED_BOSS));
+                $this->db->where_in('leaves.status', array(LMS_REQUESTED,LMS_REQUESTED_AGENT,LMS_REQUESTED_BOSS,LMS_OVERTIME_BOSS));
                 $this->db->where('leaves.startdate >= ', $entitlement['min_date']);
-                $this->db->where('leaves.enddate <=', $entitlement['max_date']);
+                //$this->db->where('leaves.enddate <=', $entitlement['max_date']);
+                $this->db->where('leaves.enddate <=', $refDate);
                 $this->db->where('leaves.type', $entitlement['type_id']);
                 $this->db->group_by("leaves.type");
                 $requested_days = $this->db->get()->result_array();

@@ -34,3 +34,6 @@ $lang['overtime_export_thead_date'] = '日期';
 $lang['overtime_export_thead_duration'] = '申請時數';
 $lang['overtime_export_thead_cause'] = '理由';
 $lang['overtime_export_thead_status'] = '狀態';
+$lang['overtime_leave_apply'] = '(申請補休)';
+$lang['overtime_pay_apply'] = '(申請加班費)';
+

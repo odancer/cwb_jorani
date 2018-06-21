@@ -295,8 +295,7 @@ class Hr extends CI_Controller {
             $data['isDefault'] = 0;
         } else {
             $data['isDefault'] = 1;
-        }
-        
+        }    
         $data['refDate'] = $refDate;
         $data['summary'] = $this->leaves_model->getLeaveBalanceForEmployee($id, FALSE, $refDate);
         if (!is_null($data['summary'])) {

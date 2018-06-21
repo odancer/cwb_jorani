@@ -46,8 +46,14 @@
 $tmpDate = $date->getTimestamp();?>
         <td align='center' valign='middle' data-order="<?php echo $tmpDate; ?>"><?php echo $date->format(lang('global_date_format'));?></td>
         <td align='center' valign='middle'><?php echo $requests_item['duration']; ?></td>
-        <td align='center' valign='middle'><?php echo lang($requests_item['status_name']); ?></td>
         
+        <?php if ($requests_item['pay'] == 0) {?>
+             <td align='center' valign='middle'><?php echo lang($requests_item['status_name']).lang('overtime_leave_apply');?></td> 
+        <?php }?>
+
+        <?php if ($requests_item['pay'] == 1) {?>
+             <td align='center' valign='middle'><?php echo lang($requests_item['status_name']).lang('overtime_pay_apply');?></td> 
+        <?php }?>
     </tr>
 <?php endforeach ?>
 	</tbody>

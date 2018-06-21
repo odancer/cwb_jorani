@@ -48,7 +48,12 @@ $tmpDate = $date->getTimestamp();?>
         <td align='center' valign='middle' data-order="<?php echo $tmpDate; ?>"><?php echo $date->format(lang('global_date_format'));?></td>
         <td align='center' valign='middle'><?php echo $extra_item['duration']; ?></td>
         <td align='center' valign='middle'><?php echo $extra_item['cause']; ?></td>
-        <td align='center' valign='middle'><?php echo lang($extra_item['status_name']); ?></td>
+         <?php if ($extra_item['pay'] == 0) {?>
+            <td align='center' valign='middle'><?php echo lang($extra_item['status_name']).lang('extra_leave_apply'); ?></td>
+        <?php }?>
+        <?php if ($extra_item['pay'] == 1) {?>
+            <td align='center' valign='middle'><?php echo lang($extra_item['status_name']).lang('extra_pay_apply'); ?></td>
+        <?php }?>
     </tr>
       </div>
 <?php endforeach ?>

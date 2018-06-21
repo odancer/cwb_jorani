@@ -289,6 +289,7 @@ CREATE TABLE IF NOT EXISTS `overtime` (
   `duration` decimal(10,3) NOT NULL,
   `cause` text CHARACTER SET utf8 NOT NULL,
   `status` int(11) NOT NULL,
+  `pay` int(2) DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `status` (`status`),
   KEY `employee` (`employee`)
@@ -364,8 +365,8 @@ INSERT INTO `status` (`id`, `name`) VALUES
 (9, 'Cancellation_Agent'),
 (10,'Cancellation_Manager'),
 (11,'Cancellation_Boss'),
-(12,'Overtime_Boss');
-
+(12,'Overtime_Boss'),
+(13,'Overtime_Pay');
 --
 -- Structure of table `tasks`
 --

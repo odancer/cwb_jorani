@@ -67,3 +67,5 @@ $lang['extra_export_thead_date'] = '日期';
 $lang['extra_export_thead_duration'] = '申請時數';
 $lang['extra_export_thead_cause'] = '理由';
 $lang['extra_export_thead_status'] = '狀態';
+$lang['extra_leave_apply'] = '(申請補休)';
+$lang['extra_pay_apply'] = '(申請加班費)';
