@@ -231,19 +231,30 @@ class Leaves_model extends CI_Model {
             if (!$isDayOff) {
                       $startTime = $startDateObject->format('Y-m-d H:i:s');
                       $endTime =  $endDateObject->format('Y-m-d H:i:s');
+                      $endTime2 =  $endDateObject->format('H:i:s');
                 if ($one_day) {
+                     error_log( print_r("druation AAAAAA", TRUE) );  
                     /**if ($start_morning && $end_afternoon) $length++;
                        if ($start_morning && $end_morning) $length+=0.5;
                        if ($start_afternoon && $end_afternoon) $length+=0.5; */
                       //$startTime = explode(" ", $startDateObject->format('Y-m-d H:i:s'));
                       //$endTime = explode(" ", $endDateObject->format('Y-m-d H:i:s'));
                       $r_time=$this->sumTime($startTime,$endTime);
+                      error_log( print_r($r_time, TRUE) ); 
                       $timeArr=explode(" ",$r_time);
-                      if($start_morning && $end_afternoon) $hours=(ceil($timeArr[2]/60)-1);
-                      if(($start_morning && $end_morning) || ($start_afternoon&& $end_afternoon)) $hours=ceil($timeArr[2]/60);
+                      if($start_morning && $end_afternoon) {
+                        if($endTime2=="12:00:00") {
+                            $hours=(ceil($timeArr[2]/60));
+                        } else {
+                            $hours=(ceil($timeArr[2]/60)-1);
+                        }
+
+                      }
+                      if(($start_morning && $end_morning) || ($start_afternoon&& $end_afternoon) ) $hours=ceil($timeArr[2]/60);
                       $dhours=$timeArr[0]*8;
                       $length=$hours+$dhours;
                 } else {
+                     error_log( print_r("druation BBBBBB", TRUE) ); 
                     /**if ($iDate == $endDateObject) $last_day = TRUE; else $last_day = FALSE;
                     if (!$first_day && !$last_day) $length++;
                     if ($first_day && $start_morning) $length++;
@@ -253,6 +264,7 @@ class Leaves_model extends CI_Model {
                     //$startTime = explode(" ", $startDateObject->format('Y-m-d H:i:s'));
                     //$endTime = explode(" ", $endDateObject->format('Y-m-d H:i:s'));
                     $r_time=$this->sumTime($startTime,$endTime);
+                    error_log( print_r($r_time, TRUE) );
                     $timeArr=explode(" ",$r_time);
                     if($start_morning && $end_afternoon) $hours=(ceil($timeArr[2]/60)-1);
                     if(($start_morning && $end_morning) || ($start_afternoon && $end_afternoon)) $hours=ceil($timeArr[2]/60);
