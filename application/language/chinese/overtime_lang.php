@@ -11,7 +11,7 @@
 $lang['overtime_index_title'] = '加班申請傳送給我';
 $lang['overtime_index_description'] = '加班申請已傳送給你,如你不是管理者,此頁面將為空白';
 $lang['overtime_index_thead_tip_view'] = '預覽';
-$lang['overtime_index_thead_tip_accept'] = '接受';
+$lang['overtime_index_thead_tip_accept'] = '同意';
 $lang['overtime_index_thead_tip_reject'] = '拒絕';
 $lang['overtime_index_thead_id'] = '序號';
 $lang['overtime_index_thead_fullname'] = '申請人';

@@ -12,7 +12,7 @@ $lang['requests_index_title'] = '休假申請傳送給我';
 $lang['requests_index_description'] = '休假申請列表已傳送給你,如你不是管理者此表將為空白';
 $lang['requests_filter_title'] = '狀態欄位過濾 (勾選顯示)';
 $lang['requests_index_thead_tip_view'] = '預覽';
-$lang['requests_index_thead_tip_accept'] = '接受';
+$lang['requests_index_thead_tip_accept'] = '同意';
 $lang['requests_index_thead_tip_accept_cancellation'] = '接受取消';
 $lang['requests_index_thead_tip_reject'] = '拒絕';
 $lang['requests_index_thead_tip_reject_cancellation'] = '拒絕取消';
@@ -85,9 +85,9 @@ $lang['requests_balance_title'] = '請假餘額(部屬)';
 $lang['requests_balance_description'] = 'Leave balance of my direct report subordinates. If you are not a manager, this list will always be empty.';
 $lang['requests_balance_date_field'] = '報告建立日期';
 
-$lang['requests_comment_reject_request_title'] = 'Comment';
-$lang['requests_comment_reject_request_button_cancel'] = 'Cancel';
-$lang['requests_comment_reject_request_button_reject'] = 'Reject';
+$lang['requests_comment_reject_request_title'] = '意見';
+$lang['requests_comment_reject_request_button_cancel'] = '取消';
+$lang['requests_comment_reject_request_button_reject'] = '拒絕';
 
 
 $lang['requests_view_title'] = '預覽休假申請';
@@ -100,8 +100,8 @@ $lang['requests_view_field_cause'] = '理由';
 $lang['requests_view_field_status'] = '狀態';
 $lang['requests_view_button_edit'] = '編輯';
 $lang['requests_view_button_back_list'] = '返回列表';
-$lang['requests_comment_title'] = 'Comments';
-$lang['requests_comment_new_comment'] = 'New comment';
-$lang['requests_comment_send_comment'] = 'Send comment';
+$lang['requests_comment_title'] = '意見';
+$lang['requests_comment_new_comment'] = '新增意見';
+$lang['requests_comment_send_comment'] = '送出意見';
 $lang['requests_comment_author_saying'] = ' says';
 $lang['requests_comment_status_changed'] = 'The status of the leave have been changed to ';

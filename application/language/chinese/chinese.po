@@ -715,7 +715,7 @@ msgid "Planned"
 msgstr "草稿"
 
 msgid "Accepted"
-msgstr "接受"
+msgstr "同意"
 
 msgid "Rejected"
 msgstr "拒絕"
